@@ -2,6 +2,7 @@ require("dotenv").config();
 const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
+const cors = require("cors");
 const { createServer: createViteServer } = require("vite");
 
 const PORT = process.env.PORT ?? 3000;
@@ -12,7 +13,7 @@ const PORT = process.env.PORT ?? 3000;
  */
 const createApp = async () => {
   const app = express();
-
+  app.use(cors());
   // Logging middleware
   app.use(morgan("dev"));
 
