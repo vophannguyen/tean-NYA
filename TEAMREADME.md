@@ -1,4 +1,4 @@
-#Start
+# Start
 
 - Dont have new branch "git checkout -b yourbranch".
 - Have branch go to yourbranch "git checkout yourbranch" and then "git merge main"
@@ -17,7 +17,7 @@
   - Data required: {username, password}
 - POST "/register"
   - Data required :{username, password, email, phone, name}
-  - username and password are unique
+  - username and email are unique
 
 # User
 
