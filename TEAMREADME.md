@@ -1,7 +1,7 @@
 #Start
 
-- Dont have new branch "git checkout -b <yourbranch>".
-- Have branch go to yourbranch "git checkout <yourbranch>" and then "git merge main"
+- Dont have new branch "git checkout -b yourbranch".
+- Have branch go to yourbranch "git checkout yourbranch" and then "git merge main"
 - if main have any update, go to main branch 'git pull' then switch to yourbranch "git merge manin"
 - npm i
 - npx prisma migrate reset
