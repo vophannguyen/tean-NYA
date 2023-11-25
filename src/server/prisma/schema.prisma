@@ -14,13 +14,67 @@ model User {
   id       Int    @id @default(autoincrement())
   username String @unique
   password String
-  tasks    Task[]
+  email String @unique
+  phone String
+  name String
+  items    Item[]
+  reservation Reservation[]
+  paymentHistory PaymentHistory[]
+  solditem SoldItem[]
 }
 
-model Task {
-  id          Int     @id @default(autoincrement())
+model SoldItem{
+  id Int @id @default(autoincrement())
+  userId Int
+  user User @relation(fields: [userId],references: [id],onDelete: Cascade)
+  createAt DateTime @default(now())
+  title String
   description String
-  done        Boolean @default(false)
+  price Float
+  upload String?
+  time DateTime
+}
+model PaymentHistory{
+  id Int @id @default(autoincrement())
+  userId Int
+  user User @relation(fields: [userId],references: [id],onDelete: Cascade)
+  createAt DateTime @default(now())
+  userSellId Int
+  itemId Int
+  price Float
+  title String
+  upload String?
+}
+model Reservation{
+  id Int @id @default(autoincrement())
+  userId Int
+  user User @relation(fields: [userId],references: [id],onDelete: Cascade)
+  itemId Int
+  item Item @relation(fields: [itemId],references: [id],onDelete: Cascade)
+}
+model Location {
+  id Int @id @default(autoincrement())
+  address1 String
+  address2 String
+  city String
+  state String
+  zip String
+  country String
+  itemId Int 
+  item  Item @relation(fields: [itemId], references: [id],onDelete: Cascade)
+
+}
+model Item {
+  id          Int     @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  title String
+  description String
+  price Float
+  upload String?
+  isReservation Boolean @default(false)
+  time DateTime
+  location Location[]
+  reservation Reservation[]
   userId      Int
   user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
