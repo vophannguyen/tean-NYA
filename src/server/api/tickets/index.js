@@ -5,16 +5,21 @@ const { imageFile, imageUpload } = require("./image");
 module.exports = router;
 
 ////** User must be logged in to access . */
-router.use((req, res, next) => {
-  if (!res.locals.user) {
-    return next(new ServerError(401, "You must be logged in."));
-  }
-  next();
-});
+// router.use((req, res, next) => {
+//   if (!res.locals.user) {
+//     return next(new ServerError(401, "You must be logged in."));
+//   }
+//   next();
+// });
 
 //create new ticket
 router.post("/create", imageUpload.single("upload"), async (req, res, next) => {
   try {
+    // User must be logged in to access
+    if (!res.locals.user) {
+      res.json({ error: "You must be logged in." });
+      return;
+    }
     ///Check all information not null || all information required
     const { title, description, time } = req.body;
     const { address1, address2, city, state, zip, country } = req.body;

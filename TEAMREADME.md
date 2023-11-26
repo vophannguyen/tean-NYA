@@ -21,6 +21,8 @@
 
 # User
 
+-Note : Need logged to fetch data
+
 - Base URL : localhost:3000/api/user
 - Get " /profile " get user information
 - Get "/reservation" get item add to cart
@@ -34,7 +36,7 @@
 # Item
 
 - Base URL : localhost:3000/api/tickets
-- POST "/create" create tickets
+- POST "/create" create tickets Note: Need logged to create tickets
   - Data required :{ title, description, time, price, address1, address2, city, state, zip, country }
   - Dont have address2 : example : address2 =" "
   - title should be have 3 option (restaurant,movies,concert)
