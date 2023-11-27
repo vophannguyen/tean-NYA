@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useRegisterMutation } from "./authSlice";
+import { useRegisterMutation, useLoginMutation } from "./authSlice";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -12,6 +12,8 @@ const Register = () => {
   const [lastName, setLastName] = useState("");
 
   const [registerUser] = useRegisterMutation();
+  const [loginUser] = useLoginMutation();
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -31,12 +33,19 @@ const Register = () => {
       }).unwrap();
       // console.log("token", response.token);
       console.log(response);
+      if (response.success) {
       const welcomeMessage = "Welcome to your Last Chance";
       window.alert(welcomeMessage);
+
+      const loginResponse = await loginUser({ username, password }).unwrap();
+      console.log("token", loginResponse.token);
+      
       navigate("/");
+    } else {
+      setError(response.message);
+    }
     } catch (error) {
       console.log(error);
-      setError(error);
     } finally {
       setLoading(false);
     }
@@ -80,7 +89,7 @@ const Register = () => {
         {loading && <p>Registering!</p>}
         {error && (
           <p className="error-message">
-            Oops! Something went wrong during registration.
+            {error}
           </p>
         )}
       </form>
