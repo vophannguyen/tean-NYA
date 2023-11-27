@@ -8,12 +8,12 @@ module.exports = router;
 /** Creates new account and returns token */
 router.post("/register", async (req, res, next) => {
   try {
-    const { username, password, email, phone, name } = req.body;
+    const { username, password, email, lastName, firstName } = req.body;
 
     // Check if username and password provided
-    if (!username || !password || !email || !phone || !name) {
+    if (!username || !password || !email || !lastName || !firstName) {
       res.json({ error: "ALL Information required" });
-      throw new ServerError(400, "Username and password required.");
+      // throw new ServerError(400, "Username and password required.");
     }
     //check if email already exist
     const userEmail = await prisma.user.findUnique({
@@ -39,7 +39,7 @@ router.post("/register", async (req, res, next) => {
 
     // Create new user
     const newUser = await prisma.user.create({
-      data: { username, password, email, phone },
+      data: { username, password, email, lastName, firstName },
     });
 
     // const token = jwt.sign({ id: newUser.id });

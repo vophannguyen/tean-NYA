@@ -7,8 +7,8 @@ const seed = async () => {
       username: "foo",
       password: "123",
       email: "vophannguyen@gmail.com",
-      phone: "7044416453",
-      name: "Nguyen Vo",
+      firstName: "Nguyen",
+      lastName: "vo",
       items: {
         create: [
           {
