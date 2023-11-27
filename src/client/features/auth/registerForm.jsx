@@ -23,11 +23,11 @@ const Register = () => {
 
         try{
             const response = await registerUser({
-                username,
-                password, 
-                email,
                 firstName,
-                lastName,
+                lastName, 
+                email,
+                username,
+                password  
             }).unwrap();
             console.log("token", response.token);
             const welcomeMessage = "Welcome to your Last Chance";
