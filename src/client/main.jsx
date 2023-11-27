@@ -22,7 +22,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Tickets /> },
       { path: "/tickets", element: <Tickets /> },
-      { path: "/ticket/:id", element: <Listing /> },
+      { path: "/tickets/:id", element: <Listing /> },
       { path: "/login", element: <LoginForm /> },
       { path: "/register", element: <RegisterForm />},
       { path: "/upload", element: <Upload />},
