@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRegisterMutation, useLoginMutation } from "./authSlice";
 
-const Register = () => {
+export default function RegisterForm () {
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
@@ -96,5 +96,3 @@ const Register = () => {
     </div>
   );
 };
-
-export default Register;
