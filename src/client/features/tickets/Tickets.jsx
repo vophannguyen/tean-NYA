@@ -12,7 +12,6 @@ const TicketCard = ({ ticket }) => {
 /** Main interface for user to interact with their tickets */
 export default function Tickets() {
   const { data: tickets, isLoading, isError } = useGetTicketsQuery();
-
   //pagination to be added ?
   // const [page, setPage] = useState(1);
   // const perPage = 30;
@@ -31,7 +30,7 @@ export default function Tickets() {
   //sorting feature - to be added?
 
   if (isError) {
-    console.log(err);
+    console.log("error");
   };
 
   return (

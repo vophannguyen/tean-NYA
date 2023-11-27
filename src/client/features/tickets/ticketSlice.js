@@ -3,13 +3,13 @@ import api from "../../store/api";
 const ticketsApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getTickets: builder.query({
-      query: () => "/",
-      transformResponse: (response) => response.students,
+      query: () => "/tickets",
+      transformResponse: (response) => response.data,
       providesTags: ["Tickets"],
     }),
     getById: builder.query({
-      query: (id) => `/${id}`,
-      transformResponse: (response) => response.ticket,
+      query: (id) => `/tickets/${id}`,
+      transformResponse: (response) => response.data,
       providesTags: ["Tickets"],
     }),
   }),
