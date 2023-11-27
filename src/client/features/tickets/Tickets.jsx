@@ -4,7 +4,8 @@ import { useGetTicketsQuery } from "./ticketSlice";
 const TicketCard = ({ ticket }) => {
   return (
     <li>
-        <Link to={`/${id}`}>{ticket.title}</Link>
+        {/* <Link to={`/${id}`}>{ticket.title}</Link> */}
+        <p>{ticket.title}</p>
     </li>
   );
 };

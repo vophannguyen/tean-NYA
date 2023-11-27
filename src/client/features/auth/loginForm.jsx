@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLoginMutation } from "./authSlice";
 
-const Login = () => {
+export default function LoginForm () {
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
@@ -65,5 +65,3 @@ const Login = () => {
     </div>
   );
 };
-
-export default Login;
