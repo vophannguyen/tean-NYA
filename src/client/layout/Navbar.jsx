@@ -31,9 +31,14 @@ export default function Navbar() {
             <a onClick={handleLogout}>Log Out</a>
           </li>
         ) : (
+          <>
           <li>
             <NavLink to="/login">Log In</NavLink>
           </li>
+           <li>
+           <NavLink to="/register">Register</NavLink>
+         </li>
+         </>
         )}
       </menu>
     </nav>
