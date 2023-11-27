@@ -57,6 +57,12 @@ const Register = () => {
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             />
+            <label className="register-email">Email</label>
+            <input
+            type= "email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            />
             <label className="register-username">Username</label>
             <input
             type = "text"
@@ -68,12 +74,6 @@ const Register = () => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            />
-            <label className="register-email">Email</label>
-            <input
-            type= "email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
             />
             <button className="register-button">Register</button>
             {loading && <p>Registering!</p>}
