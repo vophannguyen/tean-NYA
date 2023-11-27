@@ -1,11 +1,11 @@
 import { useGetTicketsQuery } from "./ticketSlice";
+import { Link } from "react-router-dom";
 
 //Basic functionality setup
 const TicketCard = ({ ticket }) => {
   return (
     <li>
-        {/* <Link to={`/${id}`}>{ticket.title}</Link> */}
-        <p>{ticket.title}</p>
+        <Link to={`/tickets/${ticket.id}`}>{ticket.title}</Link>
     </li>
   );
 };
