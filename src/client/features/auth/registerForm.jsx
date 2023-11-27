@@ -45,6 +45,18 @@ const Register = () => {
     <div>
         <h1 className="register-heading"> Register </h1>
         <form className="register-form" onSubmit={attemptRegister}>
+        <label className="first-name">First Name</label>
+            <input 
+            type="text"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            />
+            <label className="last-name">Last Name</label>
+            <input 
+            type = "text"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            />
             <label className="register-username">Username</label>
             <input
             type = "text"
@@ -62,18 +74,6 @@ const Register = () => {
             type= "email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            />
-            <label className="first-name">First Name</label>
-            <input 
-            type="text"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            />
-            <label className="last-name">Last Name</label>
-            <input 
-            type = "text"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
             />
             <button className="register-button">Register</button>
             {loading && <p>Registering!</p>}
