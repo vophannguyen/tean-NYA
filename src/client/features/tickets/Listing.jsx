@@ -14,6 +14,14 @@ export default function Listing() {
   if (isError) {
     navigate("/*");
   };
+  
+  const handleCart = () => {
+    
+  };
+
+  const handleLike = () => {
+    
+  };
 
   //todo: reformat listing date on front end
   //details needed for single view listing = category of the listing (movie, concert, reservation)
@@ -21,20 +29,20 @@ export default function Listing() {
     <div>
       {ticket ? (
         <section>
+          <img src="image.png"></img>
           <article>
             <h1>{ticket.title}</h1>
-            <p>Need to add the date of event</p>
             <p>{ticket.time}</p>
             <p>{ticket.description}</p>
-            <button>
-              Like
+            <button onLike={handleLike}>
+              Like GUI
             </button>
-            <button>
+            <button onClick={handleCart}>
               Add to Cart
             </button>
           </article>
           <figure>
-            <h1>geolocational map here?</h1>
+            <p>geolocational map here?</p>
           </figure>
         </section>
       ) : (
