@@ -1,46 +1,44 @@
-import { useState } from "react";
-import { useDeleteTaskMutation, useEditTaskMutation } from "./taskSlice";
+import { useGetByIdQuery } from "./ticketSlice";
+import { useParams, useNavigate } from "react-router-dom";
 
 /** Allows user to read, update, and delete a task */
-export default function Listing({ task }) {
-  const [editTask] = useEditTaskMutation();
-  const [deleteTask] = useDeleteTaskMutation();
-
-  const [description, setDescription] = useState(task.description);
-
-  /** Updates the task's `done` status */
-  const toggleTask = async (evt) => {
-    const done = evt.target.checked;
-    editTask({ ...task, done });
+export default function Listing() {
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const { data: ticket, isLoading, isError } = useGetByIdQuery(id);
+  
+  //handle errors
+  if (isLoading) {
+    return;
   };
-
-  /** Saves the task's description */
-  const save = async (evt) => {
-    evt.preventDefault();
-    editTask({ ...task, description });
-  };
-
-  /** Deletes the task */
-  const onDelete = async (evt) => {
-    evt.preventDefault();
-    deleteTask(task.id);
+  if (isError) {
+    navigate("/*");
   };
 
   return (
-    <li>
-      <form onSubmit={save}>
-        <input type="checkbox" checked={task.done} onChange={toggleTask} />
-        <input
-          type="text"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-        />
-        <button>Save</button>
-        <button onClick={onDelete} aria-label="delete">
-          🞪
-        </button>
-      </form>
-    </li>
+    <div>
+      {ticket ? (
+        <section>
+          <article>
+            <h1>{ticket.title}</h1>
+            {/* <img src={data.imageUrl} alt={data.firstName} />
+            <h2>First Name: {data.firstName}</h2>
+            <h2>Last Name: {data.lastName}</h2>
+            <h3>GPA: {data.gpa}</h3>
+            <h3>Contact: {ticket.email}</h3> */}
+          </article>
+          <aside>
+            <button>
+              Like
+            </button>
+            <button>
+              Add to Cart
+            </button>
+          </aside>
+        </section>
+      ) : (
+        <p>Loading...(spinner)</p>
+      )}
+    </div>
   );
 }
