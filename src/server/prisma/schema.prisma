@@ -15,8 +15,8 @@ model User {
   username String @unique
   password String
   email String @unique
-  phone String
-  name String
+  firstname String
+  lastname String
   items    Item[]
   reservation Reservation[]
   paymentHistory PaymentHistory[]
