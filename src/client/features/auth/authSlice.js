@@ -4,7 +4,7 @@ import api from "../../store/api";
 const authApi = api.injectEndpoints({
   endpoints: (builder) => ({
     fetchUserAccount: builder.query({
-      query: () => "/user/register",
+      query: () => "/user/profile",
       providesTags: ["Me"],
     }),
     register: builder.mutation({
