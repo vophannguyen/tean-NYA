@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRegisterMutation, useLoginMutation } from "./authSlice";
 
-export default function RegisterForm () {
+export default function RegisterForm() {
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
@@ -34,16 +34,16 @@ export default function RegisterForm () {
       // console.log("token", response.token);
       console.log(response);
       if (response.success) {
-      const welcomeMessage = "Welcome to your Last Chance";
-      window.alert(welcomeMessage);
+        const welcomeMessage = "Welcome to your Last Chance";
+        window.alert(welcomeMessage);
 
-      const loginResponse = await loginUser({ username, password }).unwrap();
-      console.log("token", loginResponse.token);
-      
-      navigate("/");
-    } else {
-      setError(response.message);
-    }
+        const loginResponse = await loginUser({ username, password }).unwrap();
+        console.log("token", loginResponse.token);
+
+        navigate("/");
+      } else {
+        setError(response.message);
+      }
     } catch (error) {
       console.log(error);
     } finally {
@@ -87,12 +87,8 @@ export default function RegisterForm () {
         />
         <button className="register-button">Register</button>
         {loading && <p>Registering!</p>}
-        {error && (
-          <p className="error-message">
-            {error}
-          </p>
-        )}
+        {error && <p className="error-message">{error}</p>}
       </form>
     </div>
   );
-};
+}
