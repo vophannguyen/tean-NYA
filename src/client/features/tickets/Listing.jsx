@@ -6,7 +6,7 @@ export default function Listing() {
   const navigate = useNavigate();
   const { id } = useParams();
   const { data: ticket, isLoading, isError } = useGetByIdQuery(id);
-  
+  console.log(ticket);
   //handle errors
   if (isLoading) {
     return;
@@ -14,30 +14,39 @@ export default function Listing() {
   if (isError) {
     navigate("/*");
   };
+  
+  const handleCart = () => {
+    
+  };
 
+  const handleLike = () => {
+    
+  };
+
+  //todo: reformat listing date on front end
+  //details needed for single view listing = category of the listing (movie, concert, reservation)
   return (
     <div>
       {ticket ? (
         <section>
+          <img src="image.png"></img>
           <article>
             <h1>{ticket.title}</h1>
-            {/* <img src={data.imageUrl} alt={data.firstName} />
-            <h2>First Name: {data.firstName}</h2>
-            <h2>Last Name: {data.lastName}</h2>
-            <h3>GPA: {data.gpa}</h3>
-            <h3>Contact: {ticket.email}</h3> */}
-          </article>
-          <aside>
-            <button>
-              Like
+            <p>{ticket.time}</p>
+            <p>{ticket.description}</p>
+            <button onLike={handleLike}>
+              Like GUI
             </button>
-            <button>
+            <button onClick={handleCart}>
               Add to Cart
             </button>
-          </aside>
+          </article>
+          <figure>
+            <p>geolocational map here?</p>
+          </figure>
         </section>
       ) : (
-        <p>Loading...(spinner)</p>
+        <p>Loading...(insert a spinner)</p>
       )}
     </div>
   );
