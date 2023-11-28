@@ -7,6 +7,11 @@ const authApi = api.injectEndpoints({
       query: () => "/user/profile",
       providesTags: ["Me"],
     }),
+    endpoints: (builder) => ({
+      fetchUserReservationHistory: builder.query({
+        query: (userId) => `user/${userId}/paymenthistory`,
+      })
+    }),
     register: builder.mutation({
       query: (credentials) => ({
         url: "/auth/register",
@@ -32,6 +37,7 @@ export const {
   useRegisterMutation,
   useLoginMutation,
   useFetchUserAccountQuery,
+  useFetchUserReservationHistoryQuery,
 } = authApi;
 
 const TOKEN_KEY = "token";
