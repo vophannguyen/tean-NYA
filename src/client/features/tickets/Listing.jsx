@@ -1,4 +1,5 @@
-import { useAddCartMutation } from "../cart/cartSlice";
+import { useDispatch } from "react-redux";
+import { addPrice, useAddCartMutation } from "../cart/cartSlice";
 import { useGetByIdQuery } from "./ticketSlice";
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -8,7 +9,8 @@ export default function Listing() {
   const [addCart] = useAddCartMutation();
   const { id } = useParams();
   const { data: ticket, isLoading, isError } = useGetByIdQuery(id);
-  console.log(ticket);
+  const dispatch = useDispatch();
+  // console.log(ticket);
   //handle errors
   if (isLoading) {
     return;
@@ -19,8 +21,9 @@ export default function Listing() {
 
   const handleCart = async () => {
     try {
-      const respon = await addCart(id);
+      const respon = await addCart(id).unwrap();
       console.log(respon);
+      await dispatch(addPrice(ticket.price));
     } catch (err) {
       console.log(err);
     }
