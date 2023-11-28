@@ -30,10 +30,9 @@ export default function RegisterForm() {
 
       console.log(response);
 
-      if (response.message === "Successful") {
+      if (response.message === "Successfull") {
         const welcomeMessage = "Welcome to your Last Chance";
         window.alert(welcomeMessage);
-
         const loginResponse = await loginUser({ username, password }).unwrap();
         console.log("token", loginResponse.token);
         navigate("/");
