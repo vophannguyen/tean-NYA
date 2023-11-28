@@ -4,22 +4,18 @@ import { useRegisterMutation, useLoginMutation } from "./authSlice";
 
 export default function RegisterForm() {
   const navigate = useNavigate();
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-
   const [registerUser] = useRegisterMutation();
   const [loginUser] = useLoginMutation();
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
   const attemptRegister = async (e) => {
     e.preventDefault();
-
     setError(null);
     setLoading(true);
 
@@ -31,15 +27,15 @@ export default function RegisterForm() {
         username,
         password,
       }).unwrap();
-      // console.log("token", response.token);
+
       console.log(response);
-      if (response.success) {
+
+      if (response.message === "Successful") {
         const welcomeMessage = "Welcome to your Last Chance";
         window.alert(welcomeMessage);
 
         const loginResponse = await loginUser({ username, password }).unwrap();
         console.log("token", loginResponse.token);
-
         navigate("/");
       } else {
         setError(response.message);
@@ -53,7 +49,7 @@ export default function RegisterForm() {
 
   return (
     <div>
-      <h1 className="register-heading"> Register </h1>
+      <h1 className="register-heading">Register</h1>
       <form className="register-form" onSubmit={attemptRegister}>
         <label className="first-name">First Name</label>
         <input
