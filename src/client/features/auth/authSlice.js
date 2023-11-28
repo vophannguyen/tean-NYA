@@ -9,7 +9,7 @@ const authApi = api.injectEndpoints({
     }),
     endpoints: (builder) => ({
       fetchUserReservationHistory: builder.query({
-        query: (userId) => `user/${userId}/paymenthistory`,
+        query: () => "user/paymenthistory",
       })
     }),
     register: builder.mutation({
