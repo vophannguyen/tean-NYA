@@ -14,6 +14,7 @@ const seed = async () => {
           {
             time: new Date().toJSON(),
             title: "restaurant",
+            category: "reservation",
             description: "test-desss",
             price: 10.0,
             upload: "1700626869150.png",
@@ -44,6 +45,7 @@ const seed = async () => {
           {
             time: new Date().toJSON(),
             title: "movies",
+            category: "movies",
             description: "test-desss",
             price: 10.0,
             upload: "1700626869150.png",
@@ -74,6 +76,7 @@ const seed = async () => {
           {
             time: new Date().toJSON(),
             title: "concert",
+            category: "concert",
             description: "test-desss",
             price: 10.0,
             upload: "1700626869150.png",

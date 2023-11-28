@@ -91,13 +91,13 @@ router.get("/", async (req, res, next) => {
   }
 });
 /// get restaurant ticket
-router.get("/restaurant", async (req, res, next) => {
+router.get("/reservation", async (req, res, next) => {
   try {
     const allTicket = await prisma.item.findMany({
-      where: { title: "restaurant" },
+      where: { category: "reservation" },
     });
     if (allTicket.length <= 0) {
-      res.json({ message: "no restaurant ticket" });
+      res.json({ message: "No reservation" });
       return;
     }
     // find path of image and update upload
@@ -113,7 +113,7 @@ router.get("/restaurant", async (req, res, next) => {
 router.get("/movies", async (req, res, next) => {
   try {
     const allTicket = await prisma.item.findMany({
-      where: { title: "movies" },
+      where: { category: "movies" },
     });
     if (allTicket.length <= 0) {
       res.json({ message: "no movies ticket" });
@@ -132,7 +132,7 @@ router.get("/movies", async (req, res, next) => {
 router.get("/concert", async (req, res, next) => {
   try {
     const allTicket = await prisma.item.findMany({
-      where: { title: "concert" },
+      where: { category: "concert" },
     });
     if (allTicket.length <= 0) {
       res.json({ message: "no concert ticket" });
