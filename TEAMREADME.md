@@ -37,11 +37,11 @@
 
 - Base URL : localhost:3000/api/tickets
 - POST "/create" create tickets Note: Need logged to create tickets
-  - Data required :{ title, description, time, price, address1, address2, city, state, zip, country }
+  - Data required :{ title, category,description, time, price, address1, address2, city, state, zip, country }
   - Dont have address2 : example : address2 =" "
   - title should be have 3 option (restaurant,movies,concert)
 - GET "/" get all tickets
-- GET "/restaurant" get all restaurant tickets
+- GET "/reservation" get all restaurant tickets
 - GET "/movies"
 - GET "/concert"
 - GET "/:id" get single ticket
