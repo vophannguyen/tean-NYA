@@ -9,7 +9,7 @@ const authApi = api.injectEndpoints({
     }),
     endpoints: (builder) => ({
       fetchAllUserItems: builder.query({
-      query: () => "user/allitems"
+      query: () => "user/sellitem"
     }),
     endpoints: (builder) => ({
       fetchUserReservationHistory: builder.query({
@@ -43,6 +43,7 @@ export const {
   useLoginMutation,
   useFetchUserAccountQuery,
   useFetchUserReservationHistoryQuery,
+  useFetchAllUserItemsQuery,
 } = authApi;
 
 const TOKEN_KEY = "token";
