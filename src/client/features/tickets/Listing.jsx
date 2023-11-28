@@ -1,27 +1,32 @@
+import { useAddCartMutation } from "../cart/cartSlice";
 import { useGetByIdQuery } from "./ticketSlice";
 import { useParams, useNavigate } from "react-router-dom";
 
 /** Allows user to read, update, and delete a task */
 export default function Listing() {
   const navigate = useNavigate();
+  const [addCart] = useAddCartMutation();
   const { id } = useParams();
   const { data: ticket, isLoading, isError } = useGetByIdQuery(id);
   console.log(ticket);
   //handle errors
   if (isLoading) {
     return;
-  };
+  }
   if (isError) {
     navigate("/*");
-  };
-  
-  const handleCart = () => {
-    
+  }
+
+  const handleCart = async () => {
+    try {
+      const respon = await addCart(id);
+      console.log(respon);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  const handleLike = () => {
-    
-  };
+  const handleLike = () => {};
 
   //todo: reformat listing date on front end
   //details needed for single view listing = category of the listing (movie, concert, reservation)
@@ -34,12 +39,8 @@ export default function Listing() {
             <h1>{ticket.title}</h1>
             <p>{ticket.time}</p>
             <p>{ticket.description}</p>
-            <button onLike={handleLike}>
-              Like GUI
-            </button>
-            <button onClick={handleCart}>
-              Add to Cart
-            </button>
+            <button onLike={handleLike}>Like GUI</button>
+            <button onClick={handleCart}>Add to Cart</button>
           </article>
           <figure>
             <p>geolocational map here?</p>

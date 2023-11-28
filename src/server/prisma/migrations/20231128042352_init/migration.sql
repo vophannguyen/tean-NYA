@@ -62,7 +62,7 @@ CREATE TABLE "Item" (
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "title" TEXT NOT NULL,
     "description" TEXT NOT NULL,
-    "price" REAL NOT NULL,
+    "price" REAL NOT NULL DEFAULT 0.0,
     "upload" TEXT,
     "isReservation" BOOLEAN NOT NULL DEFAULT false,
     "time" DATETIME NOT NULL,

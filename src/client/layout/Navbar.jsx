@@ -29,16 +29,22 @@ export default function Navbar() {
           </li>
         ) : (
           <>
-          <li>
-            <NavLink to="/login">Log In</NavLink>
-          </li>
-          <li>
-            <NavLink to="/register">Sign Up</NavLink>
-          </li>
-         </>
+            <li>
+              <NavLink to="/login">Log In</NavLink>
+            </li>
+            <li>
+              <NavLink to="/register">Sign Up</NavLink>
+            </li>
+          </>
         )}
         <li>
+          <NavLink to="/tickets">Home</NavLink>
+        </li>
+        <li>
           <NavLink to="/upload">List It</NavLink>
+        </li>
+        <li>
+          <NavLink to="/cart">Cart</NavLink>
         </li>
       </menu>
     </nav>

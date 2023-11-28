@@ -31,25 +31,25 @@ router.get("/reservation", async (req, res, next) => {
         userId: res.locals.user.id,
       },
     });
-    console.log(reservation);
+    // console.log(reservation);
     if (!reservation.length > 0) {
       res.json({
-        message: `User ${res.locals.user.name} dont have reservation`,
+        message: `User ${res.locals.user.firstName} dont have reservation`,
       });
     }
-    const newItem = [];
-    for (rsv of reservation) {
-      console;
-      const item = await prisma.item.findUnique({
-        where: {
-          id: rsv.itemId,
-        },
-      });
-      // console.log(item);
-      newItem.push(item);
-      // console.log(newItem);
-    }
-    res.json({ message: "this is reservation ticket", data: newItem });
+    // const newItem = [];
+    // for (rsv of reservation) {
+    //   console;
+    //   const item = await prisma.item.findUnique({
+    //     where: {
+    //       id: rsv.itemId,
+    //     },
+    //   });
+    //   // console.log(item);
+    //   newItem.push(item);
+    //   // console.log(newItem);
+    // }
+    res.json({ data: reservation });
   } catch (err) {
     next(err);
   }
