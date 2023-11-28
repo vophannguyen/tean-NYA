@@ -19,7 +19,7 @@ export default function Listing() {
 
   const handleCart = async () => {
     try {
-      const respon = await addCart(id);
+      const respon = await addCart(id).unwrap();
       console.log(respon);
     } catch (err) {
       console.log(err);
