@@ -17,6 +17,7 @@ import Root from "./layout/Root.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Cart from "./features/cart/Cart.jsx";
+import ProcessCheckout from "./features/cart/ProcessCheckout.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       { path: "/upload", element: <Upload /> },
       {path: "/user/profile", element: <Profile />},
       { path: "/cart", element: <Cart /> },
+      {
+        path: "/cart/checkout",
+        element: <ProcessCheckout />,
+      },
     ],
   },
   { path: "/*", element: <NotFound /> },
