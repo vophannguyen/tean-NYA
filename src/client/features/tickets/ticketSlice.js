@@ -15,7 +15,4 @@ const ticketsApi = api.injectEndpoints({
   }),
 });
 
-export const {
-  useGetTicketsQuery,
-  useGetByIdQuery,
-} = ticketsApi;
+export const { useGetTicketsQuery, useGetByIdQuery } = ticketsApi;

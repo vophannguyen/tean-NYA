@@ -32,6 +32,66 @@ const seed = async () => {
       },
     },
   });
+  await prisma.user.create({
+    data: {
+      username: "foo123",
+      password: "123456",
+      email: "vophannguyen1@gmail.com",
+      firstName: "Nguyen",
+      lastName: "vo",
+      items: {
+        create: [
+          {
+            time: new Date().toJSON(),
+            title: "movies",
+            description: "test-desss",
+            price: 10.0,
+            upload: "1700626869150.png",
+            location: {
+              create: {
+                address1: "1074 albany park dr",
+                address2: " ",
+                city: "fort mill",
+                zip: "29715",
+                state: "SC",
+                country: "US",
+              },
+            },
+          },
+        ],
+      },
+    },
+  });
+  await prisma.user.create({
+    data: {
+      username: "foo456",
+      password: "123",
+      email: "vophannguyen2@gmail.com",
+      firstName: "Nguyen2",
+      lastName: "vo2",
+      items: {
+        create: [
+          {
+            time: new Date().toJSON(),
+            title: "concert",
+            description: "test-desss",
+            price: 10.0,
+            upload: "1700626869150.png",
+            location: {
+              create: {
+                address1: "1074 albany park dr",
+                address2: " ",
+                city: "fort mill",
+                zip: "29715",
+                state: "SC",
+                country: "US",
+              },
+            },
+          },
+        ],
+      },
+    },
+  });
 };
 
 seed()

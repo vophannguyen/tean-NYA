@@ -41,7 +41,7 @@ model PaymentHistory{
   createAt DateTime @default(now())
   userSellId Int
   itemId Int
-  price Float
+  price Float 
   title String
   upload String?
 }
@@ -69,7 +69,7 @@ model Item {
   createdAt DateTime @default(now())
   title String
   description String
-  price Float
+  price Float @default(0.0)
   upload String?
   isReservation Boolean @default(false)
   time DateTime

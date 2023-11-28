@@ -15,6 +15,7 @@ import NotFound from "./features/404/NotFound";
 import Root from "./layout/Root.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Cart from "./features/cart/Cart.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -24,8 +25,9 @@ const router = createBrowserRouter([
       { path: "/tickets", element: <Tickets /> },
       { path: "/tickets/:id", element: <Listing /> },
       { path: "/login", element: <LoginForm /> },
-      { path: "/register", element: <RegisterForm />},
-      { path: "/upload", element: <Upload />},
+      { path: "/register", element: <RegisterForm /> },
+      { path: "/upload", element: <Upload /> },
+      { path: "/cart", element: <Cart /> },
     ],
   },
   { path: "/*", element: <NotFound /> },
