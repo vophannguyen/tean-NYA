@@ -14,11 +14,10 @@ const ticketsApi = api.injectEndpoints({
     }),
     createTicket: builder.mutation({
       query: (ticket) => ({
-        url: "/tickets",
+        url: "/create",
         method: "POST",
         body: ticket,
       }),
-      transformResponse: (response) => response.data,
       invalidatesTags: ["Tickets"],
     })
   }),

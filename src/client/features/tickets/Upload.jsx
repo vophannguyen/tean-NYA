@@ -2,13 +2,14 @@ import { useCreateTicketMutation } from "./ticketSlice";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-/** Form for uploading a new listing */
+/** Form for uploading a new listing accessible only to those logged in*/
 export default function Upload() {
   const [createTicket] = useCreateTicketMutation();
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
-
-  const onSubmit = (e) => {
+//if not logged in, redirect to login/register
+//once logged in, redirect the page back to the upload (this page)
+  const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
 
@@ -17,9 +18,9 @@ export default function Upload() {
       category: formData.get("category"),
       description: formData.get("description"),
       time: formData.get("time"),
-      price: +formData.get("price") || 0,
+      price: formData.get("price") || 0,
       address1: formData.get("address1"),
-      address2: formData.get("address2"),
+      address2: formData.get("address2") || "NA",
       city: formData.get("city"),
       state: formData.get("state"),
       zip: formData.get("zip"),
@@ -28,25 +29,19 @@ export default function Upload() {
 
     console.log(newTicket);
 
-  //   try {
-  //     if (!isValid) {
-  //       setMessage("Required: valid email address");
-  //     } else {
-  //       const response = await createTicket(newTicket).unwrap();
-  //       // console.log(response);
-  //       if (response.message) {
-  //         setMessage(() => response.message);
-  //       }
-  //       if (response.ticket) {
-  //         e.target.reset();
-  //       }
-  //       navigate("/");
-  //     }
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
+    try {
+      const response = await createTicket(newTicket).unwrap();
+      console.log(response);
+      if (response.message) {
+        setMessage(() => response.message);
+      }
+      if (response.ticket) {
+          e.target.reset();
+          navigate("/");
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -87,12 +82,26 @@ export default function Upload() {
         <input type="file" name="upload" required />
       </label>
       <label>
-        Location
-        <input type="text" name="location" placeholder="e.g., City, Country"></input>
+        Address
+        <input type="text" name="address" placeholder="e.g., 123 Main St" required />
       </label>
-      <button type="submit">
-        Create Listing
-      </button>
+      <label>
+        City
+        <input type="text" name="city" placeholder="e.g., Brooklyn" required />
+      </label>
+      <label>
+        State
+        <input type="text" name="state" placeholder="e.g., NY" required />
+      </label>
+      <label>
+        Zip
+        <input type="text" name="zip" placeholder="e.g., 11222" required />
+      </label>
+      <label>
+        Country
+        <input type="text" name="country" placeholder="e.g., USA" required />
+      </label>
+      <button type="submit">Create Listing</button>
       {message && <p>{message}</p>}
     </form>
   );
