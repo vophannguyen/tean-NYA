@@ -14,17 +14,20 @@ export default function Upload() {
     const formData = new FormData(e.target);
 
     const newTicket = {
+      time: formData.get("time"),
       title: formData.get("title"),
       category: formData.get("category"),
       description: formData.get("description"),
-      time: formData.get("time"),
       price: formData.get("price") || 0,
-      address1: formData.get("address1"),
-      address2: formData.get("address2") || "NA",
-      city: formData.get("city"),
-      state: formData.get("state"),
-      zip: formData.get("zip"),
-      country: formData.get("country"),
+      upload: formData.get("upload"),
+      location: {
+        address1: formData.get("address1"),
+        address2: formData.get("address2") || "NA",
+        city: formData.get("city"),
+        state: formData.get("state"),
+        zip: formData.get("zip"),
+        country: formData.get("country"),
+      },
     };
 
     console.log(newTicket);
