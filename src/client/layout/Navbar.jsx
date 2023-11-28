@@ -22,7 +22,9 @@ export default function Navbar() {
         {token ? (
           <>
             <li>
-              <NavLink className="account" to="/user/profile">Account</NavLink>
+              <NavLink className="account" to="/user/profile">
+                Account
+              </NavLink>
             </li>
             <li>
               <a onClick={handleLogout}>Log Out</a>

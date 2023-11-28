@@ -28,7 +28,11 @@ const authApi = api.injectEndpoints({
   }),
 });
 
-export const { useRegisterMutation, useLoginMutation, useFetchUserAccountQuery } = authApi;
+export const {
+  useRegisterMutation,
+  useLoginMutation,
+  useFetchUserAccountQuery,
+} = authApi;
 
 const TOKEN_KEY = "token";
 
