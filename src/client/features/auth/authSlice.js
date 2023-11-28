@@ -3,6 +3,10 @@ import api from "../../store/api";
 
 const authApi = api.injectEndpoints({
   endpoints: (builder) => ({
+    fetchUserAccount: builder.query({
+      query: () => "/user/profile",
+      providesTags: ["Me"],
+    }),
     register: builder.mutation({
       query: (credentials) => ({
         url: "/auth/register",
@@ -10,6 +14,7 @@ const authApi = api.injectEndpoints({
         body: credentials,
       }),
       transformErrorResponse: (response) => response.data,
+      invalidatesTags: ["Me"],
     }),
     login: builder.mutation({
       query: (credentials) => ({
@@ -18,11 +23,12 @@ const authApi = api.injectEndpoints({
         body: credentials,
       }),
       transformErrorResponse: (response) => response.data,
+      invalidatesTags: ["Me"],
     }),
   }),
 });
 
-export const { useRegisterMutation, useLoginMutation } = authApi;
+export const { useRegisterMutation, useLoginMutation, useFetchUserAccountQuery } = authApi;
 
 const TOKEN_KEY = "token";
 
