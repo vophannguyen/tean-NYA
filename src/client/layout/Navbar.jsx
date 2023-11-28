@@ -4,10 +4,6 @@ import { logout, selectToken } from "../features/auth/authSlice";
 
 import "./Navbar.less";
 
-/**
- * A simple navigation bar that displays "Log In" if the user is not logged in,
- * and "Log Out" if the user is logged in.
- */
 export default function Navbar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -24,9 +20,16 @@ export default function Navbar() {
       <NavLink to="/tickets"><h1>Last Chance</h1></NavLink>
       <menu>
         {token ? (
-          <li>
-            <a onClick={handleLogout}>Log Out</a>
-          </li>
+          <>
+            <li>
+              <NavLink className="account" to="/user/profile">
+                Account
+              </NavLink>
+            </li>
+            <li>
+              <a onClick={handleLogout}>Log Out</a>
+            </li>
+          </>
         ) : (
           <>
             <li>

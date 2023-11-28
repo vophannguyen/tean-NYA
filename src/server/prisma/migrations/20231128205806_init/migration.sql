@@ -47,7 +47,7 @@ CREATE TABLE "Reservation" (
 CREATE TABLE "Location" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "address1" TEXT NOT NULL,
-    "address2" TEXT NOT NULL,
+    "address2" TEXT NOT NULL DEFAULT ' ',
     "city" TEXT NOT NULL,
     "state" TEXT NOT NULL,
     "zip" TEXT NOT NULL,
