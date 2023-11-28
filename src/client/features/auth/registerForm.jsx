@@ -33,7 +33,7 @@ export default function RegisterForm() {
       }).unwrap();
       // console.log("token", response.token);
       console.log(response);
-      if (response.success) {
+      if (response.message === "Successfull") {
         const welcomeMessage = "Welcome to your Last Chance";
         window.alert(welcomeMessage);
 
