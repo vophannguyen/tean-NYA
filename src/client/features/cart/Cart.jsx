@@ -1,7 +1,13 @@
+import { useDispatch } from "react-redux";
 import CartItem from "./CartItem";
 import { useGetCartQuery } from "./cartSlice";
+import ProcessCheckout from "./ProcessCheckout";
+import { useNavigate } from "react-router";
 
 export default function Cart() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  // dispatch(addPrice(10));
   const { isloading, isError, data } = useGetCartQuery();
   if (isloading) {
     return <h1>Loading....</h1>;
@@ -16,6 +22,7 @@ export default function Cart() {
         data.data.map((item) => {
           return <CartItem reservation={item} key={item.id} />;
         })}
+      {/* <ProcessCheckout /> */}
     </div>
   );
 }

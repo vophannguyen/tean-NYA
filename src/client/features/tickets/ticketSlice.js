@@ -9,10 +9,22 @@ const ticketsApi = api.injectEndpoints({
     }),
     getById: builder.query({
       query: (id) => `/tickets/${id}`,
-      transformResponse: (response) => response.data,
+      // transformResponse: (response) => response.data,
       providesTags: ["Tickets"],
+    }),
+    createTicket: builder.mutation({
+      query: (ticket) => ({
+        url: "/tickets/create",
+        method: "POST",
+        body: ticket,
+        // headers: {
+        //   "Content-Type": "multipart/form-data",
+        // },
+      }),
+      invalidatesTags: ["Tickets"],
     }),
   }),
 });
 
-export const { useGetTicketsQuery, useGetByIdQuery } = ticketsApi;
+export const { useGetTicketsQuery, useGetByIdQuery, useCreateTicketMutation } =
+  ticketsApi;

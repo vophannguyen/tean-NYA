@@ -19,6 +19,7 @@ import AllItems from "./features/auth/AllItems";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Cart from "./features/cart/Cart.jsx";
+import ProcessCheckout from "./features/cart/ProcessCheckout.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       { path: "/cart", element: <Cart /> },
       { path: "user/order", element: <ReservationHistory />},
       { path: "user/sellitem", element: <AllItems />},
+      {
+        path: "/cart/checkout",
+        element: <ProcessCheckout />,
+      },
     ],
   },
   { path: "/*", element: <NotFound /> },

@@ -17,7 +17,7 @@ export default function Navbar() {
 
   return (
     <nav>
-      <h1>Last Chance</h1>
+      <NavLink to="/tickets"><h1>Last Chance</h1></NavLink>
       <menu>
         {token ? (
           <>
@@ -28,6 +28,9 @@ export default function Navbar() {
             </li>
             <li>
               <a onClick={handleLogout}>Log Out</a>
+            </li>
+            <li>
+              <NavLink to="/cart">Cart</NavLink>
             </li>
           </>
         ) : (
@@ -41,13 +44,7 @@ export default function Navbar() {
           </>
         )}
         <li>
-          <NavLink to="/tickets">Home</NavLink>
-        </li>
-        <li>
           <NavLink to="/upload">List It</NavLink>
-        </li>
-        <li>
-          <NavLink to="/cart">Cart</NavLink>
         </li>
       </menu>
     </nav>

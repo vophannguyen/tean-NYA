@@ -2,96 +2,174 @@ const prisma = require("../prisma");
 
 /** Seeds the database with a user and some tasks */
 const seed = async () => {
-  await prisma.user.create({
-    data: {
-      username: "foo",
-      password: "123",
-      email: "vophannguyen@gmail.com",
-      firstName: "Nguyen",
-      lastName: "vo",
-      items: {
-        create: [
-          {
-            time: new Date().toJSON(),
-            title: "restaurant",
-            description: "test-desss",
-            price: 10.0,
-            upload: "1700626869150.png",
-            location: {
-              create: {
-                address1: "1074 albany park dr",
-                address2: " ",
-                city: "fort mill",
-                zip: "29715",
-                state: "SC",
-                country: "US",
+  for (let i = 1; i <= 10; i++) {
+    await prisma.user.create({
+      data: {
+        username: "foo" + i,
+        password: "123" + i,
+        email: "vophannguyen" + i + "@gmail.com",
+        firstName: "Nguyen" + i,
+        lastName: "vo",
+        items: {
+          create: [
+            {
+              time: new Date().toJSON(),
+              title: "restaurant" + i,
+              category: "reservation",
+              description: "test-desss",
+              price: i,
+              upload: "1700626869150.png",
+              location: {
+                create: {
+                  address1: "1074 albany park dr",
+                  address2: " ",
+                  city: "fort mill",
+                  zip: "29715",
+                  state: "SC",
+                  country: "US",
+                },
               },
             },
-          },
-        ],
+          ],
+        },
       },
-    },
-  });
-  await prisma.user.create({
-    data: {
-      username: "foo123",
-      password: "123456",
-      email: "vophannguyen1@gmail.com",
-      firstName: "Nguyen",
-      lastName: "vo",
-      items: {
-        create: [
-          {
-            time: new Date().toJSON(),
-            title: "movies",
-            description: "test-desss",
-            price: 10.0,
-            upload: "1700626869150.png",
-            location: {
-              create: {
-                address1: "1074 albany park dr",
-                address2: " ",
-                city: "fort mill",
-                zip: "29715",
-                state: "SC",
-                country: "US",
+    });
+    await prisma.user.create({
+      data: {
+        username: "foo123" + i,
+        password: "123456",
+        email: "anna" + i + "@gmail.com",
+        firstName: "Anna" + 1,
+        lastName: "WaterHouse",
+        items: {
+          create: [
+            {
+              time: new Date().toJSON(),
+              title: "movies" + 1,
+              category: "movies",
+              description: "test-" + i,
+              price: i,
+              upload: "1700626869150.png",
+              location: {
+                create: {
+                  address1: "1074 albany park dr",
+                  address2: " ",
+                  city: "fort mill",
+                  zip: "29715",
+                  state: "SC",
+                  country: "US",
+                },
               },
             },
-          },
-        ],
+          ],
+        },
       },
-    },
-  });
-  await prisma.user.create({
-    data: {
-      username: "foo456",
-      password: "123",
-      email: "vophannguyen2@gmail.com",
-      firstName: "Nguyen2",
-      lastName: "vo2",
-      items: {
-        create: [
-          {
-            time: new Date().toJSON(),
-            title: "concert",
-            description: "test-desss",
-            price: 10.0,
-            upload: "1700626869150.png",
-            location: {
-              create: {
-                address1: "1074 albany park dr",
-                address2: " ",
-                city: "fort mill",
-                zip: "29715",
-                state: "SC",
-                country: "US",
+    });
+    await prisma.user.create({
+      data: {
+        username: "foo456" + i,
+        password: "123",
+        email: "yoona" + i + "@gmail.com",
+        firstName: "Yoona",
+        lastName: "Choi",
+        items: {
+          create: [
+            {
+              time: new Date().toJSON(),
+              title: "concert" + i,
+              category: "concert",
+              description: "test-" + i,
+              price: i,
+              upload: "1700626869150.png",
+              location: {
+                create: {
+                  address1: "1074 albany park dr",
+                  address2: " ",
+                  city: "fort mill",
+                  zip: "29715",
+                  state: "SC",
+                  country: "US",
+                },
               },
             },
-          },
-        ],
+          ],
+        },
       },
-    },
-  });
+    });
+    await prisma.order.create({
+      data: {
+        userId: i,
+        time: new Date().toJSON(),
+        title: "concert" + i,
+        category: "concert",
+        description: "test-" + i,
+        price: i,
+        upload: "1700626869150.png",
+        address1: "1074 albany park dr",
+        address2: " ",
+        city: "fort mill",
+        zip: "29715",
+        state: "SC",
+        country: "US",
+      },
+    });
+    await prisma.order.create({
+      data: {
+        userId: i,
+        time: new Date().toJSON(),
+        title: "reservation" + i,
+        category: "reservation",
+        description: "test-" + i,
+        price: i,
+        upload: "1700626869150.png",
+        address1: "1074 albany park dr",
+        address2: " ",
+        city: "fort mill",
+        zip: "29715",
+        state: "SC",
+        country: "US",
+      },
+    });
+    await prisma.order.create({
+      data: {
+        userId: i,
+        time: new Date().toJSON(),
+        title: "movies" + i,
+        category: "movies",
+        description: "test-" + i,
+        price: i,
+        upload: "1700626869150.png",
+        address1: "1074 albany park dr",
+        address2: " ",
+        city: "fort mill",
+        zip: "29715",
+        state: "SC",
+        country: "US",
+      },
+    });
+    await prisma.soldItem.create({
+      data: {
+        userId: i,
+        title: "movies" + i,
+        description: "test-" + i,
+        price: i,
+        upload: "1700626869150.png",
+        time: new Date().toJSON(),
+        category: "movies",
+      },
+    });
+    await prisma.soldItem.create({
+      data: {
+        userId: i,
+        title: "concert" + i,
+        description: "test-" + i,
+        price: i,
+        upload: "1700626869150.png",
+        time: new Date().toJSON(),
+        category: "concert",
+      },
+    });
+  }
 };
 
 seed()

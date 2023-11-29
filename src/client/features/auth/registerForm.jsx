@@ -27,9 +27,7 @@ export default function RegisterForm() {
         username,
         password,
       }).unwrap();
-
       console.log(response);
-
       if (response.message === "Successfull") {
         const welcomeMessage = "Welcome to your Last Chance";
         window.alert(welcomeMessage);
