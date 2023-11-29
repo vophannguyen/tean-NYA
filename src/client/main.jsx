@@ -14,7 +14,6 @@ import Listing from "./features/tickets/Listing";
 import NotFound from "./features/404/NotFound";
 import Profile from "./features/auth/Profile.jsx"
 import Root from "./layout/Root.jsx";
-import ReservationHistory from "./features/auth/reservationHistory";
 import AllItems from "./features/auth/AllItems";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Cart from "./features/cart/Cart.jsx";
