@@ -11,7 +11,7 @@ const authApi = api.injectEndpoints({
       query: () => "user/sellitem",
     }),
     fetchUserReservationHistory: builder.query({
-      query: () => "user/paymenthistory",
+      query: () => "user/order",
     }),
     register: builder.mutation({
       query: (credentials) => ({
