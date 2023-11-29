@@ -8,6 +8,10 @@ const authApi = api.injectEndpoints({
       providesTags: ["Me"],
     }),
     endpoints: (builder) => ({
+      fetchAllUserItems: builder.query({
+      query: () => "user/sellitem"
+    }),
+    endpoints: (builder) => ({
       fetchUserReservationHistory: builder.query({
         query: () => "user/paymenthistory",
       })
@@ -31,6 +35,7 @@ const authApi = api.injectEndpoints({
       invalidatesTags: ["Me"],
     }),
   }),
+})
 });
 
 export const {
@@ -38,6 +43,7 @@ export const {
   useLoginMutation,
   useFetchUserAccountQuery,
   useFetchUserReservationHistoryQuery,
+  useFetchAllUserItemsQuery,
 } = authApi;
 
 const TOKEN_KEY = "token";
