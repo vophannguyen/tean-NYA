@@ -16,10 +16,10 @@ import Profile from "./features/auth/Profile.jsx"
 import Root from "./layout/Root.jsx";
 import ReservationHistory from "./features/auth/reservationHistory";
 import AllItems from "./features/auth/AllItems";
-
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Cart from "./features/cart/Cart.jsx";
 import ProcessCheckout from "./features/cart/ProcessCheckout.jsx";
+import ReservationHistory from "./features/auth/reservationHistory";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -39,6 +39,7 @@ const router = createBrowserRouter([
         path: "/cart/checkout",
         element: <ProcessCheckout />,
       },
+      { path:"user/payment", element: <ReservationHistory />},
     ],
   },
   { path: "/*", element: <NotFound /> },

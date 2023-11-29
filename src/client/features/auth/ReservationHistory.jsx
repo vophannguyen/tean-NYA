@@ -6,15 +6,15 @@ export default function ReservationHistory() {
     if (error) {
         return <p>Error fetching reservation history. Please try again later.</p>;
     }
-
+    // console.log("reservation.data", reservationHistory.data)
     return isLoading? (
         <p> Loading... </p>
      ) : (
         <div>
             <h1>Past Reservations</h1>
-            {reservationHistory && reservationHistory.length > 0 ? (
+            {reservationHistory && reservationHistory.data.length > 0 ? (
                 <ul>
-                    {reservationHistory.map((reservation) => (
+                    {reservationHistory.data.map((reservation) => (
                         <li key={reservation.id}>
                             {reservation.date}
                         </li>
