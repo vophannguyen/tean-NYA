@@ -29,7 +29,7 @@ export default function Listing() {
       await addCart(id).unwrap();
       // console.log(respon);
       // console.log(ticket);
-      await dispatch(addTicket(ticket)).unwrap();
+      await dispatch(addTicket(ticket));
       navigate("/");
     } catch (err) {
       console.log(err);
