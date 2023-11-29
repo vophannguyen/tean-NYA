@@ -1,5 +1,6 @@
 const express = require("express");
 const prisma = require("../../prisma");
+const { title } = require("process");
 const router = express.Router();
 module.exports = router;
 ////** User must be logged in to access . */
@@ -54,8 +55,74 @@ router.get("/reservation", async (req, res, next) => {
     next(err);
   }
 });
+//Get order
+router.get("/order", async (req, res, next) => {
+  try {
+    const order = await prisma.order.findMany({
+      where: { userId: res.locals.user.id },
+    });
+    res.json({ data: order });
+  } catch (err) {
+    next(err);
+  }
+});
+//Post order
+router.post("/order", async (req, res, next) => {
+  try {
+    const {
+      title,
+      category,
+      description,
+      upload,
+      time,
+      address1,
+      address2,
+      city,
+      state,
+      country,
+      zip,
+    } = req.body;
+    const price = +req.body.price;
+    if (
+      !title ||
+      !category ||
+      !description ||
+      !price ||
+      !upload ||
+      !time ||
+      !address1 ||
+      !city ||
+      !state ||
+      !zip ||
+      !country
+    ) {
+      res.json({ message: "Missing information" });
+      return;
+    }
+    const order = await prisma.order.create({
+      data: {
+        title,
+        category,
+        description,
+        upload,
+        price,
+        time: new Date(time),
+        address1,
+        address2,
+        city,
+        state,
+        zip,
+        country,
+        userId: res.locals.user.id,
+      },
+    });
+    res.json({ data: order });
+  } catch (err) {
+    next(err);
+  }
+});
 //get payment history
-router.get("/paymenthistory", async (req, res, next) => {
+router.get("/payment", async (req, res, next) => {
   try {
     res.json({ message: "this is paymenthistory" });
   } catch (err) {

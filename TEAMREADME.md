@@ -26,18 +26,34 @@
 - Base URL : localhost:3000/api/user
 - Get " /profile " get user information
 - Get "/reservation" get item add to cart
-- Get "/paymenthistory" get user payment history information
+- Get "/payment" get user payment history information
 - Get "/sellitem" get all sell item of User
 - POST "/reservation/:itemId" add item to cart
   - required item id
 - DELETE "/reservation/:id" delete item of cart
 - required id
+- GET "/order" get user order history
+- POST "/order" put user order to backend
+  - Data: {
+    title,
+    category,
+    description,
+    price,
+    upload,
+    time,
+    address1,
+    address2,
+    city,
+    state,
+    zip,
+    country,
+    },
 
 # Item
 
 - Base URL : localhost:3000/api/tickets
 - POST "/create" create tickets Note: Need logged to create tickets
-  - Data required :{ title, category,description, time, price, address1, address2, city, state, zip, country }
+  - Data required :{ title, category,description, time, price, upload,address1, address2, city, state, zip, country }
   - Dont have address2 : example : address2 =" "
   - title should be have 3 option (restaurant,movies,concert)
 - GET "/" get all tickets

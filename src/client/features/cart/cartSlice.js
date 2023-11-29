@@ -27,6 +27,7 @@ const cartApi = api.injectEndpoints({
 const cartSlice = createSlice({
   name: "cart",
   initialState: {
+    cart: [],
     originPrice: 0,
     saleTax: 0,
     total: 0,
@@ -36,25 +37,34 @@ const cartSlice = createSlice({
       state.token = null;
       sessionStorage.removeItem(TOKEN_KEY);
     },
-    addPrice: (state, action) => {
-      console.log("addPrice", action.payload);
-      state.originPrice += action.payload;
+    addTicket: (state, action) => {
+      console.log(action.payload);
+      state.cart.push(action.payload);
+      state.cart.map((item) => {
+        state.originPrice += item.price;
+      });
       state.saleTax = state.originPrice * 0.075;
       state.total = state.originPrice + state.saleTax;
     },
-    deletePrice: (state, action) => {
-      state.originPrice -= action.payload;
-      state.saleTax = state.originPrice * 0.075;
-      state.total = state.originPrice + state.saleTax;
-    },
-    resetPrice: (state) => {
+    resetCart: (state) => {
       state.originPrice = 0;
       state.saleTax = 0;
       state.total = 0;
+      state.cart = [];
+    },
+    deleteItem(state, action) {
+      // need id
+      const item = state.cart.find((item) => item.id === action.payload);
+      state.cart = state.cart.filter((item) => item.id !== action.payload);
+      console.log(item);
+      console.log(state.cart);
+      state.originPrice -= item.price;
+      state.saleTax = state.originPrice * 0.075;
+      state.total = state.originPrice + state.saleTax;
     },
   },
 });
 export const { useGetCartQuery, useAddCartMutation, useDeleteCartMutation } =
   cartApi;
-export const { addPrice, deletePrice, resetPrice } = cartSlice.actions;
+export const { addTicket, deleteItem, resetCart } = cartSlice.actions;
 export default cartSlice.reducer;

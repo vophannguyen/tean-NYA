@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { addPrice, useAddCartMutation } from "../cart/cartSlice";
+import { addTicket, useAddCartMutation } from "../cart/cartSlice";
 import { useGetByIdQuery } from "./ticketSlice";
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -23,7 +23,8 @@ export default function Listing() {
     try {
       const respon = await addCart(id).unwrap();
       console.log(respon);
-      await dispatch(addPrice(ticket.price));
+      console.log(ticket);
+      await dispatch(addTicket(ticket));
     } catch (err) {
       console.log(err);
     }
