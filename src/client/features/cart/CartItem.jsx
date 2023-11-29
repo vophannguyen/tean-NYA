@@ -39,7 +39,8 @@ export default function CartItem({ reservation }) {
       );
     }
   };
-  const time = formatDate(data.time);
+  console.log(data);
+  const time = formatDate(data.data.time);
   //update order summary
   // dispatch(addPrice(data.price));
   // const originalPrice = useSelector((state) => state.cart);
@@ -49,10 +50,10 @@ export default function CartItem({ reservation }) {
       <Countdown date={cartTimeCountDownt(1)} renderer={renderer} />
       {data && (
         <div>
-          <h1>{data.title}</h1>
+          <h1>{data.data.title}</h1>
           <p>{time}</p>
-          <p>{data.description}</p>
-          <p>{data.price}</p>
+          <p>{data.data.description}</p>
+          <p>{data.data.price}</p>
           <button onClick={handleDeleteItem}>deleteItem</button>
           <OrderSummary data={data} />
         </div>

@@ -9,7 +9,7 @@ const ticketsApi = api.injectEndpoints({
     }),
     getById: builder.query({
       query: (id) => `/tickets/${id}`,
-      transformResponse: (response) => response.data,
+      // transformResponse: (response) => response.data,
       providesTags: ["Tickets"],
     }),
   }),

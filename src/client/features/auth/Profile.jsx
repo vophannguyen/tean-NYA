@@ -1,3 +1,4 @@
+import AllItems from "./AllItems";
 import { useFetchUserAccountQuery } from "./authSlice";
 
 export default function Account() {
@@ -24,6 +25,7 @@ export default function Account() {
         <h3 className="reservation-history">Places You've Been</h3>
         <li></li>
         <h3 className="selling-reservations">Up For Grabs</h3>
+        <AllItems />
       </ul>
     </main>
   );

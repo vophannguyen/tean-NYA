@@ -21,6 +21,21 @@ const cartApi = api.injectEndpoints({
       }),
       invalidatesTags: ["Cart", "Tickets"],
     }),
+    addOrder: builder.mutation({
+      query: (data) => ({
+        url: "/user/order",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["Cart", "Tickets"],
+    }),
+    deleteTicket: builder.mutation({
+      query: (id) => ({
+        url: `tickets/delete/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Cart", "Tickets"],
+    }),
   }),
 });
 
@@ -41,7 +56,7 @@ const cartSlice = createSlice({
       console.log(action.payload);
       state.cart.push(action.payload);
       state.cart.map((item) => {
-        state.originPrice += item.price;
+        state.originPrice += item.data.price;
       });
       state.saleTax = state.originPrice * 0.075;
       state.total = state.originPrice + state.saleTax;
@@ -54,17 +69,22 @@ const cartSlice = createSlice({
     },
     deleteItem(state, action) {
       // need id
-      const item = state.cart.find((item) => item.id === action.payload);
-      state.cart = state.cart.filter((item) => item.id !== action.payload);
+      const item = state.cart.find((item) => item.data.id === action.payload);
+      state.cart = state.cart.filter((item) => item.data.id !== action.payload);
       console.log(item);
       console.log(state.cart);
-      state.originPrice -= item.price;
+      state.originPrice -= item.data.price;
       state.saleTax = state.originPrice * 0.075;
       state.total = state.originPrice + state.saleTax;
     },
   },
 });
-export const { useGetCartQuery, useAddCartMutation, useDeleteCartMutation } =
-  cartApi;
+export const {
+  useGetCartQuery,
+  useAddCartMutation,
+  useDeleteCartMutation,
+  useAddOrderMutation,
+  useDeleteTicketMutation,
+} = cartApi;
 export const { addTicket, deleteItem, resetCart } = cartSlice.actions;
 export default cartSlice.reducer;

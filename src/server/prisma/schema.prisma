@@ -59,6 +59,7 @@ model Payment{
   userId Int
   user User @relation(fields: [userId],references: [id],onDelete: Cascade)
   createAt DateTime @default(now())
+  method String
   nameOnCard String
   cardNumber String
   securityCode String
