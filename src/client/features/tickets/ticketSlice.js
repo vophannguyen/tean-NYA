@@ -14,7 +14,7 @@ const ticketsApi = api.injectEndpoints({
     }),
     createTicket: builder.mutation({
       query: (ticket) => ({
-        url: "/create",
+        url: "/tickets/create",
         method: "POST",
         body: ticket,
       }),

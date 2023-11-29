@@ -19,10 +19,10 @@ export default function Upload() {
       category: formData.get("category"),
       description: formData.get("description"),
       price: formData.get("price") || 0,
-      upload: formData.get("upload"),
+      upload: formData.get("upload").name,
       location: {
         address1: formData.get("address1"),
-        address2: formData.get("address2") || "NA",
+        address2: formData.get("address2") || "Address2",
         city: formData.get("city"),
         state: formData.get("state"),
         zip: formData.get("zip"),
@@ -86,7 +86,7 @@ export default function Upload() {
       </label>
       <label>
         Address
-        <input type="text" name="address" placeholder="e.g., 123 Main St" required />
+        <input type="text" name="address1" placeholder="e.g., 123 Main St" required />
       </label>
       <label>
         City
