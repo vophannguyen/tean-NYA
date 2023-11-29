@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import CartItem from "./CartItem";
-import { addPrice, resetPrice, useGetCartQuery } from "./cartSlice";
+import { useGetCartQuery } from "./cartSlice";
 import ProcessCheckout from "./ProcessCheckout";
 
 export default function Cart() {
@@ -20,7 +20,7 @@ export default function Cart() {
         data.data.map((item) => {
           return <CartItem reservation={item} key={item.id} />;
         })}
-      <ProcessCheckout />
+      {/* <ProcessCheckout /> */}
     </div>
   );
 }
