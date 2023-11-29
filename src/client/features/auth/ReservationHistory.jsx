@@ -16,7 +16,7 @@ export default function ReservationHistory() {
                 <ul>
                     {reservationHistory.data.map((reservation) => (
                         <li key={reservation.id}>
-                            {reservation.date}
+                            {reservation.title}
                         </li>
                     ))}
                 </ul>
