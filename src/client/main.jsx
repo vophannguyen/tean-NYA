@@ -14,6 +14,7 @@ import Listing from "./features/tickets/Listing";
 import NotFound from "./features/404/NotFound";
 import Profile from "./features/auth/Profile.jsx"
 import Root from "./layout/Root.jsx";
+import AllItems from "./features/auth/AllItems";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Cart from "./features/cart/Cart.jsx";
@@ -29,7 +30,8 @@ const router = createBrowserRouter([
       { path: "/login", element: <LoginForm /> },
       { path: "/register", element: <RegisterForm /> },
       { path: "/upload", element: <Upload /> },
-      {path: "/user/profile", element: <Profile />},
+      { path: "/user/profile", element: <Profile />},
+      { path: "/user/sellitem", element: <AllItems />},
       { path: "/cart", element: <Cart /> },
       {
         path: "/cart/checkout",

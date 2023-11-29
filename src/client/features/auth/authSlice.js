@@ -7,10 +7,11 @@ const authApi = api.injectEndpoints({
       query: () => "/user/profile",
       providesTags: ["Me"],
     }),
-    endpoints: (builder) => ({
-      fetchUserReservationHistory: builder.query({
-        query: (userId) => `user/${userId}/paymenthistory`,
-      })
+    fetchAllUserItems: builder.query({
+      query: () => "user/sellitem",
+    }),
+    fetchUserReservationHistory: builder.query({
+      query: () => "user/paymenthistory",
     }),
     register: builder.mutation({
       query: (credentials) => ({
@@ -38,6 +39,7 @@ export const {
   useLoginMutation,
   useFetchUserAccountQuery,
   useFetchUserReservationHistoryQuery,
+  useFetchAllUserItemsQuery,
 } = authApi;
 
 const TOKEN_KEY = "token";
@@ -59,7 +61,8 @@ const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addMatcher(api.endpoints.register.matchFulfilled, storeToken);
+    // console.log(api.endpoints.login);
+    // builder.addMatcher(api.endpoints.register.matchFulfilled, storeToken);
     builder.addMatcher(api.endpoints.login.matchFulfilled, storeToken);
   },
 });

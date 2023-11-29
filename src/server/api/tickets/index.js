@@ -173,13 +173,16 @@ router.get("/:id", async (req, res, next) => {
     const ticket = await prisma.item.findFirst({
       where: { id },
     });
+    const location = await prisma.location.findFirst({
+      where: { itemId: id },
+    });
     // find path of image and update upload
     if (!ticket) {
       res.json({ error: "Id not found" });
     }
     // console.log(imageFile(ticket.upload));
     ticket.upload = imageFile(ticket.upload);
-    res.json({ data: ticket });
+    res.json({ data: ticket, location: location });
   } catch (err) {
     next(err);
   }

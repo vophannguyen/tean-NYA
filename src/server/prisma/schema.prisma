@@ -19,10 +19,29 @@ model User {
   lastName String
   items    Item[]
   reservation Reservation[]
-  paymentHistory PaymentHistory[]
+  paymentHistory Payment[]
   solditem SoldItem[]
+  order Order[]
 }
 
+model Order{
+  id Int @id @default(autoincrement())
+  userId Int
+  user User @relation(fields: [userId],references: [id],onDelete: Cascade)
+  createAt DateTime @default(now())
+  title String
+  category String
+  description String
+  price Float @default(0.0)
+  upload String?
+  time DateTime
+  address1 String
+  address2 String @default(" ")
+  city String
+  state String
+  zip String
+  country String
+}
 model SoldItem{
   id Int @id @default(autoincrement())
   userId Int
@@ -33,17 +52,18 @@ model SoldItem{
   price Float
   upload String?
   time DateTime
+  category String
 }
-model PaymentHistory{
+model Payment{
   id Int @id @default(autoincrement())
   userId Int
   user User @relation(fields: [userId],references: [id],onDelete: Cascade)
   createAt DateTime @default(now())
-  userSellId Int
-  itemId Int
-  price Float 
-  title String
-  upload String?
+  method String
+  nameOnCard String
+  cardNumber String
+  securityCode String
+  experiedDay String
 }
 model Reservation{
   id Int @id @default(autoincrement())

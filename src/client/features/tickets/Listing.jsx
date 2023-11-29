@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { addPrice, useAddCartMutation } from "../cart/cartSlice";
+import { addTicket, useAddCartMutation } from "../cart/cartSlice";
 import { useGetByIdQuery } from "./ticketSlice";
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -20,10 +20,17 @@ export default function Listing() {
   }
 
   const handleCart = async () => {
+    const token = sessionStorage.getItem("token");
+    if (!token) {
+      navigate("/login");
+      return;
+    }
     try {
-      const respon = await addCart(id).unwrap();
-      console.log(respon);
-      await dispatch(addPrice(ticket.price));
+      await addCart(id).unwrap();
+      // console.log(respon);
+      // console.log(ticket);
+      await dispatch(addTicket(ticket));
+      navigate("/");
     } catch (err) {
       console.log(err);
     }
@@ -39,9 +46,9 @@ export default function Listing() {
         <section>
           <img src="image.png"></img>
           <article>
-            <h1>{ticket.title}</h1>
-            <p>{ticket.time}</p>
-            <p>{ticket.description}</p>
+            <h1>{ticket.data.title}</h1>
+            <p>{ticket.data.time}</p>
+            <p>{ticket.data.description}</p>
             <button onLike={handleLike}>Like GUI</button>
             <button onClick={handleCart}>Add to Cart</button>
           </article>

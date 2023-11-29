@@ -1,11 +1,13 @@
+import { useSelector } from "react-redux";
 import { useGetTicketsQuery } from "./ticketSlice";
 import { Link } from "react-router-dom";
+import { selectToken } from "../auth/authSlice";
 
 //Basic functionality setup
 const TicketCard = ({ ticket }) => {
   return (
     <li>
-        <Link to={`/tickets/${ticket.id}`}>{ticket.title}</Link>
+      <Link to={`/tickets/${ticket.id}`}>{ticket.title}</Link>
     </li>
   );
 };
@@ -32,7 +34,7 @@ export default function Tickets() {
 
   if (isError) {
     console.log("error");
-  };
+  }
 
   return (
     <section>
@@ -40,10 +42,7 @@ export default function Tickets() {
       {isLoading && <span>insert a spinner...</span>}
       <ul>
         {tickets?.map((ticket) => (
-          <TicketCard
-            ticket={ticket}
-            key={ticket.id}
-          />
+          <TicketCard ticket={ticket} key={ticket.id} />
         ))}
       </ul>
     </section>

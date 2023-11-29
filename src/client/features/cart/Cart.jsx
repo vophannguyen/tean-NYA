@@ -1,10 +1,12 @@
 import { useDispatch } from "react-redux";
 import CartItem from "./CartItem";
-import { addPrice, resetPrice, useGetCartQuery } from "./cartSlice";
+import { useGetCartQuery } from "./cartSlice";
 import ProcessCheckout from "./ProcessCheckout";
+import { useNavigate } from "react-router";
 
 export default function Cart() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   // dispatch(addPrice(10));
   const { isloading, isError, data } = useGetCartQuery();
   if (isloading) {
@@ -20,7 +22,7 @@ export default function Cart() {
         data.data.map((item) => {
           return <CartItem reservation={item} key={item.id} />;
         })}
-      <ProcessCheckout />
+      {/* <ProcessCheckout /> */}
     </div>
   );
 }
