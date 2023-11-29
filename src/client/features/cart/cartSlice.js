@@ -55,9 +55,7 @@ const cartSlice = createSlice({
     addTicket: (state, action) => {
       console.log(action.payload);
       state.cart.push(action.payload);
-      state.cart.map((item) => {
-        state.originPrice += item.data.price;
-      });
+      state.originPrice += action.payload.data.price;
       state.saleTax = state.originPrice * 0.075;
       state.total = state.originPrice + state.saleTax;
     },
@@ -71,9 +69,11 @@ const cartSlice = createSlice({
       // need id
       const item = state.cart.find((item) => item.data.id === action.payload);
       state.cart = state.cart.filter((item) => item.data.id !== action.payload);
-      console.log(item);
-      console.log(state.cart);
-      state.originPrice -= item.data.price;
+      console.log("item", item.data.price);
+      // console.log(state.cart);
+      state.cart.length <= 0
+        ? (state.originPrice = 0)
+        : (state.originPrice -= item.data.price);
       state.saleTax = state.originPrice * 0.075;
       state.total = state.originPrice + state.saleTax;
     },

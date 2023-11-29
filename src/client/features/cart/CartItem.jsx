@@ -39,7 +39,7 @@ export default function CartItem({ reservation }) {
       );
     }
   };
-  console.log(data);
+  // console.log(data);
   const time = formatDate(data.data.time);
   //update order summary
   // dispatch(addPrice(data.price));
