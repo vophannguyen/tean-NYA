@@ -37,6 +37,7 @@ router.get("/reservation", async (req, res, next) => {
       res.json({
         message: `User ${res.locals.user.firstName} dont have reservation`,
       });
+      return;
     }
     // const newItem = [];
     // for (rsv of reservation) {

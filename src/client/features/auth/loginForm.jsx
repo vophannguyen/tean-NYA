@@ -23,8 +23,8 @@ export default function LoginForm() {
       console.log("token", response.token);
 
       if (response.token) {
-        const welcomeMessage = "Give someone else a chance?";
-        window.alert(welcomeMessage);
+        // const welcomeMessage = "Give someone else a chance?";
+        // window.alert(welcomeMessage);
         navigate("/");
       } else {
         setError({
