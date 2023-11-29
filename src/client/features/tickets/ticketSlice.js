@@ -12,7 +12,19 @@ const ticketsApi = api.injectEndpoints({
       // transformResponse: (response) => response.data,
       providesTags: ["Tickets"],
     }),
+    createTicket: builder.mutation({
+      query: (ticket) => ({
+        url: "/tickets/create",
+        method: "POST",
+        body: ticket,
+      }),
+      invalidatesTags: ["Tickets"],
+    })
   }),
 });
 
-export const { useGetTicketsQuery, useGetByIdQuery } = ticketsApi;
+export const { 
+useGetTicketsQuery, 
+useGetByIdQuery,
+useCreateTicketMutation,
+} = ticketsApi;
