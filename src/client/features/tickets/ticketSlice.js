@@ -17,14 +17,14 @@ const ticketsApi = api.injectEndpoints({
         url: "/tickets/create",
         method: "POST",
         body: ticket,
+        // headers: {
+        //   "Content-Type": "multipart/form-data",
+        // },
       }),
       invalidatesTags: ["Tickets"],
-    })
+    }),
   }),
 });
 
-export const { 
-useGetTicketsQuery, 
-useGetByIdQuery,
-useCreateTicketMutation,
-} = ticketsApi;
+export const { useGetTicketsQuery, useGetByIdQuery, useCreateTicketMutation } =
+  ticketsApi;
