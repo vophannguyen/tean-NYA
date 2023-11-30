@@ -19,7 +19,7 @@ export default function UpcomingReservations() {
     console.log("now", Date.now());
     return Date.parse(new Date(item.time)) > Date.now() ? true : false;
   });
-  console.log(upcoming);
+  console.log("upcoming", upcoming);
   return (
     <div>
       <h1>Upcoming Reservations</h1>

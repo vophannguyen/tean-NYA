@@ -27,7 +27,7 @@ const cartApi = api.injectEndpoints({
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["Cart", "Tickets"],
+      invalidatesTags: ["Order","Cart", "Tickets"],
     }),
     deleteTicket: builder.mutation({
       query: (id) => ({

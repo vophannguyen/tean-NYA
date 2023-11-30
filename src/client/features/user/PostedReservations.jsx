@@ -2,7 +2,7 @@ import { useFetchAllUserItemsQuery } from "./userSlice";
 
 export default function PostedReservations() {
   const { data: allItems, isLoading, error } = useFetchAllUserItemsQuery();
-
+console.log("allItems", allItems)
   if (error) {
     return <p>Error Fetching Your Reservations</p>;
   }
