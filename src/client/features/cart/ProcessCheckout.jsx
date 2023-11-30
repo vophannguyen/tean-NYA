@@ -8,6 +8,7 @@ import {
 } from "./cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import Receipt from "./Receipt";
 
 export default function ProcessCheckout() {
   const [method, setMethod] = useState("");
@@ -64,25 +65,21 @@ export default function ProcessCheckout() {
       }
     });
     dispatch(resetCart());
-    navigate("/cart");
+    // const receipt = useSelector((state) => state.cart.receipt);
+    // console.log(receipt);
+    navigate("/cart/checkout/receipt");
   }
   return (
     <div>
       <h1>Check out</h1>
-      <form action="" onSubmit={handlePurchase}>
+      <form onSubmit={handlePurchase}>
         <h2>Payment Method</h2>
         <input type="checkbox" name="credit" id="credit" />
         <label htmlFor="credit">Credit Card</label>
         <input type="text" placeholder="Name on card" required />
         <input type="text" placeholder="💳 Card Number" required />
         <input type="text" placeholder="🔐 CVC" />
-        <input
-          type="text"
-          name=""
-          id=""
-          pattern="\d{2}/\d{2}"
-          placeholder="MM/YY"
-        />
+        <input type="text" name="" id="" maxLength={7} placeholder="MM/YY" />
         <button>Complete Purchase</button>
       </form>
       <OrderSummary />

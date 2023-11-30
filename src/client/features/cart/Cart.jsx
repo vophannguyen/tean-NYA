@@ -3,6 +3,7 @@ import CartItem from "./CartItem";
 import { useGetCartQuery } from "./cartSlice";
 import ProcessCheckout from "./ProcessCheckout";
 import { useNavigate } from "react-router";
+import OrderSummary from "./OrderSummary";
 
 export default function Cart() {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ export default function Cart() {
           return <CartItem reservation={item} key={item.id} />;
         })}
       {/* <ProcessCheckout /> */}
+      <OrderSummary />
     </div>
   );
 }
