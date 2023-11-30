@@ -1,4 +1,9 @@
-import { useGetTicketsQuery, useGetMoviesQuery, useGetConcertsQuery, useGetResQuery } from "./ticketSlice";
+import {
+  useGetTicketsQuery,
+  useGetMoviesQuery,
+  useGetConcertsQuery,
+  useGetResQuery,
+} from "./ticketSlice";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
@@ -17,8 +22,9 @@ export default function Tickets() {
   const { data: movies } = useGetMoviesQuery();
   const { data: concerts } = useGetConcertsQuery();
   const { data: res } = useGetResQuery();
-  const [ isSorted, setIsSorted ] = useState(false);
-  const [ filtered, setFiltered ] = useState(null);
+  const [isSorted, setIsSorted] = useState(false);
+  const [filtered, setFiltered] = useState(null);
+  const [newTicket, setNewTicket] = useState(tickets);
   //pagination to be added ?
   //sorting feature - to be added?
   console.log(tickets);
@@ -37,30 +43,31 @@ export default function Tickets() {
     });
     setNewTicket(searchTicket);
   }
-//need to fix rerendering for every click on the same filter 
-//(click movies once filter, click movies again make sure does not refilter)
+  //need to fix rerendering for every click on the same filter
+  //(click movies once filter, click movies again make sure does not refilter)
   function onSortByMovie() {
-  setFiltered(movies);
-  setIsSorted(true);
-  };
+    setFiltered(movies);
+    setIsSorted(true);
+  }
   function onSortByConcert() {
     setFiltered(concerts);
     setIsSorted(true);
-  };
+  }
 
   function onSortByRes() {
     setFiltered(res);
     setIsSorted(true);
-  };
+  }
 
   function onUndoSort() {
     setIsSorted(false);
-  };
+  }
 
   return (
     <section>
       <form onSubmit={handleSearch}>
         <input type="text" placeholder="Search.." name="search" />
+        <button>🔎</button>
       </form>
       <h1>Tickets</h1>
       <ul>
@@ -73,19 +80,21 @@ export default function Tickets() {
         <li>
           <button onClick={onSortByRes}>Reservations</button>
         </li>
-        {isSorted && 
+        {isSorted && (
           <li>
             <button onClick={onUndoSort}>All Tickets</button>
-          </li>}
+          </li>
+        )}
       </ul>
       {isLoading && <span>insert a spinner...</span>}
       <ul>
-        {!isSorted ? tickets?.map((ticket) => (
-          <TicketCard ticket={ticket} key={ticket.id} />
-        )) : filtered?.map((ticket) => (
-          <TicketCard ticket={ticket} key={ticket.id} />
-        ))
-        }
+        {!isSorted
+          ? newTicket?.map((ticket) => (
+              <TicketCard ticket={ticket} key={ticket.id} />
+            ))
+          : filtered?.map((ticket) => (
+              <TicketCard ticket={ticket} key={ticket.id} />
+            ))}
       </ul>
     </section>
   );
