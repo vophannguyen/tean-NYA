@@ -27,7 +27,7 @@ export default function Tickets() {
   const [newTicket, setNewTicket] = useState(tickets);
   //pagination to be added ?
   //sorting feature - to be added?
-  console.log(tickets);
+  console.log(newTicket);
   if (isError) {
     console.log("error");
   }
