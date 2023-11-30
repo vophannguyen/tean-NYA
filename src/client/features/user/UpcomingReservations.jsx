@@ -1,4 +1,4 @@
-import { useFetchUserReservationHistoryQuery } from "./userSlice";
+import { useFetchUpcomingReservationsQuery } from "./userSlice";
 
 export default function UpcomingReservations() {
   const {
