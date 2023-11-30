@@ -12,7 +12,7 @@ export default function Upload() {
   //once logged in, redirect the page back to the upload (this page)
   const onSubmit = async (e) => {
     e.preventDefault();
-    
+
     const formData = new FormData(e.target);
 
     try {
