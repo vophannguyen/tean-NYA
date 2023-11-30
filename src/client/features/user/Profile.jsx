@@ -1,5 +1,8 @@
+import React from "react";
 import PostedReservations from "./PostedReservations";
 import { useFetchUserAccountQuery } from "./userSlice";
+import  ReservationHistory from "./ReservationHistory"
+import UpcomingReservations from "./UpcomingReservations";
 
 export default function Account() {
   const { data: me, isLoading, error } = useFetchUserAccountQuery();
@@ -19,9 +22,15 @@ export default function Account() {
     <main className="account-page">
       <h1 className="account-header">Account</h1>
       <h2 className="account-greeting"> Hi {me?.data.firstName}!</h2>
-      <h3>Upcoming Reservations</h3>
-      <h3>Past Reservations</h3>
-      <h3>Your Uploaded Listings</h3>
+      <div>
+        <UpcomingReservations />
+      </div>
+      <div>
+      <ReservationHistory />
+      </div>
+      <div>
+        <PostedReservations />
+      </div>
     </main>
   );
 }
