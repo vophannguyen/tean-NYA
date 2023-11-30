@@ -67,6 +67,7 @@ model Payment{
 }
 model Reservation{
   id Int @id @default(autoincrement())
+  createAt DateTime @default(now())
   userId Int
   user User @relation(fields: [userId],references: [id],onDelete: Cascade)
   itemId Int
