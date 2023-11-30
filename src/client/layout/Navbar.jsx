@@ -7,7 +7,7 @@ import "./Navbar.less";
 export default function Navbar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const cartItem = useSelector((state) => state.cart.cart);
   const token = useSelector(selectToken);
 
   const handleLogout = async () => {
@@ -32,7 +32,9 @@ export default function Navbar() {
               <a onClick={handleLogout}>Log Out</a>
             </li>
             <li>
-              <NavLink to="/cart">Cart</NavLink>
+              <NavLink to="/cart">
+                🛒<span>{cartItem.length}</span>
+              </NavLink>
             </li>
           </>
         ) : (

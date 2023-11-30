@@ -14,7 +14,7 @@ export default function Receipt() {
           {receipt.cart[0].map((item) => {
             return (
               <>
-                <li>
+                <li key={item.id}>
                   {item.data.title} <span> : {item.data.price}$</span>
                 </li>
               </>

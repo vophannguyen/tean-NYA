@@ -47,6 +47,7 @@ CREATE TABLE "Payment" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "userId" INTEGER NOT NULL,
     "createAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "method" TEXT NOT NULL,
     "nameOnCard" TEXT NOT NULL,
     "cardNumber" TEXT NOT NULL,
     "securityCode" TEXT NOT NULL,
