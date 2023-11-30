@@ -1,6 +1,6 @@
-import { useFetchUserReservationHistoryQuery } from "./userSlice";
+import { useFetchUserReservationHistoryQuery } from "../userSlice";
 
-export default function UpcomingReservations() {
+export default function UpcomingRes() {
   const {
     data: upcomingReservations,
     isLoading,
@@ -22,7 +22,7 @@ export default function UpcomingReservations() {
   console.log("upcoming", upcoming);
   return (
     <div>
-      <h1>Upcoming Reservations</h1>
+      <h2>Upcoming</h2>
       {upcoming && upcoming.length > 0 ? (
         <ul>
           {upcoming.map((reservation) => (

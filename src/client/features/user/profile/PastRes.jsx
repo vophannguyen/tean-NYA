@@ -1,13 +1,13 @@
-import { useFetchUserReservationHistoryQuery } from "./userSlice";
+import { useFetchUserReservationHistoryQuery } from "../userSlice";
 
-export default function UpcomingReservations() {
+export default function PastRes() {
   const {
     data: upcomingReservations,
     isLoading,
     error,
   } = useFetchUserReservationHistoryQuery();
   if (isLoading) {
-    return;
+    return <p>Loading... </p>;
   }
   if (error) {
     return (
@@ -17,12 +17,12 @@ export default function UpcomingReservations() {
   const upcoming = upcomingReservations.data.filter((item) => {
     console.log(Date.parse(new Date(item.time)));
     console.log("now", Date.now());
-    return Date.parse(new Date(item.time)) > Date.now() ? true : false;
+    return Date.parse(new Date(item.time)) < Date.now() ? true : false;
   });
-  console.log("upcoming", upcoming);
+  console.log(upcoming);
   return (
     <div>
-      <h1>Upcoming Reservations</h1>
+      <h2>Past Reservations</h2>
       {upcoming && upcoming.length > 0 ? (
         <ul>
           {upcoming.map((reservation) => (

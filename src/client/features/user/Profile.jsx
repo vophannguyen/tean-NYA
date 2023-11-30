@@ -1,10 +1,9 @@
 import React from "react";
-import PostedReservations from "./PostedReservations";
+import Reservations from "./profile/Reservations";
+import Listings from "./profile/Listings";
 import { useFetchUserAccountQuery } from "./userSlice";
-import ReservationHistory from "./ReservationHistory";
-import UpcomingReservations from "./UpcomingReservations";
 
-export default function Account() {
+export default function Profile() {
   const { data: me, isLoading, error } = useFetchUserAccountQuery();
 
   // console.log("me", me);
@@ -22,15 +21,8 @@ export default function Account() {
     <main className="account-page">
       <h1 className="account-header">Account</h1>
       <h2 className="account-greeting"> Hi {me?.data.firstName}!</h2>
-      <div>
-        <UpcomingReservations data={me} />
-      </div>
-      <div>
-        <ReservationHistory />
-      </div>
-      <div>
-        <PostedReservations />
-      </div>
+      <Reservations />
+      <Listings />
     </main>
   );
 }
