@@ -94,6 +94,7 @@ model Item {
   upload String?
   isReservation Boolean @default(false)
   time DateTime
+  quantity Int 
   location Location[]
   reservation Reservation[]
   userId      Int

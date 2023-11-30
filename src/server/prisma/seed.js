@@ -18,6 +18,7 @@ const seed = async () => {
               category: "reservation",
               description: "test-desss",
               price: i,
+              quantity: i,
               upload: "1700626869150.png",
               location: {
                 create: {
@@ -49,6 +50,7 @@ const seed = async () => {
               category: "movies",
               description: "test-" + i,
               price: i,
+              quantity: i,
               upload: "1700626869150.png",
               location: {
                 create: {
@@ -80,6 +82,7 @@ const seed = async () => {
               category: "concert",
               description: "test-" + i,
               price: i,
+              quantity: i,
               upload: "1700626869150.png",
               location: {
                 create: {
