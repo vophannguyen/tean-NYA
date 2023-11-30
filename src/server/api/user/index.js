@@ -51,6 +51,7 @@ router.get("/reservation", async (req, res, next) => {
     //   newItem.push(item);
     //   // console.log(newItem);
     // }
+    console.log(reservation);
     res.json({ data: reservation });
   } catch (err) {
     next(err);

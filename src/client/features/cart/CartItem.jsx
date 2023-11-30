@@ -8,6 +8,9 @@ import OrderSummary from "./OrderSummary";
 export default function CartItem({ reservation }) {
   const [deleteIteminCart] = useDeleteCartMutation();
   const dispatch = useDispatch();
+  console.log(reservation);
+  const currentTime = Date.parse(new Date(reservation.createAt));
+  console.log("dsd", currentTime);
   // console.log(reservation.itemId);
   // const timeClock = run_clock(10);
   // console.log(timeClock);
@@ -29,7 +32,7 @@ export default function CartItem({ reservation }) {
   const renderer = ({ hours, minutes, seconds, completed }) => {
     if (completed) {
       // Render a completed state
-      handleDeleteItem();
+      // handleDeleteItem();
     } else {
       // Render a countdown
       return (
@@ -48,8 +51,11 @@ export default function CartItem({ reservation }) {
   return (
     <>
       <Countdown
-        date={cartTimeCountDownt(1, Date.parse(new Date()))}
+        date={cartTimeCountDownt(1, currentTime)}
         renderer={renderer}
+        onComplete={async () => {
+          await handleDeleteItem();
+        }}
       />
       {data && (
         <div>
