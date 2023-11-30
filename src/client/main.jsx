@@ -12,15 +12,15 @@ import Tickets from "./features/tickets/Tickets";
 import Upload from "./features/tickets/Upload";
 import Listing from "./features/tickets/Listing";
 import NotFound from "./features/404/NotFound";
-import Profile from "./features/auth/Profile.jsx";
+import Profile from "./features/user/Profile.jsx";
 import Root from "./layout/Root.jsx";
-import AllItems from "./features/auth/AllItems";
+import AllItems from "./features/user/PostedReservations";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Cart from "./features/cart/Cart.jsx";
 import ProcessCheckout from "./features/cart/ProcessCheckout.jsx";
 import Receipt from "./features/cart/Receipt.jsx";
-import Account from "./features/auth/Account.jsx";
-import ReservationHistory from "./features/auth/reservationHistory";
+import Account from "./features/user/Account.jsx";
+import ReservationHistory from "./features/user/ReservationHistory";
 const router = createBrowserRouter([
   {
     path: "/",
