@@ -12,22 +12,22 @@ export default function Upload() {
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    const newTicket = {
-      time: formData.get("time"),
-      title: formData.get("title"),
-      category: formData.get("category"),
-      description: formData.get("description"),
-      price: formData.get("price") || 0,
-      upload: formData.get("upload"),
-      address1: formData.get("address1"),
-      address2: formData.get("address2") || "Address2",
-      city: formData.get("city"),
-      state: formData.get("state"),
-      zip: formData.get("zip"),
-      country: formData.get("country"),
-    };
+    // const newTicket = {
+    //   time: formData.get("time"),
+    //   title: formData.get("title"),
+    //   category: formData.get("category"),
+    //   description: formData.get("description"),
+    //   price: formData.get("price") || 0,
+    //   upload: formData.get("upload"),
+    //   address1: formData.get("address1"),
+    //   address2: formData.get("address2") || "Address2",
+    //   city: formData.get("city"),
+    //   state: formData.get("state"),
+    //   zip: formData.get("zip"),
+    //   country: formData.get("country"),
+    // };
 
-    console.log(newTicket);
+    // console.log(newTicket);
 
     try {
       const response = await createTicket(formData).unwrap();

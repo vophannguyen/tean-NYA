@@ -3,6 +3,7 @@ import OrderSummary from "./OrderSummary";
 import {
   resetCart,
   useAddOrderMutation,
+  useAddPaymentMutation,
   useDeleteCartMutation,
   useDeleteTicketMutation,
 } from "./cartSlice";
@@ -19,11 +20,20 @@ export default function ProcessCheckout() {
   const [addOrder] = useAddOrderMutation();
   const [deleteTicket] = useDeleteTicketMutation();
   const [deleteIteminCart] = useDeleteCartMutation();
+  const [addPayment] = useAddPaymentMutation();
   const cart = useSelector((state) => state.cart.cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   function handlePurchase(e) {
     e.preventDefault();
+    const formData = new FormData(e.target);
+    const dataPayment = {
+      method: formData.get("method"),
+      nameOnCard: formData.get("nameOnCard"),
+      cardNumber: formData.get("cardNumber"),
+      securityCode: formData.get("securityCode"),
+      experiedDay: formData.get("experiedDay"),
+    };
     // {
     //   title,
     //   category,
@@ -39,6 +49,7 @@ export default function ProcessCheckout() {
     //   country,
     //   },
     console.log(cart);
+    console.log(formData.get("method"));
     cart.forEach(async (element) => {
       try {
         const data = {
@@ -55,11 +66,12 @@ export default function ProcessCheckout() {
           zip: element.location.zip,
           country: element.location.country,
         };
-        const respon = await addOrder(data);
-        console.log("process", respon);
+        await addOrder(data).unwrap();
+        // console.log("process", respon);
         ///delete
-        const deleteT = await deleteTicket(element.data.id);
-        console.log("dele", deleteT);
+        await deleteTicket(element.data.id).unwrap();
+        const respon = await addPayment(dataPayment);
+        console.log("payment", respon);
       } catch (err) {
         console.error(err);
       }
@@ -74,12 +86,31 @@ export default function ProcessCheckout() {
       <h1>Check out</h1>
       <form onSubmit={handlePurchase}>
         <h2>Payment Method</h2>
-        <input type="checkbox" name="credit" id="credit" />
-        <label htmlFor="credit">Credit Card</label>
-        <input type="text" placeholder="Name on card" required />
-        <input type="text" placeholder="💳 Card Number" required />
-        <input type="text" placeholder="🔐 CVC" />
-        <input type="text" name="" id="" maxLength={7} placeholder="MM/YY" />
+        <select name="method" id="cars">
+          <option value="credit card">Credit Card</option>
+
+          <option value="paypal">Paypal</option>
+        </select>
+        <input
+          type="text"
+          name="nameOnCard"
+          placeholder="Name on card"
+          required
+        />
+        <input
+          type="text"
+          name="cardNumber"
+          placeholder="💳 Card Number"
+          required
+        />
+        <input type="text" name="securityCode" placeholder="🔐 CVC" />
+        <input
+          type="text"
+          name="experiedDay"
+          id=""
+          maxLength={7}
+          placeholder="MM/YY"
+        />
         <button>Complete Purchase</button>
       </form>
       <OrderSummary />

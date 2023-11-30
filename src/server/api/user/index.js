@@ -125,7 +125,41 @@ router.post("/order", async (req, res, next) => {
 //get payment history
 router.get("/payment", async (req, res, next) => {
   try {
-    res.json({ message: "this is paymenthistory" });
+    const payment = await prisma.payment.findMany({
+      where: { userId: res.locals.user.id },
+    });
+
+    res.json({ data: payment });
+  } catch (err) {
+    next(err);
+  }
+});
+//add payment method to table
+router.post("/payment", async (req, res, next) => {
+  try {
+    console.log(req);
+    const { method, nameOnCard, cardNumber, securityCode, experiedDay } =
+      req.body;
+    if (
+      !method ||
+      !nameOnCard ||
+      !cardNumber ||
+      !securityCode ||
+      !experiedDay
+    ) {
+      res.json({ error: "Need All Information!" });
+    }
+    const payment = await prisma.payment.create({
+      data: {
+        method,
+        nameOnCard,
+        cardNumber,
+        securityCode,
+        experiedDay,
+        userId: res.locals.user.id,
+      },
+    });
+    res.json({ data: payment });
   } catch (err) {
     next(err);
   }

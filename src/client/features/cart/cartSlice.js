@@ -36,6 +36,13 @@ const cartApi = api.injectEndpoints({
       }),
       invalidatesTags: ["Cart", "Tickets"],
     }),
+    addPayment: builder.mutation({
+      query: (data) => ({
+        url: "user/payment",
+        method: "POST",
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -98,6 +105,7 @@ export const {
   useDeleteCartMutation,
   useAddOrderMutation,
   useDeleteTicketMutation,
+  useAddPaymentMutation,
 } = cartApi;
 export const { addTicket, deleteItem, resetCart, addCurrentTime } =
   cartSlice.actions;
