@@ -12,7 +12,7 @@ export default function Upload() {
   //once logged in, redirect the page back to the upload (this page)
   const onSubmit = async (e) => {
     e.preventDefault();
-    
+
     const formData = new FormData(e.target);
     const newTicket = {
       time: formData.get("time"),
@@ -32,7 +32,7 @@ export default function Upload() {
     console.log(newTicket);
 
     try {
-      const response = await createTicket(newTicket).unwrap();
+      const response = await createTicket(formData).unwrap();
       console.log(response);
       if (response.message) {
         setMessage(() => response.message);
