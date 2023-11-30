@@ -58,6 +58,7 @@ CREATE TABLE "Payment" (
 -- CreateTable
 CREATE TABLE "Reservation" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "createAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "userId" INTEGER NOT NULL,
     "itemId" INTEGER NOT NULL,
     CONSTRAINT "Reservation_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
@@ -88,6 +89,7 @@ CREATE TABLE "Item" (
     "upload" TEXT,
     "isReservation" BOOLEAN NOT NULL DEFAULT false,
     "time" DATETIME NOT NULL,
+    "quantity" INTEGER NOT NULL,
     "userId" INTEGER NOT NULL,
     CONSTRAINT "Item_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );

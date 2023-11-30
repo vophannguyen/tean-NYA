@@ -28,8 +28,17 @@ router.post("/create", imageUpload.single("upload"), async (req, res, next) => {
     console.log(req.body.title);
     console.log("dd", req.file);
     const price = +req.body.price;
+    const quantity = +req.body.quantity;
     //check all information is not null
-    if (!title || !description || !price || !time || !category || !req.file) {
+    if (
+      !title ||
+      !description ||
+      !price ||
+      !time ||
+      !category ||
+      !req.file ||
+      !quantity
+    ) {
       res.json({ error: "all information required" });
       return;
     }
@@ -48,6 +57,7 @@ router.post("/create", imageUpload.single("upload"), async (req, res, next) => {
         price,
         category,
         upload,
+        quantity,
         userId: res.locals.user.id,
         time: new Date(time),
         location: {

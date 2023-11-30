@@ -55,7 +55,6 @@ export default function Listing() {
             <h1>{ticket.data.title}</h1>
             <p>{ticket.data.time}</p>
             <p>{ticket.data.description}</p>
-            <button onLike={handleLike}>Like GUI</button>
             <button onClick={handleCart}>Add to Cart</button>
           </article>
           <figure>
