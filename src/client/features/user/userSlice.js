@@ -17,7 +17,8 @@ const authApi = api.injectEndpoints({
 });
 
 export const {
-    useFetchUserAccountQuery,
-    useFetchUserReservationHistoryQuery,
-    useFetchAllUserItemsQuery,
-  } = authApi;
+  useFetchUserAccountQuery,
+  useFetchUserReservationHistoryQuery,
+  useFetchAllUserItemsQuery,
+  useFetchUpcomingReservationsQuery,
+} = authApi;
