@@ -1,5 +1,5 @@
-import AllItems from "./AllItems";
-import { useFetchUserAccountQuery } from "./authSlice";
+import PostedReservations from "./PostedReservations";
+import { useFetchUserAccountQuery } from "./userSlice";
 
 export default function Account() {
   const { data: me, isLoading, error } = useFetchUserAccountQuery();
@@ -20,13 +20,8 @@ export default function Account() {
       <h1 className="account-header">Account</h1>
       <h2 className="account-greeting"> Hi {me?.data.firstName}!</h2>
       <h3>Upcoming Reservations</h3>
-      <ul>
-        <li className="upcoming-reservations"></li>
-        <h3 className="reservation-history">Places You've Been</h3>
-        <li></li>
-        <h3 className="selling-reservations">Up For Grabs</h3>
-        <AllItems />
-      </ul>
+      <h3>Past Reservations</h3>
+      <h3>Your Uploaded Listings</h3>
     </main>
   );
 }

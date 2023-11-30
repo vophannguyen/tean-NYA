@@ -1,4 +1,4 @@
-import { useFetchUserReservationHistoryQuery } from "./authSlice";
+import { useFetchUserReservationHistoryQuery } from "./userSlice";
 
 export default function ReservationHistory() {
   const {

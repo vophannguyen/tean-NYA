@@ -1,6 +1,6 @@
-import { useFetchAllUserItemsQuery } from "./authSlice";
+import { useFetchAllUserItemsQuery } from "./userSlice";
 
-export default function AllItems() {
+export default function PostedReservations() {
   const { data: allItems, isLoading, error } = useFetchAllUserItemsQuery();
 
   if (error) {
