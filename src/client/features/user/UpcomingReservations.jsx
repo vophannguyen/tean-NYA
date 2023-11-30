@@ -7,12 +7,15 @@ export default function UpcomingReservations() {
     error,
   } = useFetchUpcomingReservationsQuery();
 
+  console.log("upcomingReservations", upcomingReservations);
+  console.log("isLoading", isLoading);
+  console.log("error", error);
+
   if (error) {
     return (
       <p>Error fetching your upcoming reservations. Please try again later.</p>
     );
   }
-  console.log(upcomingReservations.data);
   return isLoading ? (
     <p>Loading...</p>
   ) : (
@@ -20,7 +23,7 @@ export default function UpcomingReservations() {
       <h1>Upcoming Reservations</h1>
       {upcomingReservations && upcomingReservations.data.length > 0 ? (
         <ul>
-          {UpcomingReservations.data.map((reservation) => (
+          {upcomingReservations.data.map((reservation) => (
             <li key={reservation.id}>{reservation.title}</li>
           ))}
         </ul>
