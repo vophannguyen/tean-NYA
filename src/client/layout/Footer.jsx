@@ -12,7 +12,7 @@ export default function Footer() {
           <NavLink to="/upload">Upload</NavLink>
         </li>
         <li>
-            About Us
+            <NavLink to="/about"> About Us </NavLink>
         </li>
         <li>
             FAQs
