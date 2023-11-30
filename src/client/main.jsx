@@ -22,6 +22,9 @@ import Receipt from "./features/cart/Receipt.jsx";
 import Account from "./features/user/Account.jsx";
 import ReservationHistory from "./features/user/ReservationHistory";
 import UpcomingReservations from "./features/user/UpcomingReservations";
+import AboutUs from "./layout/AboutUs";
+
+
 const router = createBrowserRouter([
   {
     path: "/",
