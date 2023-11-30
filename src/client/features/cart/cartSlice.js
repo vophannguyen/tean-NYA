@@ -46,11 +46,20 @@ const cartSlice = createSlice({
     originPrice: 0,
     saleTax: 0,
     total: 0,
+    receipt: {
+      cart: [],
+      originPrice: 0,
+      total: 0,
+      saleTax: 0,
+    },
   },
   reducers: {
     logout: (state) => {
       state.token = null;
       sessionStorage.removeItem(TOKEN_KEY);
+    },
+    addCurrentTime(state, action) {
+      state.currentTime = action.payload;
     },
     addTicket: (state, action) => {
       console.log(action.payload);
@@ -60,6 +69,10 @@ const cartSlice = createSlice({
       state.total = state.originPrice + state.saleTax;
     },
     resetCart: (state) => {
+      state.receipt.cart[0] = [...state.cart];
+      state.receipt.originPrice = state.originPrice;
+      state.receipt.total = state.total;
+      state.receipt.saleTax = state.saleTax;
       state.originPrice = 0;
       state.saleTax = 0;
       state.total = 0;
@@ -69,7 +82,7 @@ const cartSlice = createSlice({
       // need id
       const item = state.cart.find((item) => item.data.id === action.payload);
       state.cart = state.cart.filter((item) => item.data.id !== action.payload);
-      console.log("item", item.data.price);
+      // console.log("item", item.data.price);
       // console.log(state.cart);
       state.cart.length <= 0
         ? (state.originPrice = 0)
@@ -86,5 +99,6 @@ export const {
   useAddOrderMutation,
   useDeleteTicketMutation,
 } = cartApi;
-export const { addTicket, deleteItem, resetCart } = cartSlice.actions;
+export const { addTicket, deleteItem, resetCart, addCurrentTime } =
+  cartSlice.actions;
 export default cartSlice.reducer;

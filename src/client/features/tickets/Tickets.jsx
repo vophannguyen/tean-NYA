@@ -35,9 +35,15 @@ export default function Tickets() {
   if (isError) {
     console.log("error");
   }
-
+  //search bar -
+  function handleSearch(e) {
+    e.preventDefult();
+  }
   return (
     <section>
+      <form onSubmit={handleSearch}>
+        <input type="text" placeholder="Search.." name="search" />
+      </form>
       <h1>Tickets</h1>
       {isLoading && <span>insert a spinner...</span>}
       <ul>

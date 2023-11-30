@@ -16,13 +16,15 @@ export default function Navbar() {
   };
 
   return (
-    <nav>
-      <NavLink to="/tickets"><h1>Last Chance</h1></NavLink>
+    <nav className="top">
+      <NavLink to="/tickets">
+        <h1>Last Chance</h1>
+      </NavLink>
       <menu>
         {token ? (
           <>
             <li>
-              <NavLink className="account" to="/user/profile">
+              <NavLink className="account" to="/user/">
                 Account
               </NavLink>
             </li>
@@ -45,6 +47,9 @@ export default function Navbar() {
         )}
         <li>
           <NavLink to="/upload">List It</NavLink>
+        </li>
+        <li>
+          <NavLink to="/"> Home</NavLink>
         </li>
       </menu>
     </nav>

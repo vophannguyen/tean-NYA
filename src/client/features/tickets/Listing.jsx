@@ -1,5 +1,9 @@
 import { useDispatch } from "react-redux";
-import { addTicket, useAddCartMutation } from "../cart/cartSlice";
+import {
+  addCurrentTime,
+  addTicket,
+  useAddCartMutation,
+} from "../cart/cartSlice";
 import { useGetByIdQuery } from "./ticketSlice";
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -18,9 +22,10 @@ export default function Listing() {
   if (isError) {
     navigate("/*");
   }
-
+  //add ticket to Cart
   const handleCart = async () => {
     const token = sessionStorage.getItem("token");
+    //need logged
     if (!token) {
       navigate("/login");
       return;
@@ -30,6 +35,7 @@ export default function Listing() {
       // console.log(respon);
       // console.log(ticket);
       await dispatch(addTicket(ticket));
+      sessionStorage.setItem("cartTime", Date.parse(new Date()));
       navigate("/");
     } catch (err) {
       console.log(err);

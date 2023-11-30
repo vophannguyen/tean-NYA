@@ -41,9 +41,9 @@ export function remainTime(end) {
 // let hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 // let minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
 // let seconds = Math.floor((t % (1000 * 60)) / 1000);
-export function cartTimeCountDownt(end) {
+export function cartTimeCountDownt(end, crt) {
   let time_in_minutes = end;
-  let current_time = Date.parse(new Date());
+  let current_time = crt;
   let deadline = new Date(current_time + time_in_minutes * 60 * 1000);
   return deadline;
 }
