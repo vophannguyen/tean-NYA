@@ -13,15 +13,12 @@ const authApi = api.injectEndpoints({
     fetchUserReservationHistory: builder.query({
       query: () => "user/order",
     }),
-    fetchUpcomingReservations: builder.query({
-      query: () => "user/upcoming",
-    })
   }),
 });
 
 export const {
-    useFetchUserAccountQuery,
-    useFetchUserReservationHistoryQuery,
-    useFetchAllUserItemsQuery,
-    useFetchUpcomingReservationsQuery,
-  } = authApi;
+  useFetchUserAccountQuery,
+  useFetchUserReservationHistoryQuery,
+  useFetchAllUserItemsQuery,
+  useFetchUpcomingReservationsQuery,
+} = authApi;
