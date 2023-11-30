@@ -21,6 +21,7 @@ import ProcessCheckout from "./features/cart/ProcessCheckout.jsx";
 import Receipt from "./features/cart/Receipt.jsx";
 import Account from "./features/user/Account.jsx";
 import ReservationHistory from "./features/user/ReservationHistory";
+import UpcomingReservations from "./features/user/UpcomingReservations";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -45,6 +46,7 @@ const router = createBrowserRouter([
       },
       { path: "/cart/checkout/receipt", element: <Receipt /> },
       { path:"user/payment", element: <ReservationHistory />},
+      { path: "user/upcoming", element: <UpcomingReservations />},
     ],
   },
   { path: "/*", element: <NotFound /> },
