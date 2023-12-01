@@ -23,6 +23,7 @@ import Account from "./features/user/Account.jsx";
 import ReservationHistory from "./features/user/ReservationHistory";
 import UpcomingReservations from "./features/user/UpcomingReservations";
 import AboutUs from "./layout/AboutUs";
+import FrequentlyAsked from "./layout/Faq";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,7 @@ const router = createBrowserRouter([
       { path:"user/payment", element: <ReservationHistory />},
       { path: "user/upcoming", element: <UpcomingReservations />},
       { path: "/about", element: <AboutUs />},
+      { path: "/FAQ", element: <FrequentlyAsked />},
     ],
   },
   { path: "/*", element: <NotFound /> },
