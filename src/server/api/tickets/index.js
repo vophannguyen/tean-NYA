@@ -28,21 +28,12 @@ router.post("/create", imageUpload.single("upload"), async (req, res, next) => {
     console.log(req.body.title);
     console.log("dd", req.file);
     const price = +req.body.price;
-    const quantity = +req.body.quantity;
     //check all information is not null
-    if (
-      !title ||
-      !description ||
-      !price ||
-      !time ||
-      !category ||
-      !req.file ||
-      !quantity
-    ) {
+    if (!title || !description || !price || !req.file || !time) {
       res.json({ error: "all information required" });
       return;
     }
-    if (!address1 || !city || !state || !zip || !country) {
+    if (!address1 || !address2 || !city || !state || !zip || !country) {
       res.json({ error: "Location information is required" });
       return;
     }
@@ -55,9 +46,7 @@ router.post("/create", imageUpload.single("upload"), async (req, res, next) => {
         title,
         description,
         price,
-        category,
         upload,
-        quantity,
         userId: res.locals.user.id,
         time: new Date(time),
         location: {
@@ -187,16 +176,13 @@ router.get("/:id", async (req, res, next) => {
     const ticket = await prisma.item.findFirst({
       where: { id },
     });
-    const location = await prisma.location.findFirst({
-      where: { itemId: id },
-    });
     // find path of image and update upload
     if (!ticket) {
       res.json({ error: "Id not found" });
     }
     // console.log(imageFile(ticket.upload));
     ticket.upload = imageFile(ticket.upload);
-    res.json({ data: ticket, location: location });
+    res.json({ data: ticket });
   } catch (err) {
     next(err);
   }

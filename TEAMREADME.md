@@ -25,9 +25,9 @@
 
 - Base URL : localhost:3000/api/user
 - Get " /profile " get user information
-- Get "/reservation" get item add to cart
-- Get "/payment" get user payment history information
-- Get "/sellitem" get all sell item of User
+- Get "/reservation" get items that are add to cart
+- Get "/payment" get user payment information method saved in profile
+- Get "/sellitem" get all sell item of User (posted reservations of the user)
 - POST "/reservation/:itemId" add item to cart
   - required item id
 - DELETE "/reservation/:id" delete item of cart
@@ -36,7 +36,7 @@
 - POST "/solditem" put sold item of user to backend
   - Date: {title,description,time,upload,category,price}
 - GET "/order" get user order history
-- POST "/order" put user order to backend
+- POST "/order" put user order to backend (completed checkout)
   - Data: {
     title,
     category,

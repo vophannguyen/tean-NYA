@@ -1,4 +1,4 @@
-import { useCreateTicketMutation } from "./ticketSlice";
+import { useCreateTicketMutation } from "../ticketSlice";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LocationInput from "./LocationInput";

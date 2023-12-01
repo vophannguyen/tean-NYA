@@ -3,8 +3,8 @@ import {
   addCurrentTime,
   addTicket,
   useAddCartMutation,
-} from "../cart/cartSlice";
-import { useGetByIdQuery } from "./ticketSlice";
+} from "../../cart/cartSlice";
+import { useGetByIdQuery } from "../ticketSlice";
 import { useParams, useNavigate } from "react-router-dom";
 
 /** Allows user to read, update, and delete a task */

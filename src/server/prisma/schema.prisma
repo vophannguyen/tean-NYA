@@ -19,30 +19,11 @@ model User {
   lastName String
   items    Item[]
   reservation Reservation[]
-  paymentHistory Payment[]
+  paymentHistory PaymentHistory[]
   solditem SoldItem[]
-  order Order[]
 }
 
-model Order{
-  id Int @id @default(autoincrement())
-  userId Int
-  user User @relation(fields: [userId],references: [id],onDelete: Cascade)
-  createAt DateTime @default(now())
-  title String
-  category String
-  description String
-  price Float @default(0.0)
-  upload String?
-  time DateTime
-  address1 String
-  address2 String @default(" ")
-  city String
-  state String
-  zip String
-  country String
-}
-model SoldItem{
+model SoldItem {
   id Int @id @default(autoincrement())
   userId Int
   user User @relation(fields: [userId],references: [id],onDelete: Cascade)
@@ -52,22 +33,20 @@ model SoldItem{
   price Float
   upload String?
   time DateTime
-  category String
 }
-model Payment{
+model PaymentHistory{
   id Int @id @default(autoincrement())
   userId Int
   user User @relation(fields: [userId],references: [id],onDelete: Cascade)
   createAt DateTime @default(now())
-  method String
-  nameOnCard String
-  cardNumber String
-  securityCode String
-  experiedDay String
+  userSellId Int
+  itemId Int
+  price Float
+  title String
+  upload String?
 }
 model Reservation{
   id Int @id @default(autoincrement())
-  createAt DateTime @default(now())
   userId Int
   user User @relation(fields: [userId],references: [id],onDelete: Cascade)
   itemId Int
@@ -76,7 +55,7 @@ model Reservation{
 model Location {
   id Int @id @default(autoincrement())
   address1 String
-  address2 String @default(" ")
+  address2 String
   city String
   state String
   zip String
@@ -89,13 +68,11 @@ model Item {
   id          Int     @id @default(autoincrement())
   createdAt DateTime @default(now())
   title String
-  category String
   description String
-  price Float @default(0.0)
+  price Float
   upload String?
   isReservation Boolean @default(false)
   time DateTime
-  quantity Int 
   location Location[]
   reservation Reservation[]
   userId      Int
