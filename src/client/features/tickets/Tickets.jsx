@@ -1,4 +1,9 @@
-import { useGetTicketsQuery, useGetMoviesQuery, useGetConcertsQuery, useGetResQuery } from "./ticketSlice";
+import {
+  useGetTicketsQuery,
+  useGetMoviesQuery,
+  useGetConcertsQuery,
+  useGetResQuery,
+} from "./ticketSlice";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
@@ -19,17 +24,25 @@ export default function Tickets() {
   const { data: movies } = useGetMoviesQuery();
   const { data: concerts } = useGetConcertsQuery();
   const { data: res } = useGetResQuery();
-  const [ isSorted, setIsSorted ] = useState(false);
-  const [ filtered, setFiltered ] = useState(null);
+  const [isSorted, setIsSorted] = useState(false);
+  const [filtered, setFiltered] = useState(null);
+  const [newTicket, setNewTicket] = useState(tickets);
+  const [isSearch, setIsSearch] = useState(false);
+  let searchTicket = null;
   //pagination to be added ?
   //sorting feature - to be added?
+
   console.log(tickets);
   if (isError) {
     console.log("error");
   }
+  if (isLoading) {
+    <span>insert a spinner...</span>;
+  }
   //search bar -
   function handleSearch(e) {
     e.preventDefault();
+    setIsSearch(() => true);
     const formData = new FormData(e.target);
     const search = formData.get("search");
     const searchTicket = tickets.filter((item) => {
@@ -39,46 +52,54 @@ export default function Tickets() {
     });
     setNewTicket(searchTicket);
   }
-//need to fix rerendering for every click on the same filter 
-//(click movies once filter, click movies again make sure does not refilter)
+  searchTicket = tickets;
+  if (isSearch) {
+    searchTicket = newTicket;
+  }
+  //need to fix rerendering for every click on the same filter
+  //(click movies once filter, click movies again make sure does not refilter)
   function onSortByMovie() {
-  setFiltered(movies);
-  setIsSorted(true);
-  };
+    setFiltered(movies);
+    setIsSorted(true);
+  }
   function onSortByConcert() {
     setFiltered(concerts);
     setIsSorted(true);
-  };
+  }
 
   function onSortByRes() {
     setFiltered(res);
     setIsSorted(true);
-  };
+  }
 
   function onUndoSort() {
     setIsSorted(false);
-  };
+  }
 
-  function onFilterLocation() {
-
-  };
+  function onFilterLocation() {}
 
   return (
     <section>
       <form onSubmit={handleSearch}>
         <input type="text" placeholder="Search.." name="search" />
       </form>
-      <h1>EVENTS IN 
-      <span>
-        <select className="location-filter" onChange={onFilterLocation} name="locationfilter" type="text">
-          <option value="1">NYC</option>
-          <option value="2">MANHATTAN</option>
-          <option value="3">BROOKLYN</option>
-          <option value="4">QUEENS</option>
-          <option value="5">BRONX</option>
-          <option value="6">STATEN ISLAND</option>
-        </select>
-      </span>
+      <h1>
+        EVENTS IN
+        <span>
+          <select
+            className="location-filter"
+            onChange={onFilterLocation}
+            name="locationfilter"
+            type="text"
+          >
+            <option value="1">NYC</option>
+            <option value="2">MANHATTAN</option>
+            <option value="3">BROOKLYN</option>
+            <option value="4">QUEENS</option>
+            <option value="5">BRONX</option>
+            <option value="6">STATEN ISLAND</option>
+          </select>
+        </span>
       </h1>
       <ul>
         <li>
@@ -90,19 +111,20 @@ export default function Tickets() {
         <li>
           <button onClick={onSortByRes}>Reservations</button>
         </li>
-        {isSorted && 
+        {isSorted && (
           <li>
             <button onClick={onUndoSort}>All Tickets</button>
-          </li>}
+          </li>
+        )}
       </ul>
-      {isLoading && <span>insert a spinner...</span>}
       <ul>
-        {!isSorted ? tickets?.map((ticket) => (
-          <TicketCard ticket={ticket} key={ticket.id} />
-        )) : filtered?.map((ticket) => (
-          <TicketCard ticket={ticket} key={ticket.id} />
-        ))
-        }
+        {!isSorted
+          ? searchTicket?.map((ticket) => (
+              <TicketCard ticket={ticket} key={ticket.id} />
+            ))
+          : filtered?.map((ticket) => (
+              <TicketCard ticket={ticket} key={ticket.id} />
+            ))}
       </ul>
       <aside>
         <iframe></iframe>
