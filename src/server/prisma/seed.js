@@ -13,7 +13,9 @@ const seed = async () => {
         items: {
           create: [
             {
-              time: new Date().toJSON(),
+              time: new Date(
+                Date.parse(new Date()) + 30 * 1000 * 60 * 60 * 24
+              ).toJSON(),
               title: "restaurant" + i,
               category: "reservation",
               description: "test-desss",
@@ -182,7 +184,6 @@ const seed = async () => {
     });
   }
 };
-
 seed()
   .then(async () => await prisma.$disconnect())
   .catch(async (err) => {

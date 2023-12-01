@@ -191,7 +191,6 @@ router.get("/solditem", async (req, res, next) => {
 router.post("/solditem", async (req, res, next) => {
   const { title, description, upload, category, userId } = req.body;
   const price = +req.body.price;
-  const time = new Date();
   console.log(req.body);
   if (!title || !description || !upload || !time || !category || !price) {
     res.json({ error: "Need All Information" });

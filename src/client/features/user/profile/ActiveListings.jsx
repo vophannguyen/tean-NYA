@@ -1,3 +1,4 @@
+import { formatDate } from "../../utils/helpers";
 import { useFetchAllUserItemsQuery } from "../userSlice";
 export default function ActiveListings() {
   const { data: allItems, isLoading, error } = useFetchAllUserItemsQuery();
@@ -13,7 +14,7 @@ export default function ActiveListings() {
           {allItems.data.map((reservation) => (
             <li key={reservation.id}>
               {reservation.title}
-              <span>Time: {reservation.time}</span>
+              <span>Time: {formatDate(reservation.time)}</span>
             </li>
           ))}
         </ul>
