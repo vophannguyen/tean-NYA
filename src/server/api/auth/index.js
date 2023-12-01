@@ -53,7 +53,7 @@ router.post("/register", async (req, res, next) => {
 router.post("/login", async (req, res, next) => {
   try {
     const { username, password } = req.body;
-    console.log(req.body);
+    console.log("loggin", req.body);
     // Check if username and password provided
     if (!username || !password) {
       res.json({ error: "Username and password required." });

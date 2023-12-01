@@ -7,7 +7,7 @@ module.exports = router;
 router.use((req, res, next) => {
   if (!res.locals.user) {
     res.json({ error: "You must be logged in." });
-    return next(new ServerError(401, "You must be logged in."));
+    // return next(new ServerError(401, "You must be logged in."));
   }
   next();
 });

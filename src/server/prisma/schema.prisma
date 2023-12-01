@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -19,11 +16,30 @@ model User {
   lastName String
   items    Item[]
   reservation Reservation[]
-  paymentHistory PaymentHistory[]
+  paymentHistory Payment[]
   solditem SoldItem[]
+  order Order[]
 }
 
-model SoldItem {
+model Order{
+  id Int @id @default(autoincrement())
+  userId Int
+  user User @relation(fields: [userId],references: [id],onDelete: Cascade)
+  createAt DateTime @default(now())
+  title String
+  category String
+  description String
+  price Float @default(0.0)
+  upload String?
+  time DateTime
+  address1 String
+  address2 String @default(" ")
+  city String
+  state String
+  zip String
+  country String
+}
+model SoldItem{
   id Int @id @default(autoincrement())
   userId Int
   user User @relation(fields: [userId],references: [id],onDelete: Cascade)
@@ -33,20 +49,22 @@ model SoldItem {
   price Float
   upload String?
   time DateTime
+  category String
 }
-model PaymentHistory{
+model Payment{
   id Int @id @default(autoincrement())
   userId Int
   user User @relation(fields: [userId],references: [id],onDelete: Cascade)
   createAt DateTime @default(now())
-  userSellId Int
-  itemId Int
-  price Float
-  title String
-  upload String?
+  method String
+  nameOnCard String
+  cardNumber String
+  securityCode String
+  experiedDay String
 }
 model Reservation{
   id Int @id @default(autoincrement())
+  createAt DateTime @default(now())
   userId Int
   user User @relation(fields: [userId],references: [id],onDelete: Cascade)
   itemId Int
@@ -55,7 +73,7 @@ model Reservation{
 model Location {
   id Int @id @default(autoincrement())
   address1 String
-  address2 String
+  address2 String @default(" ")
   city String
   state String
   zip String
@@ -68,11 +86,13 @@ model Item {
   id          Int     @id @default(autoincrement())
   createdAt DateTime @default(now())
   title String
+  category String
   description String
-  price Float
+  price Float @default(0.0)
   upload String?
   isReservation Boolean @default(false)
   time DateTime
+  quantity Int 
   location Location[]
   reservation Reservation[]
   userId      Int
