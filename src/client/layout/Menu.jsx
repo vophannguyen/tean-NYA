@@ -8,28 +8,42 @@ export default function Menu({ onLogout }) {
   const handleMenu = () => setIsOpen(!isOpen);
   const Flyout = (
     <ul className="flyout-menu" aria-hidden="true">
-        <hr />
-        <li><NavLink to="/">Events</NavLink></li>
-        <li><NavLink to="/upload">List an event</NavLink></li>
-        <li><NavLink to="/about">About us</NavLink></li>
-        <li><NavLink to="/faq">FAQs</NavLink></li>
-        <hr />
-        <li><NavLink to="/user/profile">Account</NavLink></li>
-        <li><NavLink to="/payment">Payments</NavLink></li>
-        <li><a onClick={onLogout}>Log out</a></li>
-        <hr />
-      </ul>
-  )
-  
-  return (
-    <>
-      <input type="checkbox" id="checkbox" />
-      <label for="checkbox" class="toggle" onClick={handleMenu} >
-        <div class="bars" id="bar1"></div>
-        <div class="bars" id="bar2"></div>
-        <div class="bars" id="bar3"></div>
-      </label>
-      {isOpen && Flyout}
-    </>
+      <hr />
+      <li>
+        <NavLink to="/">Events</NavLink>
+      </li>
+      <li>
+        <NavLink to="/upload">List an event</NavLink>
+      </li>
+      <li>
+        <NavLink to="/about">About us</NavLink>
+      </li>
+      <li>
+        <NavLink to="/faq">FAQs</NavLink>
+      </li>
+      <hr />
+      <li>
+        <NavLink to="/user/profile">Account</NavLink>
+      </li>
+      <li>
+        <NavLink to="/payment">Payments</NavLink>
+      </li>
+      <li>
+        <a onClick={onLogout}>Log out</a>
+      </li>
+      <hr />
+    </ul>
   );
+
+  // return (
+  //   <>
+  //     <input type="checkbox" id="checkbox" />
+  //     <label for="checkbox" class="toggle" onClick={handleMenu}>
+  //       <div name="bars" id="bar1"></div>
+  //       <div name="bars" id="bar2"></div>
+  //       <div name="bars" id="bar3"></div>
+  //     </label>
+  //     {isOpen && Flyout}
+  //   </>
+  // );
 }
