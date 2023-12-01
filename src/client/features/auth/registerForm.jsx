@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useRegisterMutation, useLoginMutation } from "./authSlice";
 
 export default function RegisterForm() {
@@ -81,6 +81,7 @@ export default function RegisterForm() {
         <button className="register-button">Register</button>
         {loading && <p>Registering!</p>}
         {error && <p className="error-message">{error}</p>}
+        <Link to="/login"><p>Already have an account? Login here.</p></Link>
       </form>
     </div>
   );
