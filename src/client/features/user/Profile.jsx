@@ -6,12 +6,7 @@ import { useFetchUserAccountQuery } from "./userSlice";
 export default function Profile() {
   const { data: me, isLoading, error } = useFetchUserAccountQuery();
 
-  // console.log("me", me);
-  // console.log("isLoading", isLoading);
-  // console.log("error", error);
-
   const token = sessionStorage.getItem("token");
-  // console.log("token", token);
 
   if (error) return <p> Please log in to see your account details.</p>;
 
