@@ -51,6 +51,8 @@ export default function Tickets() {
     });
     setNewTicket(searchTicket);
   }
+  console.log(Date.now());
+  console.log(new Date(Date.parse(new Date()) + 30 * 1000 * 60 * 60 * 24));
   //need to fix rerendering for every click on the same filter
   //(click movies once filter, click movies again make sure does not refilter)
   searchTicket = tickets;
