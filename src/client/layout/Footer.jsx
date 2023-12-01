@@ -15,7 +15,7 @@ export default function Footer() {
             <NavLink to="/about"> About Us </NavLink>
         </li>
         <li>
-            FAQs
+            <NavLink to="/FAQ"> FAQ </NavLink>
         </li>
       </ul>
       <p>© 2023</p>
