@@ -13,10 +13,6 @@ export default function Upload() {
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    const newTicket = {
-      time: formData.get("time"),
-
-    const formData = new FormData(e.target);
 
     try {
       const response = await createTicket(newTicket).unwrap();
