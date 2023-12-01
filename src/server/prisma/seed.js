@@ -165,9 +165,7 @@ const seed = async () => {
         description: "test-" + i,
         price: i,
         upload: "1700626869150.png",
-        time: new Date(
-          Date.parse(new Date()) + 30 * 1000 * 60 * 60 * 24
-        ).toJSON(),
+        time: new Date().toJSON(),
         category: "movies",
       },
     });
@@ -178,9 +176,7 @@ const seed = async () => {
         description: "test-" + i,
         price: i,
         upload: "1700626869150.png",
-        time: new Date(
-          Date.parse(new Date()) + 30 * 1000 * 60 * 60 * 24
-        ).toJSON(),
+        time: new Date().toJSON(),
         category: "concert",
       },
     });

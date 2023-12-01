@@ -11,7 +11,10 @@ export default function ActiveListings() {
       {allItems && allItems.data.length > 0 ? (
         <ul>
           {allItems.data.map((reservation) => (
-            <li key={reservation.id}>{JSON.stringify(reservation)}</li>
+            <li key={reservation.id}>
+              {reservation.title}
+              <span>Time: {reservation.time}</span>
+            </li>
           ))}
         </ul>
       ) : (

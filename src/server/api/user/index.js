@@ -176,7 +176,41 @@ router.get("/sellitem", async (req, res, next) => {
     next(err);
   }
 });
+// get user sold item
+router.get("/solditem", async (req, res, next) => {
+  try {
+    const solditem = await prisma.soldItem.findMany({
+      where: { userId: res.locals.user.id },
+    });
+    res.json({ data: solditem });
+  } catch (err) {
+    next(err);
+  }
+});
+// put sold item in db
+router.post("/solditem", async (req, res, next) => {
+  const { title, description, upload, category, userId } = req.body;
+  const price = +req.body.price;
+  const time = new Date();
+  console.log(req.body);
+  if (!title || !description || !upload || !time || !category || !price) {
+    res.json({ error: "Need All Information" });
+    return;
+  }
 
+  const solditem = await prisma.soldItem.create({
+    data: {
+      title,
+      description,
+      upload,
+      time,
+      category,
+      price,
+      userId,
+    },
+  });
+  res.json({ data: solditem });
+});
 //get some item to cart
 router.post("/reservation/:itemId", async (req, res, next) => {
   try {

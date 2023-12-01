@@ -31,7 +31,10 @@
 - POST "/reservation/:itemId" add item to cart
   - required item id
 - DELETE "/reservation/:id" delete item of cart
-- required id
+  - required id
+- Get "/solditem" get all sold item of User
+- POST "/solditem" put sold item of user to backend
+  - Date: {title,description,time,upload,category,price}
 - GET "/order" get user order history
 - POST "/order" put user order to backend
   - Data: {
