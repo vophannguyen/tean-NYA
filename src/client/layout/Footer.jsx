@@ -13,6 +13,7 @@ export default function Footer() {
         </li>
         <li>
             <NavLink to="/about"> About Us </NavLink>
+            About Us
         </li>
         <li>
             FAQs

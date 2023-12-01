@@ -15,7 +15,6 @@ const TicketCard = ({ ticket }) => {
     </li>
   );
 };
-
 /** Main interface for user to interact with their tickets */
 export default function Tickets() {
   const { data: tickets, isLoading, isError } = useGetTicketsQuery();
@@ -24,16 +23,25 @@ export default function Tickets() {
   const { data: res } = useGetResQuery();
   const [isSorted, setIsSorted] = useState(false);
   const [filtered, setFiltered] = useState(null);
-  const [newTicket, setNewTicket] = useState(tickets);
+  const [newTicket, setNewTicket] = useState(null);
+  const [isSearch, setIsSearch] = useState(false);
+  let searchTicket = null;
   //pagination to be added ?
   //sorting feature - to be added?
-  console.log(newTicket);
+  // console.log(newTicket);
   if (isError) {
     console.log("error");
   }
+  if (isLoading) {
+    <span>insert a spinner...</span>;
+  }
+  // if (tickets) {
+  //   setNewTicket(tickets);
+  // }
   //search bar -
   function handleSearch(e) {
     e.preventDefault();
+    setIsSearch(() => true);
     const formData = new FormData(e.target);
     const search = formData.get("search");
     const searchTicket = tickets.filter((item) => {
@@ -42,6 +50,12 @@ export default function Tickets() {
       return item.title.includes(search);
     });
     setNewTicket(searchTicket);
+  }
+  //need to fix rerendering for every click on the same filter
+  //(click movies once filter, click movies again make sure does not refilter)
+  searchTicket = tickets;
+  if (isSearch) {
+    searchTicket = newTicket;
   }
   //need to fix rerendering for every click on the same filter
   //(click movies once filter, click movies again make sure does not refilter)
@@ -86,10 +100,9 @@ export default function Tickets() {
           </li>
         )}
       </ul>
-      {isLoading && <span>insert a spinner...</span>}
       <ul>
         {!isSorted
-          ? newTicket?.map((ticket) => (
+          ? searchTicket?.map((ticket) => (
               <TicketCard ticket={ticket} key={ticket.id} />
             ))
           : filtered?.map((ticket) => (

@@ -1,17 +1,13 @@
-import { useFetchAllUserItemsQuery } from "./userSlice";
-
-export default function PostedReservations() {
+import { useFetchAllUserItemsQuery } from "../userSlice";
+export default function ActiveListings() {
   const { data: allItems, isLoading, error } = useFetchAllUserItemsQuery();
-console.log("allItems", allItems)
+  console.log("allItems", allItems);
   if (error) {
     return <p>Error Fetching Your Reservations</p>;
   }
-  //   console.log(allItems?.data);
-  return isLoading ? (
-    <p>Loading...</p>
-  ) : (
-    <div>
-      <h1>Your Posted Reservations</h1>
+  return (
+    <section>
+      <h2>Active</h2>
       {allItems && allItems.data.length > 0 ? (
         <ul>
           {allItems.data.map((reservation) => (
@@ -19,8 +15,8 @@ console.log("allItems", allItems)
           ))}
         </ul>
       ) : (
-        <p>No Reservations Posted </p>
+        <p>No Active Listings</p>
       )}
-    </div>
+    </section>
   );
 }
