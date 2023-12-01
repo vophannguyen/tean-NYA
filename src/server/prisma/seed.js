@@ -45,7 +45,9 @@ const seed = async () => {
         items: {
           create: [
             {
-              time: new Date().toJSON(),
+              time: new Date(
+                Date.parse(new Date()) + 30 * 1000 * 60 * 60 * 24
+              ).toJSON(),
               title: "movies" + 1,
               category: "movies",
               description: "test-" + i,
@@ -77,7 +79,9 @@ const seed = async () => {
         items: {
           create: [
             {
-              time: new Date().toJSON(),
+              time: new Date(
+                Date.parse(new Date()) + 30 * 1000 * 60 * 60 * 24
+              ).toJSON(),
               title: "concert" + i,
               category: "concert",
               description: "test-" + i,
@@ -119,7 +123,9 @@ const seed = async () => {
     await prisma.order.create({
       data: {
         userId: i,
-        time: new Date().toJSON(),
+        time: new Date(
+          Date.parse(new Date()) + 30 * 1000 * 60 * 60 * 24
+        ).toJSON(),
         title: "reservation" + i,
         category: "reservation",
         description: "test-" + i,
@@ -136,7 +142,9 @@ const seed = async () => {
     await prisma.order.create({
       data: {
         userId: i,
-        time: new Date().toJSON(),
+        time: new Date(
+          Date.parse(new Date()) + 30 * 1000 * 60 * 60 * 24
+        ).toJSON(),
         title: "movies" + i,
         category: "movies",
         description: "test-" + i,
@@ -157,7 +165,9 @@ const seed = async () => {
         description: "test-" + i,
         price: i,
         upload: "1700626869150.png",
-        time: new Date().toJSON(),
+        time: new Date(
+          Date.parse(new Date()) + 30 * 1000 * 60 * 60 * 24
+        ).toJSON(),
         category: "movies",
       },
     });
@@ -168,7 +178,9 @@ const seed = async () => {
         description: "test-" + i,
         price: i,
         upload: "1700626869150.png",
-        time: new Date().toJSON(),
+        time: new Date(
+          Date.parse(new Date()) + 30 * 1000 * 60 * 60 * 24
+        ).toJSON(),
         category: "concert",
       },
     });
