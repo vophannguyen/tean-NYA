@@ -15,7 +15,7 @@ export default function Upload() {
     const formData = new FormData(e.target);
 
     try {
-      const response = await createTicket(newTicket).unwrap();
+      const response = await createTicket(formData).unwrap();
       console.log(response);
       if (response.message) {
         setMessage(() => response.message);
