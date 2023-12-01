@@ -1,5 +1,6 @@
 const multer = require("multer");
 const path = require("path");
+//Use multer to store image to local file when user Post ticket
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "./src/server/images");

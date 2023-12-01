@@ -13,11 +13,9 @@ export default function Receipt() {
           <li>{formatDate(date)}</li>
           {receipt.cart[0].map((item) => {
             return (
-              <>
-                <li key={item.data.id}>
-                  {item.data.title} <span> : {item.data.price}$</span>
-                </li>
-              </>
+              <li key={item.data.id}>
+                {item.data.title} <span> : {item.data.price}$</span>
+              </li>
             );
           })}
           <li>SubTotal: {receipt.originPrice}$</li>

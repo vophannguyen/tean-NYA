@@ -1,3 +1,4 @@
+import { formatDate } from "../../utils/helpers";
 import { useFetchUserReservationHistoryQuery } from "../userSlice";
 
 export default function UpcomingRes() {
@@ -26,7 +27,10 @@ export default function UpcomingRes() {
       {upcoming && upcoming.length > 0 ? (
         <ul>
           {upcoming.map((reservation) => (
-            <li key={reservation.id}>{reservation.title}</li>
+            <li key={reservation.id}>
+              {reservation.title}{" "}
+              <span>Time: {formatDate(reservation.time)}</span>
+            </li>
           ))}
         </ul>
       ) : (

@@ -24,7 +24,7 @@ export default function Cart() {
           return <CartItem reservation={item} key={item.id} />;
         })}
       {/* <ProcessCheckout /> */}
-      <OrderSummary />
+      {data?.data && <OrderSummary data={true} />}
     </div>
   );
 }

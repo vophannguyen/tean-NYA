@@ -10,6 +10,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import Receipt from "./Receipt";
+import { useAddSoldItemMutation } from "../user/userSlice";
 
 export default function ProcessCheckout() {
   const [method, setMethod] = useState("");
@@ -21,6 +22,7 @@ export default function ProcessCheckout() {
   const [deleteTicket] = useDeleteTicketMutation();
   const [deleteIteminCart] = useDeleteCartMutation();
   const [addPayment] = useAddPaymentMutation();
+  const [addSold] = useAddSoldItemMutation();
   const cart = useSelector((state) => state.cart.cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -65,8 +67,10 @@ export default function ProcessCheckout() {
           state: element.location.state,
           zip: element.location.zip,
           country: element.location.country,
+          userId: element.data.userId,
         };
         await addOrder(data).unwrap();
+        await addSold(data);
         // console.log("process", respon);
         ///delete
         await deleteTicket(element.data.id).unwrap();
@@ -113,7 +117,7 @@ export default function ProcessCheckout() {
         />
         <button>Complete Purchase</button>
       </form>
-      <OrderSummary />
+      <OrderSummary data={false} />
     </div>
   );
 }

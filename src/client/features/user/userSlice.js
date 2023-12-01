@@ -9,12 +9,24 @@ const authApi = api.injectEndpoints({
     fetchAllUserItems: builder.query({
       query: () => "user/sellitem",
       providesTags: ["Res"],
-      invalidatesTags: ["Me", "Order"],
+      invalidatesTags: ["Me", "Order", "Sold"],
     }),
     fetchUserReservationHistory: builder.query({
       query: () => "user/order",
       providesTags: ["Order"],
       invalidatesTags: ["Me", "Res"],
+    }),
+    getSoldItem: builder.query({
+      query: () => "/user/solditem",
+      providesTags: ["Sold"],
+    }),
+    addSoldItem: builder.mutation({
+      query: (data) => ({
+        url: "user/solditem",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["Sold"],
     }),
   }),
 });
@@ -24,4 +36,6 @@ export const {
   useFetchUserReservationHistoryQuery,
   useFetchAllUserItemsQuery,
   useFetchUpcomingReservationsQuery,
+  useAddSoldItemMutation,
+  useGetSoldItemQuery,
 } = authApi;

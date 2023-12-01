@@ -13,10 +13,9 @@ export default function Footer() {
         </li>
         <li>
             <NavLink to="/about"> About Us </NavLink>
-            About Us
         </li>
         <li>
-            FAQs
+            <NavLink to="/FAQ"> FAQ </NavLink>
         </li>
       </ul>
       <p>© 2023</p>
