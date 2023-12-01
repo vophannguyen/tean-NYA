@@ -35,15 +35,15 @@ export default function Menu({ onLogout }) {
     </ul>
   );
 
-  // return (
-  //   <>
-  //     <input type="checkbox" id="checkbox" />
-  //     <label for="checkbox" class="toggle" onClick={handleMenu}>
-  //       <div name="bars" id="bar1"></div>
-  //       <div name="bars" id="bar2"></div>
-  //       <div name="bars" id="bar3"></div>
-  //     </label>
-  //     {isOpen && Flyout}
-  //   </>
-  // );
+  return (
+    <>
+      <input type="checkbox" id="checkbox" name="checkbox" />
+      <label for="checkbox" class="toggle" onClick={handleMenu}>
+        <div className="bars" id="bar1"></div>
+        <div className="bars" id="bar2"></div>
+        <div className="bars" id="bar3"></div>
+      </label>
+      {isOpen && Flyout}
+    </>
+  );
 }
