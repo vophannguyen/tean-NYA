@@ -11,8 +11,9 @@ module.exports = router;
 //   }
 //   next();
 // });
+/// Ony Post "/create " required logged
 
-//create new ticket
+//create new ticket required user logged
 router.post("/create", imageUpload.single("upload"), async (req, res, next) => {
   try {
     // User must be logged in to access
@@ -24,7 +25,6 @@ router.post("/create", imageUpload.single("upload"), async (req, res, next) => {
     const { title, description, time } = req.body;
     const { address1, address2, city, state, zip, country, category } =
       req.body;
-    //const string to float
     console.log(req.body.title);
     console.log("dd", req.file);
     const price = +req.body.price;
