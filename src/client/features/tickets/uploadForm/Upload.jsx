@@ -20,7 +20,7 @@ export default function Upload() {
       if (response.message) {
         setMessage(() => response.message);
       }
-      if (response.ticket) {
+      if (response.item) {
         e.target.reset();
         navigate("/");
       }
