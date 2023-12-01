@@ -205,7 +205,7 @@ router.post("/solditem", async (req, res, next) => {
     res.json({ error: "Need All Information" });
     return;
   }
-
+  //check
   const solditem = await prisma.soldItem.create({
     data: {
       title,
