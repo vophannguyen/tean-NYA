@@ -11,6 +11,7 @@ router.use((req, res, next) => {
   }
   next();
 });
+
 //get uers information
 router.get("/profile", async (req, res, next) => {
   try {
@@ -24,6 +25,7 @@ router.get("/profile", async (req, res, next) => {
     next(err);
   }
 });
+
 // get user reservation
 router.get("/reservation", async (req, res, next) => {
   try {
@@ -32,7 +34,7 @@ router.get("/reservation", async (req, res, next) => {
         userId: res.locals.user.id,
       },
     });
-    // console.log(reservation);
+    // check we have any order in Cart
     if (!reservation.length > 0) {
       res.json({
         message: `User ${res.locals.user.firstName} dont have reservation`,
@@ -57,7 +59,7 @@ router.get("/reservation", async (req, res, next) => {
     next(err);
   }
 });
-//Get order
+//Get order history
 router.get("/order", async (req, res, next) => {
   try {
     const order = await prisma.order.findMany({
@@ -68,7 +70,7 @@ router.get("/order", async (req, res, next) => {
     next(err);
   }
 });
-//Post order
+//Create order history
 router.post("/order", async (req, res, next) => {
   try {
     const {
@@ -84,7 +86,9 @@ router.post("/order", async (req, res, next) => {
       country,
       zip,
     } = req.body;
+    //covert string to int
     const price = +req.body.price;
+    // check if we have all information
     if (
       !title ||
       !category ||
@@ -101,6 +105,7 @@ router.post("/order", async (req, res, next) => {
       res.json({ message: "Missing information" });
       return;
     }
+    ///create order
     const order = await prisma.order.create({
       data: {
         title,
@@ -135,12 +140,14 @@ router.get("/payment", async (req, res, next) => {
     next(err);
   }
 });
+
 //add payment method to table
 router.post("/payment", async (req, res, next) => {
   try {
     console.log(req);
     const { method, nameOnCard, cardNumber, securityCode, experiedDay } =
       req.body;
+    //Check make sure we have all information
     if (
       !method ||
       !nameOnCard ||
@@ -150,6 +157,7 @@ router.post("/payment", async (req, res, next) => {
     ) {
       res.json({ error: "Need All Information!" });
     }
+    //create payment method
     const payment = await prisma.payment.create({
       data: {
         method,
@@ -165,7 +173,7 @@ router.post("/payment", async (req, res, next) => {
     next(err);
   }
 });
-// get user sell item
+// get sell item of user base on Item table
 router.get("/sellitem", async (req, res, next) => {
   try {
     const sellitem = await prisma.item.findMany({
@@ -187,11 +195,12 @@ router.get("/solditem", async (req, res, next) => {
     next(err);
   }
 });
-// put sold item in db
+// create sold item in  soldItem table
 router.post("/solditem", async (req, res, next) => {
   const { title, description, upload, category, userId } = req.body;
   const price = +req.body.price;
   console.log(req.body);
+  //check all information required
   if (!title || !description || !upload || !time || !category || !price) {
     res.json({ error: "Need All Information" });
     return;
@@ -210,17 +219,16 @@ router.post("/solditem", async (req, res, next) => {
   });
   res.json({ data: solditem });
 });
-//get some item to cart
+//add sticket (item) to Cart
 router.post("/reservation/:itemId", async (req, res, next) => {
   try {
     //user params to get itemID
     const itemId = +req.params.itemId;
-    //create new revation witht userid and item id
+    //create new rervation witht userid and item id
     const reservation = await prisma.reservation.create({
       data: { userId: res.locals.user.id, itemId },
     });
-    // console.log(reservation);
-    //update that item isResvation ti true
+    //update that  isResvation: true in Item table
     await prisma.item.update({
       where: {
         id: itemId,
@@ -237,6 +245,8 @@ router.post("/reservation/:itemId", async (req, res, next) => {
     next(err);
   }
 });
+
+//delete ticket (item)
 router.delete("/reservation/:id", async (req, res, next) => {
   try {
     //check id
