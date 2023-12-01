@@ -9,19 +9,16 @@ import store from "./store";
 import LoginForm from "./features/auth/loginForm";
 import RegisterForm from "./features/auth/registerForm.jsx";
 import Tickets from "./features/tickets/Tickets";
-import Upload from "./features/tickets/Upload";
-import Listing from "./features/tickets/Listing";
+import Upload from "./features/tickets/uploadForm/Upload.jsx";
+import Listing from "./features/tickets/singleView/Listing.jsx";
 import NotFound from "./features/404/NotFound";
 import Profile from "./features/user/Profile.jsx";
 import Root from "./layout/Root.jsx";
-import AllItems from "./features/user/profile/Listings";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Cart from "./features/cart/Cart.jsx";
 import ProcessCheckout from "./features/cart/ProcessCheckout.jsx";
 import Receipt from "./features/cart/Receipt.jsx";
 import Account from "./features/user/Account.jsx";
-import ReservationHistory from "./features/user/ReservationHistory";
-import UpcomingReservations from "./features/user/UpcomingReservations";
 import AboutUs from "./layout/AboutUs";
 
 const router = createBrowserRouter([
@@ -38,14 +35,14 @@ const router = createBrowserRouter([
       { path: "/cart", element: <Cart /> },
       { path: "/user", element: <Account /> },
       { path: "/user/profile", element: <Profile /> },
-      { path: "user/order", element: <ReservationHistory /> },
-      { path: "user/sellitem", element: <AllItems /> },
-      { path: "user/solditem", element: <h1>Sold Item</h1> },
+      // { path: "user/order", element: <PastRes /> },
+      // { path: "user/sellitem", element: <AllItems /> },
+      // { path: "user/solditem", element: <h1>Sold Item</h1> },
       { path: "user/payment", element: <h1>Payment</h1> },
       { path: "/cart/checkout", element: <ProcessCheckout />,},
       { path: "/cart/checkout/receipt", element: <Receipt /> },
-      { path:"user/payment", element: <ReservationHistory />},
-      { path: "user/upcoming", element: <UpcomingReservations />},
+      // { path:"user/payment", element: <PastRes/>},
+      // { path: "user/upcoming", element: <UpcomingRes />},
       { path: "/about", element: <AboutUs />},
     ],
   },
