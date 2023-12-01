@@ -18,6 +18,7 @@ const authApi = api.injectEndpoints({
     }),
     getSoldItem: builder.query({
       query: () => "/user/solditem",
+      transformResponse: (response) => response.data,
       providesTags: ["Sold"],
     }),
     addSoldItem: builder.mutation({
