@@ -14,7 +14,7 @@ export default function OrderSummary({ data }) {
       <p>Original Price: {cart.originPrice}</p>
       <p>Sale Tax :{cart.saleTax}</p>
       <p>Total: {cart.total}</p>
-      <button onClick={handleCheckout}>Check Out</button>
+      {data && <button onClick={handleCheckout}>Check Out</button>}
     </div>
   );
 }

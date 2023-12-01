@@ -6,12 +6,12 @@ import "./Root.less";
 
 export default function Root() {
   return (
-    <>
+    <div className="root">
       <Navbar />
       <main>
         <Outlet />
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
