@@ -20,8 +20,10 @@ import Cart from "./features/cart/Cart.jsx";
 import ProcessCheckout from "./features/cart/ProcessCheckout.jsx";
 import Receipt from "./features/cart/Receipt.jsx";
 import Account from "./features/user/Account.jsx";
-import ReservationHistory from "./features/user/profile/PastRes";
-import UpcomingReservations from "./features/user/profile/UpcomingRes";
+import ReservationHistory from "./features/user/ReservationHistory";
+import UpcomingReservations from "./features/user/UpcomingReservations";
+import AboutUs from "./layout/AboutUs";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -40,13 +42,11 @@ const router = createBrowserRouter([
       { path: "user/sellitem", element: <AllItems /> },
       { path: "user/solditem", element: <h1>Sold Item</h1> },
       { path: "user/payment", element: <h1>Payment</h1> },
-      {
-        path: "/cart/checkout",
-        element: <ProcessCheckout />,
-      },
+      { path: "/cart/checkout", element: <ProcessCheckout />,},
       { path: "/cart/checkout/receipt", element: <Receipt /> },
       { path:"user/payment", element: <ReservationHistory />},
       { path: "user/upcoming", element: <UpcomingReservations />},
+      { path: "/about", element: <AboutUs />},
     ],
   },
   { path: "/*", element: <NotFound /> },

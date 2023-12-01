@@ -2,6 +2,8 @@ import React from "react";
 import Reservations from "./profile/Reservations";
 import Listings from "./profile/Listings";
 import { useFetchUserAccountQuery } from "./userSlice";
+import ReservationHistory from "./ReservationHistory";
+import UpcomingReservations from "./UpcomingReservations";
 
 export default function Profile() {
   const { data: me, isLoading, error } = useFetchUserAccountQuery();

@@ -12,6 +12,7 @@ export default function Footer() {
           <NavLink to="/upload">Upload</NavLink>
         </li>
         <li>
+            <NavLink to="/about"> About Us </NavLink>
             About Us
         </li>
         <li>

@@ -15,7 +15,6 @@ const TicketCard = ({ ticket }) => {
     </li>
   );
 };
-
 /** Main interface for user to interact with their tickets */
 export default function Tickets() {
   const { data: tickets, isLoading, isError } = useGetTicketsQuery();
@@ -52,6 +51,8 @@ export default function Tickets() {
     });
     setNewTicket(searchTicket);
   }
+  //need to fix rerendering for every click on the same filter
+  //(click movies once filter, click movies again make sure does not refilter)
   searchTicket = tickets;
   if (isSearch) {
     searchTicket = newTicket;
