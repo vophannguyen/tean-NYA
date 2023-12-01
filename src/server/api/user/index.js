@@ -197,7 +197,7 @@ router.get("/solditem", async (req, res, next) => {
 });
 // create sold item in  soldItem table
 router.post("/solditem", async (req, res, next) => {
-  const { title, description, upload, category, userId } = req.body;
+  const { title, description, upload, category, userId, time } = req.body;
   const price = +req.body.price;
   console.log(req.body);
   //check all information required

@@ -11,9 +11,8 @@ module.exports = router;
 //   }
 //   next();
 // });
-/// Ony Post "/create " required logged
 
-//create new ticket required user logged
+//create new ticket
 router.post("/create", imageUpload.single("upload"), async (req, res, next) => {
   try {
     // User must be logged in to access
@@ -25,15 +24,25 @@ router.post("/create", imageUpload.single("upload"), async (req, res, next) => {
     const { title, description, time } = req.body;
     const { address1, address2, city, state, zip, country, category } =
       req.body;
+    //const string to float
     console.log(req.body.title);
     console.log("dd", req.file);
     const price = +req.body.price;
+    const quantity = +req.body.quantity;
     //check all information is not null
-    if (!title || !description || !price || !req.file || !time) {
+    if (
+      !title ||
+      !description ||
+      !price ||
+      !time ||
+      !category ||
+      !req.file ||
+      !quantity
+    ) {
       res.json({ error: "all information required" });
       return;
     }
-    if (!address1 || !address2 || !city || !state || !zip || !country) {
+    if (!address1 || !city || !state || !zip || !country) {
       res.json({ error: "Location information is required" });
       return;
     }
@@ -46,7 +55,9 @@ router.post("/create", imageUpload.single("upload"), async (req, res, next) => {
         title,
         description,
         price,
+        category,
         upload,
+        quantity,
         userId: res.locals.user.id,
         time: new Date(time),
         location: {
@@ -176,13 +187,16 @@ router.get("/:id", async (req, res, next) => {
     const ticket = await prisma.item.findFirst({
       where: { id },
     });
+    const location = await prisma.location.findFirst({
+      where: { itemId: id },
+    });
     // find path of image and update upload
     if (!ticket) {
       res.json({ error: "Id not found" });
     }
     // console.log(imageFile(ticket.upload));
     ticket.upload = imageFile(ticket.upload);
-    res.json({ data: ticket });
+    res.json({ data: ticket, location: location });
   } catch (err) {
     next(err);
   }
