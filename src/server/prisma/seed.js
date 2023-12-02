@@ -3,10 +3,12 @@ const prisma = require("../prisma");
 /** Seeds the database with a user and some tasks */
 const seed = async () => {
   for (let i = 1; i <= 10; i++) {
-    await prisma.user.create({
-      data: {
+    await prisma.user.upsert({
+      where: { username: "foo" + i },
+      update: {},
+      create: {
         username: "foo" + i,
-        password: "123" + i,
+        password: "123",
         email: "vophannguyen" + i + "@gmail.com",
         firstName: "Nguyen" + i,
         lastName: "vo",
@@ -35,10 +37,44 @@ const seed = async () => {
             },
           ],
         },
+        order: {
+          create: [
+            {
+              time: new Date(
+                Date.parse(new Date()) + 30 * 1000 * 60 * 60 * 24
+              ).toJSON(),
+              title: "restaurant" + i,
+              category: "reservation",
+              description: "test-" + i,
+              price: i,
+              upload: "1700626869150.png",
+              address1: "1074 albany park dr",
+              address2: " ",
+              city: "fort mill",
+              zip: "29715",
+              state: "SC",
+              country: "US",
+            },
+          ],
+        },
+        solditem: {
+          create: [
+            {
+              title: "movies" + i,
+              description: "test-" + i,
+              price: i,
+              upload: "1700626869150.png",
+              time: new Date().toJSON(),
+              category: "reservation",
+            },
+          ],
+        },
       },
     });
-    await prisma.user.create({
-      data: {
+    await prisma.user.upsert({
+      where: { username: "foo123" + i },
+      update: {},
+      create: {
         username: "foo123" + i,
         password: "123456",
         email: "anna" + i + "@gmail.com",
@@ -69,10 +105,44 @@ const seed = async () => {
             },
           ],
         },
+        order: {
+          create: [
+            {
+              time: new Date(
+                Date.parse(new Date()) + 30 * 1000 * 60 * 60 * 24
+              ).toJSON(),
+              title: "movies" + i,
+              category: "movies",
+              description: "test-" + i,
+              price: i,
+              upload: "1700626869150.png",
+              address1: "1074 albany park dr",
+              address2: " ",
+              city: "fort mill",
+              zip: "29715",
+              state: "SC",
+              country: "US",
+            },
+          ],
+        },
+        solditem: {
+          create: [
+            {
+              title: "restaurant" + i,
+              description: "test-" + i,
+              price: i,
+              upload: "1700626869150.png",
+              time: new Date().toJSON(),
+              category: "movies",
+            },
+          ],
+        },
       },
     });
-    await prisma.user.create({
-      data: {
+    await prisma.user.upsert({
+      where: { username: "foo456" + i },
+      update: {},
+      create: {
         username: "foo456" + i,
         password: "123",
         email: "yoona" + i + "@gmail.com",
@@ -103,83 +173,38 @@ const seed = async () => {
             },
           ],
         },
-      },
-    });
-    await prisma.order.create({
-      data: {
-        userId: i,
-        time: new Date().toJSON(),
-        title: "concert" + i,
-        category: "concert",
-        description: "test-" + i,
-        price: i,
-        upload: "1700626869150.png",
-        address1: "1074 albany park dr",
-        address2: " ",
-        city: "fort mill",
-        zip: "29715",
-        state: "SC",
-        country: "US",
-      },
-    });
-    await prisma.order.create({
-      data: {
-        userId: i,
-        time: new Date(
-          Date.parse(new Date()) + 30 * 1000 * 60 * 60 * 24
-        ).toJSON(),
-        title: "reservation" + i,
-        category: "reservation",
-        description: "test-" + i,
-        price: i,
-        upload: "1700626869150.png",
-        address1: "1074 albany park dr",
-        address2: " ",
-        city: "fort mill",
-        zip: "29715",
-        state: "SC",
-        country: "US",
-      },
-    });
-    await prisma.order.create({
-      data: {
-        userId: i,
-        time: new Date(
-          Date.parse(new Date()) + 30 * 1000 * 60 * 60 * 24
-        ).toJSON(),
-        title: "movies" + i,
-        category: "movies",
-        description: "test-" + i,
-        price: i,
-        upload: "1700626869150.png",
-        address1: "1074 albany park dr",
-        address2: " ",
-        city: "fort mill",
-        zip: "29715",
-        state: "SC",
-        country: "US",
-      },
-    });
-    await prisma.soldItem.create({
-      data: {
-        userId: i,
-        title: "movies" + i,
-        description: "test-" + i,
-        price: i,
-        upload: "1700626869150.png",
-        time: new Date().toJSON(),
-        category: "movies",
-      },
-    });
-    await prisma.soldItem.create({
-      data: {
-        userId: i,
-        title: "concert" + i,
-        description: "test-" + i,
-        price: i,
-        upload: "1700626869150.png",
-        time: new Date().toJSON(),
-        category: "concert",
+        order: {
+          create: [
+            {
+              time: new Date(
+                Date.parse(new Date()) + 30 * 1000 * 60 * 60 * 24
+              ).toJSON(),
+              title: "concert" + i,
+              category: "concert",
+              description: "test-" + i,
+              price: i,
+              upload: "1700626869150.png",
+              address1: "1074 albany park dr",
+              address2: " ",
+              city: "fort mill",
+              zip: "29715",
+              state: "SC",
+              country: "US",
+            },
+          ],
+        },
+        solditem: {
+          create: [
+            {
+              title: "movies" + i,
+              description: "test-" + i,
+              price: i,
+              upload: "1700626869150.png",
+              time: new Date().toJSON(),
+              category: "concert",
+            },
+          ],
+        },
       },
     });
   }
