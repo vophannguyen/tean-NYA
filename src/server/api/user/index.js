@@ -7,12 +7,13 @@ module.exports = router;
 router.use((req, res, next) => {
   if (!res.locals.user) {
     res.json({ error: "You must be logged in." });
-    // return next(new ServerError(401, "You must be logged in."));
+    return next(new ServerError(401, "You must be logged in."));
   }
   next();
 });
+///////////////////////
 
-//get uers information
+//start//get user information
 router.get("/profile", async (req, res, next) => {
   try {
     const user = await prisma.user.findUnique({
@@ -25,8 +26,9 @@ router.get("/profile", async (req, res, next) => {
     next(err);
   }
 });
+////////////////////////////////end//
 
-// get user reservation
+//start/// get user reservation
 router.get("/reservation", async (req, res, next) => {
   try {
     const reservation = await prisma.reservation.findMany({
@@ -41,25 +43,14 @@ router.get("/reservation", async (req, res, next) => {
       });
       return;
     }
-    // const newItem = [];
-    // for (rsv of reservation) {
-    //   console;
-    //   const item = await prisma.item.findUnique({
-    //     where: {
-    //       id: rsv.itemId,
-    //     },
-    //   });
-    //   // console.log(item);
-    //   newItem.push(item);
-    //   // console.log(newItem);
-    // }
-    console.log(reservation);
     res.json({ data: reservation });
   } catch (err) {
     next(err);
   }
 });
-//Get order history
+///////////////////////////end///
+
+//Start////////////Get order history
 router.get("/order", async (req, res, next) => {
   try {
     const order = await prisma.order.findMany({
@@ -70,7 +61,9 @@ router.get("/order", async (req, res, next) => {
     next(err);
   }
 });
-//Create order history
+///////////////////////////////end///
+
+//start/////Create order history
 router.post("/order", async (req, res, next) => {
   try {
     const {
@@ -128,7 +121,9 @@ router.post("/order", async (req, res, next) => {
     next(err);
   }
 });
-//get payment history
+//////////////////////////////end//
+
+//start/////get payment history
 router.get("/payment", async (req, res, next) => {
   try {
     const payment = await prisma.payment.findMany({
@@ -140,11 +135,11 @@ router.get("/payment", async (req, res, next) => {
     next(err);
   }
 });
+///////////////////////end
 
-//add payment method to table
+//Start //////add payment method to table
 router.post("/payment", async (req, res, next) => {
   try {
-    console.log(req);
     const { method, nameOnCard, cardNumber, securityCode, experiedDay } =
       req.body;
     //Check make sure we have all information
@@ -173,7 +168,9 @@ router.post("/payment", async (req, res, next) => {
     next(err);
   }
 });
-// get sell item of user base on Item table
+/////////////////////////////end
+
+//start / get sell item of user base on Item table
 router.get("/sellitem", async (req, res, next) => {
   try {
     const sellitem = await prisma.item.findMany({
@@ -184,6 +181,8 @@ router.get("/sellitem", async (req, res, next) => {
     next(err);
   }
 });
+/////////////////////end
+
 // get user sold item
 router.get("/solditem", async (req, res, next) => {
   try {
@@ -195,11 +194,12 @@ router.get("/solditem", async (req, res, next) => {
     next(err);
   }
 });
-// create sold item in  soldItem table
+/////////////////////////end///
+
+// create sold item in soldItem table
 router.post("/solditem", async (req, res, next) => {
   const { title, description, upload, category, userId, time } = req.body;
   const price = +req.body.price;
-  console.log(req.body);
   //check all information required
   if (!title || !description || !upload || !time || !category || !price) {
     res.json({ error: "Need All Information" });
@@ -219,6 +219,8 @@ router.post("/solditem", async (req, res, next) => {
   });
   res.json({ data: solditem });
 });
+////////////////////////////end
+
 //add sticket (item) to Cart
 router.post("/reservation/:itemId", async (req, res, next) => {
   try {
@@ -245,6 +247,7 @@ router.post("/reservation/:itemId", async (req, res, next) => {
     next(err);
   }
 });
+////////////////////end
 
 //delete ticket (item)
 router.delete("/reservation/:id", async (req, res, next) => {
@@ -270,3 +273,4 @@ router.delete("/reservation/:id", async (req, res, next) => {
     next(err);
   }
 });
+/////////////////////end
