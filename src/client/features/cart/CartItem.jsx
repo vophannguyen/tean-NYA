@@ -1,10 +1,11 @@
 import Countdown from "react-countdown";
 import { useGetByIdQuery } from "../tickets/ticketSlice";
 import { cartTimeCountDownt, formatDate } from "../utils/helpers";
-import { deleteItem, resetCart, useDeleteCartMutation } from "./cartSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { deleteItem, useDeleteCartMutation } from "./cartSlice";
+import { useDispatch } from "react-redux";
 import OrderSummary from "./OrderSummary";
-/** Render single item  */
+
+/** View single item, allows user check out */
 export default function CartItem({ reservation }) {
   //used RTK to fectch data
   const [deleteIteminCart] = useDeleteCartMutation();
@@ -16,7 +17,7 @@ export default function CartItem({ reservation }) {
   // get time when user added to cart and convert to parse()
   const currentTime = Date.parse(new Date(reservation.createAt));
 
-  // handle when user click on deleteItem
+  // handle when user clicked on deleteItem
   async function handleDeleteItem() {
     const respon = await deleteIteminCart(reservation.id);
     dispatch(deleteItem(respon?.data?.data.itemId));
@@ -47,11 +48,12 @@ export default function CartItem({ reservation }) {
       );
     }
   };
-  /** show all item in cart and countdown... item will be delete when countdown completed */
+  /** show all item in cart and countdown...
+   * item will be delete when countdown completed */
   return (
     <>
       <Countdown
-        date={cartTimeCountDownt(1, currentTime)}
+        date={cartTimeCountDownt(5, currentTime)}
         renderer={renderer}
         onComplete={async () => {
           await handleDeleteItem();

@@ -3,7 +3,7 @@ import CartItem from "./CartItem";
 import { useGetCartQuery } from "./cartSlice";
 import OrderSummary from "./OrderSummary";
 
-/** Show up ticket add to cart and check out  */
+/** Show all events add to cart and check out  */
 export default function Cart() {
   // used RTK to fetch ticket it added to cart
   const { isloading, isError, data } = useGetCartQuery();
@@ -14,8 +14,8 @@ export default function Cart() {
     return;
   }
 
-  /** check if this is date render all ticket else Cart empty
-   * CartItem will render single item
+  /** check if there are data => render all events ,else Cart empty
+   * CartItem will  single view item
    * OrderSummary will show subtotal ,sale tax and total
    */
   return (
