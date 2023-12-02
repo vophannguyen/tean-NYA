@@ -2,7 +2,7 @@ import "./Navbar.less";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-export default function Menu({ onLogout }) {
+export default function Menu({ token, onLogout }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleMenu = () => setIsOpen(!isOpen);
@@ -22,7 +22,8 @@ export default function Menu({ onLogout }) {
         <NavLink to="/faq">FAQs</NavLink>
       </li>
       <hr />
-      <li>
+      {token ? <>
+        <li>
         <NavLink to="/user/profile">Account</NavLink>
       </li>
       <li>
@@ -31,6 +32,11 @@ export default function Menu({ onLogout }) {
       <li>
         <a onClick={onLogout}>Log out</a>
       </li>
+      </> : <>
+        <li><NavLink to="/login">Log In</NavLink></li>
+      </>
+      }
+      
       <hr />
     </ul>
   );
