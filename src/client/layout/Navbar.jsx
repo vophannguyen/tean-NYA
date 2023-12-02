@@ -20,8 +20,7 @@ export default function Navbar() {
     navigate("/");
   };
 
-  //drop down menu 
-  console.log(me)
+  //drop down menu
   //drop down account options
 
   return (
@@ -42,7 +41,9 @@ export default function Navbar() {
               <NavLink to="/upload">List Event</NavLink>
             </li>
             <li>
-                <NavLink to="/user/profile"><img src={profile} width="35" height="35" alt="user profile" /></NavLink>
+              <NavLink to="/user/profile">
+                <img src={profile} width="35" height="35" alt="user profile" />
+              </NavLink>
             </li>
           </>
         ) : (

@@ -2,6 +2,7 @@ import { formatDate } from "../../utils/helpers";
 import { useFetchUserReservationHistoryQuery } from "../userSlice";
 
 export default function PastRes() {
+  //use RTK to fetch data
   const {
     data: upcomingReservations,
     isLoading,
@@ -15,12 +16,16 @@ export default function PastRes() {
       <p>Error fetching your upcoming reservations. Please try again later.</p>
     );
   }
+  /**
+   * hanlde pass reservation or ticket
+   * compare time of ticket with current time
+   * @returns []
+   */
   const upcoming = upcomingReservations.data.filter((item) => {
-    console.log(Date.parse(new Date(item.time)));
-    console.log("now", Date.now());
     return Date.parse(new Date(item.time)) < Date.now() ? true : false;
   });
-  console.log(upcoming);
+
+  //render
   return (
     <div>
       <h2>Past Reservations</h2>

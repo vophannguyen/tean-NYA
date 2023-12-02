@@ -4,15 +4,7 @@ const router = require("express").Router();
 const { imageFile, imageUpload } = require("./image");
 module.exports = router;
 
-////** User must be logged in to access . */
-// router.use((req, res, next) => {
-//   if (!res.locals.user) {
-//     return next(new ServerError(401, "You must be logged in."));
-//   }
-//   next();
-// });
-
-//create new ticket
+//create new ticket ...require logged
 router.post("/create", imageUpload.single("upload"), async (req, res, next) => {
   try {
     // User must be logged in to access
@@ -86,6 +78,8 @@ router.post("/create", imageUpload.single("upload"), async (req, res, next) => {
     next(err);
   }
 });
+//////////////////////////////end
+
 ///Get all tickets
 router.get("/", async (req, res, next) => {
   try {
@@ -95,7 +89,7 @@ router.get("/", async (req, res, next) => {
         isReservation: false,
       },
     });
-    // find path of image and update upload
+    // find path of image and push to data base
     allTicket.forEach((ticket) => {
       ticket.upload = imageFile(ticket.upload);
     });
@@ -104,12 +98,15 @@ router.get("/", async (req, res, next) => {
     next(err);
   }
 });
-/// get restaurant ticket
+//////////////////////////end
+
+/// get category reservation ticket
 router.get("/reservation", async (req, res, next) => {
   try {
     const allTicket = await prisma.item.findMany({
       where: { category: "reservation" },
     });
+    ///check if we have reservation ticket
     if (allTicket.length <= 0) {
       res.json({ message: "No reservation" });
       return;
@@ -123,6 +120,8 @@ router.get("/reservation", async (req, res, next) => {
     next(err);
   }
 });
+//////////////////////////end
+
 /// get all movies ticket
 router.get("/movies", async (req, res, next) => {
   try {
@@ -142,6 +141,8 @@ router.get("/movies", async (req, res, next) => {
     next(err);
   }
 });
+///////////////////end
+
 /// get all concert ticket
 router.get("/concert", async (req, res, next) => {
   try {
@@ -160,6 +161,8 @@ router.get("/concert", async (req, res, next) => {
     next(err);
   }
 });
+/////////////////////////////end
+
 ////delete single item
 router.delete("/delete/:id", async (req, res, next) => {
   try {
@@ -177,6 +180,8 @@ router.delete("/delete/:id", async (req, res, next) => {
     next(err);
   }
 });
+////////////////////////////end
+
 ////get single ticket with id
 router.get("/:id", async (req, res, next) => {
   try {
@@ -194,10 +199,10 @@ router.get("/:id", async (req, res, next) => {
     if (!ticket) {
       res.json({ error: "Id not found" });
     }
-    // console.log(imageFile(ticket.upload));
     ticket.upload = imageFile(ticket.upload);
     res.json({ data: ticket, location: location });
   } catch (err) {
     next(err);
   }
 });
+///////////////////end

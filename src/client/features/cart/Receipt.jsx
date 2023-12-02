@@ -1,13 +1,16 @@
 import { useSelector } from "react-redux";
 import { formatDate } from "../utils/helpers";
-
+/** Show receipt */
 export default function Receipt() {
+  //use Hook
   const receipt = useSelector((state) => state.cart.receipt);
-  console.log(receipt.cart[0]);
+
+  //create date time of receipt
   const date = Date.parse(new Date());
+
   return (
     receipt.cart.length > 0 && (
-      <div>
+      <>
         <h1>Receipt of Payment</h1>
         <ul>
           <li>{formatDate(date)}</li>
@@ -22,7 +25,7 @@ export default function Receipt() {
           <li>SaleTax:{receipt.saleTax}$</li>
           <li>Total: {receipt.total}$</li>
         </ul>
-      </div>
+      </>
     )
   );
 }
