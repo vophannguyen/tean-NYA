@@ -4,35 +4,40 @@ import { cartTimeCountDownt, formatDate } from "../utils/helpers";
 import { deleteItem, resetCart, useDeleteCartMutation } from "./cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import OrderSummary from "./OrderSummary";
-
+/** Render single item  */
 export default function CartItem({ reservation }) {
+  //used RTK to fectch data
   const [deleteIteminCart] = useDeleteCartMutation();
-  const dispatch = useDispatch();
-  console.log(reservation);
-  const currentTime = Date.parse(new Date(reservation.createAt));
-  console.log("dsd", currentTime);
-  // console.log(reservation.itemId);
-  // const timeClock = run_clock(10);
-  // console.log(timeClock);
   const { data, isLoading, isError } = useGetByIdQuery(reservation.itemId);
+
+  // used Hook
+  const dispatch = useDispatch();
+
+  // get time when user added to cart and convert to parse()
+  const currentTime = Date.parse(new Date(reservation.createAt));
+
+  // handle when user click on deleteItem
   async function handleDeleteItem() {
     const respon = await deleteIteminCart(reservation.id);
-    // console.log(respon.data.data.itemId);
     dispatch(deleteItem(respon?.data?.data.itemId));
-    // dispatch(resetCart());
-    // console.log(respon);
   }
+
+  /// waiting data
   if (isLoading) {
     return <h1>Loading....</h1>;
   }
   if (isError) {
     return;
   }
+  ///end waiting get data
+
+  // convert 2024-01-01T02:56:17.000Z to ex:Dec 31, 09:56 PM
+  const time = formatDate(data?.data.time);
+
   //Count down time
   const renderer = ({ hours, minutes, seconds, completed }) => {
     if (completed) {
       // Render a completed state
-      // handleDeleteItem();
     } else {
       // Render a countdown
       return (
@@ -42,12 +47,7 @@ export default function CartItem({ reservation }) {
       );
     }
   };
-  // console.log(data);
-  const time = formatDate(data?.data.time);
-  //update order summary
-  // dispatch(addPrice(data.price));
-  // const originalPrice = useSelector((state) => state.cart);
-  // console, log(originalPrice);
+  /** show all item in cart and countdown... item will be delete when countdown completed */
   return (
     <>
       <Countdown
@@ -58,15 +58,15 @@ export default function CartItem({ reservation }) {
         }}
       />
       {data && (
-        <div>
+        <>
           <h1>{data.data.title}</h1>
           <p>{time}</p>
           <p>{data.data.description}</p>
           <p>{data.data.price}</p>
           <button onClick={handleDeleteItem}>deleteItem</button>
-        </div>
+        </>
       )}
-      {/* <OrderSummary data={data} /> */}
+      <OrderSummary data={false} />
     </>
   );
 }

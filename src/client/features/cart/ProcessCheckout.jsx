@@ -4,30 +4,39 @@ import {
   resetCart,
   useAddOrderMutation,
   useAddPaymentMutation,
-  useDeleteCartMutation,
   useDeleteTicketMutation,
 } from "./cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import Receipt from "./Receipt";
 import { useAddSoldItemMutation } from "../user/userSlice";
 
+/** show payment form
+ * when user click purchase :
+ * - delete all item in cart
+ * - push all in order table (backend)
+ * - push to solditem table
+ */
 export default function ProcessCheckout() {
-  const [method, setMethod] = useState("");
-  const [nameOnCard, setNameOnCard] = useState("");
-  const [cardNumber, setCardNumber] = useState("");
-  const [securityCode, setSecurityCode] = useState("");
-  const [experiedDay, setExperiedDay] = useState("");
+  //use RTK to fectch and store data
   const [addOrder] = useAddOrderMutation();
   const [deleteTicket] = useDeleteTicketMutation();
-  const [deleteIteminCart] = useDeleteCartMutation();
   const [addPayment] = useAddPaymentMutation();
   const [addSold] = useAddSoldItemMutation();
+
+  // use Hook
   const cart = useSelector((state) => state.cart.cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  function handlePurchase(e) {
+
+  /** click purchase function will do:
+   * - add paymnet method to payment table
+   * - add order history to order table
+   * - add to solditem table
+   * - delete all item in item table
+   */
+  async function handlePurchase(e) {
     e.preventDefault();
+    //user formadata
     const formData = new FormData(e.target);
     const dataPayment = {
       method: formData.get("method"),
@@ -36,24 +45,14 @@ export default function ProcessCheckout() {
       securityCode: formData.get("securityCode"),
       experiedDay: formData.get("experiedDay"),
     };
-    // {
-    //   title,
-    //   category,
-    //   description,
-    //   price,
-    //   upload,
-    //   time,
-    //   address1,
-    //   address2,
-    //   city,
-    //   state,
-    //   zip,
-    //   country,
-    //   },
-    console.log(cart);
-    console.log(formData.get("method"));
+
+    ///add paymnet method to payment table
+    await addPayment(dataPayment).unwrap();
+
+    /// for each item add to : order table - solditem table - delete in item table
     cart.forEach(async (element) => {
       try {
+        //get all data need it
         const data = {
           title: element.data.title,
           category: element.data.category,
@@ -69,24 +68,26 @@ export default function ProcessCheckout() {
           country: element.location.country,
           userId: element.data.userId,
         };
+        //add to order table
         await addOrder(data).unwrap();
-        await addSold(data);
-        // console.log("process", respon);
-        ///delete
+
+        //add to sold item table
+        await addSold(data).unwrap();
+
+        // delete item of item table
         await deleteTicket(element.data.id).unwrap();
-        const respon = await addPayment(dataPayment);
-        console.log("payment", respon);
       } catch (err) {
         console.error(err);
       }
     });
+
+    /// reset cart to empty
     dispatch(resetCart());
-    // const receipt = useSelector((state) => state.cart.receipt);
-    // console.log(receipt);
+    // direct to receipt component
     navigate("/cart/checkout/receipt");
   }
   return (
-    <div>
+    <>
       <h1>Check out</h1>
       <form onSubmit={handlePurchase}>
         <h2>Payment Method</h2>
@@ -118,6 +119,6 @@ export default function ProcessCheckout() {
         <button>Complete Purchase</button>
       </form>
       <OrderSummary data={false} />
-    </div>
+    </>
   );
 }
