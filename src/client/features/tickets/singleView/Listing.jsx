@@ -14,15 +14,17 @@ export default function Listing() {
   const { id } = useParams();
   const { data: ticket, isLoading, isError } = useGetByIdQuery(id);
   const dispatch = useDispatch();
-  // console.log(ticket);
-  //handle errors
+
+  //waiting data
   if (isLoading) {
     return;
   }
   if (isError) {
     navigate("/*");
   }
-  //add ticket to Cart
+  //end waiting
+
+  /*todo: add events to Cart and redirect to events**/
   const handleCart = async () => {
     const token = sessionStorage.getItem("token");
     //need logged
@@ -32,10 +34,7 @@ export default function Listing() {
     }
     try {
       await addCart(id).unwrap();
-      // console.log(respon);
-      // console.log(ticket);
       await dispatch(addTicket(ticket));
-      sessionStorage.setItem("cartTime", Date.parse(new Date()));
       navigate("/");
     } catch (err) {
       console.log(err);
