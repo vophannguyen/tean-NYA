@@ -107,6 +107,10 @@ export default function Upload() {
         Country
         <input type="text" name="country" placeholder="e.g., USA" required />
       </label>
+      <label>
+        Location
+       <LocationInput />
+      </label>
       <button type="submit">Create Listing</button>
       {message && <p>{message}</p>}
     </form>

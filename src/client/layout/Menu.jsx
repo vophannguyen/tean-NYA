@@ -44,7 +44,7 @@ export default function Menu({ token, onLogout }) {
   return (
     <>
       <input type="checkbox" id="checkbox" name="checkbox" />
-      <label for="checkbox" class="toggle" onClick={handleMenu}>
+      <label htmlFor="checkbox" className="toggle" onClick={handleMenu}>
         <div className="bars" id="bar1"></div>
         <div className="bars" id="bar2"></div>
         <div className="bars" id="bar3"></div>
