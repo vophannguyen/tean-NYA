@@ -11,11 +11,9 @@ import Map from "./Map";
 //Basic functionality setup
 const TicketCard = ({ ticket }) => {
   return (
-    <ul>
       <li>
         <Link to={`/tickets/${ticket.id}`}>{ticket.title}</Link>
       </li>
-    </ul>
   );
 };
 
@@ -37,6 +35,7 @@ export default function Tickets() {
   if (isLoading) {
     <span>insert a spinner...</span>;
   };
+  
 
   //search bar
   const handleSearch = (e) => {
@@ -82,7 +81,7 @@ export default function Tickets() {
         <input type="text" placeholder="Search.." name="search" />
       </form>
       <h1>
-        EVENTS IN
+        Events in New York City
         <span>
           <select
             className="location-filter"
@@ -90,12 +89,12 @@ export default function Tickets() {
             name="locationfilter"
             type="text"
           >
-            <option value="1">Nyc</option>
-            <option value="2">Manhattan</option>
-            <option value="3">Brooklyn</option>
-            <option value="4">Queens</option>
-            <option value="5">Bronx</option>
-            <option value="6">Staten Island</option>
+            <option value="New York City">New York City</option>
+            <option value="Manhattan">Manhattan</option>
+            <option value="Brooklyn">Brooklyn</option>
+            <option value="Queens">Queens</option>
+            <option value="Bronx">Bronx</option>
+            <option value="Staten Island">Staten Island</option>
           </select>
         </span>
       </h1>
