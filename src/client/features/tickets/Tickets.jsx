@@ -11,9 +11,9 @@ import { useState } from "react";
 //Basic functionality setup
 const TicketCard = ({ ticket }) => {
   return (
-      <li>
-        <Link to={`/tickets/${ticket.id}`}>{ticket.title}</Link>
-      </li>
+    <li>
+      <Link to={`/tickets/${ticket.id}`}>{ticket.title}</Link>
+    </li>
   );
 };
 
@@ -31,11 +31,10 @@ export default function Tickets() {
 
   if (isError) {
     console.log("error");
-  };
+  }
   if (isLoading) {
     <span>insert a spinner...</span>;
-  };
-  
+  }
 
   //search bar
   const handleSearch = (e) => {
@@ -52,7 +51,7 @@ export default function Tickets() {
   searchTicket = tickets;
   if (isSearch) {
     searchTicket = newTicket;
-  };
+  }
   //need to fix rerendering for every click on the same filter
   //(click movies once filter, click movies again make sure does not refilter)
   const onSortByMovie = () => {
