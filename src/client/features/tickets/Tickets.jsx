@@ -122,9 +122,9 @@ export default function Tickets() {
               <TicketCard ticket={ticket} key={ticket.id} />
             ))}
       </ul>
-      <aside>
+      {/* <aside>
         <Map />
-      </aside>
+      </aside> */}
     </section>
   );
 }
