@@ -20,7 +20,7 @@ import ProcessCheckout from "./features/cart/ProcessCheckout.jsx";
 import Receipt from "./features/cart/Receipt.jsx";
 import Account from "./features/user/Account.jsx";
 import AboutUs from "./layout/AboutUs";
-import FrequentlyAsked from "./layout/Faq";
+import Faq from "./layout/Faq";
 
 const router = createBrowserRouter([
   {
@@ -36,16 +36,11 @@ const router = createBrowserRouter([
       { path: "/cart", element: <Cart /> },
       { path: "/user", element: <Account /> },
       { path: "/user/profile", element: <Profile /> },
-      // { path: "user/order", element: <PastRes /> },
-      // { path: "user/sellitem", element: <AllItems /> },
-      // { path: "user/solditem", element: <h1>Sold Item</h1> },
       { path: "user/payment", element: <h1>Payment</h1> },
       { path: "/cart/checkout", element: <ProcessCheckout />,},
       { path: "/cart/checkout/receipt", element: <Receipt /> },
-      // { path:"user/payment", element: <PastRes/>},
-      // { path: "user/upcoming", element: <UpcomingRes />},
       { path: "/about", element: <AboutUs />},
-      { path: "/FAQ", element: <FrequentlyAsked />},
+      { path: "/FAQ", element: <Faq />},
     ],
   },
   { path: "/*", element: <NotFound /> },
