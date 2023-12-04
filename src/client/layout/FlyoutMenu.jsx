@@ -45,9 +45,9 @@ export default function FlyoutMenu({ token }) {
           </li>
         </ul>
         <ul>
-          <li>Account</li>
           {token ? (
             <>
+              <li>Account</li>
               <li>
               <NavLink to="/user/profile">My Profile</NavLink>
               </li>
