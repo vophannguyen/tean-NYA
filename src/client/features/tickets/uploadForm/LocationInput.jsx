@@ -1,21 +1,22 @@
-import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
+import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 
 export default function LocationInput() {
-    const handleSearch = (value) => {
-        console.log(value)
-    }
-    return(
-        <GooglePlacesAutocomplete onChange={handleSearch}
-        apiKey="AIzaSyAyAZZvcyJl-n3AFCs6LaMf7-U2mUI1r0Q"
-      />
-    )
+  const handleSearch = (value) => {
+    console.log(value);
+  };
+  return (
+    <GooglePlacesAutocomplete
+      onChange={handleSearch}
+      apiKey="AIzaSyAyAZZvcyJl-n3AFCs6LaMf7-U2mUI1r0Q"
+    />
+  );
 }
 // import usePlacesAutocomplete, {
 //     getGeocode,
 //     getLatLng,
 //   } from "use-places-autocomplete";
 //   import useOnclickOutside from "react-cool-onclickoutside";
-  
+
 //   export default function LocationInput() {
 //     const {
 //       ready,
@@ -35,12 +36,12 @@ export default function LocationInput() {
 //       // the searched suggestions by calling this method
 //       clearSuggestions();
 //     });
-  
+
 //     const handleInput = (e) => {
 //       // Update the keyword of the input element
 //       setValue(e.target.value);
 //     };
-  
+
 //     const handleSelect =
 //       ({ description }) =>
 //       () => {
@@ -48,28 +49,28 @@ export default function LocationInput() {
 //         // by setting the second parameter to "false"
 //         setValue(description, false);
 //         clearSuggestions();
-  
+
 //         // Get latitude and longitude via utility functions
 //         getGeocode({ address: description }).then((results) => {
 //           const { lat, lng } = getLatLng(results[0]);
 //           console.log("📍 Coordinates: ", { lat, lng });
 //         });
 //       };
-  
+
 //     const renderSuggestions = () =>
 //       data.map((suggestion) => {
 //         const {
 //           place_id,
 //           structured_formatting: { main_text, secondary_text },
 //         } = suggestion;
-  
+
 //         return (
 //           <li key={place_id} onClick={handleSelect(suggestion)}>
 //             <strong>{main_text}</strong> <small>{secondary_text}</small>
 //           </li>
 //         );
 //       });
-  
+
 //     return (
 //       <div ref={ref}>
 //         <input
