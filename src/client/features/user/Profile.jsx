@@ -11,11 +11,10 @@ export default function Profile() {
   return isLoading ? (
     <p>Loading ...</p>
   ) : (
-    // <main className="account-page">
-    //   <h1 className="account-header">Welcome, *insertname*</h1>
-    //   <Reservations />
-    //   <Listings />
-    // </main>
-    <h1>issue seeding</h1>
+    <main className="account-page">
+      <h1 className="account-header">Welcome, {me?.data.firstName}</h1>
+      <Reservations />
+      <Listings />
+    </main>
   );
 }
