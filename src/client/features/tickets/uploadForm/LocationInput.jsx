@@ -1,16 +1,16 @@
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 
-export default function LocationInput() {
-  const handleSearch = (value) => {
-    console.log(value);
-  };
-  return (
-    <GooglePlacesAutocomplete
-      onChange={handleSearch}
-      apiKey="AIzaSyAyAZZvcyJl-n3AFCs6LaMf7-U2mUI1r0Q"
-    />
-  );
-}
+// export default function LocationInput() {
+//   const handleSearch = (value) => {
+//     console.log(value);
+//   };
+//   return (
+//     <GooglePlacesAutocomplete
+//       onChange={handleSearch}
+//       apiKey="AIzaSyAyAZZvcyJl-n3AFCs6LaMf7-U2mUI1r0Q"
+//     />
+//   );
+// }
 // import usePlacesAutocomplete, {
 //     getGeocode,
 //     getLatLng,

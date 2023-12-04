@@ -1,7 +1,7 @@
 import { useCreateTicketMutation } from "../ticketSlice";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import LocationInput from "./LocationInput";
+// import LocationInput from "./LocationInput";
 
 /** Form for uploading a new listing accessible only to those logged in*/
 export default function Upload() {
@@ -107,10 +107,10 @@ export default function Upload() {
         Country
         <input type="text" name="country" placeholder="e.g., USA" required />
       </label>
-      <label>
+      {/* <label>
         Location
        <LocationInput />
-      </label>
+      </label> */}
       <button type="submit">Create Listing</button>
       {message && <p>{message}</p>}
     </form>
