@@ -6,7 +6,7 @@ import {
 } from "./ticketSlice";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import Map from "./Map";
+// import Map from "./Map";
 
 //Basic functionality setup
 const TicketCard = ({ ticket }) => {
