@@ -6,15 +6,14 @@ import {
 } from "./ticketSlice";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import Map from "./Map";
 
 //Basic functionality setup
 const TicketCard = ({ ticket }) => {
   return (
-    <ul>
       <li>
         <Link to={`/tickets/${ticket.id}`}>{ticket.title}</Link>
       </li>
-    </ul>
   );
 };
 
@@ -29,54 +28,52 @@ export default function Tickets() {
   const [newTicket, setNewTicket] = useState(tickets);
   const [isSearch, setIsSearch] = useState(false);
   let searchTicket = null;
-  //pagination to be added ?
-  //sorting feature - to be added?
 
-  console.log(tickets);
   if (isError) {
     console.log("error");
-  }
+  };
   if (isLoading) {
     <span>insert a spinner...</span>;
-  }
-  //search bar -
-  function handleSearch(e) {
+  };
+  
+
+  //search bar
+  const handleSearch = (e) => {
     e.preventDefault();
     setIsSearch(() => true);
     const formData = new FormData(e.target);
     const search = formData.get("search");
     const searchTicket = tickets.filter((item) => {
-      // console.log(item.title);
-      // console.log(item.title.includes(search));
       return item.title.includes(search);
     });
     setNewTicket(searchTicket);
-  }
+  };
+
   searchTicket = tickets;
   if (isSearch) {
     searchTicket = newTicket;
-  }
+  };
   //need to fix rerendering for every click on the same filter
   //(click movies once filter, click movies again make sure does not refilter)
-  function onSortByMovie() {
+  const onSortByMovie = () => {
     setFiltered(movies);
     setIsSorted(true);
-  }
-  function onSortByConcert() {
+  };
+  const onSortByConcert = () => {
     setFiltered(concerts);
     setIsSorted(true);
-  }
+  };
 
-  function onSortByRes() {
+  const onSortByRes = () => {
     setFiltered(res);
     setIsSorted(true);
-  }
+  };
 
-  function onUndoSort() {
+  const onUndoSort = () => {
     setIsSorted(false);
-  }
+  };
 
-  function onFilterLocation() {}
+  const onFilterLocation = () => {};
 
   return (
     <section>
@@ -84,7 +81,7 @@ export default function Tickets() {
         <input type="text" placeholder="Search.." name="search" />
       </form>
       <h1>
-        EVENTS IN
+        Events in New York City
         <span>
           <select
             className="location-filter"
@@ -92,12 +89,12 @@ export default function Tickets() {
             name="locationfilter"
             type="text"
           >
-            <option value="1">NYC</option>
-            <option value="2">MANHATTAN</option>
-            <option value="3">BROOKLYN</option>
-            <option value="4">QUEENS</option>
-            <option value="5">BRONX</option>
-            <option value="6">STATEN ISLAND</option>
+            <option value="New York City">New York City</option>
+            <option value="Manhattan">Manhattan</option>
+            <option value="Brooklyn">Brooklyn</option>
+            <option value="Queens">Queens</option>
+            <option value="Bronx">Bronx</option>
+            <option value="Staten Island">Staten Island</option>
           </select>
         </span>
       </h1>
@@ -127,7 +124,7 @@ export default function Tickets() {
             ))}
       </ul>
       <aside>
-        <iframe></iframe>
+        <Map />
       </aside>
     </section>
   );
