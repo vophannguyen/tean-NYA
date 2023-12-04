@@ -46,11 +46,11 @@ export default function FlyoutMenu({ token }) {
         </ul>
         <ul>
           <li>Account</li>
-          <li>
-            <NavLink to="/user/profile">My Profile</NavLink>
-          </li>
           {token ? (
             <>
+              <li>
+              <NavLink to="/user/profile">My Profile</NavLink>
+              </li>
               <li>
               <NavLink to="/upload">List an event</NavLink>
               </li>
