@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { useAddCartMutation } from "../../cart/cartSlice";
 import { useGetByIdQuery } from "../ticketSlice";
 import { useParams, useNavigate } from "react-router-dom";
+import "./Listing.css"
 
 /** Allows user to read, update, and delete a task */
 export default function Listing() {
@@ -41,15 +42,15 @@ export default function Listing() {
   //todo: reformat listing date on front end
   //details needed for single view listing = category of the listing (movie, concert, reservation)
   return (
-    <div>
+    <div className="single-ticket">
       {ticket ? (
         <section>
           <img src="image.png"></img>
           <article>
-            <h1>{ticket.data.title}</h1>
+            <h1 className="listing-title">{ticket.data.title}</h1>
             <p>{ticket.data.time}</p>
             <p>{ticket.data.description}</p>
-            <button onClick={handleCart}>Add to Cart</button>
+            <button className="listing-button" onClick={handleCart}>Add to Cart</button>
           </article>
           <figure>
             <p>geolocational map here?</p>
