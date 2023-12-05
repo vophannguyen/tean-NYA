@@ -1,16 +1,16 @@
 import "./Navbar.less";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
-import { useFetchUserAccountQuery } from "../features/user/userSlice";
+import { Link } from "react-router-dom";
 import { logout } from "../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import MenuIcon from '@mui/icons-material/Menu';
+import ClearIcon from '@mui/icons-material/Clear';
 
 export default function FlyoutMenu({ token }) {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const { data: me, isLoading, error } = useFetchUserAccountQuery();
   
   const handleMenu = () => setIsOpen(!isOpen);
   
@@ -18,41 +18,44 @@ export default function FlyoutMenu({ token }) {
     await dispatch(logout());
     setIsOpen(!isOpen);
     navigate("/");
-    
   };
 
   const Flyout = (
-      <section className="flyout mobile">
+      <section className="flyout">
         <ul>
-          <li>Listings</li>
           <li>
-            <NavLink to="/tickets">All Events</NavLink>
+            <p>Home</p>
           </li>
           <li>
-            <NavLink to="/movies">Movies</NavLink>
+            <Link to="/tickets">All Events</Link>
           </li>
           <li>
-            <NavLink to="/concerts">Concerts</NavLink>
+            <Link to="/movies">Movies</Link>
           </li>
           <li>
-            <NavLink to="/">Theatre</NavLink>
+            <Link to="/concerts">Concerts</Link>
           </li>
           <li>
-            <NavLink to="/reservations">Restaurants</NavLink>
+            <Link to="/">Theatre</Link>
           </li>
           <li>
-            <NavLink to="/">Activites</NavLink>
+            <Link to="/reservations">Restaurants</Link>
+          </li>
+          <li>
+            <Link to="/">Activites</Link>
           </li>
         </ul>
         <ul>
+          <li>
+            <p>Account</p>
+          </li>
           {token ? (
             <>
-              <li>Account</li>
               <li>
-              <NavLink to="/user/profile">My Profile</NavLink>
+                <Link to="/user/profile">My Profile</Link>
               </li>
               <li>
-              <NavLink to="/upload">List an event</NavLink>
+                <Link to="/upload">List an event</Link>
               </li>
               <li>
                 <a onClick={onLogout}>Log out</a>
@@ -62,24 +65,26 @@ export default function FlyoutMenu({ token }) {
           : (
             <>
               <li>
-                <NavLink to="/login">List an event</NavLink>
+                <Link to="/login">List an event</Link>
               </li>
               <li>
-                <NavLink to="/login">Log in</NavLink>
+                <Link to="/login">Log in</Link>
               </li>
             </>
           )}
-          
         </ul>
         <ul>
           <li>
-            <NavLink to="/">Help & Support</NavLink>
+            <p>Help & Support</p>
           </li>
           <li>
-            <NavLink to="/about">About us</NavLink>
+            <Link to="/about">About</Link>
           </li>
           <li>
-            <NavLink to="/faq">FAQs</NavLink>
+            <Link to="/faq">FAQs</Link>
+          </li>
+          <li>
+            <Link to="/faq">Contact</Link>
           </li>
         </ul>
       </section>
@@ -89,9 +94,7 @@ export default function FlyoutMenu({ token }) {
     <>
       <input type="checkbox" id="checkbox" name="checkbox" />
       <label htmlFor="checkbox" className="toggle" onClick={handleMenu}>
-        <div className="bars" id="bar1"></div>
-        <div className="bars" id="bar2"></div>
-        <div className="bars" id="bar3"></div>
+        {!isOpen ? <MenuIcon /> : <ClearIcon />}
       </label>
       {isOpen && Flyout}
     </>

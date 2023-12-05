@@ -1,8 +1,9 @@
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { selectToken } from "../features/auth/authSlice";
-import profile from "./profile.jpg";
 import FlyoutMenu from "./FlyoutMenu";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import ProfileIcon from "./ProfileIcon.jsx";
 import "./Navbar.less";
 
 export default function Navbar() {
@@ -18,11 +19,13 @@ export default function Navbar() {
         {token ? (
           <>
             <li>
-              <NavLink to="/upload">List Event</NavLink>
+              <NavLink to="/upload">
+                <button>List an event</button>
+              </NavLink>
             </li>
             <li>
               <NavLink to="/user/profile">
-                <img src={profile} width="35" height="35" alt="user profile" />
+                <ProfileIcon  />
               </NavLink>
             </li>
           </>
@@ -33,15 +36,15 @@ export default function Navbar() {
             </li>
             <li>
               <NavLink to="/login">
-                <img src={profile} width="35" height="35" alt="user profile" />
+                <ProfileIcon />
               </NavLink>
             </li>
           </>
         )}
         <li>
           <NavLink to="/cart">
-            🛒
-            {/* <span>{cartItem.length}</span> */}
+            <ShoppingCartIcon />
+           // <span>{cartItem.length}</span>
           </NavLink>
         </li>
         <li>
