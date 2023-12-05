@@ -21,7 +21,7 @@ export default function Cart() {
     <section className="cart-container">
       {data?.message && <h1>Cart empty</h1>}
       <h1 className="cart-title">Your Cart</h1>
-      <table>
+      <table className="cart-item">
         <thead>
           <tr>
             <th>Events</th>
@@ -39,7 +39,7 @@ export default function Cart() {
             );
           })}
       </table>
-      {data?.data && <OrderSummary show={true} />}
+      <article>{data?.data && <OrderSummary show={true} />}</article>
     </section>
   );
 }
