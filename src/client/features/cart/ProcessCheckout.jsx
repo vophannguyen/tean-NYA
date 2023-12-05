@@ -1,10 +1,9 @@
-import { useState } from "react";
 import OrderSummary from "./OrderSummary";
 import {
-  resetCart,
   useAddOrderMutation,
   useAddPaymentMutation,
   useDeleteTicketMutation,
+  useGetCartQuery,
 } from "./cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
@@ -17,6 +16,8 @@ import { useAddSoldItemMutation } from "../user/userSlice";
  * - push to solditem table
  */
 export default function ProcessCheckout() {
+  // used RTK to fetch ticket it added to cart
+  const { isLoading, isError, data } = useGetCartQuery();
   //use RTK to fectch and store data
   const [addOrder] = useAddOrderMutation();
   const [deleteTicket] = useDeleteTicketMutation();
@@ -24,8 +25,6 @@ export default function ProcessCheckout() {
   const [addSold] = useAddSoldItemMutation();
 
   // use Hook
-  const cart = useSelector((state) => state.cart.cart);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   /** click purchase function will do:
@@ -36,6 +35,7 @@ export default function ProcessCheckout() {
    */
   async function handlePurchase(e) {
     e.preventDefault();
+    let cart = [];
     //user formadata
     const formData = new FormData(e.target);
     const dataPayment = {
@@ -47,44 +47,53 @@ export default function ProcessCheckout() {
     };
 
     ///add paymnet method to payment table
-    await addPayment(dataPayment).unwrap();
+    // await addPayment(dataPayment).unwrap();
 
     /// for each item add to : order table - solditem table - delete in item table
-    cart.forEach(async (element) => {
+    console.log(data.data);
+    data.data.forEach(async (element) => {
       try {
+        cart.push(element.item);
         //get all data need it
         const data = {
-          title: element.data.title,
-          category: element.data.category,
-          description: element.data.description,
-          price: element.data.price,
-          upload: element.data.upload,
-          time: element.data.time,
-          address1: element.location.address1,
-          address2: element.location.address2,
-          city: element.location.city,
-          state: element.location.state,
-          zip: element.location.zip,
-          country: element.location.country,
-          userId: element.data.userId,
+          title: element.item.title,
+          category: element.item.category,
+          description: element.item.description,
+          price: element.item.price,
+          upload: element.item.upload,
+          time: element.item.time,
+          quantity: element.item.quantity,
+          address1: element.item.address1,
+          address2: element.item.address2,
+          city: element.item.city,
+          state: element.item.state,
+          zip: element.item.zip,
+          country: element.item.country,
+          userId: element.item.userId,
         };
-        //add to order table
-        await addOrder(data).unwrap();
-
+        // //add to order table
+        // await addOrder(data).unwrap();
         //add to sold item table
         await addSold(data).unwrap();
-
         // delete item of item table
-        await deleteTicket(element.data.id).unwrap();
+        await deleteTicket(element.item.id).unwrap();
       } catch (err) {
         console.error(err);
       }
     });
-
-    /// reset cart to empty
-    dispatch(resetCart());
+    const cartData = {
+      cart,
+      receipt: data.orderSummary,
+    };
+    const respon = await addOrder(cartData).unwrap();
     // direct to receipt component
-    navigate("/cart/checkout/receipt");
+    navigate(`/cart/checkout/receipt/${respon.data.id}`);
+  }
+  if (isLoading) {
+    return <h1>Loading....</h1>;
+  }
+  if (isError) {
+    return;
   }
   return (
     <>
@@ -118,7 +127,7 @@ export default function ProcessCheckout() {
         />
         <button>Complete Purchase</button>
       </form>
-      <OrderSummary data={false} />
+      <OrderSummary show={false} />
     </>
   );
 }

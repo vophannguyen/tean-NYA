@@ -1,9 +1,5 @@
 import { useDispatch } from "react-redux";
-import {
-  addCurrentTime,
-  addTicket,
-  useAddCartMutation,
-} from "../../cart/cartSlice";
+import { useAddCartMutation } from "../../cart/cartSlice";
 import { useGetByIdQuery } from "../ticketSlice";
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -34,7 +30,6 @@ export default function Listing() {
     }
     try {
       await addCart(id).unwrap();
-      await dispatch(addTicket(ticket));
       navigate("/");
     } catch (err) {
       console.log(err);

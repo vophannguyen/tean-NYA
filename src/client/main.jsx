@@ -26,6 +26,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    errorElement: <NotFound />,
     children: [
       { path: "/", element: <Tickets /> },
       { path: "/tickets", element: <Tickets /> },
@@ -37,13 +38,12 @@ const router = createBrowserRouter([
       { path: "/user", element: <Account /> },
       { path: "/user/profile", element: <Profile /> },
       { path: "user/payment", element: <h1>Payment</h1> },
-      { path: "/cart/checkout", element: <ProcessCheckout />,},
-      { path: "/cart/checkout/receipt", element: <Receipt /> },
-      { path: "/about", element: <AboutUs />},
-      { path: "/FAQ", element: <Faq />},
+      { path: "/cart/checkout", element: <ProcessCheckout /> },
+      { path: "/cart/checkout/receipt/:id", element: <Receipt /> },
+      { path: "/about", element: <AboutUs /> },
+      { path: "/FAQ", element: <Faq /> },
     ],
   },
-  { path: "/*", element: <NotFound /> },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

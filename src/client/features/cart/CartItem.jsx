@@ -1,39 +1,24 @@
 import Countdown from "react-countdown";
 import { useGetByIdQuery } from "../tickets/ticketSlice";
 import { cartTimeCountDownt, formatDate } from "../utils/helpers";
-import { deleteItem, useDeleteCartMutation } from "./cartSlice";
+import { useDeleteCartMutation } from "./cartSlice";
 import { useDispatch } from "react-redux";
-import OrderSummary from "./OrderSummary";
 
 /** View single item, allows user check out */
-export default function CartItem({ reservation }) {
+export default function CartItem({ data }) {
   //used RTK to fectch data
   const [deleteIteminCart] = useDeleteCartMutation();
-  const { data, isLoading, isError } = useGetByIdQuery(reservation.itemId);
-
-  // used Hook
-  const dispatch = useDispatch();
 
   // get time when user added to cart and convert to parse()
-  const currentTime = Date.parse(new Date(reservation.createAt));
+  const currentTime = Date.parse(new Date(data.createAt));
 
   // handle when user clicked on deleteItem
   async function handleDeleteItem() {
-    const respon = await deleteIteminCart(reservation.id);
-    dispatch(deleteItem(respon?.data?.data.itemId));
+    await deleteIteminCart(data.id).unwrap();
   }
-
-  /// waiting data
-  if (isLoading) {
-    return <h1>Loading....</h1>;
-  }
-  if (isError) {
-    return;
-  }
-  ///end waiting get data
 
   // convert 2024-01-01T02:56:17.000Z to ex:Dec 31, 09:56 PM
-  const time = formatDate(data?.data.time);
+  const time = formatDate(data.item.time);
 
   //Count down time
   const renderer = ({ hours, minutes, seconds, completed }) => {
@@ -51,24 +36,38 @@ export default function CartItem({ reservation }) {
   /** show all item in cart and countdown...
    * item will be delete when countdown completed */
   return (
-    <>
-      <Countdown
-        date={cartTimeCountDownt(5, currentTime)}
-        renderer={renderer}
-        onComplete={async () => {
-          await handleDeleteItem();
-        }}
-      />
-      {data && (
-        <>
-          <h1>{data.data.title}</h1>
-          <p>{time}</p>
-          <p>{data.data.description}</p>
-          <p>{data.data.price}</p>
-          <button onClick={handleDeleteItem}>deleteItem</button>
-        </>
-      )}
-      <OrderSummary data={false} />
-    </>
+    data && (
+      <tbody>
+        <tr>
+          <td className="cart-countdown">
+            <Countdown
+              date={cartTimeCountDownt(20, currentTime)}
+              renderer={renderer}
+              onComplete={async () => {
+                await handleDeleteItem();
+              }}
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <h1>{data.item.title}</h1>
+
+            {/* <p>{data.data.description}</p> */}
+          </td>
+          <td>
+            <p>{time}</p>
+          </td>
+          <td>
+            <p>{data.item.price}</p>
+          </td>
+          <td>{data.item.quantity}</td>
+          <td>10$</td>
+          <td>
+            <button onClick={handleDeleteItem}>✖</button>
+          </td>
+        </tr>
+      </tbody>
+    )
   );
 }

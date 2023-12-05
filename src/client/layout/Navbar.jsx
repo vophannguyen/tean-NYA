@@ -7,7 +7,7 @@ import ProfileIcon from "./ProfileIcon.jsx";
 import "./Navbar.less";
 
 export default function Navbar() {
-  const cartItem = useSelector((state) => state.cart.cart);
+  // const cartItem = useSelector((state) => state.cart.cart);
   const token = useSelector(selectToken);
 
   return (
@@ -44,7 +44,7 @@ export default function Navbar() {
         <li>
           <NavLink to="/cart">
             <ShoppingCartIcon />
-            <span>{cartItem.length}</span>
+           // <span>{cartItem.length}</span>
           </NavLink>
         </li>
         <li>

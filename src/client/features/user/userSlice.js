@@ -9,7 +9,7 @@ const authApi = api.injectEndpoints({
     fetchAllUserItems: builder.query({
       query: () => "user/sellitem",
       providesTags: ["Res"],
-      invalidatesTags: ["Me", "Order", "Sold"],
+      invalidatesTags: ["Me", "Order", "Sold", "Tickets"],
     }),
     fetchUserReservationHistory: builder.query({
       query: () => "user/order",
