@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useLoginMutation } from "./authSlice";
-import "./loginform.css"
+import "./loginForm.css"
 
 export default function LoginForm() {
   const navigate = useNavigate();
