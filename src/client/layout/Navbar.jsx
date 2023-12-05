@@ -25,7 +25,7 @@ export default function Navbar() {
             </li>
             <li>
               <NavLink to="/user/profile">
-                <ProfileIcon  />
+                <ProfileIcon />
               </NavLink>
             </li>
           </>
@@ -44,7 +44,7 @@ export default function Navbar() {
         <li>
           <NavLink to="/cart">
             <ShoppingCartIcon />
-           // <span>{cartItem.length}</span>
+            {/* <span>{cartItem.length}</span> */}
           </NavLink>
         </li>
         <li>
