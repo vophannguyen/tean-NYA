@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useLoginMutation } from "./authSlice";
+import "./loginform.css"
 
 export default function LoginForm() {
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ export default function LoginForm() {
     }
   };
   return (
-    <div>
+    <section className="login">
       <h1 className="login-heading"> Log in </h1>
       <form className="login-form" onSubmit={attemptLogin}>
         <label className="login-username">Username</label>
@@ -64,6 +65,6 @@ export default function LoginForm() {
         {error && <p className="login-error">{error.message}</p>}
         <Link to="/register"><p>Don't have an account? Register here.</p></Link>
       </form>
-    </div>
+    </section>
   );
 }
