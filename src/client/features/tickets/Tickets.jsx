@@ -6,14 +6,24 @@ import {
 } from "./ticketSlice";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import Map from "./Map";
+import { formatDate } from "../utils/helpers.js";
+import "./tickets.less";
+// import Map from "./Map";
 
 //Basic functionality setup
 const TicketCard = ({ ticket }) => {
+  const date = formatDate(ticket.time);
+
   return (
-    <li>
-      <Link to={`/tickets/${ticket.id}`}>{ticket.title}</Link>
-    </li>
+    <Link to={`/tickets/${ticket.id}`}>
+      <li key={ticket.id} className="ticket-card">
+        <section className="info">
+          <h2>{ticket.title}</h2>
+          <p>{date} * "venue" </p>
+          <p>Quantity: {ticket.quantity}</p>
+        </section>
+      </li>
+    </Link>
   );
 };
 
@@ -28,6 +38,7 @@ export default function Tickets() {
   const [newTicket, setNewTicket] = useState(tickets);
   const [isSearch, setIsSearch] = useState(false);
   let searchTicket = null;
+  console.log(tickets);
 
   if (isError) {
     console.log("error");
@@ -72,57 +83,48 @@ export default function Tickets() {
     setIsSorted(false);
   };
 
-  const onFilterLocation = () => {};
 
   return (
     <section>
       <form onSubmit={handleSearch}>
         <input type="text" placeholder="Search.." name="search" />
       </form>
-      <h1>
-        Events in New York City
-        <span>
-          <select
-            className="location-filter"
-            onChange={onFilterLocation}
-            name="locationfilter"
-            type="text"
-          >
-            <option value="New York City">New York City</option>
-            <option value="Manhattan">Manhattan</option>
-            <option value="Brooklyn">Brooklyn</option>
-            <option value="Queens">Queens</option>
-            <option value="Bronx">Bronx</option>
-            <option value="Staten Island">Staten Island</option>
-          </select>
-        </span>
-      </h1>
-      <ul>
-        <li>
-          <button onClick={onSortByMovie}>Movies</button>
-        </li>
-        <li>
-          <button onClick={onSortByConcert}>Concerts</button>
-        </li>
-        <li>
-          <button onClick={onSortByRes}>Reservations</button>
-        </li>
-        {isSorted && (
-          <li>
+      <section className="content">
+        <section className="left">
+          <header>
+            <h1>
+              Upcoming Events
+              <select
+                className="location-filter"
+                name="locationfilter"
+                type="text"
+              >
+                <option value="NYC">Today</option>s
+                <option value="Boston">Tomorrow</option>
+                <option value="LA">This Week</option>
+              </select>
+            </h1>
+          </header>
+          <section className="sort">
             <button onClick={onUndoSort}>All Tickets</button>
-          </li>
-        )}
-      </ul>
-      <ul>
-        {!isSorted
-          ? searchTicket?.map((ticket) => (
-              <TicketCard ticket={ticket} key={ticket.id} />
-            ))
-          : filtered?.map((ticket) => (
-              <TicketCard ticket={ticket} key={ticket.id} />
-            ))}
-      </ul>
-      <aside>{/* <Map /> */}</aside>
+            <button onClick={onSortByMovie}>Movies</button>
+            <button onClick={onSortByConcert}>Concerts</button>
+            <button onClick={onSortByRes}>Reservations</button>
+          </section>
+          <ul className="tickets">
+            {!isSorted
+              ? searchTicket?.map((ticket) => (
+                  <TicketCard ticket={ticket} key={ticket.id} />
+                ))
+              : filtered?.map((ticket) => (
+                  <TicketCard ticket={ticket} key={ticket.id} />
+                ))}
+          </ul>
+        </section>
+        <aside>
+          <div className="map">insert map</div>
+        </aside>
+      </section>
     </section>
   );
 }
