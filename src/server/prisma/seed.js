@@ -24,30 +24,6 @@ const seed = async () => {
               price: i,
               quantity: i,
               upload: "1700626869150.png",
-              location: {
-                create: {
-                  address1: "1074 albany park dr",
-                  address2: " ",
-                  city: "fort mill",
-                  zip: "29715",
-                  state: "SC",
-                  country: "US",
-                },
-              },
-            },
-          ],
-        },
-        order: {
-          create: [
-            {
-              time: new Date(
-                Date.parse(new Date()) + 30 * 1000 * 60 * 60 * 24
-              ).toJSON(),
-              title: "restaurant" + i,
-              category: "reservation",
-              description: "test-" + i,
-              price: i,
-              upload: "1700626869150.png",
               address1: "1074 albany park dr",
               address2: " ",
               city: "fort mill",
@@ -56,6 +32,38 @@ const seed = async () => {
               country: "US",
             },
           ],
+        },
+        order: {
+          create: {
+            itemOrder: {
+              create: [
+                {
+                  time: new Date(
+                    Date.parse(new Date()) + 30 * 1000 * 60 * 60 * 24
+                  ).toJSON(),
+                  title: "restaurant" + i,
+                  category: "reservation",
+                  description: "test-" + i,
+                  price: i,
+                  quantity: i,
+                  upload: "1700626869150.png",
+                  address1: "1074 albany park dr",
+                  address2: " ",
+                  city: "fort mill",
+                  zip: "29715",
+                  state: "SC",
+                  country: "US",
+                },
+              ],
+            },
+            receipt: {
+              create: {
+                subTotal: i * i,
+                saleTax: i * i * 0.12,
+                total: i * i + i * i * 0.12,
+              },
+            },
+          },
         },
         solditem: {
           create: [
@@ -92,30 +100,6 @@ const seed = async () => {
               price: i,
               quantity: i,
               upload: "1700626869150.png",
-              location: {
-                create: {
-                  address1: "1074 albany park dr",
-                  address2: " ",
-                  city: "fort mill",
-                  zip: "29715",
-                  state: "SC",
-                  country: "US",
-                },
-              },
-            },
-          ],
-        },
-        order: {
-          create: [
-            {
-              time: new Date(
-                Date.parse(new Date()) + 30 * 1000 * 60 * 60 * 24
-              ).toJSON(),
-              title: "movies" + i,
-              category: "movies",
-              description: "test-" + i,
-              price: i,
-              upload: "1700626869150.png",
               address1: "1074 albany park dr",
               address2: " ",
               city: "fort mill",
@@ -124,6 +108,38 @@ const seed = async () => {
               country: "US",
             },
           ],
+        },
+        order: {
+          create: {
+            itemOrder: {
+              create: [
+                {
+                  time: new Date(
+                    Date.parse(new Date()) + 30 * 1000 * 60 * 60 * 24
+                  ).toJSON(),
+                  title: "movies" + i,
+                  category: "movies",
+                  description: "test-" + i,
+                  price: i,
+                  quantity: i,
+                  upload: "1700626869150.png",
+                  address1: "1074 albany park dr",
+                  address2: " ",
+                  city: "fort mill",
+                  zip: "29715",
+                  state: "SC",
+                  country: "US",
+                },
+              ],
+            },
+            receipt: {
+              create: {
+                subTotal: i * i,
+                saleTax: i * i * 0.12,
+                total: i * i + i * i * 0.12,
+              },
+            },
+          },
         },
         solditem: {
           create: [
@@ -160,30 +176,6 @@ const seed = async () => {
               price: i,
               quantity: i,
               upload: "1700626869150.png",
-              location: {
-                create: {
-                  address1: "1074 albany park dr",
-                  address2: " ",
-                  city: "fort mill",
-                  zip: "29715",
-                  state: "SC",
-                  country: "US",
-                },
-              },
-            },
-          ],
-        },
-        order: {
-          create: [
-            {
-              time: new Date(
-                Date.parse(new Date()) + 30 * 1000 * 60 * 60 * 24
-              ).toJSON(),
-              title: "concert" + i,
-              category: "concert",
-              description: "test-" + i,
-              price: i,
-              upload: "1700626869150.png",
               address1: "1074 albany park dr",
               address2: " ",
               city: "fort mill",
@@ -192,6 +184,38 @@ const seed = async () => {
               country: "US",
             },
           ],
+        },
+        order: {
+          create: {
+            itemOrder: {
+              create: [
+                {
+                  time: new Date(
+                    Date.parse(new Date()) + 30 * 1000 * 60 * 60 * 24
+                  ).toJSON(),
+                  title: "concert" + i,
+                  category: "concerts",
+                  description: "test-" + i,
+                  price: i,
+                  quantity: i,
+                  upload: "1700626869150.png",
+                  address1: "1074 albany park dr",
+                  address2: " ",
+                  city: "fort mill",
+                  zip: "29715",
+                  state: "SC",
+                  country: "US",
+                },
+              ],
+            },
+            receipt: {
+              create: {
+                subTotal: i * i,
+                saleTax: i * i * 0.12,
+                total: i * i + i * i * 0.12,
+              },
+            },
+          },
         },
         solditem: {
           create: [

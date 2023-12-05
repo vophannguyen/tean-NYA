@@ -2,30 +2,44 @@ import { useDispatch } from "react-redux";
 import CartItem from "./CartItem";
 import { useGetCartQuery } from "./cartSlice";
 import OrderSummary from "./OrderSummary";
-
-/** Show all events add to cart and check out  */
+import "./cart.less";
+/** Show all events  in cart and check out  */
 export default function Cart() {
-  // used RTK to fetch ticket it added to cart
-  const { isloading, isError, data } = useGetCartQuery();
-  if (isloading) {
+  // used RTK to fetch ticket in cart
+  const { isLoading, isError, data } = useGetCartQuery();
+  if (isLoading) {
     return <h1>Loading....</h1>;
   }
   if (isError) {
     return;
   }
-
   /** check if there are data => render all events ,else Cart empty
    * CartItem will  single view item
    * OrderSummary will show subtotal ,sale tax and total
    */
   return (
-    <section>
+    <section className="cart-container">
       {data?.message && <h1>Cart empty</h1>}
-      {data?.data &&
-        data.data.map((item) => {
-          return <CartItem reservation={item} key={item.id} />;
-        })}
-      {data?.data && <OrderSummary data={true} />}
+      <h1 className="cart-title">Your Cart</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Events</th>
+            <th>Time</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+            <th></th>
+          </tr>
+        </thead>
+        {data?.data &&
+          data.data.map((item) => {
+            return (
+              <CartItem data={item} key={item.id} cartTime={item.createAt} />
+            );
+          })}
+      </table>
+      {data?.data && <OrderSummary show={true} />}
     </section>
   );
 }

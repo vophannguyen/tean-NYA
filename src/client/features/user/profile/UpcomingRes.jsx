@@ -1,14 +1,11 @@
+import { useState } from "react";
 import { formatDate } from "../../utils/helpers";
 import { useFetchUserReservationHistoryQuery } from "../userSlice";
 
 export default function UpcomingRes() {
   // use RTK to fetch data
-  const {
-    data: upcomingReservations,
-    isLoading,
-    error,
-  } = useFetchUserReservationHistoryQuery();
-
+  const { data, isLoading, error } = useFetchUserReservationHistoryQuery();
+  //use hook
   ///waiting data
   if (isLoading) {
     return;
@@ -19,13 +16,13 @@ export default function UpcomingRes() {
     );
   }
   // end waiting
-
+  console.log("up", data);
   /**
    * hanlde up coming reservation or ticket
    * compare time of ticket with current time
    * @returns []
    */
-  const upcoming = upcomingReservations.data.filter((item) => {
+  const upcoming = data.itemOrder.filter((item) => {
     return Date.parse(new Date(item.time)) > Date.now() ? true : false;
   });
 
@@ -37,8 +34,8 @@ export default function UpcomingRes() {
         <ul>
           {upcoming.map((reservation) => (
             <li key={reservation.id}>
-              {reservation.title}{" "}
-              <span>Time: {formatDate(reservation.time)}</span>
+              {reservation.title}
+              <span> Time: {formatDate(reservation.time)}</span>
             </li>
           ))}
         </ul>

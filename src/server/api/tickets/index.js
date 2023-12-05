@@ -29,15 +29,17 @@ router.post("/create", imageUpload.single("upload"), async (req, res, next) => {
       !time ||
       !category ||
       !req.file ||
-      !quantity
+      !quantity ||
+      !address1 ||
+      !city ||
+      !state ||
+      !zip ||
+      !country
     ) {
       res.json({ error: "all information required" });
       return;
     }
-    if (!address1 || !city || !state || !zip || !country) {
-      res.json({ error: "Location information is required" });
-      return;
-    }
+
     //store upload image
     const { filename } = req.file;
     const upload = filename;
@@ -52,16 +54,12 @@ router.post("/create", imageUpload.single("upload"), async (req, res, next) => {
         quantity,
         userId: res.locals.user.id,
         time: new Date(time),
-        location: {
-          create: {
-            address1,
-            address2,
-            city,
-            state,
-            zip,
-            country,
-          },
-        },
+        address1,
+        address2,
+        city,
+        state,
+        zip,
+        country,
       },
     });
     //new tickit undefind return
@@ -69,11 +67,8 @@ router.post("/create", imageUpload.single("upload"), async (req, res, next) => {
       return;
     }
     // find location by item id
-    const location = await prisma.location.findFirst({
-      where: { itemId: newTicket.id },
-    });
     ///send to fontend
-    res.json({ item: newTicket, location });
+    res.json({ data: newTicket });
   } catch (err) {
     next(err);
   }
@@ -104,7 +99,7 @@ router.get("/", async (req, res, next) => {
 router.get("/reservation", async (req, res, next) => {
   try {
     const allTicket = await prisma.item.findMany({
-      where: { category: "reservation" },
+      where: { category: "reservation", isReservation: false },
     });
     ///check if we have reservation ticket
     if (allTicket.length <= 0) {
@@ -126,7 +121,7 @@ router.get("/reservation", async (req, res, next) => {
 router.get("/movies", async (req, res, next) => {
   try {
     const allTicket = await prisma.item.findMany({
-      where: { category: "movies" },
+      where: { category: "movies", isReservation: false },
     });
     if (allTicket.length <= 0) {
       res.json({ message: "no movies ticket" });
@@ -147,7 +142,7 @@ router.get("/movies", async (req, res, next) => {
 router.get("/concert", async (req, res, next) => {
   try {
     const allTicket = await prisma.item.findMany({
-      where: { category: "concert" },
+      where: { category: "concert", isReservation: false },
     });
     if (allTicket.length <= 0) {
       res.json({ message: "no concert ticket" });
@@ -167,6 +162,7 @@ router.get("/concert", async (req, res, next) => {
 router.delete("/delete/:id", async (req, res, next) => {
   try {
     const id = +req.params.id;
+    console.log(id);
     if (!id) {
       res.json({ error: "Id not found" });
     }
@@ -192,15 +188,12 @@ router.get("/:id", async (req, res, next) => {
     const ticket = await prisma.item.findFirst({
       where: { id },
     });
-    const location = await prisma.location.findFirst({
-      where: { itemId: id },
-    });
     // find path of image and update upload
     if (!ticket) {
       res.json({ error: "Id not found" });
     }
     ticket.upload = imageFile(ticket.upload);
-    res.json({ data: ticket, location: location });
+    res.json({ data: ticket });
   } catch (err) {
     next(err);
   }

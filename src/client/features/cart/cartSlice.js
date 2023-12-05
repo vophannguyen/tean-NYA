@@ -8,13 +8,13 @@ const cartApi = api.injectEndpoints({
   endpoints: (builder) => ({
     /// get all item in cart
     getCart: builder.query({
-      query: () => "user/reservation",
+      query: () => "user/cart",
       providesTags: ["Cart"],
     }),
     // delete item in cart
     deleteCart: builder.mutation({
       query: (id) => ({
-        url: `/user/reservation/${id}`,
+        url: `/user/cart/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Cart", "Tickets"],
@@ -22,7 +22,7 @@ const cartApi = api.injectEndpoints({
     // add item to cart
     addCart: builder.mutation({
       query: (id) => ({
-        url: `/user/reservation/${id}`,
+        url: `/user/cart/${id}`,
         method: "POST",
       }),
       invalidatesTags: ["Cart", "Tickets"],
@@ -42,7 +42,7 @@ const cartApi = api.injectEndpoints({
         url: `tickets/delete/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["Cart", "Tickets"],
+      invalidatesTags: ["Cart", "Tickets", "Res"],
     }),
     // add payment method
     addPayment: builder.mutation({
@@ -52,60 +52,12 @@ const cartApi = api.injectEndpoints({
         body: data,
       }),
     }),
+    getReciept: builder.query({
+      query: (id) => `/user/order/reciept/${id}`,
+    }),
   }),
 });
 
-// store cart information
-const cartSlice = createSlice({
-  name: "cart",
-  initialState: {
-    cart: [],
-    originPrice: 0,
-    saleTax: 0,
-    total: 0,
-    receipt: {
-      cart: [],
-      originPrice: 0,
-      total: 0,
-      saleTax: 0,
-    },
-  },
-  //Reducers
-  reducers: {
-    // get current time when user add to cart, it need to handle countdown
-    addCurrentTime(state, action) {
-      state.currentTime = action.payload;
-    },
-    // User add ticket : add to cart , cal
-    addTicket: (state, action) => {
-      state.cart.push(action.payload);
-      state.originPrice += action.payload.data.price;
-      state.saleTax = state.originPrice * 0.075;
-      state.total = state.originPrice + state.saleTax;
-    },
-    // add all information to receipt before reset to default
-    resetCart: (state) => {
-      state.receipt.cart[0] = [...state.cart];
-      state.receipt.originPrice = state.originPrice;
-      state.receipt.total = state.total;
-      state.receipt.saleTax = state.saleTax;
-      state.originPrice = 0;
-      state.saleTax = 0;
-      state.total = 0;
-      state.cart = [];
-    },
-    // delete item in Cart, and cal again
-    deleteItem(state, action) {
-      const item = state.cart.find((item) => item.data.id === action.payload);
-      state.cart = state.cart.filter((item) => item.data.id !== action.payload);
-      state.cart.length <= 0
-        ? (state.originPrice = 0)
-        : (state.originPrice -= item.data.price);
-      state.saleTax = state.originPrice * 0.075;
-      state.total = state.originPrice + state.saleTax;
-    },
-  },
-});
 export const {
   useGetCartQuery,
   useAddCartMutation,
@@ -113,7 +65,8 @@ export const {
   useAddOrderMutation,
   useDeleteTicketMutation,
   useAddPaymentMutation,
+  useGetRecieptQuery,
 } = cartApi;
-export const { addTicket, deleteItem, resetCart, addCurrentTime } =
-  cartSlice.actions;
-export default cartSlice.reducer;
+// export const { addTicket, deleteItem, resetCart, addCurrentTime } =
+//   cartSlice.actions;
+// export default cartSlice.reducer;

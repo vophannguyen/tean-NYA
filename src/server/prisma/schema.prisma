@@ -4,6 +4,7 @@ generator client {
 
 datasource db {
   provider = "sqlite"
+  // provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -26,9 +27,23 @@ model Order{
   userId Int
   user User @relation(fields: [userId],references: [id],onDelete: Cascade)
   createAt DateTime @default(now())
+  itemOrder ItemOrder[]
+  receipt Receipt []
+}
+model Receipt{
+  id Int @id @default(autoincrement())
+  subTotal Float
+  saleTax Float
+  total Float
+  orderId Int
+  order Order @relation(fields: [orderId],references: [id],onDelete: Cascade)
+}
+model ItemOrder{
+  id Int @id @default(autoincrement())
   title String
   category String
   description String
+  quantity Int
   price Float @default(0.0)
   upload String?
   time DateTime
@@ -38,6 +53,8 @@ model Order{
   state String
   zip String
   country String
+  orderId Int
+  order Order @relation(fields: [orderId],references: [id],onDelete: Cascade)
 }
 model SoldItem{
   id Int @id @default(autoincrement())
@@ -70,18 +87,6 @@ model Reservation{
   itemId Int
   item Item @relation(fields: [itemId],references: [id],onDelete: Cascade)
 }
-model Location {
-  id Int @id @default(autoincrement())
-  address1 String
-  address2 String @default(" ")
-  city String
-  state String
-  zip String
-  country String
-  itemId Int 
-  item  Item @relation(fields: [itemId], references: [id],onDelete: Cascade)
-
-}
 model Item {
   id          Int     @id @default(autoincrement())
   createdAt DateTime @default(now())
@@ -93,7 +98,12 @@ model Item {
   isReservation Boolean @default(false)
   time DateTime
   quantity Int 
-  location Location[]
+  address1 String
+  address2 String @default(" ")
+  city String
+  state String
+  zip String
+  country String
   reservation Reservation[]
   userId      Int
   user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)

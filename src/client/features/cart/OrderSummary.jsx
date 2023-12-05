@@ -1,22 +1,31 @@
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-/** Show how much user should pay */
-export default function OrderSummary({ data }) {
-  // used Hook to get data from cartSlice, to navigate
-  const cart = useSelector((state) => state.cart);
-  const navigate = useNavigate();
+import { useGetCartQuery } from "./cartSlice";
 
+/** Show how much user should pay */
+export default function OrderSummary({ show }) {
+  const navigate = useNavigate();
+  // used RTK to fetch ticket it added to cart
+  const { isLoading, isError, data } = useGetCartQuery();
+  if (isLoading) {
+    return <h1>Loading....</h1>;
+  }
+  if (isError) {
+    return;
+  }
+  // used Hook to get data from cartSlice, to navigate
   //click checkout will direct to process check out
   function handleCheckout() {
     navigate("/cart/checkout");
   }
   return (
-    <>
-      <h1>Order Summary</h1>
-      <p>Original Price: {cart.originPrice}</p>
-      <p>Sale Tax :{cart.saleTax}</p>
-      <p>Total: {cart.total}</p>
-      {data && <button onClick={handleCheckout}>Check Out</button>}
-    </>
+    data && (
+      <>
+        <h1>Order Summary</h1>
+        <p>Original Price: {data.orderSummary.subTotal}</p>
+        <p>Sale Tax :{data.orderSummary.saleTax}</p>
+        <p>Total: {data.orderSummary.total}</p>
+        {show && <button onClick={handleCheckout}>Check Out</button>}
+      </>
+    )
   );
 }

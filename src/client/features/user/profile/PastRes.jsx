@@ -16,12 +16,13 @@ export default function PastRes() {
       <p>Error fetching your upcoming reservations. Please try again later.</p>
     );
   }
+  console.log(upcomingReservations);
   /**
    * hanlde pass reservation or ticket
    * compare time of ticket with current time
    * @returns []
    */
-  const upcoming = upcomingReservations.data.filter((item) => {
+  const upcoming = upcomingReservations.itemOrder.filter((item) => {
     return Date.parse(new Date(item.time)) < Date.now() ? true : false;
   });
 

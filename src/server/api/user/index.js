@@ -29,21 +29,31 @@ router.get("/profile", async (req, res, next) => {
 ////////////////////////////////end//
 
 //start/// get user reservation
-router.get("/reservation", async (req, res, next) => {
+router.get("/cart", async (req, res, next) => {
   try {
-    const reservation = await prisma.reservation.findMany({
+    const cart = await prisma.reservation.findMany({
       where: {
         userId: res.locals.user.id,
       },
+      include: {
+        item: true,
+      },
     });
     // check we have any order in Cart
-    if (!reservation.length > 0) {
+    if (!cart.length > 0) {
       res.json({
         message: `User ${res.locals.user.firstName} dont have reservation`,
       });
       return;
     }
-    res.json({ data: reservation });
+    // cal order summary
+    const orderSummary = { subTotal: 0, saleTax: 0, total: 0 };
+    cart.forEach((data) => {
+      orderSummary.subTotal += data.item.price * data.item.quantity;
+    });
+    orderSummary.saleTax = orderSummary.subTotal * 0.12;
+    orderSummary.total = orderSummary.subTotal + orderSummary.saleTax;
+    res.json({ data: cart, orderSummary });
   } catch (err) {
     next(err);
   }
@@ -52,20 +62,39 @@ router.get("/reservation", async (req, res, next) => {
 
 //Start////////////Get order history
 router.get("/order", async (req, res, next) => {
+  let itemOrder = [];
   try {
     const order = await prisma.order.findMany({
       where: { userId: res.locals.user.id },
+      include: { itemOrder: true, receipt: true },
     });
-    res.json({ data: order });
+    order.forEach((data) => {
+      // console.log(data.itemOrder[0]);
+      itemOrder.push(data.itemOrder[0]);
+    });
+    console.log(itemOrder);
+    res.json({ data: order, itemOrder });
+  } catch (err) {
+    next(err);
+  }
+});
+// get receipt of order
+router.get("/order/reciept/:id", async (req, res, next) => {
+  try {
+    const id = +req.params.id;
+    const receipt = await prisma.receipt.findFirst({
+      where: { orderId: id },
+    });
+    res.json({ receipt });
   } catch (err) {
     next(err);
   }
 });
 ///////////////////////////////end///
-
 //start/////Create order history
 router.post("/order", async (req, res, next) => {
   try {
+    console.log(req.body);
     const {
       title,
       category,
@@ -78,9 +107,10 @@ router.post("/order", async (req, res, next) => {
       state,
       country,
       zip,
-    } = req.body;
+    } = req.body.cart[0];
     //covert string to int
-    const price = +req.body.price;
+    const price = +req.body.cart[0].price;
+    const quantity = +req.body.cart[0].quantity;
     // check if we have all information
     if (
       !title ||
@@ -93,7 +123,9 @@ router.post("/order", async (req, res, next) => {
       !city ||
       !state ||
       !zip ||
-      !country
+      !country ||
+      !quantity ||
+      req.body.reciep
     ) {
       res.json({ message: "Missing information" });
       return;
@@ -101,19 +133,31 @@ router.post("/order", async (req, res, next) => {
     ///create order
     const order = await prisma.order.create({
       data: {
-        title,
-        category,
-        description,
-        upload,
-        price,
-        time: new Date(time),
-        address1,
-        address2,
-        city,
-        state,
-        zip,
-        country,
         userId: res.locals.user.id,
+        itemOrder: {
+          create: {
+            title,
+            category,
+            description,
+            upload,
+            price,
+            quantity,
+            time: new Date(time),
+            address1,
+            address2,
+            city,
+            state,
+            zip,
+            country,
+          },
+        },
+        receipt: {
+          create: {
+            subTotal: +req.body.receipt.subTotal,
+            saleTax: +req.body.receipt.saleTax,
+            total: +req.body.receipt.total,
+          },
+        },
       },
     });
     res.json({ data: order });
@@ -222,13 +266,16 @@ router.post("/solditem", async (req, res, next) => {
 ////////////////////////////end
 
 //add sticket (item) to Cart
-router.post("/reservation/:itemId", async (req, res, next) => {
+router.post("/cart/:itemId", async (req, res, next) => {
   try {
     //user params to get itemID
     const itemId = +req.params.itemId;
     //create new rervation witht userid and item id
-    const reservation = await prisma.reservation.create({
+    const cart = await prisma.reservation.create({
       data: { userId: res.locals.user.id, itemId },
+      include: {
+        item: true,
+      },
     });
     //update that  isResvation: true in Item table
     await prisma.item.update({
@@ -240,8 +287,8 @@ router.post("/reservation/:itemId", async (req, res, next) => {
       },
     });
     //check if revevation true then res
-    if (reservation) {
-      res.json({ message: "this is add reservation", data: reservation });
+    if (cart) {
+      res.json({ message: "this is add reservation", data: cart });
     }
   } catch (err) {
     next(err);
@@ -250,7 +297,7 @@ router.post("/reservation/:itemId", async (req, res, next) => {
 ////////////////////end
 
 //delete ticket (item)
-router.delete("/reservation/:id", async (req, res, next) => {
+router.delete("/cart/:id", async (req, res, next) => {
   try {
     //check id
     if (!req.params.id) {
@@ -259,7 +306,7 @@ router.delete("/reservation/:id", async (req, res, next) => {
     }
     const id = +req.params.id;
     //delete with id
-    const deletReservation = await prisma.reservation.delete({
+    const deletCart = await prisma.reservation.delete({
       where: { id },
     });
     await prisma.item.update({
@@ -268,7 +315,7 @@ router.delete("/reservation/:id", async (req, res, next) => {
         isReservation: false,
       },
     });
-    res.json({ message: "this is delete resvation", data: deletReservation });
+    res.json({ message: "this is delete resvation", data: deletCart });
   } catch (err) {
     next(err);
   }
