@@ -1,0 +1,24 @@
+.login {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 5%;
+}
+.login-heading {
+  margin-bottom: 1em;
+}
+.login-form {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+}
