@@ -8,7 +8,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { useAddSoldItemMutation } from "../user/userSlice";
-
+import "./process.less";
 /** show payment form
  * when user click purchase :
  * - delete all item in cart
@@ -96,10 +96,9 @@ export default function ProcessCheckout() {
     return;
   }
   return (
-    <>
-      <h1>Check out</h1>
-      <form onSubmit={handlePurchase}>
-        <h2>Payment Method</h2>
+    <section className="process-container">
+      <form onSubmit={handlePurchase} className="process-payment">
+        <h1>Payment Method</h1>
         <select name="method" id="cars">
           <option value="credit card">Credit Card</option>
 
@@ -125,9 +124,11 @@ export default function ProcessCheckout() {
           maxLength={7}
           placeholder="MM/YY"
         />
-        <button>Complete Purchase</button>
+        <button className="process-botton">Complete Purchase</button>
       </form>
-      <OrderSummary show={false} />
-    </>
+      <article>
+        <OrderSummary show={false} />
+      </article>
+    </section>
   );
 }
