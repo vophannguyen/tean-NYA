@@ -1,35 +1,42 @@
-@bg: #ffffff;
-@text: #333;
-@link-color: #428bca; // sea blue
-@link-color-hover: darken(@link-color, 10%);
-
-@font-face {
-  font-family: Inter;
-  src: url("./assets/Inter.ttf");
-}
-
-:root {
-  font-family: Inter, sans-serif;
-
-  color: @text;
-  background-color: @bg;
-  display: flex;
-  justify-content: center;
+//reset default styling
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
   list-style: none;
 }
 
 body {
   background-color: #ffffff;
-  // width: 100vw;
+  width: 1500px;
 }
 
 a {
+  color: inherit;
   text-decoration: none;
-  cursor: pointer;
+}
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+html {
+  width: 100vw;
+  height: 100vw;
+}
+
+ul,
+li {
+  list-style: none;
+  list-style-type: none;
 }
