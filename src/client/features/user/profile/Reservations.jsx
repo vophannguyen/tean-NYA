@@ -1,12 +1,10 @@
 import PastRes from "./PastRes";
 import UpcomingRes from "./UpcomingRes";
-import "../profile.css"
+import "../profile.less"
 export default function Reservations() {
     return (
         <section>
-            <h1>Reservations</h1>
             <UpcomingRes />
-            <PastRes />
         </section>
     );
 }
