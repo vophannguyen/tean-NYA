@@ -32,7 +32,9 @@ export default function Navbar() {
         ) : (
           <>
             <li>
-              <NavLink to="/login">List Event</NavLink>
+              <NavLink to="/login">
+                <button>List An Event</button>
+              </NavLink>
             </li>
             <li>
               <NavLink to="/login">

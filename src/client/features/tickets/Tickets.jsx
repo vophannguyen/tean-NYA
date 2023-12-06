@@ -6,14 +6,24 @@ import {
 } from "./ticketSlice";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import Map from "./Map";
+import { formatDate } from "../utils/helpers.js";
+import "./tickets.less";
+// import Map from "./Map";
 
 //Basic functionality setup
 const TicketCard = ({ ticket }) => {
+  const date = formatDate(ticket.time);
+
   return (
-    <li>
-      <Link to={`/tickets/${ticket.id}`}>{ticket.title}</Link>
-    </li>
+    <Link to={`/tickets/${ticket.id}`}>
+      <li key={ticket.id} className="ticket-card">
+        <section className="info">
+          <h2>{ticket.title}</h2>
+          <p>{date} * "venue" </p>
+          <p>Quantity: {ticket.quantity}</p>
+        </section>
+      </li>
+    </Link>
   );
 };
 
@@ -54,75 +64,70 @@ export default function Tickets() {
   }
   //need to fix rerendering for every click on the same filter
   //(click movies once filter, click movies again make sure does not refilter)
-  const onSortByMovie = () => {
-    setFiltered(movies);
-    setIsSorted(true);
+  const handleCategory = (e) => {
+    if(e.target.value === "movies") {
+      setFiltered([...movies]);
+      console.log(filtered)
+      setIsSorted(true);
+    } else if (e.target.value === "concerts") {
+      setFiltered(concerts);
+      setIsSorted(true);
+    } else if (e.target.value === "restaurants") {
+      setFiltered(res);
+      setIsSorted(true);
+    } else {
+      setIsSorted(false);
+    }
   };
-  const onSortByConcert = () => {
-    setFiltered(concerts);
-    setIsSorted(true);
-  };
-
-  const onSortByRes = () => {
-    setFiltered(res);
-    setIsSorted(true);
-  };
-
-  const onUndoSort = () => {
-    setIsSorted(false);
-  };
-
-  const onFilterLocation = () => {};
 
   return (
     <section>
-      <form onSubmit={handleSearch}>
+      {/* <form onSubmit={handleSearch}>
         <input type="text" placeholder="Search.." name="search" />
-      </form>
-      <h1>
-        Events in New York City
-        <span>
+      </form> */}
+      <header>
+        <h1>New York City <span>
           <select
-            className="location-filter"
-            onChange={onFilterLocation}
-            name="locationfilter"
-            type="text"
-          >
-            <option value="New York City">New York City</option>
-            <option value="Manhattan">Manhattan</option>
-            <option value="Brooklyn">Brooklyn</option>
-            <option value="Queens">Queens</option>
-            <option value="Bronx">Bronx</option>
-            <option value="Staten Island">Staten Island</option>
-          </select>
-        </span>
-      </h1>
-      <ul>
-        <li>
-          <button onClick={onSortByMovie}>Movies</button>
-        </li>
-        <li>
-          <button onClick={onSortByConcert}>Concerts</button>
-        </li>
-        <li>
-          <button onClick={onSortByRes}>Reservations</button>
-        </li>
-        {isSorted && (
-          <li>
-            <button onClick={onUndoSort}>All Tickets</button>
-          </li>
-        )}
-      </ul>
-      <ul>
-        {!isSorted
-          ? searchTicket?.map((ticket) => (
-              <TicketCard ticket={ticket} key={ticket.id} />
-            ))
-          : filtered?.map((ticket) => (
-              <TicketCard ticket={ticket} key={ticket.id} />
-            ))}
-      </ul>
-      <aside>{/* <Map /> */}</aside>
+                className="category-filter dropdown"
+                name="categoryfilter"
+                type="text"
+                onChange={handleCategory}
+              >
+                <option value="events">Events</option>
+                <option value="movies">Movies</option>
+                <option value="concerts">Concerts</option>
+                <option value="restaurants">Restaurants</option>
+            </select>
+          </span>
+        </h1>
+      </header>
+      <section className="content">
+        <section className="left">
+          <section className="sort">
+            <select
+              className="category-filter"
+              name="categoryfilter"
+              type="text"
+            >
+              <option value="today">Today</option>s
+              <option value="tomorrow">Tomorrow</option>
+              <option value="week">This Week</option>
+            </select>
+          </section>
+          <ul className="tickets">
+            {!isSorted
+              ? searchTicket?.map((ticket) => (
+                  <TicketCard ticket={ticket} key={ticket.id} />
+                ))
+              : filtered?.map((ticket) => (
+                  <TicketCard ticket={ticket} key={ticket.id} />
+                ))}
+          </ul>
+        </section>
+        <aside>
+          <div className="map">insert map</div>
+        </aside>
+      </section>
     </section>
   );
 }
