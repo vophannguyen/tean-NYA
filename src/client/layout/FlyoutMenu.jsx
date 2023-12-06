@@ -5,10 +5,11 @@ import { logout } from "../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import MenuIcon from "@mui/icons-material/Menu";
-import ClearIcon from "@mui/icons-material/Clear";
+import { useFetchUserAccountQuery } from "../features/user/userSlice";
 import "./flyoutMenu.less";
 export default function FlyoutMenu({ token }) {
   const [isOpen, setIsOpen] = useState(false);
+  const { data: me } = useFetchUserAccountQuery();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -23,10 +24,8 @@ export default function FlyoutMenu({ token }) {
 
   const Flyout = (
     <section className="flyout" onMouseLeave={handleMouseLeave}>
+      <h3 className="title">Explore</h3>
       <ul>
-        <li>
-          <p>Home</p>
-        </li>
         <li>
           <Link to="/tickets">All Events</Link>
         </li>
@@ -37,21 +36,20 @@ export default function FlyoutMenu({ token }) {
           <Link to="/concerts">Concerts</Link>
         </li>
         <li>
-          <Link to="/">Theatre</Link>
-        </li>
-        <li>
           <Link to="/reservations">Restaurants</Link>
         </li>
         <li>
           <Link to="/">Activites</Link>
         </li>
       </ul>
+      <hr />
+      <h3 className="title">Account</h3>
       <ul>
-        <li>
-          <p>Account</p>
-        </li>
         {token ? (
           <>
+            <li>
+            Welcome, {me?.data.firstName}
+            </li>
             <li>
               <Link to="/user/profile">My Profile</Link>
             </li>
@@ -73,10 +71,9 @@ export default function FlyoutMenu({ token }) {
           </>
         )}
       </ul>
+      <hr />
+      <h3 className="title">Support</h3>
       <ul>
-        <li>
-          <p>Help & Support</p>
-        </li>
         <li>
           <Link to="/about">About</Link>
         </li>
@@ -92,10 +89,12 @@ export default function FlyoutMenu({ token }) {
 
   return (
     <>
-      <input type="checkbox" id="checkbox" name="checkbox" />
-      <label htmlFor="checkbox" className="toggle" onMouseMove={handleMenu}>
-        {!isOpen && <MenuIcon />}
+    <div className="menu" onMouseMove={handleMenu}>
+    <input type="checkbox" id="checkbox" name="checkbox" />
+      <label htmlFor="checkbox">
+        <MenuIcon />
       </label>
+    </div>
       {isOpen && Flyout}
     </>
   );
