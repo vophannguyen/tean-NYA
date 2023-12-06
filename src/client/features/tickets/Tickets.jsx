@@ -38,7 +38,6 @@ export default function Tickets() {
   const [newTicket, setNewTicket] = useState(tickets);
   const [isSearch, setIsSearch] = useState(false);
   let searchTicket = null;
-  console.log(tickets);
 
   if (isError) {
     console.log("error");
@@ -65,51 +64,55 @@ export default function Tickets() {
   }
   //need to fix rerendering for every click on the same filter
   //(click movies once filter, click movies again make sure does not refilter)
-  const onSortByMovie = () => {
-    setFiltered(movies);
-    setIsSorted(true);
+  const handleCategory = (e) => {
+    if(e.target.value === "movies") {
+      setFiltered([...movies]);
+      console.log(filtered)
+      setIsSorted(true);
+    } else if (e.target.value === "concerts") {
+      setFiltered(concerts);
+      setIsSorted(true);
+    } else if (e.target.value === "restaurants") {
+      setFiltered(res);
+      setIsSorted(true);
+    } else {
+      setIsSorted(false);
+    }
   };
-  const onSortByConcert = () => {
-    setFiltered(concerts);
-    setIsSorted(true);
-  };
-
-  const onSortByRes = () => {
-    setFiltered(res);
-    setIsSorted(true);
-  };
-
-  const onUndoSort = () => {
-    setIsSorted(false);
-  };
-
 
   return (
     <section>
-      <form onSubmit={handleSearch}>
+      {/* <form onSubmit={handleSearch}>
         <input type="text" placeholder="Search.." name="search" />
-      </form>
+      </form> */}
+      <header>
+        <h1>New York City <span>
+          <select
+                className="category-filter dropdown"
+                name="categoryfilter"
+                type="text"
+                onChange={handleCategory}
+              >
+                <option value="events">Events</option>
+                <option value="movies">Movies</option>
+                <option value="concerts">Concerts</option>
+                <option value="restaurants">Restaurants</option>
+            </select>
+          </span>
+        </h1>
+      </header>
       <section className="content">
         <section className="left">
-          <header>
-            <h1>
-              Upcoming Events
-              <select
-                className="location-filter"
-                name="locationfilter"
-                type="text"
-              >
-                <option value="NYC">Today</option>s
-                <option value="Boston">Tomorrow</option>
-                <option value="LA">This Week</option>
-              </select>
-            </h1>
-          </header>
           <section className="sort">
-            <button onClick={onUndoSort}>All Tickets</button>
-            <button onClick={onSortByMovie}>Movies</button>
-            <button onClick={onSortByConcert}>Concerts</button>
-            <button onClick={onSortByRes}>Reservations</button>
+            <select
+              className="category-filter"
+              name="categoryfilter"
+              type="text"
+            >
+              <option value="today">Today</option>s
+              <option value="tomorrow">Tomorrow</option>
+              <option value="week">This Week</option>
+            </select>
           </section>
           <ul className="tickets">
             {!isSorted
