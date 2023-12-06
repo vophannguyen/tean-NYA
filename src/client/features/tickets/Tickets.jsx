@@ -103,7 +103,7 @@ export default function Tickets() {
       </header>
       <section className="content">
         <section className="left">
-          <section className="sort">
+          {/* <section className="sort">
             <select
               className="category-filter"
               name="categoryfilter"
@@ -113,7 +113,7 @@ export default function Tickets() {
               <option value="tomorrow">Tomorrow</option>
               <option value="week">This Week</option>
             </select>
-          </section>
+          </section> */}
           <ul className="tickets">
             {!isSorted
               ? searchTicket?.map((ticket) => (
