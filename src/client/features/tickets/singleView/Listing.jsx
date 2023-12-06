@@ -53,7 +53,7 @@ export default function Listing() {
           <p>{ticket.data.description}</p>
           {showMoreInfo && (
             <>
-              <p>More Info</p>
+              {ticket.data.description}
             </>
           )}
           <button
