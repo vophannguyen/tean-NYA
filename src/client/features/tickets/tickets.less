@@ -1,3 +1,6 @@
+section {
+    width: 100%;
+}
 header {
   text-align: center;
   padding-bottom: 3rem;
@@ -12,7 +15,8 @@ header {
 }
 .content {
   display: flex;
-  justify-content: space-around;
+  padding: 4rem;
+  column-gap: 7rem;
 
   .sort {
     display: flex;
@@ -21,16 +25,36 @@ header {
   .left {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    flex: 1 1 50%;
 
     ul {
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
+      gap: 2.5rem;
+      
+      .ticket-card {
+        line-height: 1.5;
+        width: 100%;
+        color: #0e0c0c;
+        border: 1px solid #d6d6d6;
+        background-color :rgb(255, 252, 248);
+            
+            h2 {
+                padding: 2rem;
+                font-size: 1.8rem;
+            }
+            section {
+                display: flex;
 
-      li {
-        padding: 0.8rem;
-      }
+                p {
+                    padding: 1rem;
+                }
+                h2:first-child {
+                    border-bottom: 1px solid #d6d6d6;
+                }
+            }
+        }
+
 
       a {
         text-decoration: none;
@@ -38,14 +62,10 @@ header {
     }
   }
 
-  .ticket-card {
-    color: #0e0c0c;
-    background-color: #ff5356c5;
-  }
   .map {
     background-color: #ff5356;
-    width: 500px;
-    height: 500px;
+    width: 600px;
+    height: 800px;
   }
 }
 

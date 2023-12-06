@@ -1,6 +1,7 @@
 import { useCreateTicketMutation } from "../ticketSlice";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./form.less";
 // import LocationInput from "./LocationInput";
 
 /** Form for uploading a new listing accessible only to those logged in*/
@@ -13,7 +14,7 @@ export default function Upload() {
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-
+    console.log(formData);
     try {
       const response = await createTicket(formData).unwrap();
       console.log(response);
@@ -30,35 +31,22 @@ export default function Upload() {
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <legend>Upload A Ticket</legend>
-      <label>
-        Category
+    <form onSubmit={onSubmit} className="upload-form">
+      <legend>List Event Tickets</legend>
+      <section className="input-group">
         <select name="category" type="text" required>
           <option value="movie">Movie</option>
           <option value="concert">Concert</option>
           <option value="reservation">Reservation</option>
         </select>
-      </label>
-      <label>
-        Title
-        <input name="title" type="text" placeholder="Enter a title" required />
-      </label>
-      <label>
-        Description
+        <input name="title" type="text" placeholder="Title" required />
         <input
           name="description"
           type="text"
-          placeholder="Enter a description"
+          placeholder="Description"
           required
         />
-      </label>
-      <label>
-        Price
-        <input name="price" type="number" placeholder="Enter ticket price" />
-      </label>
-      <label>
-        Quantity
+        <input name="price" type="number" placeholder="Price per ticket" />
         <select name="quantity" type="number">
           <option value="1">1</option>
           <option value="2">2</option>
@@ -67,9 +55,6 @@ export default function Upload() {
           <option value="5">5</option>
           <option value="6">6</option>
         </select>
-      </label>
-      <label>
-        Date & Time
         <input
           type="datetime-local"
           name="time"
@@ -77,41 +62,23 @@ export default function Upload() {
           max="2025-01-01T00:00"
           required
         />
-      </label>
-      <label>
-        Upload a ticket
         <input type="file" name="upload" required />
-      </label>
-      <label>
-        Address
         <input
           type="text"
           name="address1"
-          placeholder="e.g., 123 Main St"
-          required
+          placeholder="Street Adress e.g., 123 Main St"
+          required 
         />
-      </label>
-      <label>
-        City
-        <input type="text" name="city" placeholder="e.g., Brooklyn" required />
-      </label>
-      <label>
-        State
-        <input type="text" name="state" placeholder="e.g., NY" required />
-      </label>
-      <label>
-        Zip
-        <input type="text" name="zip" placeholder="e.g., 11222" required />
-      </label>
-      <label>
-        Country
-        <input type="text" name="country" placeholder="e.g., USA" required />
-      </label>
+        <input type="text" name="city" placeholder="City e.g., Brooklyn" required />
+        <input type="text" name="state" placeholder="State e.g., NY" required />
+        <input type="text" name="zip" placeholder="Zip Code e.g., 1211" required />
+        <input type="text" name="country" placeholder="Country e.g., USA" required />
+      </section>
       {/* <label>
         Location
        <LocationInput />
       </label> */}
-      <button type="submit">Create Listing</button>
+      <button type="submit">Upload</button>
       {message && <p>{message}</p>}
     </form>
   );

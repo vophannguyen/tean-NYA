@@ -17,11 +17,12 @@ const TicketCard = ({ ticket }) => {
   return (
     <Link to={`/tickets/${ticket.id}`}>
       <li key={ticket.id} className="ticket-card">
-        <section className="info">
           <h2>{ticket.title}</h2>
-          <p>{date} * "venue" </p>
-          <p>Quantity: {ticket.quantity}</p>
-        </section>
+          <section>
+            <p>{date}</p>
+            <p>location</p>
+            <p>{ticket.quantity}</p>
+          </section>
       </li>
     </Link>
   );
