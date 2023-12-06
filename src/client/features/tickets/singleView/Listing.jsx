@@ -2,7 +2,8 @@ import { useDispatch } from "react-redux";
 import { useAddCartMutation } from "../../cart/cartSlice";
 import { useGetByIdQuery } from "../ticketSlice";
 import { useParams, useNavigate } from "react-router-dom";
-import "./Listing.css"
+import "./listing.less";
+import { useState } from "react";
 
 /** Allows user to read, update, and delete a task */
 export default function Listing() {
@@ -11,6 +12,7 @@ export default function Listing() {
   const { id } = useParams();
   const { data: ticket, isLoading, isError } = useGetByIdQuery(id);
   const dispatch = useDispatch();
+  const [showMoreInfo, setShowMoreInfo] = useState(false);
 
   //waiting data
   if (isLoading) {
@@ -43,22 +45,34 @@ export default function Listing() {
   //details needed for single view listing = category of the listing (movie, concert, reservation)
   return (
     <div className="single-ticket">
-      {ticket ? (
-        <section>
-          <img src="image.png"></img>
-          <article>
-            <h1 className="listing-title">{ticket.data.title}</h1>
-            <p>{ticket.data.time}</p>
-            <p>{ticket.data.description}</p>
-            <button className="listing-button" onClick={handleCart}>Add to Cart</button>
-          </article>
-          <figure>
-            <p>geolocational map here?</p>
-          </figure>
-        </section>
-      ) : (
+      <section>
+        <img src="image.png" />
+        <article>
+          <h1 className="listing-title">{ticket.data.title}</h1>
+          <p>{ticket.data.time}</p>
+          <p>{ticket.data.description}</p>
+          {showMoreInfo && (
+            <>
+              {ticket.data.description}
+            </>
+          )}
+          <button
+            className="view-more-button"
+            onClick={() => setShowMoreInfo(!showMoreInfo)}
+          >
+            {showMoreInfo ? "Back" : "View More Info"}
+          </button>
+          <button className="listing-button" onClick={handleCart}>
+            Add to Cart
+          </button>
+        </article>
+        <figure>
+          <p>geolocational map here?</p>
+        </figure>
+      </section>
+      {/* ) : (
         <p>Loading...(insert a spinner)</p>
-      )}
+      )} */}
     </div>
   );
 }
