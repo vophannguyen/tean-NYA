@@ -5,7 +5,9 @@ import "./root.less";
 export default function Root() {
   return (
     <div className="root">
-      <Navbar />
+      <header>
+        <Navbar />
+      </header>
       <main>
         <Outlet />
       </main>

@@ -49,7 +49,7 @@ export default function Navbar() {
             {/* <span>{cartItem.length}</span> */}
           </NavLink>
         </li>
-        <li>
+        <li className="flyout-menu">
           <FlyoutMenu token={token} />
         </li>
       </menu>

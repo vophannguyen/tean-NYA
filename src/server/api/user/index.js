@@ -1,6 +1,7 @@
 const express = require("express");
 const prisma = require("../../prisma");
 const { title } = require("process");
+const { create } = require("domain");
 const router = express.Router();
 module.exports = router;
 ////** User must be logged in to access . */
@@ -69,21 +70,23 @@ router.get("/order", async (req, res, next) => {
       include: { itemOrder: true, receipt: true },
     });
     order.forEach((data) => {
-      // console.log(data.itemOrder[0]);
       itemOrder.push(data.itemOrder[0]);
     });
-    console.log(itemOrder);
     res.json({ data: order, itemOrder });
   } catch (err) {
     next(err);
   }
 });
+///////////////////end
+
 // get receipt of order
 router.get("/order/reciept/:id", async (req, res, next) => {
   try {
     const id = +req.params.id;
-    const receipt = await prisma.receipt.findFirst({
-      where: { orderId: id },
+    const receipt = await prisma.order.findUnique({
+      where: { id },
+      include: { itemOrder: true, receipt: true },
+      // include: { reciept: true },
     });
     res.json({ receipt });
   } catch (err) {
@@ -94,39 +97,8 @@ router.get("/order/reciept/:id", async (req, res, next) => {
 //start/////Create order history
 router.post("/order", async (req, res, next) => {
   try {
-    console.log(req.body);
-    const {
-      title,
-      category,
-      description,
-      upload,
-      time,
-      address1,
-      address2,
-      city,
-      state,
-      country,
-      zip,
-    } = req.body.cart[0];
-    //covert string to int
-    const price = +req.body.cart[0].price;
-    const quantity = +req.body.cart[0].quantity;
     // check if we have all information
-    if (
-      !title ||
-      !category ||
-      !description ||
-      !price ||
-      !upload ||
-      !time ||
-      !address1 ||
-      !city ||
-      !state ||
-      !zip ||
-      !country ||
-      !quantity ||
-      req.body.reciep
-    ) {
+    if (req.body.cart.length <= 0) {
       res.json({ message: "Missing information" });
       return;
     }
@@ -135,21 +107,21 @@ router.post("/order", async (req, res, next) => {
       data: {
         userId: res.locals.user.id,
         itemOrder: {
-          create: {
-            title,
-            category,
-            description,
-            upload,
-            price,
-            quantity,
-            time: new Date(time),
-            address1,
-            address2,
-            city,
-            state,
-            zip,
-            country,
-          },
+          create: req.body.cart.map((cart) => ({
+            title: cart.title,
+            category: cart.category,
+            description: cart.description,
+            upload: cart.upload,
+            time: cart.time,
+            address1: cart.address1,
+            address2: cart.address2,
+            city: cart.city,
+            state: cart.state,
+            country: cart.country,
+            zip: cart.zip,
+            price: +cart.price,
+            quantity: +cart.quantity,
+          })),
         },
         receipt: {
           create: {

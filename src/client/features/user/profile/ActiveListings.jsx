@@ -1,8 +1,8 @@
 import { formatDate } from "../../utils/helpers";
 import { useFetchAllUserItemsQuery } from "../userSlice";
+/**Show sell item of User */
 export default function ActiveListings() {
   const { data: allItems, isLoading, error } = useFetchAllUserItemsQuery();
-  console.log("allItems", allItems);
   if (error) {
     return <p>Error Fetching Your Reservations</p>;
   }

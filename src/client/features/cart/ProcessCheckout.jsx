@@ -71,8 +71,6 @@ export default function ProcessCheckout() {
           country: element.item.country,
           userId: element.item.userId,
         };
-        // //add to order table
-        // await addOrder(data).unwrap();
         //add to sold item table
         await addSold(data).unwrap();
         // delete item of item table

@@ -17,8 +17,6 @@ router.post("/create", imageUpload.single("upload"), async (req, res, next) => {
     const { address1, address2, city, state, zip, country, category } =
       req.body;
     //const string to float
-    console.log(req.body.title);
-    console.log("dd", req.file);
     const price = +req.body.price;
     const quantity = +req.body.quantity;
     //check all information is not null
@@ -162,7 +160,6 @@ router.get("/concert", async (req, res, next) => {
 router.delete("/delete/:id", async (req, res, next) => {
   try {
     const id = +req.params.id;
-    console.log(id);
     if (!id) {
       res.json({ error: "Id not found" });
     }

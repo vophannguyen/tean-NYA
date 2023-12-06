@@ -17,11 +17,8 @@ const ticketsApi = api.injectEndpoints({
         url: "/tickets/create",
         method: "POST",
         body: ticket,
-        // headers: {
-        //   "Content-Type": "multipart/form-data",
-        // },
       }),
-      invalidatesTags: ["Tickets"],
+      invalidatesTags: ["Tickets", "Res"],
     }),
     getMovies: builder.query({
       query: () => "/tickets/movies",
@@ -41,11 +38,11 @@ const ticketsApi = api.injectEndpoints({
   }),
 });
 
-export const { 
-  useGetTicketsQuery, 
-  useGetByIdQuery, 
+export const {
+  useGetTicketsQuery,
+  useGetByIdQuery,
   useCreateTicketMutation,
   useGetMoviesQuery,
   useGetConcertsQuery,
-  useGetResQuery
+  useGetResQuery,
 } = ticketsApi;
