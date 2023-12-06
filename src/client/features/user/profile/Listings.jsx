@@ -10,7 +10,6 @@ console.log("allItems", allItems)
   //   console.log(allItems?.data);
   return (
     <section>
-      <h1>Your Listings</h1>
       <ActiveListings />
       <SoldListings />
     </section>
