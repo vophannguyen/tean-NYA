@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { useAddCartMutation } from "../../cart/cartSlice";
 import { useGetByIdQuery } from "../ticketSlice";
 import { useParams, useNavigate } from "react-router-dom";
-import "./Listing.css"
+import "./listing.less";
 
 /** Allows user to read, update, and delete a task */
 export default function Listing() {
