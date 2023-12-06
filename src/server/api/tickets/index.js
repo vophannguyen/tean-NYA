@@ -12,6 +12,7 @@ router.post("/create", imageUpload.single("upload"), async (req, res, next) => {
       res.json({ error: "You must be logged in." });
       return;
     }
+    console.log(req.body);
     ///Check all information not null || all information required
     const { title, description, time } = req.body;
     const { address1, address2, city, state, zip, country, category } =

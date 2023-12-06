@@ -14,7 +14,7 @@ export default function Upload() {
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-
+    console.log(formData);
     try {
       const response = await createTicket(formData).unwrap();
       console.log(response);
