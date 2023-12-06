@@ -1,8 +1,8 @@
-import { useDispatch } from "react-redux";
 import { useAddCartMutation } from "../../cart/cartSlice";
 import { useGetByIdQuery } from "../ticketSlice";
 import { useParams, useNavigate } from "react-router-dom";
 import "./listing.less";
+import { formatDate } from "../../utils/helpers";
 import { useState } from "react";
 
 /** Allows user to read, update, and delete a task */
@@ -11,7 +11,6 @@ export default function Listing() {
   const [addCart] = useAddCartMutation();
   const { id } = useParams();
   const { data: ticket, isLoading, isError } = useGetByIdQuery(id);
-  const dispatch = useDispatch();
   const [showMoreInfo, setShowMoreInfo] = useState(false);
 
   //waiting data
@@ -22,6 +21,9 @@ export default function Listing() {
     navigate("/*");
   }
   //end waiting
+
+ //format date and time for client side
+  const date = formatDate(ticket.data.time);
 
   /*todo: add events to Cart and redirect to events**/
   const handleCart = async () => {
@@ -39,17 +41,15 @@ export default function Listing() {
     }
   };
 
-  const handleLike = () => {};
-
   //todo: reformat listing date on front end
   //details needed for single view listing = category of the listing (movie, concert, reservation)
   return (
-    <div className="single-ticket">
-      <section>
+    <>
+      <section className="single-ticket">
         <img src="image.png" />
         <article>
           <h1 className="listing-title">{ticket.data.title}</h1>
-          <p>{ticket.data.time}</p>
+          <p>{date}</p>
           <p>{ticket.data.quantity}</p>
           <p>{ticket.data.price}</p>
           <button
@@ -66,9 +66,6 @@ export default function Listing() {
           <p>geolocational map here?</p>
         </figure>
       </section>
-      {/* ) : (
-        <p>Loading...(insert a spinner)</p>
-      )} */}
-    </div>
+    </>
   );
 }
