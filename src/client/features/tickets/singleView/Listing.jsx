@@ -3,6 +3,7 @@ import { useAddCartMutation } from "../../cart/cartSlice";
 import { useGetByIdQuery } from "../ticketSlice";
 import { useParams, useNavigate } from "react-router-dom";
 import "./listing.less";
+import { useState } from "react";
 
 /** Allows user to read, update, and delete a task */
 export default function Listing() {
@@ -11,6 +12,7 @@ export default function Listing() {
   const { id } = useParams();
   const { data: ticket, isLoading, isError } = useGetByIdQuery(id);
   const dispatch = useDispatch();
+  const [showMoreInfo, setShowMoreInfo] = useState(false);
 
   //waiting data
   if (isLoading) {
