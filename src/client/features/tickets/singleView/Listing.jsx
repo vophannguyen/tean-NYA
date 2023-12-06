@@ -44,23 +44,35 @@ export default function Listing() {
   //todo: reformat listing date on front end
   //details needed for single view listing = category of the listing (movie, concert, reservation)
   return (
-    <>
-      {ticket ? (
-        <section className="single-view">
-          <img src="image.png"></img>
-          <article classNam="single-ticket">
-            <h1 className="single-title">{ticket.data.title}</h1>
-            <p>{ticket.data.time}</p>
-            <p>{ticket.data.description}</p>
-            <button onClick={handleCart}>Add to Cart</button>
-          </article>
-          <figure className="sm-map">
-            <p>geolocational map here?</p>
-          </figure>
-        </section>
-      ) : (
+    <div className="single-ticket">
+      <section>
+        <img src="image.png" />
+        <article>
+          <h1 className="listing-title">{ticket.data.title}</h1>
+          <p>{ticket.data.time}</p>
+          <p>{ticket.data.description}</p>
+          {showMoreInfo && (
+            <>
+              {ticket.data.description}
+            </>
+          )}
+          <button
+            className="view-more-button"
+            onClick={() => setShowMoreInfo(!showMoreInfo)}
+          >
+            {showMoreInfo ? "Back" : "View More Info"}
+          </button>
+          <button className="listing-button" onClick={handleCart}>
+            Add to Cart
+          </button>
+        </article>
+        <figure>
+          <p>geolocational map here?</p>
+        </figure>
+      </section>
+      {/* ) : (
         <p>Loading...(insert a spinner)</p>
-      )}
-    </>
+      )} */}
+    </div>
   );
 }
