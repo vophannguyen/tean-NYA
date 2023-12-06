@@ -24,8 +24,10 @@ export default function FlyoutMenu({ token }) {
 
   const Flyout = (
     <section className="flyout" onMouseLeave={handleMouseLeave}>
-      <h3 className="title">Explore</h3>
-      <ul>
+      <ul className="explore">
+        <li>
+          <h3 className="title">Explore</h3>
+        </li>
         <li>
           <Link to="/tickets">All Events</Link>
         </li>
@@ -38,13 +40,11 @@ export default function FlyoutMenu({ token }) {
         <li>
           <Link to="/reservations">Restaurants</Link>
         </li>
-        <li>
-          <Link to="/">Activites</Link>
-        </li>
       </ul>
-      <hr />
-      <h3 className="title">Account</h3>
-      <ul>
+      <ul className="account">
+        <li>
+          <h3 className="title">Account</h3>
+        </li>
         {token ? (
           <>
             <li>
@@ -57,7 +57,7 @@ export default function FlyoutMenu({ token }) {
               <Link to="/upload">List an event</Link>
             </li>
             <li>
-              <a onClick={onLogout}>Log out</a>
+              <button className="menu-logout" onClick={onLogout}>Log out</button>
             </li>
           </>
         ) : (
@@ -71,9 +71,10 @@ export default function FlyoutMenu({ token }) {
           </>
         )}
       </ul>
-      <hr />
-      <h3 className="title">Support</h3>
       <ul>
+        <li>
+          <h3 className="title">Support</h3>
+        </li>
         <li>
           <Link to="/about">About</Link>
         </li>
