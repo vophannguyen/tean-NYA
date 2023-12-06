@@ -65,9 +65,9 @@ export default function Tickets() {
   //need to fix rerendering for every click on the same filter
   //(click movies once filter, click movies again make sure does not refilter)
   const handleCategory = (e) => {
-    if(e.target.value === "movies") {
+    if (e.target.value === "movies") {
       setFiltered([...movies]);
-      console.log(filtered)
+      console.log(filtered);
       setIsSorted(true);
     } else if (e.target.value === "concerts") {
       setFiltered(concerts);
@@ -82,21 +82,23 @@ export default function Tickets() {
 
   return (
     <section>
-      {/* <form onSubmit={handleSearch}>
-        <input type="text" placeholder="Search.." name="search" />
-      </form> */}
+      <form onSubmit={handleSearch} className="search-bar">
+        <input type="text" placeholder="Search Event" name="search" />
+      </form>
       <header>
-        <h1>New York City <span>
-          <select
-                className="category-filter dropdown"
-                name="categoryfilter"
-                type="text"
-                onChange={handleCategory}
-              >
-                <option value="events">Events</option>
-                <option value="movies">Movies</option>
-                <option value="concerts">Concerts</option>
-                <option value="restaurants">Restaurants</option>
+        <h1>
+          New York City{" "}
+          <span>
+            <select
+              className="category-filter dropdown"
+              name="categoryfilter"
+              type="text"
+              onChange={handleCategory}
+            >
+              <option value="events">Events</option>
+              <option value="movies">Movies</option>
+              <option value="concerts">Concerts</option>
+              <option value="restaurants">Restaurants</option>
             </select>
           </span>
         </h1>
