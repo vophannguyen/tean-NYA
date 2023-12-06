@@ -1,15 +1,64 @@
 .single-ticket {
-  width: 100%;
-  max-width: 1500px;
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  margin-top: 5%;
-}
-.listing-title {
-  margin-bottom: 1em;
+  height: 100vh;
+
+  .ticket {
+    display: flex;
+    width: 100%;
+    max-width: 600px;
+
+    &.show-more-info {
+      .ticket-info {
+        flex: 0 0 50%;
+      }
+
+      .additional-info {
+        flex: 0 0 50%;
+        display: block;
+      }
+    }
+
+    .ticket-info {
+      flex: 0 0 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background-color: #f0f0f0;
+
+      img {
+        max-width: 100px;
+        height: auto;
+      }
+
+      div {
+        max-width: 60%;
+      }
+
+      button {
+        margin-top: 10px;
+      }
+    }
+
+    .additional-info {
+      display: none;
+      flex: 0 0 0;
+      padding: 20px;
+      background-color: #e0e0e0;
+    }
+
+    figure {
+      flex: 0 0 40%;
+      background-color: #d0d0d0;
+      padding: 20px;
+
+      p {
+        text-align: center;
+      }
+    }
+  }
 }
 
 @media only screen and (max-width: 600px) {
