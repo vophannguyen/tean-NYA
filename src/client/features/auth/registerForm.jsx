@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useRegisterMutation, useLoginMutation } from "./authSlice";
-import "./registerForm.css"
+import "./registerForm.less"
 
 export default function RegisterForm() {
   const navigate = useNavigate();
