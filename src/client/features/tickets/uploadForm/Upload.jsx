@@ -31,7 +31,7 @@ export default function Upload() {
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className="upload-form">
       <legend>List Event Tickets</legend>
       <section className="input-group">
         <select name="category" type="text" required>
