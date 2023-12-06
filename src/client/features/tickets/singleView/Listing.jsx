@@ -45,17 +45,12 @@ export default function Listing() {
   //details needed for single view listing = category of the listing (movie, concert, reservation)
   return (
     <div className="single-ticket">
-      <section>
-        <img src="image.png" />
-        <article>
+    <section className={`ticket ${showMoreInfo ? "show-more-info" : ""}`}>
+      <article className="ticket-info">
+        <div>
           <h1 className="listing-title">{ticket.data.title}</h1>
           <p>{ticket.data.time}</p>
-          <p>{ticket.data.description}</p>
-          {showMoreInfo && (
-            <>
-              {ticket.data.description}
-            </>
-          )}
+          <p>{ticket.data.quantity}</p>
           <button
             className="view-more-button"
             onClick={() => setShowMoreInfo(!showMoreInfo)}
@@ -65,14 +60,14 @@ export default function Listing() {
           <button className="listing-button" onClick={handleCart}>
             Add to Cart
           </button>
-        </article>
-        <figure>
-          <p>geolocational map here?</p>
-        </figure>
-      </section>
-      {/* ) : (
-        <p>Loading...(insert a spinner)</p>
-      )} */}
-    </div>
-  );
-}
+        </div>
+      </article>
+      {showMoreInfo && (
+        <div className="additional-info">
+          <img src="image.png" alt="Ticket Preview" />
+         <p>{ticket.data.description}</p>
+            </div>
+      )}
+    </section>
+  </div>
+)};
