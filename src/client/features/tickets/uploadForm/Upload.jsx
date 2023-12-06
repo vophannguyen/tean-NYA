@@ -72,6 +72,7 @@ export default function Upload() {
         <input type="text" name="city" placeholder="City e.g., Brooklyn" required />
         <input type="text" name="state" placeholder="State e.g., NY" required />
         <input type="text" name="zip" placeholder="Zip Code e.g., 1211" required />
+        <input type="text" name="country" placeholder="Country e.g., USA" required />
       </section>
       {/* <label>
         Location
