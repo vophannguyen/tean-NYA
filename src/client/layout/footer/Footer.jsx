@@ -1,16 +1,17 @@
 import { NavLink } from "react-router-dom";
 import "./Footer.less";
+
 export default function Footer() {
   return (
     <footer>
-      <section className="flex nav">
+      <section className="flex">
       <ul>
         <li>About</li>
         <li>
-          <NavLink to="/tickets">Tickets</NavLink>
+          <NavLink to="/tickets">Events</NavLink>
         </li>
         <li>
-          <NavLink to="/upload">Upload</NavLink>
+          <NavLink to="/upload">List an event</NavLink>
         </li>
         <li>
             <NavLink to="/about">About Us</NavLink>
@@ -28,21 +29,11 @@ export default function Footer() {
             <NavLink to="/concerts">Concerts</NavLink>
         </li>
         <li>
-            <NavLink to="/">Theatre</NavLink>
+          <NavLink to="/reservations">Restaurants</NavLink>
         </li>
         <li>
-          <NavLink to="/reservations">Reservations</NavLink>
+            <NavLink to="/">All Events</NavLink>
         </li>
-        <li>
-          <NavLink to="/">Activites</NavLink>
-        </li>
-        <li>
-            <NavLink to="/">All Event Listings</NavLink>
-        </li>
-      </ul>
-      <ul>
-        <li>Contact</li>
-        <p>By email: support@lastchancenyc.com</p>
       </ul>
       </section>
       <hr />
