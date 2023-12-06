@@ -42,23 +42,23 @@ export default function Listing() {
   //todo: reformat listing date on front end
   //details needed for single view listing = category of the listing (movie, concert, reservation)
   return (
-    <div className="single-ticket">
+    <>
       {ticket ? (
-        <section>
+        <section className="single-view">
           <img src="image.png"></img>
-          <article>
-            <h1 className="listing-title">{ticket.data.title}</h1>
+          <article classNam="single-ticket">
+            <h1 className="single-title">{ticket.data.title}</h1>
             <p>{ticket.data.time}</p>
             <p>{ticket.data.description}</p>
-            <button className="listing-button" onClick={handleCart}>Add to Cart</button>
+            <button onClick={handleCart}>Add to Cart</button>
           </article>
-          <figure>
+          <figure className="sm-map">
             <p>geolocational map here?</p>
           </figure>
         </section>
       ) : (
         <p>Loading...(insert a spinner)</p>
       )}
-    </div>
+    </>
   );
 }
