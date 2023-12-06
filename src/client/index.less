@@ -8,13 +8,6 @@
   src: url("./assets/Inter.ttf");
 }
 
-:root {
-  font-family: Inter, sans-serif;
-
-  color: @text;
-  background-color: @bg;
-}
-
 * {
     margin: 0;
     padding: 0;
@@ -23,21 +16,21 @@
 
 }
 
-body {
-  background-color: #ffffff;
+:root {
+  font-family: Inter, sans-serif;
+  color: @text;
+  background-color: @bg;
 }
 
 .root {
-  width: 100vw;
+  width: 70vw;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 a {
   text-decoration: none;
-  color: @link-color;
   cursor: pointer;
-
-  &:hover {
-    text-decoration: underline;
-    color: @link-color-hover;
-  }
 }

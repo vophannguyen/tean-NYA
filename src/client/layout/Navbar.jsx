@@ -12,8 +12,7 @@ export default function Navbar() {
 
   return (
     <nav>
-      <NavLink to="/">
-        <h1>Last Chance</h1>
+      <NavLink to="/">Last Chance
       </NavLink>
       <menu>
         {token ? (
