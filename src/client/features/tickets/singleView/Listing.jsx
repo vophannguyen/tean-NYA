@@ -50,12 +50,8 @@ export default function Listing() {
         <article>
           <h1 className="listing-title">{ticket.data.title}</h1>
           <p>{ticket.data.time}</p>
-          <p>{ticket.data.description}</p>
-          {showMoreInfo && (
-            <>
-              {ticket.data.description}
-            </>
-          )}
+          <p>{ticket.data.quantity}</p>
+          <p>{ticket.data.price}</p>
           <button
             className="view-more-button"
             onClick={() => setShowMoreInfo(!showMoreInfo)}
