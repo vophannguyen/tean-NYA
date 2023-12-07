@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import "./Footer.less";
+import "./footer.less";
 
 export default function Footer() {
   return (
