@@ -6,13 +6,13 @@ export default function ActiveListings() {
   const { data: allItems, isLoading, isError } = useFetchAllUserItemsQuery();
   // const [deleteItem] = useDeleteItemMutation();
 
-  const handleDelete = async (itemId) => {
-    try {
-      await deleteItem(itemId);
-    } catch (error) {
-      console.error("Failed to delete item:", error.message);
-    }
-  };
+  // const handleDelete = async (itemId) => {
+  //   try {
+  //     await deleteItem(itemId);
+  //   } catch (error) {
+  //     console.error("Failed to delete item:", error.message);
+  //   }
+  // };
 
   if (isLoading) {
     return <h1>Loading....</h1>;
