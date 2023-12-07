@@ -19,8 +19,8 @@ import Receipt from "./features/cart/Receipt.jsx";
 import Account from "./features/user/Account.jsx";
 import AboutUs from "./layout/AboutUs";
 import Faq from "./layout/Faq";
-import LoginForm from "./features/auth/FormLogin.jsx";
-import RegisterForm from "./features/auth/FormRegister.jsx";
+import FormLogin from "./features/auth/FormLogin.jsx";
+import FormRegister from "./features/auth/FormRegister.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -30,8 +30,8 @@ const router = createBrowserRouter([
       { path: "/", element: <Tickets /> },
       { path: "/tickets", element: <Tickets /> },
       { path: "/tickets/:id", element: <Listing /> },
-      { path: "/login", element: <LoginForm /> },
-      { path: "/register", element: <RegisterForm /> },
+      { path: "/login", element: <FormLogin /> },
+      { path: "/register", element: <FormRegister /> },
       { path: "/upload", element: <Upload /> },
       { path: "/cart", element: <Cart /> },
       {
