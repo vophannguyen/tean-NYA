@@ -72,8 +72,13 @@ router.get("/order", async (req, res, next) => {
       include: { itemOrder: true, receipt: true },
     });
     order.forEach((data) => {
-      itemOrder.push(data.itemOrder[0]);
+      itemOrder.push(...data.itemOrder);
     });
+    if (itemOrder.length > 0) {
+      itemOrder.forEach((ticket) => {
+        ticket.upload = imageFile(ticket.upload);
+      });
+    }
     res.json({ data: order, itemOrder });
   } catch (err) {
     next(err);
@@ -209,6 +214,9 @@ router.get("/solditem", async (req, res, next) => {
   try {
     const solditem = await prisma.soldItem.findMany({
       where: { userId: res.locals.user.id },
+    });
+    solditem.forEach((ticket) => {
+      ticket.upload = imageFile(ticket.upload);
     });
     res.json({ data: solditem });
   } catch (err) {
