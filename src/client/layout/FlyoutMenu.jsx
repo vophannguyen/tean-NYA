@@ -1,4 +1,4 @@
-import "./Navbar.less";
+import "./barnav.less";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { logout } from "../features/auth/authSlice";
