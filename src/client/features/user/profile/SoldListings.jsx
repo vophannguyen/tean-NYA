@@ -7,23 +7,37 @@ export default function SoldListings() {
     return <p>Loading.....</p>;
   }
   if (isError) {
-    return;
+    return <p>Error fetching sold items. Please try again later.</p>;
   }
-  
+
   return (
     <section>
       <h2>Sold</h2>
       {sold && sold.length > 0 ? (
         <ul>
-          {sold.map((i) => (
-            <li key={i.id}>
-              {i.title}{" "}
-              <span> Sold:{formatDate(i.createAt)}</span>
+          {sold.map((reservation) => (
+            <li key={reservation.id}>
+              {reservation.title}{" "}
+              <span> Sold:{formatDate(reservation.createAt)}</span>
+              {reservation.upload.endsWith(".pdf") ? (
+                <embed
+                  src={`http://localhost:3000/src/server/images/${reservation.upload}`}
+                  type="application/pdf"
+                  width="100%"
+                  height="600px"
+                />
+              ) : (
+                <img
+                  src={`http://localhost:3000/src/server/images/${reservation.upload}`}
+                  alt="wrong"
+                  style={{ maxWidth: "100%", height: "auto" }}
+                />
+              )}
             </li>
           ))}
         </ul>
       ) : (
-        <p>No Active Listings</p>
+        <p>No sold items found.</p>
       )}
     </section>
   );

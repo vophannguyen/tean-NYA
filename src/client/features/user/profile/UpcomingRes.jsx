@@ -34,6 +34,20 @@ export default function UpcomingRes() {
             <li key={reservation.id}>
               {reservation.title}
               <span> Time: {formatDate(reservation.time)}</span>
+              {reservation.upload.endsWith(".pdf") ? (
+                <embed
+                  src={`http://localhost:3000/src/server/images/${reservation.upload}`}
+                  type="application/pdf"
+                  width="100%"
+                  height="600px"
+                />
+              ) : (
+                <img
+                  src={`http://localhost:3000/src/server/images/${reservation.upload}`}
+                  alt="wrong"
+                  style={{ maxWidth: "100%", height: "auto" }}
+                />
+              )}
             </li>
           ))}
         </ul>
