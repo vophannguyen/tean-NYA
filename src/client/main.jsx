@@ -6,8 +6,6 @@ import "./index.less";
 import { Provider } from "react-redux";
 import store from "./store";
 
-import LoginForm from "./features/auth/LoginForm.jsx";
-import RegisterForm from "./features/auth/RegisterForm.jsx";
 import Tickets from "./features/tickets/Tickets";
 import Upload from "./features/tickets/uploadForm/Upload.jsx";
 import Listing from "./features/tickets/singleView/Listing.jsx";
@@ -21,7 +19,8 @@ import Receipt from "./features/cart/Receipt.jsx";
 import Account from "./features/user/Account.jsx";
 import AboutUs from "./layout/AboutUs";
 import Faq from "./layout/Faq";
-
+import LoginForm from "./features/auth/LoginForm.jsx";
+import RegisterForm from "./features/auth/RegisterForm.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -51,9 +50,7 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
-  </React.StrictMode>
+  <Provider store={store}>
+    <RouterProvider router={router} />
+  </Provider>
 );
