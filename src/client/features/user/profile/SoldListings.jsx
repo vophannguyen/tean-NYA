@@ -9,7 +9,7 @@ export default function SoldListings() {
   if (isError) {
     return;
   }
-  
+  console.log(sold);
   return (
     <section>
       <h2>Sold</h2>
@@ -17,8 +17,7 @@ export default function SoldListings() {
         <ul>
           {sold.map((i) => (
             <li key={i.id}>
-              {i.title}{" "}
-              <span> Sold:{formatDate(i.createAt)}</span>
+              {i.title} <span> Sold:{formatDate(i.createAt)}</span>
             </li>
           ))}
         </ul>
