@@ -19,8 +19,8 @@ import Receipt from "./features/cart/Receipt.jsx";
 import Account from "./features/user/Account.jsx";
 import AboutUs from "./layout/AboutUs";
 import Faq from "./layout/Faq";
-import LoginForm from "./features/auth/LoginForm.jsx";
-import RegisterForm from "./features/auth/RegisterForm.jsx";
+import LoginForm from "./features/auth/FormLogin.jsx";
+import RegisterForm from "./features/auth/FormRegister.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
