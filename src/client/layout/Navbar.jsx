@@ -31,12 +31,7 @@ export default function Navbar() {
           <>
             <li>
               <NavLink to="/login">
-                <button>List An Event</button>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/login">
-                <ProfileIcon />
+                <button className="nav-login">Log In</button>
               </NavLink>
             </li>
           </>
