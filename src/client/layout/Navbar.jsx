@@ -4,7 +4,7 @@ import { selectToken } from "../features/auth/authSlice";
 import FlyoutMenu from "./FlyoutMenu";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ProfileIcon from "./ProfileIcon.jsx";
-import "./navbar.less";
+import "./barnav.less";
 
 export default function Navbar() {
   // const cartItem = useSelector((state) => state.cart.cart);
