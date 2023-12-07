@@ -18,7 +18,6 @@ export default function FlyoutMenu({ token }) {
   if (isError) {
     return;
   }
-  console.log(me);
   const handleMenu = () => setIsOpen(true);
   const handleMouseLeave = () => setIsOpen(false);
 
@@ -53,7 +52,7 @@ export default function FlyoutMenu({ token }) {
         </li>
         {token ? (
           <>
-            <li>Welcome, {me?.data.firstName}</li>
+            <li>Welcome, {me?.data?.firstName}</li>
             <li>
               <Link to="/user/profile">My Profile</Link>
             </li>
