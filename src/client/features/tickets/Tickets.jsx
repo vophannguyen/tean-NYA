@@ -54,7 +54,7 @@ export default function Tickets() {
     const formData = new FormData(e.target);
     const search = formData.get("search");
     const searchTicket = tickets.filter((item) => {
-      return item.title.includes(search);
+      return item.title.toLowerCase().includes(search.toLowerCase());
     });
     setNewTicket(searchTicket);
   };

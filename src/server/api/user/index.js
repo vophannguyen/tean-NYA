@@ -193,6 +193,9 @@ router.get("/sellitem", async (req, res, next) => {
     const sellitem = await prisma.item.findMany({
       where: { userId: res.locals.user.id },
     });
+    sellitem.forEach((ticket) => {
+      ticket.upload = imageFile(ticket.upload);
+    });
     res.json({ data: sellitem });
   } catch (err) {
     next(err);
