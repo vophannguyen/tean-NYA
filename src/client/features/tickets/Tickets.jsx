@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { formatDate } from "../utils/helpers.js";
 import "./tickets.less";
-// import Map from "./Map";
+import Map from "./Map";
 
 //Basic functionality setup
 const TicketCard = ({ ticket }) => {
@@ -128,7 +128,7 @@ export default function Tickets() {
           </ul>
         </section>
         <aside>
-          <div className="map">insert map</div>
+          <Map />
         </aside>
       </section>
     </section>

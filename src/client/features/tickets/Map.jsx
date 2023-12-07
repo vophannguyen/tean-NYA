@@ -34,7 +34,7 @@ export default function Map() {
     <div>
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
-        zoom={10}
+        zoom={12}
         center={center}
       >
         <Marker position={center} />
