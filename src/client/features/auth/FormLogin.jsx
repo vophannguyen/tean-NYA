@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useLoginMutation } from "./authSlice";
-import "./loginForm.less";
+import "./formlogin.less";
 
 export default function LoginForm() {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ export default function LoginForm() {
 
     try {
       const response = await loginUser({ username, password }).unwrap();
-      console.log("token", response.token);
+      // console.log("token", response.token);
 
       if (response.token) {
         // const welcomeMessage = "Give someone else a chance?";
