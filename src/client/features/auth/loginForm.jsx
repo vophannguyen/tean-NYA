@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useLoginMutation } from "./authSlice";
-import "./loginForm.less"
+import "./loginform.less";
 
 export default function LoginForm() {
   const navigate = useNavigate();
@@ -63,7 +63,9 @@ export default function LoginForm() {
         <button className="login-button">Log in</button>
         {loading && <p>Logging in!</p>}
         {error && <p className="login-error">{error.message}</p>}
-        <Link to="/register"><p>Don't have an account? Register here.</p></Link>
+        <Link to="/register">
+          <p>Don't have an account? Register here.</p>
+        </Link>
       </form>
     </section>
   );
