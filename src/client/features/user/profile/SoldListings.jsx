@@ -9,7 +9,6 @@ export default function SoldListings() {
   if (isError) {
     return <p>Error fetching sold items. Please try again later.</p>;
   }
-
   return (
     <section>
       <h2>Sold</h2>
@@ -33,6 +32,7 @@ export default function SoldListings() {
                   style={{ maxWidth: "100%", height: "auto" }}
                 />
               )}
+
             </li>
           ))}
         </ul>

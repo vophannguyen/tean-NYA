@@ -3,13 +3,13 @@ import { useFetchUserReservationHistoryQuery } from "../userSlice";
 
 export default function UpcomingRes() {
   // use RTK to fetch data
-  const { data, isLoading, error } = useFetchUserReservationHistoryQuery();
+  const { data, isLoading, isError } = useFetchUserReservationHistoryQuery();
   //use hook
   ///waiting data
   if (isLoading) {
     return;
   }
-  if (error) {
+  if (isError) {
     return (
       <p>Error fetching your upcoming reservations. Please try again later.</p>
     );
