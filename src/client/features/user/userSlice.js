@@ -5,6 +5,7 @@ const authApi = api.injectEndpoints({
     fetchUserAccount: builder.query({
       query: () => "/user/profile",
       providesTags: ["Me"],
+      invalidatesTags: ["Login"],
     }),
     fetchAllUserItems: builder.query({
       query: () => "user/sellitem",

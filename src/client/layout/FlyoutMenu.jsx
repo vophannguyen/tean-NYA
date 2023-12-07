@@ -9,10 +9,16 @@ import { useFetchUserAccountQuery } from "../features/user/userSlice";
 import "./flyoutMenu.less";
 export default function FlyoutMenu({ token }) {
   const [isOpen, setIsOpen] = useState(false);
-  const { data: me } = useFetchUserAccountQuery();
+  const { data: me, isLoading, isError } = useFetchUserAccountQuery();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  if (isLoading) {
+    return;
+  }
+  if (isError) {
+    return;
+  }
+  console.log(me);
   const handleMenu = () => setIsOpen(true);
   const handleMouseLeave = () => setIsOpen(false);
 
@@ -47,9 +53,7 @@ export default function FlyoutMenu({ token }) {
         </li>
         {token ? (
           <>
-            <li>
-            Welcome, {me?.data.firstName}
-            </li>
+            <li>Welcome, {me?.data.firstName}</li>
             <li>
               <Link to="/user/profile">My Profile</Link>
             </li>
@@ -57,7 +61,9 @@ export default function FlyoutMenu({ token }) {
               <Link to="/upload">List an event</Link>
             </li>
             <li>
-              <button className="menu-logout" onClick={onLogout}>Log out</button>
+              <button className="menu-logout" onClick={onLogout}>
+                Log out
+              </button>
             </li>
           </>
         ) : (
@@ -90,12 +96,12 @@ export default function FlyoutMenu({ token }) {
 
   return (
     <>
-    <div className="menu" onMouseMove={handleMenu}>
-    <input type="checkbox" id="checkbox" name="checkbox" />
-      <label htmlFor="checkbox">
-        <MenuIcon />
-      </label>
-    </div>
+      <div className="menu" onMouseMove={handleMenu}>
+        <input type="checkbox" id="checkbox" name="checkbox" />
+        <label htmlFor="checkbox">
+          <MenuIcon />
+        </label>
+      </div>
       {isOpen && Flyout}
     </>
   );
