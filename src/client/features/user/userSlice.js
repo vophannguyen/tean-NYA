@@ -30,6 +30,13 @@ const authApi = api.injectEndpoints({
       }),
       invalidatesTags: ["Sold"],
     }),
+    // deleteItem: builder.mutation({
+    //   query: (itemId) => ({
+    //     url: `user/sellitem/${itemId}`,
+    //     method: 'DELETE',
+    //   }),
+    //   invalidatesTags: ['Res'],
+    // }),
   }),
 });
 
@@ -40,4 +47,5 @@ export const {
   useFetchUpcomingReservationsQuery,
   useAddSoldItemMutation,
   useGetSoldItemQuery,
+  useDeleteItemMutation,
 } = authApi;
