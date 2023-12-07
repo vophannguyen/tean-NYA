@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "nodemon src/server/index.js",
     "build": "vite build",
-    "start": "vite",
+    "start": "node src/server",
     "deploy": "prisma migrate deploy && prisma db seed",
     "check": "nodemon src/server/prisma/index.js"
   },

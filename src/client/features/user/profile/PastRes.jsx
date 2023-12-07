@@ -16,7 +16,6 @@ export default function PastRes() {
       <p>Error fetching your upcoming reservations. Please try again later.</p>
     );
   }
-  console.log(upcomingReservations);
   /**
    * hanlde pass reservation or ticket
    * compare time of ticket with current time

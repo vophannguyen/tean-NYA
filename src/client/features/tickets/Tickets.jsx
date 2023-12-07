@@ -17,12 +17,12 @@ const TicketCard = ({ ticket }) => {
   return (
     <Link to={`/tickets/${ticket.id}`}>
       <li key={ticket.id} className="ticket-card">
-          <h2>{ticket.title}</h2>
-          <section>
-            <p>{date}</p>
-            <p>location</p>
-            <p>{ticket.quantity}</p>
-          </section>
+        <h2>{ticket.title}</h2>
+        <section>
+          <p>{date}</p>
+          <p>location</p>
+          <p>{ticket.quantity}</p>
+        </section>
       </li>
     </Link>
   );
@@ -41,7 +41,7 @@ export default function Tickets() {
   let searchTicket = null;
 
   if (isError) {
-    console.log("error");
+    return;
   }
   if (isLoading) {
     <span>insert a spinner...</span>;
@@ -68,7 +68,6 @@ export default function Tickets() {
   const handleCategory = (e) => {
     if (e.target.value === "movies") {
       setFiltered([...movies]);
-      console.log(filtered);
       setIsSorted(true);
     } else if (e.target.value === "concerts") {
       setFiltered(concerts);

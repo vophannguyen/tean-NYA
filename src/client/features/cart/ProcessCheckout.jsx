@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { useAddSoldItemMutation } from "../user/userSlice";
 import "./process.less";
+import Button from "../utils/Button";
 /** show payment form
  * when user click purchase :
  * - delete all item in cart
@@ -47,10 +48,9 @@ export default function ProcessCheckout() {
     };
 
     ///add paymnet method to payment table
-    // await addPayment(dataPayment).unwrap();
+    await addPayment(dataPayment).unwrap();
 
     /// for each item add to : order table - solditem table - delete in item table
-    console.log(data.data);
     data.data.forEach(async (element) => {
       try {
         cart.push(element.item);
@@ -79,6 +79,7 @@ export default function ProcessCheckout() {
         console.error(err);
       }
     });
+    //create data push to order table
     const cartData = {
       cart,
       receipt: data.orderSummary,
@@ -87,12 +88,14 @@ export default function ProcessCheckout() {
     // direct to receipt component
     navigate(`/cart/checkout/receipt/${respon.data.id}`);
   }
+  //waiting data
   if (isLoading) {
     return <h1>Loading....</h1>;
   }
   if (isError) {
     return;
   }
+  //end
   return (
     <section className="process-container">
       <form onSubmit={handlePurchase} className="process-payment">
@@ -122,10 +125,10 @@ export default function ProcessCheckout() {
           maxLength={7}
           placeholder="MM/YY"
         />
-        <button className="process-botton">Complete Purchase</button>
+        <Button className="process-botton">Complete Purchase</Button>
       </form>
       <article>
-        <OrderSummary show={false} />
+        <OrderSummary show={false} onClick={handlePurchase} />
       </article>
     </section>
   );

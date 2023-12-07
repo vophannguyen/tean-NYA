@@ -11,9 +11,8 @@ export default function Navbar() {
   const token = useSelector(selectToken);
 
   return (
-    <nav>
-      <NavLink to="/">Last Chance
-      </NavLink>
+    <nav className="main-nav">
+      <NavLink to="/">Last Chance</NavLink>
       <menu>
         {token ? (
           <>

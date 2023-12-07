@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router";
 import { useGetCartQuery } from "./cartSlice";
 import "./ordersummary.less";
+import Button from "../utils/Button";
 /** Show how much user should pay */
-export default function OrderSummary({ show }) {
+export default function OrderSummary({ show, onClick }) {
   const navigate = useNavigate();
   // used RTK to fetch ticket it added to cart
   const { isLoading, isError, data } = useGetCartQuery();
@@ -21,7 +22,9 @@ export default function OrderSummary({ show }) {
     data && (
       <table className="cart-order">
         <thead>
-          <th colSpan={2}>Order Summary</th>
+          <tr>
+            <th colSpan={2}>Order Summary</th>
+          </tr>
         </thead>
         <tbody>
           <tr>
@@ -41,9 +44,9 @@ export default function OrderSummary({ show }) {
           <tr>
             <th colSpan={2}>
               {show && (
-                <button onClick={handleCheckout} className="order-botton">
+                <Button onClick={handleCheckout} className="order-botton">
                   Check Out
-                </button>
+                </Button>
               )}
             </th>
           </tr>

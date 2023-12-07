@@ -19,7 +19,7 @@ export default function Receipt() {
     );
   }
   //end waiting
-  console.log(data.receipt.receipt);
+
   //create date time of receipt
   const date = Date.parse(new Date());
 

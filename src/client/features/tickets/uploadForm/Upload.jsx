@@ -14,10 +14,8 @@ export default function Upload() {
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    console.log(formData);
     try {
       const response = await createTicket(formData).unwrap();
-      console.log(response);
       if (response.message) {
         setMessage(() => response.message);
       }
@@ -67,12 +65,27 @@ export default function Upload() {
           type="text"
           name="address1"
           placeholder="Street Adress e.g., 123 Main St"
-          required 
+          required
         />
-        <input type="text" name="city" placeholder="City e.g., Brooklyn" required />
+        <input
+          type="text"
+          name="city"
+          placeholder="City e.g., Brooklyn"
+          required
+        />
         <input type="text" name="state" placeholder="State e.g., NY" required />
-        <input type="text" name="zip" placeholder="Zip Code e.g., 1211" required />
-        <input type="text" name="country" placeholder="Country e.g., USA" required />
+        <input
+          type="text"
+          name="zip"
+          placeholder="Zip Code e.g., 1211"
+          required
+        />
+        <input
+          type="text"
+          name="country"
+          placeholder="Country e.g., USA"
+          required
+        />
       </section>
       {/* <label>
         Location
