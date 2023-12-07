@@ -21,6 +21,11 @@ import AboutUs from "./layout/AboutUs";
 import Faq from "./layout/Faq";
 import FormLogin from "./features/auth/FormLogin.jsx";
 import FormRegister from "./features/auth/FormRegister.jsx";
+import SoldListings from "./features/user/profile/SoldListings.jsx";
+import { Upcoming } from "@mui/icons-material";
+import UpcomingRes from "./features/user/profile/UpcomingRes.jsx";
+import PastRes from "./features/user/profile/PastRes.jsx";
+import ActiveListings from "./features/user/profile/ActiveListings.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -37,7 +42,13 @@ const router = createBrowserRouter([
       {
         path: "/user/",
         element: <Account />,
-        // children: [{ path: "profile", element: <Profile /> }],
+        children: [
+          { path: "profile", element: <Profile /> },
+          { path: "solditem", element: <SoldListings /> },
+          { path: "upcoming", element: <UpcomingRes /> },
+          { path: "past", element: <PastRes /> },
+          { path: "sellitem", element: <ActiveListings /> },
+        ],
       },
       { path: "/user/profile", element: <Profile /> },
       { path: "user/payment", element: <h1>Payment</h1> },
@@ -50,7 +61,9 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <Provider store={store}>
-    <RouterProvider router={router} />
-  </Provider>
+  <React.StrictMode>
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+  </React.StrictMode>
 );
