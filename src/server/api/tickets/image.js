@@ -15,7 +15,7 @@ const imageUpload = multer({
 });
 const imageFile = (filename) => {
   const dirname = path.resolve();
-  const fullfilepath = path.join(dirname, "src/server/images/" + filename);
+  const fullfilepath = path.join("src/server/images/" + filename);
   return fullfilepath;
 };
 

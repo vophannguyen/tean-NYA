@@ -3,6 +3,7 @@ const prisma = require("../../prisma");
 const { title } = require("process");
 const { create } = require("domain");
 const { ServerError } = require("../../errors");
+const { imageFile } = require("../tickets/image");
 const router = express.Router();
 module.exports = router;
 ////** User must be logged in to access . */
