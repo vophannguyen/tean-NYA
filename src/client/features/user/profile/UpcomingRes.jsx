@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { formatDate } from "../../utils/helpers";
 import { useFetchUserReservationHistoryQuery } from "../userSlice";
 
@@ -16,7 +15,6 @@ export default function UpcomingRes() {
     );
   }
   // end waiting
-  console.log("up", data);
   /**
    * hanlde up coming reservation or ticket
    * compare time of ticket with current time
