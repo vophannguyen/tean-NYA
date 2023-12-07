@@ -6,8 +6,8 @@ import "./index.less";
 import { Provider } from "react-redux";
 import store from "./store";
 
-import LoginForm from "./features/auth/loginForm";
-import RegisterForm from "./features/auth/registerForm.jsx";
+import LoginForm from "./features/auth/LoginForm.jsx";
+import RegisterForm from "./features/auth/RegisterForm.jsx";
 import Tickets from "./features/tickets/Tickets";
 import Upload from "./features/tickets/uploadForm/Upload.jsx";
 import Listing from "./features/tickets/singleView/Listing.jsx";
