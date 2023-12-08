@@ -6,7 +6,7 @@ import { useState } from "react";
 
 const mapContainerStyle = {
   width: "1000px",
-  height: "800px",
+  height: "700px",
 };
 //default center US
 let center = {
@@ -15,7 +15,7 @@ let center = {
 };
 let zoom = 5;
 /** Display Map with tickets pass in */
-export default function Map({ tickets }) {
+export default function Map({ tickets, single }) {
   //Hook
   const [location, setLocation] = useState([]);
 
@@ -35,9 +35,11 @@ export default function Map({ tickets }) {
       const ln = await mapLocation(allAdress);
       setLocation(() => ln);
     }
+    console.log("in");
     getLatLng();
-  }, []);
+  }, [tickets]);
   ///
+  console.log(location);
   if (loadError) {
     return <div>Error loading maps</div>;
   }
@@ -48,9 +50,9 @@ export default function Map({ tickets }) {
   /////
 
   /// if only 1 marker ,set this marker center and change zoom
-  if (location.length === 1) {
+  if (single === true) {
     center = location[0];
-    zoom = 10;
+    zoom = 15;
   }
 
   ///render to

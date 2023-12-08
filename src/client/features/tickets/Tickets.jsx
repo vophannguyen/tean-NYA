@@ -128,7 +128,11 @@ export default function Tickets() {
           </ul>
         </section>
         <aside className="map">
-          <Map tickets={tickets} />
+          {!isSorted ? (
+            <Map tickets={searchTicket} single={false} />
+          ) : (
+            <Map tickets={filtered} single={false} />
+          )}
         </aside>
       </section>
     </section>

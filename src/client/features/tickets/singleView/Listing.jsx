@@ -68,7 +68,7 @@ export default function Listing() {
           </button>
         </article>
         <figure>
-          <Map tickets={[ticket.data]}> </Map>
+          <Map tickets={[ticket.data]} single={true} />
         </figure>
       </section>
     </>
