@@ -18,6 +18,20 @@ export function formatDate(dateStr) {
   }).format(new Date(dateStr));
 }
 
+export function formatDay(dateStr) {
+  return new Intl.DateTimeFormat("en", {
+    day: "numeric",
+    month: "short",
+  }).format(new Date(dateStr));
+}
+
+export function formatTime(dateStr) {
+  return new Intl.DateTimeFormat("en", {
+    month: "short",
+    hour: "2-digit",
+  }).format(new Date(dateStr));
+}
+
 /** convet to  */
 // let deadline = new Date("dec 31, 2017 15:37:25").getTime();
 // let now = new Date().getTime();
