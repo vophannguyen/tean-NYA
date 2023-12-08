@@ -87,7 +87,7 @@ export default function Tickets() {
       <form onSubmit={handleSearch} className="search-bar">
         <input type="text" placeholder="Search Event" name="search" />
       </form>
-      <header>
+      <section className="heading">
         <h1>
           New York City{" "}
           <span>
@@ -104,20 +104,14 @@ export default function Tickets() {
             </select>
           </span>
         </h1>
-      </header>
+      </section>
       <section className="content">
         <section className="left">
-          {/* <section className="sort">
-            <select
-              className="category-filter"
-              name="categoryfilter"
-              type="text"
-            >
-              <option value="today">Today</option>s
-              <option value="tomorrow">Tomorrow</option>
-              <option value="week">This Week</option>
-            </select>
-          </section> */}
+          <section className="sort">
+            <button>Today</button>
+            <button>Tomorrow</button>
+            <button>This Week</button>
+          </section>
           <ul className="tickets">
             {!isSorted
               ? searchTicket?.map((ticket) => (
@@ -128,7 +122,7 @@ export default function Tickets() {
                 ))}
           </ul>
         </section>
-        <aside className="map">
+        <aside className="right">
           {!isSorted ? (
             <Map tickets={searchTicket} single={false} />
           ) : (
