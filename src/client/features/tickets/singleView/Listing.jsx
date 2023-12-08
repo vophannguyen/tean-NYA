@@ -56,7 +56,9 @@ export default function Listing() {
       <section className="single-view">
         <section className="map-left">
           <figure>
-            <Map tickets={[ticket.data]}> </Map>
+            <Map tickets={[ticket.data]} single={true}>
+              {" "}
+            </Map>
             <button>Get Directions</button>
           </figure>
         </section>
