@@ -6,9 +6,10 @@ import {
 } from "./ticketSlice";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { formatDate } from "../utils/helpers.js";
+import { formatDate, mapLocation } from "../utils/helpers.js";
 import "./tickets.less";
-// import Map from "./Map";
+import Map from "./Map";
+import { useEffect } from "react";
 
 //Basic functionality setup
 const TicketCard = ({ ticket }) => {
@@ -20,7 +21,7 @@ const TicketCard = ({ ticket }) => {
         <h2>{ticket.title}</h2>
         <section>
           <p>{date}</p>
-          <p>location</p>
+          <p>{ticket.address1}</p>
           <p>{ticket.quantity}</p>
         </section>
       </li>
@@ -44,9 +45,8 @@ export default function Tickets() {
     return;
   }
   if (isLoading) {
-    <span>insert a spinner...</span>;
+    return <span>insert a spinner...</span>;
   }
-
   //search bar
   const handleSearch = (e) => {
     e.preventDefault();
@@ -54,7 +54,7 @@ export default function Tickets() {
     const formData = new FormData(e.target);
     const search = formData.get("search");
     const searchTicket = tickets.filter((item) => {
-      return item.title.includes(search);
+      return item.title.toLowerCase().includes(search.toLowerCase());
     });
     setNewTicket(searchTicket);
   };
@@ -63,6 +63,7 @@ export default function Tickets() {
   if (isSearch) {
     searchTicket = newTicket;
   }
+
   //need to fix rerendering for every click on the same filter
   //(click movies once filter, click movies again make sure does not refilter)
   const handleCategory = (e) => {
@@ -126,8 +127,12 @@ export default function Tickets() {
                 ))}
           </ul>
         </section>
-        <aside>
-          <div className="map">insert map</div>
+        <aside className="map">
+          {!isSorted ? (
+            <Map tickets={searchTicket} single={false} />
+          ) : (
+            <Map tickets={filtered} single={false} />
+          )}
         </aside>
       </section>
     </section>

@@ -1,15 +1,17 @@
 import { formatDate } from "../../utils/helpers";
+import { useState } from "react";
 import { useFetchUserReservationHistoryQuery } from "../userSlice";
 
 export default function UpcomingRes() {
   // use RTK to fetch data
-  const { data, isLoading, error } = useFetchUserReservationHistoryQuery();
+  const { data, isLoading, isError } = useFetchUserReservationHistoryQuery();
+  const [selectedItem, setSelectedItem] = useState(null);
   //use hook
   ///waiting data
   if (isLoading) {
     return;
   }
-  if (error) {
+  if (isError) {
     return (
       <p>Error fetching your upcoming reservations. Please try again later.</p>
     );
@@ -24,6 +26,12 @@ export default function UpcomingRes() {
     return Date.parse(new Date(item.time)) > Date.now() ? true : false;
   });
 
+  const handleViewMoreInfo = (itemId) => {
+    setSelectedItem((prevSelectedItem) =>
+      prevSelectedItem === itemId ? null : itemId
+    );
+  };
+
   // render
   return (
     <div>
@@ -34,6 +42,28 @@ export default function UpcomingRes() {
             <li key={reservation.id}>
               {reservation.title}
               <span> Time: {formatDate(reservation.time)}</span>
+              <button onClick={() => handleViewMoreInfo(reservation.id)}>
+                {selectedItem === reservation.id ? "Back" : "View Ticket"}
+              </button>
+              {selectedItem === reservation.id && (
+                <div>
+                  {reservation.upload.endsWith(".pdf") ? (
+                    <embed
+                      src={`http://localhost:10000/${reservation.upload}`}
+                      type="application/pdf"
+                      width="100%"
+                      height="600px"
+                    />
+                  ) : (
+                    <img
+                      src={`http://localhost:10000/${reservation.upload}`}
+                      alt="wrong"
+                      style={{ maxWidth: "100%", height: "auto" }}
+                    />
+                  )}
+                </div>
+
+              )}
             </li>
           ))}
         </ul>

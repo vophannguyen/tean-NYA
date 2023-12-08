@@ -3,6 +3,7 @@ const prisma = require("../../prisma");
 const { title } = require("process");
 const { create } = require("domain");
 const { ServerError } = require("../../errors");
+const { imageFile } = require("../tickets/image");
 const router = express.Router();
 module.exports = router;
 ////** User must be logged in to access . */
@@ -71,8 +72,13 @@ router.get("/order", async (req, res, next) => {
       include: { itemOrder: true, receipt: true },
     });
     order.forEach((data) => {
-      itemOrder.push(data.itemOrder[0]);
+      itemOrder.push(...data.itemOrder);
     });
+    if (itemOrder.length > 0) {
+      itemOrder.forEach((ticket) => {
+        ticket.upload = imageFile(ticket.upload);
+      });
+    }
     res.json({ data: order, itemOrder });
   } catch (err) {
     next(err);
@@ -193,6 +199,9 @@ router.get("/sellitem", async (req, res, next) => {
     const sellitem = await prisma.item.findMany({
       where: { userId: res.locals.user.id },
     });
+    sellitem.forEach((ticket) => {
+      ticket.upload = imageFile(ticket.upload);
+    });
     res.json({ data: sellitem });
   } catch (err) {
     next(err);
@@ -205,6 +214,9 @@ router.get("/solditem", async (req, res, next) => {
   try {
     const solditem = await prisma.soldItem.findMany({
       where: { userId: res.locals.user.id },
+    });
+    solditem.forEach((ticket) => {
+      ticket.upload = imageFile(ticket.upload);
     });
     res.json({ data: solditem });
   } catch (err) {

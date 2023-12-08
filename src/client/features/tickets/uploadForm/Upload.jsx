@@ -9,6 +9,7 @@ export default function Upload() {
   const [createTicket] = useCreateTicketMutation();
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
+
   //if not logged in, redirect to login/register
   //once logged in, redirect the page back to the upload (this page)
   const onSubmit = async (e) => {
