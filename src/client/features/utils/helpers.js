@@ -59,6 +59,7 @@ export function cartTimeCountDownt(end, crt) {
  * Convert Address to lat and lng
  * @param {Array} arr
  * @returns {Array}
+ * https://www.npmjs.com/package/react-geocode
  */
 export async function mapLocation(arr) {
   setDefaults({
