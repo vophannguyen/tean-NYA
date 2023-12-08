@@ -9,18 +9,19 @@ import { useState } from "react";
 import { formatDate, mapLocation } from "../utils/helpers.js";
 import "./tickets.less";
 import Map from "./Map";
-import { useEffect } from "react";
+import { formatDay, formatTime } from "../utils/helpers";
 
 //Basic functionality setup
 const TicketCard = ({ ticket }) => {
-  const date = formatDate(ticket.time);
+  const day = formatDay(ticket.time);
+  const time = formatTime(ticket.time);
 
   return (
     <Link to={`/tickets/${ticket.id}`}>
       <li key={ticket.id} className="ticket-card">
         <h2>{ticket.title}</h2>
         <section>
-          <p>{date}</p>
+          <p>{day} {time}</p>
           <p>{ticket.address1}</p>
           <p>{ticket.quantity}</p>
         </section>
