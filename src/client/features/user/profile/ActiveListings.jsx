@@ -1,23 +1,15 @@
 import { useState } from "react";
 import { formatDate } from "../../utils/helpers";
 import { useFetchAllUserItemsQuery, useDeleteItemMutation } from "../userSlice";
-// import HorizontalScroll from "react-horizontal-scroll"
+
 import styles from "./activelisting.less";
 
 /** Show sell item of User */
 export default function ActiveListings() {
   const { data: allItems, isLoading, isError } = useFetchAllUserItemsQuery();
   const [selectedItem, setSelectedItem] = useState(null);
-  // const [deleteItem] = useDeleteItemMutation();
 
-  // const handleDelete = async (itemId) => {
-  //   try {
-  //     await deleteItem(itemId);
-  //   } catch (error) {
-  //     console.error("Failed to delete item:", error.message);
-  //   }
-  // };
-
+  //waiting data
   if (isLoading) {
     return <h1>Loading....</h1>;
   }
@@ -25,7 +17,9 @@ export default function ActiveListings() {
   if (isError) {
     return <p>Error Fetching Your Reservations</p>;
   }
+  ////end
 
+  //handle view pickture when click
   const handleViewMoreInfo = (itemId) => {
     setSelectedItem((prevSelectedItem) =>
       prevSelectedItem === itemId ? null : itemId

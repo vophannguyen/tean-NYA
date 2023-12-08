@@ -3,18 +3,22 @@ import { useNavigate, Link } from "react-router-dom";
 import { useRegisterMutation, useLoginMutation } from "./authSlice";
 import "./formregister.less";
 
+/** Register form , after they registered , log them in */
 export default function RegisterForm() {
   const navigate = useNavigate();
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [registerUser] = useRegisterMutation();
-  const [loginUser] = useLoginMutation();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
+  const [registerUser] = useRegisterMutation();
+  const [loginUser] = useLoginMutation();
+
+  //handle register
   const attemptRegister = async (e) => {
     e.preventDefault();
     setError(null);
@@ -28,12 +32,12 @@ export default function RegisterForm() {
         username,
         password,
       }).unwrap();
-      console.log(response);
+
+      //login
       if (response.message === "Successfull") {
         const welcomeMessage = "Welcome to your Last Chance";
         window.alert(welcomeMessage);
-        const loginResponse = await loginUser({ username, password }).unwrap();
-        console.log("token", loginResponse.token);
+        await loginUser({ username, password }).unwrap();
         navigate("/");
       } else {
         setError(response.message);
