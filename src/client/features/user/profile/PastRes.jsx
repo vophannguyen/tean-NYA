@@ -44,7 +44,7 @@ export default function PastRes() {
             <li key={reservation.id}>
               {reservation.title}{" "}
               <span> Time: {formatDate(reservation.time)}</span>
-              <button onClick={handleViewMoreInfo(reservation.id)}>
+              <button onClick={() => handleViewMoreInfo(reservation.id)}>
                 {selectedItem === reservation ? "Back" : "View Ticket"}
               </button>
               {selectedItem === reservation.id && (
@@ -64,7 +64,6 @@ export default function PastRes() {
                     />
                   )}
                 </div>
-
               )}
             </li>
           ))}
