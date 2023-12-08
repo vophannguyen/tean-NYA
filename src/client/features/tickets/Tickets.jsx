@@ -6,9 +6,10 @@ import {
 } from "./ticketSlice";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { formatDate } from "../utils/helpers.js";
+import { formatDate, mapLocation } from "../utils/helpers.js";
 import "./tickets.less";
 import Map from "./Map";
+import { useEffect } from "react";
 
 //Basic functionality setup
 const TicketCard = ({ ticket }) => {
@@ -44,9 +45,8 @@ export default function Tickets() {
     return;
   }
   if (isLoading) {
-    <span>insert a spinner...</span>;
+    return <span>insert a spinner...</span>;
   }
-
   //search bar
   const handleSearch = (e) => {
     e.preventDefault();
@@ -127,8 +127,8 @@ export default function Tickets() {
                 ))}
           </ul>
         </section>
-        <aside>
-          <Map />
+        <aside className="map">
+          <Map tickets={tickets} />
         </aside>
       </section>
     </section>
