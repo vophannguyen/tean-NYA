@@ -2,8 +2,7 @@ import { useAddCartMutation } from "../../cart/cartSlice";
 import { useGetByIdQuery } from "../ticketSlice";
 import { useParams, useNavigate } from "react-router-dom";
 import "./listing.less";
-import { formatDate } from "../../utils/helpers";
-import { useState } from "react";
+import { formatDay, formatTime } from "../../utils/helpers";
 import Map from "../Map";
 
 /** Allows user to view more information and add to cart */
@@ -15,7 +14,6 @@ export default function Listing() {
   //fetch data
   const [addCart] = useAddCartMutation();
   const { data: ticket, isLoading, isError } = useGetByIdQuery(id);
-  const [showMoreInfo, setShowMoreInfo] = useState(false);
 
   //waiting data
   if (isLoading) {
@@ -27,7 +25,12 @@ export default function Listing() {
   //end waiting
 
   //format date and time for client side
-  const date = formatDate(ticket.data.time);
+  const day = formatDay(ticket.data.time);
+  const time = formatTime(ticket.data.time);
+
+  const handleReturn = () => {
+    navigate("/");
+  };
 
   /* Add events to Cart and redirect to events **/
   const handleCart = async () => {
@@ -49,27 +52,55 @@ export default function Listing() {
   //details needed for single view listing = category of the listing (movie, concert, reservation)
   return (
     <>
-      <section className="single-ticket">
-        <img src="image.png" />
-        <article>
-          <h1 className="listing-title">{ticket.data.title}</h1>
-          <p>{ticket.data.category}</p>
-          <p>{date}</p>
-          <p>{ticket.data.quantity}</p>
-          <p>{ticket.data.price}</p>
-          <button
-            className="view-more-button"
-            onClick={() => setShowMoreInfo(!showMoreInfo)}
-          >
-            {showMoreInfo ? "Back" : "View More Info"}
-          </button>
-          <button className="listing-button" onClick={handleCart}>
-            Add to Cart
-          </button>
-        </article>
-        <figure>
-          <Map tickets={[ticket.data]} single={true} />
-        </figure>
+      <button onClick={handleReturn}>Back</button>
+      <section className="single-view">
+        <section className="map-left">
+          <figure>
+            <Map tickets={[ticket.data]}> </Map>
+            <button>Get Directions</button>
+          </figure>
+        </section>
+        <section className="info-right">
+          <ul>
+            <li>
+              <h2>{day}</h2>
+            </li>
+            <li>
+              <h1>{ticket.data.title}</h1>
+            </li>
+            <li>
+              <h3>Start Time</h3>
+              <p>{time}</p>
+            </li>
+            <li>
+              <h3>Location</h3>
+              <p>{ticket.data.address1}</p>
+            </li>
+            <li>
+              <h3>Description</h3>
+              <p>{ticket.data.description}</p>
+            </li>
+            <li>
+              <h3>Quantity</h3>
+              <p>{ticket.data.quantity}</p>
+            </li>
+            <li>
+              <h3>Price</h3>
+              {ticket.data.price === "0" ? (
+                <p>Free</p>
+              ) : (
+                <p>$ {ticket.data.price}</p>
+              )}
+            </li>
+            <li>
+              <h3>Location</h3>
+              <p>{ticket.data.address1}</p>
+            </li>
+            <button className="listing-button" onClick={handleCart}>
+              Get Tickets
+            </button>
+          </ul>
+        </section>
       </section>
     </>
   );
