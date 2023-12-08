@@ -22,7 +22,9 @@ const center = {
 };
 //default zoom
 const zoom = 5;
-/** Display Map with tickets pass in */
+/** Display Map with tickets pass in
+ * https://www.npmjs.com/package/@react-google-maps/api
+ */
 export default function Map({ tickets, single }) {
   let latLng = {};
   let map = {};
