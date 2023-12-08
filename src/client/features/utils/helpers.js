@@ -20,15 +20,15 @@ export function formatDate(dateStr) {
 
 export function formatDay(dateStr) {
   return new Intl.DateTimeFormat("en", {
-    day: "numeric",
+    day: "2-digit",
     month: "short",
   }).format(new Date(dateStr));
 }
 
 export function formatTime(dateStr) {
   return new Intl.DateTimeFormat("en", {
-    month: "short",
     hour: "2-digit",
+    minute: "2-digit",
   }).format(new Date(dateStr));
 }
 

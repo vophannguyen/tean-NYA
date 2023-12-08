@@ -11,8 +11,8 @@ const mapContainerStyleSingle = {
 };
 // all tickets
 const mapContainerStyle = {
-  width: "1000px",
-  height: "600px",
+  width: "700px",
+  height: "900px",
 };
 
 //default center US
