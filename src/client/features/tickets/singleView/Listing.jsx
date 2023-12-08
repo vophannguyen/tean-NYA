@@ -4,12 +4,16 @@ import { useParams, useNavigate } from "react-router-dom";
 import "./listing.less";
 import { formatDate } from "../../utils/helpers";
 import { useState } from "react";
+import Map from "../Map";
 
-/** Allows user to read, update, and delete a task */
+/** Allows user to view more information and add to cart */
 export default function Listing() {
+  //Hook
   const navigate = useNavigate();
-  const [addCart] = useAddCartMutation();
   const { id } = useParams();
+
+  //fetch data
+  const [addCart] = useAddCartMutation();
   const { data: ticket, isLoading, isError } = useGetByIdQuery(id);
   const [showMoreInfo, setShowMoreInfo] = useState(false);
 
@@ -22,10 +26,10 @@ export default function Listing() {
   }
   //end waiting
 
- //format date and time for client side
+  //format date and time for client side
   const date = formatDate(ticket.data.time);
 
-  /*todo: add events to Cart and redirect to events**/
+  /* Add events to Cart and redirect to events **/
   const handleCart = async () => {
     const token = sessionStorage.getItem("token");
     //need logged
@@ -64,7 +68,7 @@ export default function Listing() {
           </button>
         </article>
         <figure>
-          <p>geolocational map here?</p>
+          <Map tickets={[ticket.data]}> </Map>
         </figure>
       </section>
     </>

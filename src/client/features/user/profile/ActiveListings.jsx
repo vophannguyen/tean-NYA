@@ -44,6 +44,20 @@ export default function ActiveListings() {
              className="reservationCard"
            >
               {reservation.title}
+              {reservation.upload.endsWith(".pdf") ? (
+                <embed
+                  src={`http://localhost:10000/${reservation.upload}`}
+                  type="application/pdf"
+                  width="100%"
+                  height="600px"
+                />
+              ) : (
+                <img
+                  src={`http://localhost:10000/${reservation.upload}`}
+                  alt="wrong"
+                  style={{ maxWidth: "100%", height: "auto" }}
+                />
+              )}
               <span>Time: {formatDate(reservation.time)}</span>
               {/* <button onClick={() => handleDelete(reservation.id)}>Delete</button> */}
               <button onClick={() => handleViewMoreInfo(reservation.id)}>

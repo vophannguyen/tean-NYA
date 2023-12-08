@@ -1,26 +1,43 @@
 import React from "react";
-import {
-  GoogleMap,
-  useLoadScript,
-  Marker,
-  useJsApiLoader,
-} from "@react-google-maps/api";
+import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
+import { mapLocation } from "../utils/helpers";
+import { useEffect } from "react";
+import { useState } from "react";
 
-const libraries = ["places"];
 const mapContainerStyle = {
-  width: "100vw",
-  height: "100vh",
+  width: "1000px",
+  height: "800px",
 };
-const center = {
-  lat: 7.2905715, // default latitude
-  lng: 80.6337262, // default longitude
+//default center US
+let center = {
+  lat: 39.828175, // latitude
+  lng: -98.5795, // longitude
 };
+let zoom = 5;
+/** Display Map with tickets pass in */
+export default function Map({ tickets }) {
+  //Hook
+  const [location, setLocation] = useState([]);
 
-export default function Map() {
+  // fetch google map
   const { isLoaded, loadError } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyCAQDf3kWfJhWEUyMYoPVQJteegAaH20UI",
-    libraries,
+    googleMapsApiKey: "AIzaSyDJ759x5BMY36iXtQw7akcggJTGdp70Egc",
   });
+
+  //get all address
+  const allAdress = tickets.map((ticket) => {
+    return `${ticket.address1}, ${ticket.city}, ${ticket.state}, ${ticket.zip}, ${ticket.country}`;
+  });
+
+  // get all lat , lng
+  useEffect(() => {
+    async function getLatLng() {
+      const ln = await mapLocation(allAdress);
+      setLocation(() => ln);
+    }
+    getLatLng();
+  }, []);
+  ///
   if (loadError) {
     return <div>Error loading maps</div>;
   }
@@ -28,16 +45,25 @@ export default function Map() {
   if (!isLoaded) {
     return <div>Loading maps</div>;
   }
+  /////
 
-  // console.log(data);
+  /// if only 1 marker ,set this marker center and change zoom
+  if (location.length === 1) {
+    center = location[0];
+    zoom = 10;
+  }
+
+  ///render to
   return (
     <div>
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
-        zoom={10}
+        zoom={zoom}
         center={center}
       >
-        <Marker position={center} />
+        {location.map((marker, index) => {
+          return <Marker position={marker} key={index} />;
+        })}
       </GoogleMap>
     </div>
   );

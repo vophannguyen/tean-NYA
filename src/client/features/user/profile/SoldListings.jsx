@@ -35,14 +35,14 @@ export default function SoldListings() {
                 <div>
                   {reservation.upload.endsWith(".pdf") ? (
                     <embed
-                      src={`http://localhost:3000/${reservation.upload}`}
+                      src={`http://localhost:10000/${reservation.upload}`}
                       type="application/pdf"
                       width="100%"
                       height="600px"
                     />
                   ) : (
                     <img
-                      src={`http://localhost:3000/${reservation.upload}`}
+                      src={`http://localhost:10000/${reservation.upload}`}
                       alt="wrong"
                       style={{ maxWidth: "100%", height: "auto" }}
                     />
