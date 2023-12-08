@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { formatDate } from "../../utils/helpers";
 import { useFetchUserReservationHistoryQuery } from "../userSlice";
 
@@ -8,6 +9,8 @@ export default function PastRes() {
     isLoading,
     error,
   } = useFetchUserReservationHistoryQuery();
+  const [selectedItem, setSelectedItem] = useState(null);
+
   if (isLoading) {
     return <p>Loading... </p>;
   }
@@ -25,6 +28,12 @@ export default function PastRes() {
     return Date.parse(new Date(item.time)) < Date.now() ? true : false;
   });
 
+  const handleViewMoreInfo = (itemId) => {
+    setSelectedItem((prevSelectedItem) =>
+      prevSelectedItem === itemId ? null : itemId
+    );
+  };
+
   //render
   return (
     <div>
@@ -35,19 +44,27 @@ export default function PastRes() {
             <li key={reservation.id}>
               {reservation.title}{" "}
               <span> Time: {formatDate(reservation.time)}</span>
-              {reservation.upload.endsWith(".pdf") ? (
-                <embed
-                  src={`http://localhost:10000${reservation.upload}`}
-                  type="application/pdf"
-                  width="100%"
-                  height="600px"
-                />
-              ) : (
-                <img
-                  src={`http://localhost:10000/${reservation.upload}`}
-                  alt="wrong"
-                  style={{ maxWidth: "100%", height: "auto" }}
-                />
+              <button onClick={handleViewMoreInfo(reservation.id)}>
+                {selectedItem === reservation ? "Back" : "View Ticket"}
+              </button>
+              {selectedItem === reservation.id && (
+                <div>
+                  {reservation.upload.endsWith(".pdf") ? (
+                    <embed
+                      src={`http://localhost:10000/${reservation.upload}`}
+                      type="application/pdf"
+                      width="100%"
+                      height="600px"
+                    />
+                  ) : (
+                    <img
+                      src={`http://localhost:10000/${reservation.upload}`}
+                      alt="wrong"
+                      style={{ maxWidth: "100%", height: "auto" }}
+                    />
+                  )}
+                </div>
+
               )}
             </li>
           ))}

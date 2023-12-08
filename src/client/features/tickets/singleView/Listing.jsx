@@ -53,6 +53,7 @@ export default function Listing() {
         <img src="image.png" />
         <article>
           <h1 className="listing-title">{ticket.data.title}</h1>
+          <p>{ticket.data.category}</p>
           <p>{date}</p>
           <p>{ticket.data.quantity}</p>
           <p>{ticket.data.price}</p>
