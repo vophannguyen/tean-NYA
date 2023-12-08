@@ -5,8 +5,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 
 const mapContainerStyle = {
-  width: "1000px",
-  height: "800px",
+  width: "500px",
+  height: "600px",
 };
 //default center US
 let center = {
