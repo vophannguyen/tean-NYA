@@ -6,7 +6,7 @@ import {
 } from "./ticketSlice";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { formatDate, mapLocation } from "../utils/helpers.js";
+import { convertTimeTo, formatDate, mapLocation } from "../utils/helpers.js";
 import "./tickets.less";
 import Map from "./Map";
 import { formatDay, formatTime } from "../utils/helpers";
@@ -21,7 +21,9 @@ const TicketCard = ({ ticket }) => {
       <li key={ticket.id} className="ticket-card">
         <h2>{ticket.title}</h2>
         <section>
-          <p>{day} {time}</p>
+          <p>
+            {day} {time}
+          </p>
           <p>{ticket.address1}</p>
           <p>{ticket.quantity}</p>
         </section>
@@ -81,7 +83,6 @@ export default function Tickets() {
       setIsSorted(false);
     }
   };
-
   return (
     <section>
       <form onSubmit={handleSearch} className="search-bar">
