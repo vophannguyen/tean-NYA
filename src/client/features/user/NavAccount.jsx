@@ -1,15 +1,19 @@
 import { NavLink } from "react-router-dom";
 import "./accountnav.less";
 import { useFetchUserAccountQuery } from "./userSlice";
+/** Show Nav , and User Name */
 export default function NavAccount() {
+  //fetch user info
   const { data: user, isLoading, isError } = useFetchUserAccountQuery();
 
+  //waiting data
   if (isLoading) {
     return <h1>Loading....</h1>;
   }
   if (isError) {
     return;
   }
+  // and waiting
   return (
     <section className="account-container">
       <article>
@@ -27,8 +31,3 @@ export default function NavAccount() {
     </section>
   );
 }
-// { path: "profile", element: <Profile /> },
-//           { path: "solditem", element: <SoldListings /> },
-//           { path: "upcoming", element: <UpcomingRes /> },
-//           { path: "past", element: <PastRes /> },
-//           { path: "sellitem", element: <ActiveListings /> },

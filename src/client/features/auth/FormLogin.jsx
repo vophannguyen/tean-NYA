@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { useLoginMutation } from "./authSlice";
 import "./formlogin.less";
 
+/** Login Form */
 export default function LoginForm() {
   const navigate = useNavigate();
 
@@ -13,19 +14,17 @@ export default function LoginForm() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
+  /// handle login
   const attemptLogin = async (e) => {
     e.preventDefault();
 
     setError(null);
     setLoading(true);
-
+    //get token when logged ,and send message
     try {
       const response = await loginUser({ username, password }).unwrap();
-      // console.log("token", response.token);
 
       if (response.token) {
-        // const welcomeMessage = "Give someone else a chance?";
-        // window.alert(welcomeMessage);
         navigate("/");
       } else {
         setError({

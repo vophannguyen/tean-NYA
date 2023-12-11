@@ -1,8 +1,7 @@
 import Countdown from "react-countdown";
-import { useGetByIdQuery } from "../tickets/ticketSlice";
 import { cartTimeCountDownt, formatDate } from "../utils/helpers";
 import { useDeleteCartMutation } from "./cartSlice";
-import { useDispatch } from "react-redux";
+import ClearIcon from "@mui/icons-material/Clear";
 
 /** View single item, allows user check out */
 export default function CartItem({ data }) {
@@ -14,7 +13,7 @@ export default function CartItem({ data }) {
 
   // handle when user clicked on deleteItem
   async function handleDeleteItem() {
-    await deleteIteminCart(data.id).unwrap();
+    await deleteIteminCart(data.id);
   }
 
   // convert 2024-01-01T02:56:17.000Z to ex:Dec 31, 09:56 PM
@@ -64,7 +63,9 @@ export default function CartItem({ data }) {
           <td>{data.item.quantity}</td>
           <td>10$</td>
           <td>
-            <button onClick={handleDeleteItem}>✖</button>
+            <button onClick={handleDeleteItem}>
+              <ClearIcon />
+            </button>
           </td>
         </tr>
       </tbody>

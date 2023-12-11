@@ -11,8 +11,8 @@ const mapContainerStyleSingle = {
 };
 // all tickets
 const mapContainerStyle = {
-  width: "1000px",
-  height: "600px",
+  width: "700px",
+  height: "800px",
 };
 
 //default center US
@@ -21,8 +21,10 @@ const center = {
   lng: -98.5795, // longitude
 };
 //default zoom
-const zoom = 5;
-/** Display Map with tickets pass in */
+const zoom = 4;
+/** Display Map with tickets pass in
+ * https://www.npmjs.com/package/@react-google-maps/api
+ */
 export default function Map({ tickets, single }) {
   let latLng = {};
   let map = {};
@@ -75,7 +77,14 @@ export default function Map({ tickets, single }) {
     <div>
       <GoogleMap mapContainerStyle={map} zoom={setZoom} center={latLng}>
         {location.map((marker, index) => {
-          return <Marker position={marker} key={index} />;
+          return (
+            <Marker
+              position={marker}
+              key={index}
+              title={tickets[index]?.title}
+              label={tickets[index]?.category.slice(0, 1).toUpperCase()}
+            />
+          );
         })}
       </GoogleMap>
     </div>
