@@ -5,10 +5,20 @@ import FlyoutMenu from "./FlyoutMenu";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ProfileIcon from "./ProfileIcon.jsx";
 import "./barnav.less";
+import { useGetCartQuery } from "../features/cart/cartSlice.js";
 
 export default function Navbar() {
-  // const cartItem = useSelector((state) => state.cart.cart);
   const token = useSelector(selectToken);
+  const { data, isLoading, isError } = useGetCartQuery();
+
+  //Waiting data
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+  if (isError) {
+    return;
+  }
+  ////end
 
   return (
     <nav className="main-nav">
@@ -36,10 +46,12 @@ export default function Navbar() {
             </li>
           </>
         )}
-        <li>
+        <li className="icon">
           <NavLink to="/cart">
             <ShoppingCartIcon />
-            {/* <span>{cartItem.length}</span> */}
+            {data.data?.length > 0 && (
+              <span className="icon-number">{data.data.length}</span>
+            )}
           </NavLink>
         </li>
         <li className="flyout-menu">
