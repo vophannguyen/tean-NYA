@@ -62,7 +62,6 @@ export default function SoldListings() {
 
   return (
     <section className="listing-body">
-      <h2>Sold</h2>
       {sold && sold.length > 0 ? (
         <div className="scrollContainer">
           {sold && sold.length > 3 && (
@@ -104,7 +103,7 @@ export default function SoldListings() {
             ))}
           </ul>
           {sold.length > 3 && (
-            <button className="scrollButton-right" onClick={() => slide(890)}>
+            <button className="scrollButton-right" onClick={() => slide(890)}disabled={scrollEnd}>
               {">"}
             </button>
           )}
