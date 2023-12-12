@@ -34,6 +34,10 @@ const ticketsApi = api.injectEndpoints({
       transformResponse: (response) => response.data,
       providesTags: ["Tickets"],
     }),
+    getCity: builder.query({
+      query: () => "/tickets/city",
+      providesTags: ["Tickets"],
+    }),
   }),
 });
 
@@ -44,4 +48,5 @@ export const {
   useGetMoviesQuery,
   useGetConcertsQuery,
   useGetResQuery,
+  useGetCityQuery,
 } = ticketsApi;

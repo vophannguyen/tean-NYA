@@ -3,6 +3,7 @@ import {
   useGetMoviesQuery,
   useGetConcertsQuery,
   useGetResQuery,
+  useGetCityQuery,
 } from "./ticketSlice";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -39,10 +40,13 @@ export default function Tickets() {
   const { data: movies } = useGetMoviesQuery();
   const { data: concerts } = useGetConcertsQuery();
   const { data: res } = useGetResQuery();
+  const { data } = useGetCityQuery();
+
   const [isSorted, setIsSorted] = useState(false);
   const [filtered, setFiltered] = useState(null);
   const [newTicket, setNewTicket] = useState(tickets);
   const [isSearch, setIsSearch] = useState(false);
+  const [city, setCity] = useState("US");
   let searchTicket = null;
 
   if (isError) {
@@ -88,6 +92,15 @@ export default function Tickets() {
       setIsSorted(false);
     }
   };
+  const handleCity = (e) => {
+    setCity(() => e.target.value);
+    if (e.target.value === "NewYork") {
+      setFiltered(() => data.NewYork);
+      setIsSorted(true);
+    } else {
+      setIsSorted(false);
+    }
+  };
   return (
     <section>
       <form onSubmit={handleSearch} className="search-bar">
@@ -95,7 +108,17 @@ export default function Tickets() {
       </form>
       <section className="heading">
         <h1>
-          New York City{" "}
+          <span>
+            <select
+              className="category-filter dropdown"
+              name="categoryfilter"
+              type="text"
+              onChange={handleCity}
+            >
+              <option value="US">US</option>
+              <option value="NewYork">NewYork</option>
+            </select>
+          </span>
           <span>
             <select
               className="category-filter dropdown"
@@ -130,9 +153,9 @@ export default function Tickets() {
         </section>
         <aside className="right">
           {!isSorted ? (
-            <Map tickets={searchTicket} single={false} />
+            <Map tickets={searchTicket} single={false} city={city} />
           ) : (
-            <Map tickets={filtered} single={false} />
+            <Map tickets={filtered} single={false} city={city} />
           )}
         </aside>
       </section>

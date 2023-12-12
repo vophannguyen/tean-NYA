@@ -25,7 +25,7 @@ const zoom = 4;
 /** Display Map with tickets pass in
  * https://www.npmjs.com/package/@react-google-maps/api
  */
-export default function Map({ tickets, single }) {
+export default function Map({ tickets, single, city }) {
   let latLng = {};
   let map = {};
   let setZoom = null;
@@ -70,6 +70,11 @@ export default function Map({ tickets, single }) {
     latLng = center;
     setZoom = zoom;
     map = mapContainerStyle;
+    if (city === "NewYork") {
+      latLng = { lat: 40.73061, lng: -73.935242 };
+      setZoom = 11;
+      map = mapContainerStyle;
+    }
   }
 
   ///render to
