@@ -1,78 +1,80 @@
 section {
   width: 100%;
-}
-.heading {
-  text-align: left;
-  padding: 4rem;
-  font-size: 5rem;
 
-  select {
-    appearance: none;
-    background-color: transparent;
-    border: none;
-    font-size: 3.5rem;
-    font-weight: 600;
-  }
-}
-.content {
-  display: flex;
-  padding: 4rem;
-  column-gap: 7rem;
+  .heading {
+    text-align: center;
+    padding: 4rem;
+    font-size: 5rem;
 
-  .sort {
-    display: flex;
-    justify-content: space-between;
-    button {
+    select {
+      appearance: none;
       background-color: transparent;
-      border: 1px solid grey;
-      width: 7rem;
-      padding: 0.6rem;
+      border: none;
+      font-size: 5rem;
+      font-weight: 600;
     }
   }
-
-  .left {
+  .content {
     display: flex;
-    flex-direction: column;
-    flex: 1 1 50%;
-    
-    ul {
+    justify-content: center;
+    margin: 0 auto;
+    column-gap: 7rem;
+    width: 80%;
+
+    .sort {
+      display: flex;
+      justify-content: space-between;
+      button {
+        background-color: transparent;
+        border: 1px solid grey;
+        width: 7rem;
+        padding: 0.6rem;
+      }
+    }
+
+    .left {
       display: flex;
       flex-direction: column;
-      gap: 2.5rem;
+      flex: 1 1 50%;
 
-      .ticket-card {
-        width: 100%;
-        color: #0e0c0c;
-        border: 1px solid #d6d6d6;
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: 2.5rem;
 
-        h2 {
-          padding: 2rem;
-          font-size: 1.8rem;
-        }
-        section {
-          display: flex;
+        .ticket-card {
+          width: 100%;
+          color: #0e0c0c;
+          border: 1px solid #d6d6d6;
 
-          p {
-            padding: 1rem;
+          h2 {
+            padding: 2rem;
+            font-size: 1.8rem;
           }
-          h2:first-child {
-            border-bottom: 1px solid #d6d6d6;
+          section {
+            display: flex;
+
+            p {
+              padding: 1rem;
+            }
+            h2:first-child {
+              border-bottom: 1px solid #d6d6d6;
+            }
           }
         }
       }
     }
-  }
 
-  aside {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-    div {
+    aside {
       position: -webkit-sticky;
       position: sticky;
-      top: 10%;
+      top: 0;
+      div {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 10%;
+      }
     }
-    
   }
 }
 

@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useRegisterMutation, useLoginMutation } from "./authSlice";
-import "./formregister.less";
+import "./formlogin.less";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 
 /** Register form , after they registered , log them in */
 export default function RegisterForm() {
@@ -14,6 +17,7 @@ export default function RegisterForm() {
   const [lastName, setLastName] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   const [registerUser] = useRegisterMutation();
   const [loginUser] = useLoginMutation();
@@ -51,39 +55,52 @@ export default function RegisterForm() {
 
   return (
     <section className="register">
-      <h1 className="register-heading">Register</h1>
+      <h1>Sign Up</h1>
       <form className="register-form" onSubmit={attemptRegister}>
-        <label className="first-name">First Name</label>
-        <input
+        <section className="field">
+          <input
           type="text"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
-        />
-        <label className="last-name">Last Name</label>
-        <input
+          />
+          <label className="first-name">First Name</label>
+        </section>
+        <section className="field">
+          <input
           type="text"
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
-        />
-        <label className="register-email">Email</label>
-        <input
+          />
+          <label className="last-name">Last Name</label>
+        </section>
+        <section className="field">
+          <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-        />
-        <label className="register-username">Username</label>
-        <input
+          />
+          <label className="register-email">Email</label>
+        </section>
+        <section className="field">
+          <input
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-        />
-        <label className="register-password">Password</label>
-        <input
-          type="password"
+          />
+          <label className="register-username">Username</label>
+        </section>
+        <section className="field">
+          <input
+          type={!isVisible ? "password" : "text"}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-        />
-        <button className="register-button">Register</button>
+          />
+          <label className="register-password">Password</label>
+          <div className="show-hide">
+            {isVisible ? <VisibilityIcon onClick={() => setIsVisible(!isVisible)} /> : <VisibilityOffIcon onClick={() => setIsVisible(!isVisible)} />}
+          </div>
+        </section>
+        <button className="register-button"><ArrowOutwardIcon /></button>
         {loading && <p>Registering!</p>}
         {error && <p className="error-message">{error}</p>}
         <Link to="/login">
@@ -93,3 +110,4 @@ export default function RegisterForm() {
     </section>
   );
 }
+
