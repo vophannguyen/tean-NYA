@@ -64,7 +64,6 @@ export default function ActiveListings() {
 
   return (
     <section className="listing-body">
-      <h2>Active</h2>
       {allItems && allItems.data.length > 0 ? (
         <div className="scrollContainer">
           {allItems.data.length > 3 && (
@@ -106,7 +105,7 @@ export default function ActiveListings() {
             ))}
           </ul>
           {allItems.data.length > 3 && (
-            <button className="scrollButton-right" onClick={() => slide(890)} disabled={scrollEnd}>
+            <button className="scrollButton-right" onClick={() => slide(890)}>
               {">"}
             </button>
           )}

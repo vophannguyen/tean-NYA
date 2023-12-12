@@ -76,7 +76,6 @@ export default function UpcomingRes() {
   // render
   return (
     <section className="listing-body">
-      <h2>Upcoming</h2>
       {upcoming && upcoming.length > 0 ? (
         <div className="scrollContainer">
           {upcoming.length > 3 && (
