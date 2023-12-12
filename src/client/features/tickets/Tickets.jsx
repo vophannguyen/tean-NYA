@@ -10,6 +10,7 @@ import { convertTimeTo, formatDate, mapLocation } from "../utils/helpers.js";
 import "./tickets.less";
 import Map from "./Map";
 import { formatDay, formatTime } from "../utils/helpers";
+import Spinner from "../utils/Spinner.jsx";
 
 //Basic functionality setup
 const TicketCard = ({ ticket }) => {
@@ -48,7 +49,11 @@ export default function Tickets() {
     return;
   }
   if (isLoading) {
-    return <span>insert a spinner...</span>;
+    return (
+      <span>
+        <Spinner /> Loading...
+      </span>
+    );
   }
   //search bar
   const handleSearch = (e) => {

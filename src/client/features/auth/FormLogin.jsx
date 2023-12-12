@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useLoginMutation } from "./authSlice";
 import "./formlogin.less";
+import Spinner from "../utils/Spinner";
 
 /** Login Form */
 export default function LoginForm() {
@@ -60,7 +61,11 @@ export default function LoginForm() {
           autoComplete="current-password"
         />
         <button className="login-button">Log in</button>
-        {loading && <p>Logging in!</p>}
+        {loading && (
+          <p>
+            Logging in! <Spinner />
+          </p>
+        )}
         {error && <p className="login-error">{error.message}</p>}
         <Link to="/register">
           <p>Don't have an account? Register here.</p>

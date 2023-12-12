@@ -3,12 +3,17 @@ import CartItem from "./CartItem";
 import { useGetCartQuery } from "./cartSlice";
 import OrderSummary from "./OrderSummary";
 import "./cart.less";
+import Spinner from "../utils/Spinner";
 /** Show all events  in cart and check out  */
 export default function Cart() {
   // used RTK to fetch ticket in cart
   const { isLoading, isError, data } = useGetCartQuery();
   if (isLoading) {
-    return <h1>Loading....</h1>;
+    return (
+      <h1>
+        <Spinner /> Loading....
+      </h1>
+    );
   }
   if (isError) {
     return;
