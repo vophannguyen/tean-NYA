@@ -79,7 +79,6 @@ export default function PastRes() {
   //render
   return (
     <section className="listing-body">
-      <h2>Past Reservations</h2>
       {pastReservations && pastReservations.length > 0 ? (
         <div className="scrollContainer">
           {pastReservations.length > 3 && (
@@ -121,7 +120,7 @@ export default function PastRes() {
             ))}
           </ul>
           {pastReservations.length > 3 && (
-            <button className="scrollButton-right" onClick={() => slide(890)}>
+            <button className="scrollButton-right" onClick={() => slide(890)} disabled={scrollEnd}>
               {">"}
             </button>
           )}

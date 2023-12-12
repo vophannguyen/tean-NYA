@@ -17,8 +17,8 @@ export default function NavAccount() {
   return (
     <section className="account-container">
       <article>
-        <h1>
-          Welcome {user.data.firstName} {user.data.lastName}
+        <h1 className="welcome-prompt">
+        {user.data.firstName} {user.data.lastName}
         </h1>
       </article>
       <nav className="account-nav">

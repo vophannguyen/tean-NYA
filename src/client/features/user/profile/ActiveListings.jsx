@@ -64,7 +64,6 @@ export default function ActiveListings() {
 
   return (
     <section className="listing-body">
-      <h2>Active</h2>
       {allItems && allItems.data.length > 0 ? (
         <div className="scrollContainer">
           {allItems.data.length > 3 && (

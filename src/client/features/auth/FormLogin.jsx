@@ -2,6 +2,9 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useLoginMutation } from "./authSlice";
 import "./formlogin.less";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import Spinner from "../utils/Spinner";
 
 /** Login Form */
@@ -10,10 +13,10 @@ export default function LoginForm() {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
   const [loginUser] = useLoginMutation();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   /// handle login
   const attemptLogin = async (e) => {
@@ -44,25 +47,41 @@ export default function LoginForm() {
   };
   return (
     <section className="login">
-      <h1 className="login-heading"> Log in </h1>
+      <h1 className="login-heading">Sign In</h1>
       <form className="login-form" onSubmit={attemptLogin}>
-        <label className="login-username">Username</label>
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          autoComplete="username"
-        />
-        <label className="login-password">Password</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          autoComplete="current-password"
-        />
-        <button className="login-button">Log in</button>
+        <section className="field">
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            autoComplete="username"
+            required
+          />
+          <label>Username</label>
+        </section>
+        <section className="field">
+          <input
+            type={!isVisible ? "password" : "text"}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            autoComplete="current-password"
+            required
+          />
+          <label>Password</label>
+          <div className="show-hide">
+            {isVisible ? (
+              <VisibilityIcon onClick={() => setIsVisible(!isVisible)} />
+            ) : (
+              <VisibilityOffIcon onClick={() => setIsVisible(!isVisible)} />
+            )}
+          </div>
+        </section>
+        <button className="login-button">
+          <ArrowOutwardIcon />
+        </button>
         {loading && (
           <p>
+            {" "}
             Logging in! <Spinner />
           </p>
         )}
