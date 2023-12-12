@@ -1,5 +1,142 @@
 const prisma = require("../prisma");
 
+const dbNewYork = [
+  {
+    time: new Date(Date.parse(new Date()) + 1 * 1000 * 60 * 60 * 24).toJSON(),
+    title: "Carbone",
+    category: "reservation",
+    description: "New York restaurant",
+    price: 10,
+    quantity: 1,
+    upload: "1700626869150.png",
+    address1: "181 Thompson street",
+    address2: " ",
+    city: "New York",
+    zip: "10012",
+    state: "NY",
+    country: "US",
+  },
+  {
+    time: new Date(Date.parse(new Date()) + 4 * 1000 * 60 * 60 * 24).toJSON(),
+    title: "COTE",
+    category: "reservation",
+    description: "New York restaurant",
+    price: 10,
+    quantity: 1,
+    upload: "1700626869150.png",
+    address1: "16 W22 Street",
+    address2: " ",
+    city: "New York",
+    zip: "10012",
+    state: "NY",
+    country: "US",
+  },
+  {
+    time: new Date(Date.parse(new Date()) + 6 * 1000 * 60 * 60 * 24).toJSON(),
+    title: "Cafe Mogador",
+    category: "reservation",
+    description: "New York restaurant",
+    price: 10,
+    quantity: 1,
+    upload: "1700626869150.png",
+    address1: "133 Wythe Ave",
+    address2: " ",
+    city: "Brooklyn",
+    zip: "11249",
+    state: "NY",
+    country: "US",
+  },
+  {
+    time: new Date(Date.parse(new Date()) + 4 * 1000 * 60 * 60 * 24).toJSON(),
+    title: "Cocoron",
+    category: "reservation",
+    description: "New York restaurant",
+    price: 10,
+    quantity: 1,
+    upload: "1700626869150.png",
+    address1: "16 Delancey St",
+    address2: " ",
+    city: "New York",
+    zip: "10002",
+    state: "NY",
+    country: "US",
+  },
+  {
+    time: new Date(Date.parse(new Date()) + 4 * 1000 * 60 * 60 * 24).toJSON(),
+    title: "Bacaro",
+    category: "reservation",
+    description: "New York restaurant",
+    price: 10,
+    quantity: 1,
+    upload: "1700626869150.png",
+    address1: "136 Division Street",
+    address2: " ",
+    city: "New York",
+    zip: "10002",
+    state: "NY",
+    country: "US",
+  },
+  {
+    time: new Date(Date.parse(new Date()) + 4 * 1000 * 60 * 60 * 24).toJSON(),
+    title: "AMC Empire",
+    category: "movies",
+    description: "New York movies",
+    price: 10,
+    quantity: 1,
+    upload: "1700626869150.png",
+    address1: "25 - 234 W42 st",
+    address2: " ",
+    city: "New York",
+    zip: "10036",
+    state: "NY",
+    country: "US",
+  },
+  {
+    time: new Date(Date.parse(new Date()) + 9 * 1000 * 60 * 60 * 24).toJSON(),
+    title: "IPIC Theater",
+    category: "movies",
+    description: "New York movies",
+    price: 10,
+    quantity: 1,
+    upload: "1700626869150.png",
+    address1: "11 Fullton St",
+    address2: " ",
+    city: "New York",
+    zip: "10038",
+    state: "NY",
+    country: "US",
+  },
+  {
+    time: new Date(Date.parse(new Date()) + 3 * 1000 * 60 * 60 * 24).toJSON(),
+    title: "BAM strong",
+    category: "concert",
+    description: "New York concert",
+    price: 10,
+    quantity: 1,
+    upload: "1700626869150.png",
+    address1: "651 Fulton",
+    address2: " ",
+    city: "New York",
+    zip: "11217",
+    state: "NY",
+    country: "US",
+  },
+  {
+    time: new Date(Date.parse(new Date()) + 4 * 1000 * 60 * 60 * 24).toJSON(),
+    title: "Forest Hills Stadium",
+    category: "concert",
+    description: "New York concert",
+    price: 10,
+    quantity: 1,
+    upload: "1700626869150.png",
+    address1: "1 Tennis Pl",
+    address2: " ",
+    city: "Forest Hills",
+    zip: "10036",
+    state: "NY",
+    country: "US",
+  },
+];
 /** Seeds the database with a user and some tasks */
 const seed = async () => {
   const arr = [
@@ -24,21 +161,19 @@ const seed = async () => {
       firstName: "Nguyen",
       lastName: "Vo",
       items: {
-        create: arr.map((item) => ({
-          time: new Date(
-            Date.parse(new Date()) + 30 * 1000 * 60 * 60 * 24
-          ).toJSON(),
-          title: "Nguyen - " + item,
-          category: item,
-          description: "Nguyen Post Event: " + item,
+        create: dbNewYork.map((item) => ({
+          time: item.time,
+          title: item.title,
+          category: item.category,
+          description: item.description,
           price: 10,
           quantity: 1,
           upload: "1700626869150.png",
-          address1: "1074 albany park dr",
+          address1: item.address1,
           address2: " ",
-          city: "fort mill",
-          zip: "29715",
-          state: "SC",
+          city: item.city,
+          zip: item.zip,
+          state: item.state,
           country: "US",
         })),
       },
@@ -104,237 +239,6 @@ const seed = async () => {
       },
     },
   });
-
-  // for (let i = 1; i <= 10; i++) {
-  //   await prisma.user.upsert({
-  //     where: { username: "foo" + i },
-  //     update: {},
-  //     create: {
-  //       username: "foo" + i,
-  //       password: "123",
-  //       email: "vophannguyen" + i + "@gmail.com",
-  //       firstName: "Nguyen" + i,
-  //       lastName: "vo",
-  //       items: {
-  //         create: [
-  //           {
-  //             time: new Date(
-  //               Date.parse(new Date()) + 30 * 1000 * 60 * 60 * 24
-  //             ).toJSON(),
-  //             title: "restaurant" + i,
-  //             category: "reservation",
-  //             description: "test-desss",
-  //             price: i,
-  //             quantity: i,
-  //             upload: "1700626869150.png",
-  //             address1: "1074 albany park dr",
-  //             address2: " ",
-  //             city: "fort mill",
-  //             zip: "29715",
-  //             state: "SC",
-  //             country: "US",
-  //           },
-  //         ],
-  //       },
-  //       order: {
-  //         create: {
-  //           itemOrder: {
-  //             create: [
-  //               {
-  //                 time: new Date(
-  //                   Date.parse(new Date()) + 30 * 1000 * 60 * 60 * 24
-  //                 ).toJSON(),
-  //                 title: "restaurant" + i,
-  //                 category: "reservation",
-  //                 description: "test-" + i,
-  //                 price: i,
-  //                 quantity: i,
-  //                 upload: "1700626869150.png",
-  //                 address1: "1074 albany park dr",
-  //                 address2: " ",
-  //                 city: "fort mill",
-  //                 zip: "29715",
-  //                 state: "SC",
-  //                 country: "US",
-  //               },
-  //             ],
-  //           },
-  //           receipt: {
-  //             create: {
-  //               subTotal: i * i,
-  //               saleTax: i * i * 0.12,
-  //               total: i * i + i * i * 0.12,
-  //             },
-  //           },
-  //         },
-  //       },
-  //       solditem: {
-  //         create: [
-  //           {
-  //             title: "movies" + i,
-  //             description: "test-" + i,
-  //             price: i,
-  //             upload: "1700626869150.png",
-  //             time: new Date().toJSON(),
-  //             category: "reservation",
-  //           },
-  //         ],
-  //       },
-  //     },
-  //   });
-  //   await prisma.user.upsert({
-  //     where: { username: "foo123" + i },
-  //     update: {},
-  //     create: {
-  //       username: "foo123" + i,
-  //       password: "123456",
-  //       email: "anna" + i + "@gmail.com",
-  //       firstName: "Anna" + 1,
-  //       lastName: "WaterHouse",
-  //       items: {
-  //         create: [
-  //           {
-  //             time: new Date(
-  //               Date.parse(new Date()) + 30 * 1000 * 60 * 60 * 24
-  //             ).toJSON(),
-  //             title: "movies" + 1,
-  //             category: "movies",
-  //             description: "test-" + i,
-  //             price: i,
-  //             quantity: i,
-  //             upload: "1700626869150.png",
-  //             address1: "1074 albany park dr",
-  //             address2: " ",
-  //             city: "fort mill",
-  //             zip: "29715",
-  //             state: "SC",
-  //             country: "US",
-  //           },
-  //         ],
-  //       },
-  //       order: {
-  //         create: {
-  //           itemOrder: {
-  //             create: [
-  //               {
-  //                 time: new Date(
-  //                   Date.parse(new Date()) + 30 * 1000 * 60 * 60 * 24
-  //                 ).toJSON(),
-  //                 title: "movies" + i,
-  //                 category: "movies",
-  //                 description: "test-" + i,
-  //                 price: i,
-  //                 quantity: i,
-  //                 upload: "1700626869150.png",
-  //                 address1: "1074 albany park dr",
-  //                 address2: " ",
-  //                 city: "fort mill",
-  //                 zip: "29715",
-  //                 state: "SC",
-  //                 country: "US",
-  //               },
-  //             ],
-  //           },
-  //           receipt: {
-  //             create: {
-  //               subTotal: i * i,
-  //               saleTax: i * i * 0.12,
-  //               total: i * i + i * i * 0.12,
-  //             },
-  //           },
-  //         },
-  //       },
-  //       solditem: {
-  //         create: [
-  //           {
-  //             title: "restaurant" + i,
-  //             description: "test-" + i,
-  //             price: i,
-  //             upload: "1700626869150.png",
-  //             time: new Date().toJSON(),
-  //             category: "movies",
-  //           },
-  //         ],
-  //       },
-  //     },
-  //   });
-  //   await prisma.user.upsert({
-  //     where: { username: "foo456" + i },
-  //     update: {},
-  //     create: {
-  //       username: "foo456" + i,
-  //       password: "123",
-  //       email: "yoona" + i + "@gmail.com",
-  //       firstName: "Yoona",
-  //       lastName: "Choi",
-  //       items: {
-  //         create: [
-  //           {
-  //             time: new Date(
-  //               Date.parse(new Date()) + 30 * 1000 * 60 * 60 * 24
-  //             ).toJSON(),
-  //             title: "concert" + i,
-  //             category: "concert",
-  //             description: "test-" + i,
-  //             price: i,
-  //             quantity: i,
-  //             upload: "1700626869150.png",
-  //             address1: "1074 albany park dr",
-  //             address2: " ",
-  //             city: "fort mill",
-  //             zip: "29715",
-  //             state: "SC",
-  //             country: "US",
-  //           },
-  //         ],
-  //       },
-  //       order: {
-  //         create: {
-  //           itemOrder: {
-  //             create: [
-  //               {
-  //                 time: new Date(
-  //                   Date.parse(new Date()) + 30 * 1000 * 60 * 60 * 24
-  //                 ).toJSON(),
-  //                 title: "concert" + i,
-  //                 category: "concerts",
-  //                 description: "test-" + i,
-  //                 price: i,
-  //                 quantity: i,
-  //                 upload: "1700626869150.png",
-  //                 address1: "1074 albany park dr",
-  //                 address2: " ",
-  //                 city: "fort mill",
-  //                 zip: "29715",
-  //                 state: "SC",
-  //                 country: "US",
-  //               },
-  //             ],
-  //           },
-  //           receipt: {
-  //             create: {
-  //               subTotal: i * i,
-  //               saleTax: i * i * 0.12,
-  //               total: i * i + i * i * 0.12,
-  //             },
-  //           },
-  //         },
-  //       },
-  //       solditem: {
-  //         create: [
-  //           {
-  //             title: "movies" + i,
-  //             description: "test-" + i,
-  //             price: i,
-  //             upload: "1700626869150.png",
-  //             time: new Date().toJSON(),
-  //             category: "concert",
-  //           },
-  //         ],
-  //       },
-  //     },
-  //   });
-  // }
 };
 seed()
   .then(async () => await prisma.$disconnect())
