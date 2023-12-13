@@ -47,6 +47,12 @@ export default function Tickets() {
   const [newTicket, setNewTicket] = useState(tickets);
   const [isSearch, setIsSearch] = useState(false);
   const [city, setCity] = useState("US");
+  ///filter
+  const [cityIn, setCityIn] = useState("city");
+  const [category, setCategory] = useState("Events");
+  <option value="week">This Week</option>;
+  const [time, setTime] = useState("all");
+  ///
   let searchTicket = null;
 
   if (isError) {
@@ -80,7 +86,7 @@ export default function Tickets() {
   //(click movies once filter, click movies again make sure does not refilter)
   const handleCategory = (e) => {
     if (e.target.value === "movies") {
-      setFiltered([...movies]);
+      setFiltered([...movies.data]);
       setIsSorted(true);
     } else if (e.target.value === "concerts") {
       setFiltered(concerts);
@@ -97,10 +103,356 @@ export default function Tickets() {
     if (e.target.value === "NewYork") {
       setFiltered(() => data.NewYork);
       setIsSorted(true);
-    } else {
-      setIsSorted(false);
+      return;
     }
+    if (e.target.value === "LosAng") {
+      setFiltered(() => data.LosAng);
+      setIsSorted(true);
+      return;
+    }
+    if (e.target.value === "Chicago") {
+      setFiltered(() => data.Chicago);
+      setIsSorted(true);
+      return;
+    }
+    if (e.target.value === "Boston") {
+      setFiltered(() => data.Boston);
+      setIsSorted(true);
+      return;
+    }
+    setIsSorted(false);
   };
+  ////handleFilter
+  function handleFilter() {
+    console.log(category, cityIn, time);
+    ///resevation
+    setCity(() => cityIn);
+    if (category === "restaurants") {
+      setFiltered(() => res.data);
+      setIsSorted(() => true);
+      //city
+      //New York
+      if (cityIn === "NewYork") {
+        setFiltered(() => res.NewYork);
+        const divTime = convertTimeTo(res.NewYork);
+        //today
+        if (time === "today") {
+          setFiltered(() => divTime[0]);
+          return;
+        }
+        //
+        //tomorrow
+        if (time === "tomorrow") {
+          setFiltered(() => divTime[1]);
+          return;
+        }
+        //
+        //this week
+        if (time === "week") {
+          setFiltered(() => divTime[2]);
+          return;
+        }
+        //
+        return;
+      }
+      //
+      //los Ange
+      if (cityIn === "LosAng") {
+        setFiltered(() => res.LosAng);
+        const divTime = convertTimeTo(res.LosAng);
+        //today
+        if (time === "today") {
+          setFiltered(() => divTime[0]);
+          return;
+        }
+        //
+        //tomorrow
+        if (time === "tomorrow") {
+          setFiltered(() => divTime[1]);
+          return;
+        }
+        //
+        //this week
+        if (time === "week") {
+          setFiltered(() => divTime[2]);
+          return;
+        }
+        //
+        return;
+      }
+      //
+      //Chicago
+      if (cityIn === "Chicago") {
+        setFiltered(() => res.Chicago);
+        const divTime = convertTimeTo(res.Chicago);
+        //today
+        if (time === "today") {
+          setFiltered(() => divTime[0]);
+          return;
+        }
+        //
+        //tomorrow
+        if (time === "tomorrow") {
+          setFiltered(() => divTime[1]);
+          return;
+        }
+        //
+        //this week
+        if (time === "week") {
+          setFiltered(() => divTime[2]);
+          return;
+        }
+        //
+        return;
+      }
+      //
+      //Boston
+      if (cityIn === "Boston") {
+        setFiltered(() => res.Boston);
+        const divTime = convertTimeTo(res.Boston);
+        //today
+        if (time === "today") {
+          setFiltered(() => divTime[0]);
+          return;
+        }
+        //
+        //tomorrow
+        if (time === "tomorrow") {
+          setFiltered(() => divTime[1]);
+          return;
+        }
+        //
+        //this week
+        if (time === "week") {
+          setFiltered(() => divTime[2]);
+          return;
+        }
+        //
+        return;
+      }
+      //end city
+      return;
+    }
+    ///
+    ///movies
+    if (category === "movies") {
+      setFiltered(() => movies.data);
+      setIsSorted(() => true);
+      //city
+      //New York
+      if (cityIn === "NewYork") {
+        setFiltered(() => res.NewYork);
+        const divTime = convertTimeTo(res.NewYork);
+        //today
+        if (time === "today") {
+          setFiltered(() => divTime[0]);
+          return;
+        }
+        //
+        //tomorrow
+        if (time === "tomorrow") {
+          setFiltered(() => divTime[1]);
+          return;
+        }
+        //
+        //this week
+        if (time === "week") {
+          setFiltered(() => divTime[2]);
+          return;
+        }
+        //
+        return;
+      }
+      //
+      //los Ange
+      if (cityIn === "LosAng") {
+        setFiltered(() => res.LosAng);
+        const divTime = convertTimeTo(res.LosAng);
+        //today
+        if (time === "today") {
+          setFiltered(() => divTime[0]);
+          return;
+        }
+        //
+        //tomorrow
+        if (time === "tomorrow") {
+          setFiltered(() => divTime[1]);
+          return;
+        }
+        //
+        //this week
+        if (time === "week") {
+          setFiltered(() => divTime[2]);
+          return;
+        }
+        //
+        return;
+      }
+      //
+      //Chicago
+      if (cityIn === "Chicago") {
+        setFiltered(() => res.Chicago);
+        const divTime = convertTimeTo(res.Chicago);
+        //today
+        if (time === "today") {
+          setFiltered(() => divTime[0]);
+          return;
+        }
+        //
+        //tomorrow
+        if (time === "tomorrow") {
+          setFiltered(() => divTime[1]);
+          return;
+        }
+        //
+        //this week
+        if (time === "week") {
+          setFiltered(() => divTime[2]);
+          return;
+        }
+        //
+        return;
+      }
+      //
+      //Boston
+      if (cityIn === "Boston") {
+        setFiltered(() => res.Boston);
+        const divTime = convertTimeTo(res.Boston);
+        //today
+        if (time === "today") {
+          setFiltered(() => divTime[0]);
+          return;
+        }
+        //
+        //tomorrow
+        if (time === "tomorrow") {
+          setFiltered(() => divTime[1]);
+          return;
+        }
+        //
+        //this week
+        if (time === "week") {
+          setFiltered(() => divTime[2]);
+          return;
+        }
+        //
+        return;
+      }
+      //end city
+      return;
+    }
+    ////
+    ///concert
+    if (category === "concerts") {
+      setFiltered(() => concerts.data);
+      setIsSorted(() => true);
+      //city
+      //New York
+      if (cityIn === "NewYork") {
+        setFiltered(() => res.NewYork);
+        const divTime = convertTimeTo(res.NewYork);
+        //today
+        if (time === "today") {
+          setFiltered(() => divTime[0]);
+          return;
+        }
+        //
+        //tomorrow
+        if (time === "tomorrow") {
+          setFiltered(() => divTime[1]);
+          return;
+        }
+        //
+        //this week
+        if (time === "week") {
+          setFiltered(() => divTime[2]);
+          return;
+        }
+        //
+        return;
+      }
+      //
+      //los Ange
+      if (cityIn === "LosAng") {
+        setFiltered(() => res.LosAng);
+        const divTime = convertTimeTo(res.LosAng);
+        //today
+        if (time === "today") {
+          setFiltered(() => divTime[0]);
+          return;
+        }
+        //
+        //tomorrow
+        if (time === "tomorrow") {
+          setFiltered(() => divTime[1]);
+          return;
+        }
+        //
+        //this week
+        if (time === "week") {
+          setFiltered(() => divTime[2]);
+          return;
+        }
+        //
+        return;
+      }
+      //
+      //Chicago
+      if (cityIn === "Chicago") {
+        setFiltered(() => res.Chicago);
+        const divTime = convertTimeTo(res.Chicago);
+        //today
+        if (time === "today") {
+          setFiltered(() => divTime[0]);
+          return;
+        }
+        //
+        //tomorrow
+        if (time === "tomorrow") {
+          setFiltered(() => divTime[1]);
+          return;
+        }
+        //
+        //this week
+        if (time === "week") {
+          setFiltered(() => divTime[2]);
+          return;
+        }
+        //
+        return;
+      }
+      //
+      //Boston
+      if (cityIn === "Boston") {
+        setFiltered(() => res.Boston);
+        const divTime = convertTimeTo(res.Boston);
+        //today
+        if (time === "today") {
+          setFiltered(() => divTime[0]);
+          return;
+        }
+        //
+        //tomorrow
+        if (time === "tomorrow") {
+          setFiltered(() => divTime[1]);
+          return;
+        }
+        //
+        //this week
+        if (time === "week") {
+          setFiltered(() => divTime[2]);
+          return;
+        }
+        //
+        return;
+      }
+      //end city
+      return;
+    }
+    ///
+    setIsSorted(() => false);
+  }
+  ///
   return (
     <section>
       <form onSubmit={handleSearch} className="search-bar">
@@ -117,6 +469,9 @@ export default function Tickets() {
             >
               <option value="US">US</option>
               <option value="NewYork">NewYork</option>
+              <option value="LosAng">Los Angeles</option>
+              <option value="Chicago">Chicago</option>
+              <option value="Boston">Boston</option>
             </select>
           </span>
           <span>
@@ -134,13 +489,46 @@ export default function Tickets() {
           </span>
         </h1>
       </section>
+      <section className="sort">
+        <p>Filter</p>
+        <select
+          className="category-filter dropdown"
+          name="categoryfilter"
+          type="text"
+          onChange={(e) => setCategory(e.target.value)}
+        >
+          <option value="events">Events</option>
+          <option value="movies">Movies</option>
+          <option value="concerts">Concerts</option>
+          <option value="restaurants">Restaurants</option>
+        </select>
+        <select
+          className="city-filter dropdown"
+          name="cityfilter"
+          type="text"
+          onChange={(e) => setCityIn(e.target.value)}
+        >
+          <option value="US">City</option>
+          <option value="NewYork">New York City</option>
+          <option value="Boston">Boston</option>
+          <option value="Chicago">Chicago</option>
+          <option value="LosAng">Los Angeles</option>
+        </select>
+        <select
+          className="date-filter dropdown"
+          name="datefilter"
+          type="text"
+          onChange={(e) => setTime(e.target.value)}
+        >
+          <option value="all">All Time</option>
+          <option value="week">This Week</option>
+          <option value="tomorrow">Tomorrow</option>
+          <option value="today">Today</option>
+        </select>
+        <button onClick={handleFilter}>SR</button>
+      </section>
       <section className="content">
         <section className="left">
-          <section className="sort">
-            <button>Today</button>
-            <button>Tomorrow</button>
-            <button>This Week</button>
-          </section>
           <ul className="tickets">
             {!isSorted
               ? searchTicket?.map((ticket) => (
