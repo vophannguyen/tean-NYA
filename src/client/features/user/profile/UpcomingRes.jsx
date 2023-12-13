@@ -27,7 +27,6 @@ export default function UpcomingRes() {
   };
 
   const scrollCheck = () => {
-    console.log("Scroll check!");
     setScrollX(scrl.current.scrollLeft);
     if (
       (Math.floor(scrl.current.scrollWidth - scrl.current.scrollLeft),
@@ -38,17 +37,6 @@ export default function UpcomingRes() {
       setScrollEnd(false);
     }
   };
-
-  useEffect(() => {
-    if (
-      scrl.current &&
-      scrl?.current?.scrollWidth === scrl?.current?.offsetWidth
-    ) {
-      setScrollEnd(true);
-    } else {
-      setScrollEnd(false);
-    }
-  }, [scrl?.current?.scrollWidth, scrl?.current?.offsetWidth]);
 
   const handleViewMoreInfo = (itemId) => {
     setSelectedItem((prevSelectedItem) =>

@@ -39,17 +39,6 @@ export default function ActiveListings() {
     }
   };
 
-  useEffect(() => {
-    if (
-      scrl.current &&
-      scrl?.current?.scrollWidth === scrl?.current?.offsetWidth
-    ) {
-      setScrollEnd(true);
-    } else {
-      setScrollEnd(false);
-    }
-  }, [scrl?.current?.scrollWidth, scrl?.current?.offsetWidth]);
-
   const handleViewMoreInfo = (itemId) => {
     setSelectedItem((prevSelectedItem) =>
       prevSelectedItem === itemId ? null : itemId
