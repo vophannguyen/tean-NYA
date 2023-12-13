@@ -94,7 +94,7 @@ export default function Map({ tickets, single, city }) {
 
   ///render to
   return (
-    <div>
+    <div className="map">
       <GoogleMap mapContainerStyle={map} zoom={setZoom} center={latLng}>
         {location.map((marker, index) => {
           return (

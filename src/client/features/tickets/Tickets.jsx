@@ -19,6 +19,11 @@ import Arrow from "react-horizontal-scroll/lib/components/arrow.js";
 const TicketCard = ({ ticket }) => {
   const day = formatDay(ticket.time);
   const time = formatTime(ticket.time);
+  const iconStyle = {
+    width: "48px",
+    height: "48px",
+    
+  }
 
   return (
     <Link to={`/tickets/${ticket.id}`}>
@@ -29,12 +34,11 @@ const TicketCard = ({ ticket }) => {
         <section className="flex2">
           <h2>{ticket.title}</h2>
           <p>
-            {time} | {ticket.address1}
+            {time} | {ticket.address1} | {ticket.quantity} ticket(s)
           </p>
-          <p>{ticket.quantity} ticket(s)</p>
           </section>
           <section className="flex3">
-            <ArrowOutwardIcon />
+            <ArrowOutwardIcon style={iconStyle} />
           </section>
       </li>
     </Link>
