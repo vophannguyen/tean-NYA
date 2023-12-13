@@ -1,6 +1,7 @@
 import { formatDate } from "../../utils/helpers";
 import { useState, useRef, useEffect } from "react";
 import { useGetSoldItemQuery } from "../userSlice";
+import TicketModal from "./TicketModal";
 import "./profilelisting.less";
 
 export default function SoldListings() {
@@ -35,17 +36,6 @@ export default function SoldListings() {
       setScrollEnd(false);
     }
   };
-
-  useEffect(() => {
-    if (
-      scrl.current &&
-      scrl?.current?.scrollWidth === scrl?.current?.offsetWidth
-    ) {
-      setScrollEnd(true);
-    } else {
-      setScrollEnd(false);
-    }
-  }, [scrl?.current?.scrollWidth, scrl?.current?.offsetWidth]);
 
   const handleViewMoreInfo = (itemId) => {
     setSelectedItem((prevSelectedItem) =>
@@ -82,22 +72,10 @@ export default function SoldListings() {
                   {selectedItem === reservation.id ? "Back" : "View Ticket"}
                 </button>
                 {selectedItem === reservation.id && (
-                  <div>
-                    {reservation.upload.endsWith(".pdf") ? (
-                      <embed
-                        src={`http://localhost:10000/${reservation.upload}`}
-                        type="application/pdf"
-                        width="100%"
-                        height="600px"
-                      />
-                    ) : (
-                      <img
-                        src={`http://localhost:10000/${reservation.upload}`}
-                        alt="wrong"
-                        style={{ maxWidth: "100%", height: "auto" }}
-                      />
-                    )}
-                  </div>
+                  <TicketModal
+                  src={`http://localhost:10000/${reservation.upload}`}
+                    onClose={() => setSelectedItem(null)}
+                  />
                 )}
               </li>
             ))}

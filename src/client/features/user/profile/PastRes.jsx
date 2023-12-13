@@ -1,10 +1,10 @@
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { formatDate } from "../../utils/helpers";
 import { useFetchUserReservationHistoryQuery } from "../userSlice";
+import TicketModal from "./TicketModal"; 
 import "./profilelisting.less";
 
 export default function PastRes() {
-  //use RTK to fetch data
   const {
     data: upcomingReservations,
     isLoading,
@@ -24,34 +24,20 @@ export default function PastRes() {
       behavior: "smooth",
     });
 
-    setScrollEnd(
-      targetScrollLeft + container.clientWidth >= container.scrollWidth
-    );
+    setScrollEnd(targetScrollLeft + container.clientWidth >= container.scrollWidth);
   };
 
   const scrollCheck = () => {
-    console.log("Scroll check!");
     setScrollX(scrl.current.scrollLeft);
     if (
-      Math.floor(scrl.current.scrollWidth - scrl.current.scrollLeft) <=
-      scrl.current.offsetWidth
+      (Math.floor(scrl.current.scrollWidth - scrl.current.scrollLeft),
+      +scrl.current.offsetWidth)
     ) {
       setScrollEnd(true);
     } else {
       setScrollEnd(false);
     }
   };
-
-  useEffect(() => {
-    if (
-      scrl.current &&
-      scrl?.current?.scrollWidth === scrl?.current?.offsetWidth
-    ) {
-      setScrollEnd(true);
-    } else {
-      setScrollEnd(false);
-    }
-  }, [scrl?.current?.scrollWidth, scrl?.current?.offsetWidth]);
 
   const handleViewMoreInfo = (itemId) => {
     setSelectedItem((prevSelectedItem) =>
@@ -62,21 +48,17 @@ export default function PastRes() {
   if (isLoading) {
     return <p>Loading... </p>;
   }
+
   if (error) {
     return (
       <p>Error fetching your upcoming reservations. Please try again later.</p>
     );
   }
-  /**
-   * hanlde pass reservation or ticket
-   * compare time of ticket with current time
-   * @returns []
-   */
+
   const pastReservations = upcomingReservations.itemOrder.filter((item) => {
     return Date.parse(new Date(item.time)) < Date.now() ? true : false;
   });
 
-  //render
   return (
     <section className="listing-body">
       {pastReservations && pastReservations.length > 0 ? (
@@ -99,22 +81,10 @@ export default function PastRes() {
                   {selectedItem === reservation ? "Back" : "View Ticket"}
                 </button>
                 {selectedItem === reservation.id && (
-                  <div>
-                    {reservation.upload.endsWith(".pdf") ? (
-                      <embed
-                        src={`http://localhost:10000/${reservation.upload}`}
-                        type="application/pdf"
-                        width="100%"
-                        height="600px"
-                      />
-                    ) : (
-                      <img
-                        src={`http://localhost:10000/${reservation.upload}`}
-                        alt="wrong"
-                        style={{ maxWidth: "100%", height: "auto" }}
-                      />
-                    )}
-                  </div>
+                  <TicketModal
+                    src={`http://localhost:10000/${reservation.upload}`}
+                    onClose={() => setSelectedItem(null)}
+                  />
                 )}
               </li>
             ))}
