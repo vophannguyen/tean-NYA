@@ -44,8 +44,6 @@ export default function Tickets() {
 
   const [isSorted, setIsSorted] = useState(false);
   const [filtered, setFiltered] = useState(null);
-  const [newTicket, setNewTicket] = useState(tickets);
-  const [isSearch, setIsSearch] = useState(false);
   const [city, setCity] = useState("US");
   ///filter
   const [cityIn, setCityIn] = useState("city");
@@ -68,19 +66,14 @@ export default function Tickets() {
   //search bar
   const handleSearch = (e) => {
     e.preventDefault();
-    setIsSearch(() => true);
+    setIsSorted(() => true);
     const formData = new FormData(e.target);
     const search = formData.get("search");
     const searchTicket = tickets.filter((item) => {
       return item.title.toLowerCase().includes(search.toLowerCase());
     });
-    setNewTicket(searchTicket);
+    setFiltered(() => searchTicket);
   };
-
-  searchTicket = tickets;
-  if (isSearch) {
-    searchTicket = newTicket;
-  }
 
   //need to fix rerendering for every click on the same filter
   //(click movies once filter, click movies again make sure does not refilter)
@@ -531,7 +524,7 @@ export default function Tickets() {
         <section className="left">
           <ul className="tickets">
             {!isSorted
-              ? searchTicket?.map((ticket) => (
+              ? tickets?.map((ticket) => (
                   <TicketCard ticket={ticket} key={ticket.id} />
                 ))
               : filtered?.map((ticket) => (
@@ -541,7 +534,7 @@ export default function Tickets() {
         </section>
         <aside className="right">
           {!isSorted ? (
-            <Map tickets={searchTicket} single={false} city={city} />
+            <Map tickets={tickets} single={false} city={city} />
           ) : (
             <Map tickets={filtered} single={false} city={city} />
           )}
