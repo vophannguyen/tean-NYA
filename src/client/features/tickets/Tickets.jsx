@@ -89,10 +89,10 @@ export default function Tickets() {
       setFiltered([...movies.data]);
       setIsSorted(true);
     } else if (e.target.value === "concerts") {
-      setFiltered(concerts);
+      setFiltered(concerts.data);
       setIsSorted(true);
     } else if (e.target.value === "restaurants") {
-      setFiltered(res);
+      setFiltered(res.data);
       setIsSorted(true);
     } else {
       setIsSorted(false);
@@ -454,7 +454,7 @@ export default function Tickets() {
   }
   ///
   return (
-    <section>
+    <section className="tickets-container">
       <form onSubmit={handleSearch} className="search-bar">
         <input type="text" placeholder="Search Event" name="search" />
       </form>
