@@ -25,36 +25,38 @@ export default function Receipt() {
 
   return (
     data.receipt && (
-      <section className="reciept-container">
-        <table>
-          <thead>
-            <tr>
-              <th colSpan={2}>Receipt of Payment</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Invoice: </td>
-              <td>#{id}</td>
-            </tr>
-            <tr>
-              <td>Date&Time :</td>
-              <td>{formatDate(date)}</td>
-            </tr>
-            <tr>
-              <td>Subtotal: </td>
-              <td>{data.receipt.receipt[0].subTotal}</td>
-            </tr>
-            <tr>
-              <td>SaleTax: </td>
-              <td>{data.receipt.receipt[0].saleTax}</td>
-            </tr>
-            <tr>
-              <td>Total: </td>
-              <td>{data.receipt.receipt[0].total}</td>
-            </tr>
-          </tbody>
-        </table>
+      <section className="box-container">
+        <section className="reciept-container">
+          <table>
+            <thead>
+              <tr>
+                <th colSpan={2}>Receipt of Payment</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Invoice: </td>
+                <td>#{id}</td>
+              </tr>
+              <tr>
+                <td>Date&Time :</td>
+                <td>{formatDate(date)}</td>
+              </tr>
+              <tr>
+                <td>Subtotal: </td>
+                <td>{data.receipt.receipt[0].subTotal}</td>
+              </tr>
+              <tr>
+                <td>SaleTax: </td>
+                <td>{data.receipt.receipt[0].saleTax}</td>
+              </tr>
+              <tr>
+                <td>Total: </td>
+                <td>{data.receipt.receipt[0].total}</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
       </section>
     )
   );
