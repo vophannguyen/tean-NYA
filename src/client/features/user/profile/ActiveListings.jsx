@@ -94,7 +94,7 @@ export default function ActiveListings() {
             ))}
           </ul>
           {allItems.data.length > 3 && (
-            <button className="scrollButton-right" onClick={() => slide(890)}>
+            <button className="scrollButton-right" onClick={() => slide(890)} disabled={scrollEnd}>
               {">"}
             </button>
           )}
