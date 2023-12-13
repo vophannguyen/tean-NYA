@@ -97,39 +97,41 @@ export default function ProcessCheckout() {
   }
   //end
   return (
-    <section className="process-container">
-      <form onSubmit={handlePurchase} className="process-payment">
-        <h1>Payment Method</h1>
-        <select name="method" id="cars">
-          <option value="credit card">Credit Card</option>
+    <section className="container">
+      <section className="process-container">
+        <form onSubmit={handlePurchase} className="process-payment">
+          <h1>Payment Method</h1>
+          <select name="method" id="cars">
+            <option value="credit card">Credit Card</option>
 
-          <option value="paypal">Paypal</option>
-        </select>
-        <input
-          type="text"
-          name="nameOnCard"
-          placeholder="Name on card"
-          required
-        />
-        <input
-          type="text"
-          name="cardNumber"
-          placeholder="💳 Card Number"
-          required
-        />
-        <input type="text" name="securityCode" placeholder="🔐 CVC" />
-        <input
-          type="text"
-          name="experiedDay"
-          id=""
-          maxLength={7}
-          placeholder="MM/YY"
-        />
-        <Button className="process-botton">Complete Purchase</Button>
-      </form>
-      <article>
-        <OrderSummary show={false} onClick={handlePurchase} />
-      </article>
+            <option value="paypal">Paypal</option>
+          </select>
+          <input
+            type="text"
+            name="nameOnCard"
+            placeholder="Name on card"
+            required
+          />
+          <input
+            type="text"
+            name="cardNumber"
+            placeholder="💳 Card Number"
+            required
+          />
+          <input type="text" name="securityCode" placeholder="🔐 CVC" />
+          <input
+            type="text"
+            name="experiedDay"
+            id=""
+            maxLength={7}
+            placeholder="MM/YY"
+          />
+          <Button className="process-botton">Complete Purchase</Button>
+        </form>
+        <article>
+          <OrderSummary show={false} onClick={handlePurchase} />
+        </article>
+      </section>
     </section>
   );
 }
