@@ -2,10 +2,12 @@ import { useState, useRef, useEffect } from "react";
 import { formatDate } from "../../utils/helpers";
 import { useFetchAllUserItemsQuery } from "../userSlice";
 import "./profilelisting.less";
+import TicketModal from "./TicketModal"; // Import the TicketModal component
 
 export default function ActiveListings() {
   const { data: allItems, isLoading, isError } = useFetchAllUserItemsQuery();
   const [selectedItem, setSelectedItem] = useState(null);
+  const [modalSrc, setModalSrc] = useState(null); // Track modal content
   const [scrollX, setScrollX] = useState(0);
   const [scrollEnd, setScrollEnd] = useState(false);
   const scrl = useRef(null);
@@ -52,6 +54,19 @@ export default function ActiveListings() {
     setSelectedItem((prevSelectedItem) =>
       prevSelectedItem === itemId ? null : itemId
     );
+
+    if (selectedItem !== itemId) {
+      const selectedItemData = allItems.data.find((item) => item.id === itemId);
+
+      setModalSrc(
+        `http://localhost:10000/${selectedItemData.upload}`
+      );
+    }
+  };
+
+  const closeModal = () => {
+    setSelectedItem(null);
+    setModalSrc(null);
   };
 
   if (isLoading) {
@@ -81,25 +96,10 @@ export default function ActiveListings() {
                 {reservation.title}{" "}
                 <span> Time: {formatDate(reservation.time)}</span>
                 <button onClick={() => handleViewMoreInfo(reservation.id)}>
-                  {selectedItem === reservation.id ? "Back" : "View Ticket"}
+                  View Ticket
                 </button>
                 {selectedItem === reservation.id && (
-                  <div>
-                    {reservation.upload.endsWith(".pdf") ? (
-                      <embed
-                        src={`http://localhost:10000/${reservation.upload}`}
-                        type="application/pdf"
-                        width="100%"
-                        height="300px"
-                      />
-                    ) : (
-                      <img
-                        src={`http://localhost:10000/${reservation.upload}`}
-                        alt="wrong"
-                        style={{ maxWidth: "100%", height: "auto" }}
-                      />
-                    )}
-                  </div>
+                  <TicketModal src={modalSrc} onClose={closeModal} />
                 )}
               </li>
             ))}

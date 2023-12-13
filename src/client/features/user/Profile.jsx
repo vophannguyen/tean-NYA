@@ -17,7 +17,6 @@ export default function Profile() {
   }
   return (
     <section className="profile-container">
-      <h1>Account</h1>
       <table>
         <tbody>
           <tr>
