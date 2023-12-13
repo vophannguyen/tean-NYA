@@ -75,6 +75,21 @@ export default function Map({ tickets, single, city }) {
       setZoom = 11;
       map = mapContainerStyle;
     }
+    if (city === "LosAng") {
+      latLng = { lat: 34.052235, lng: -118.243683 };
+      setZoom = 11;
+      map = mapContainerStyle;
+    }
+    if (city === "Chicago") {
+      latLng = { lat: 41.881832, lng: -87.623177 };
+      setZoom = 11;
+      map = mapContainerStyle;
+    }
+    if (city === "Boston") {
+      latLng = { lat: 42.361145, lng: -71.057083 };
+      setZoom = 11;
+      map = mapContainerStyle;
+    }
   }
 
   ///render to

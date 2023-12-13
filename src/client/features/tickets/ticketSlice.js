@@ -21,17 +21,17 @@ const ticketsApi = api.injectEndpoints({
     }),
     getMovies: builder.query({
       query: () => "/tickets/movies",
-      transformResponse: (response) => response.data,
+      // transformResponse: (response) => response.data,
       providesTags: ["Tickets"],
     }),
     getConcerts: builder.query({
       query: () => "/tickets/concert",
-      transformResponse: (response) => response.data,
+      // transformResponse: (response) => response.data,
       providesTags: ["Tickets"],
     }),
     getRes: builder.query({
       query: () => "/tickets/reservation",
-      transformResponse: (response) => response.data,
+      // transformResponse: (response) => response.data,
       providesTags: ["Tickets"],
     }),
     getCity: builder.query({
