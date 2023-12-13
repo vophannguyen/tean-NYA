@@ -2,9 +2,10 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useLoginMutation } from "./authSlice";
 import "./formlogin.less";
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
+import Spinner from "../utils/Spinner";
 
 /** Login Form */
 export default function LoginForm() {
@@ -65,14 +66,25 @@ export default function LoginForm() {
             onChange={(e) => setPassword(e.target.value)}
             autoComplete="current-password"
             required
-            />
-            <label>Password</label>
-            <div className="show-hide">
-              {isVisible ? <VisibilityIcon onClick={() => setIsVisible(!isVisible)} /> : <VisibilityOffIcon onClick={() => setIsVisible(!isVisible)} />}
-            </div>
+          />
+          <label>Password</label>
+          <div className="show-hide">
+            {isVisible ? (
+              <VisibilityIcon onClick={() => setIsVisible(!isVisible)} />
+            ) : (
+              <VisibilityOffIcon onClick={() => setIsVisible(!isVisible)} />
+            )}
+          </div>
         </section>
-        <button className="login-button"><ArrowOutwardIcon /></button>
-        {loading && <p>Logging in!</p>}
+        <button className="login-button">
+          <ArrowOutwardIcon />
+        </button>
+        {loading && (
+          <p>
+            {" "}
+            Logging in! <Spinner />
+          </p>
+        )}
         {error && <p className="login-error">{error.message}</p>}
         <Link to="/register">
           <p>Don't have an account? Register here.</p>

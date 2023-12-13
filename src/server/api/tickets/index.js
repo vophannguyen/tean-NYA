@@ -2,6 +2,7 @@ const { ServerError } = require("../../errors");
 const prisma = require("../../prisma");
 const router = require("express").Router();
 const { imageFile, imageUpload } = require("./image");
+const { zipCode } = require("./location");
 module.exports = router;
 
 //create new ticket ...require logged
@@ -109,7 +110,14 @@ router.get("/reservation", async (req, res, next) => {
     allTicket.forEach((ticket) => {
       ticket.upload = imageFile(ticket.upload);
     });
-    res.json({ data: allTicket });
+    const city = zipCode(allTicket);
+    res.json({
+      data: allTicket,
+      NewYork: city[0],
+      LosAng: city[1],
+      Chicago: city[2],
+      Boston: city[3],
+    });
   } catch (err) {
     next(err);
   }
@@ -130,7 +138,14 @@ router.get("/movies", async (req, res, next) => {
     allTicket.forEach((ticket) => {
       ticket.upload = imageFile(ticket.upload);
     });
-    res.json({ data: allTicket });
+    const city = zipCode(allTicket);
+    res.json({
+      data: allTicket,
+      NewYork: city[0],
+      LosAng: city[1],
+      Chicago: city[2],
+      Boston: city[3],
+    });
   } catch (err) {
     next(err);
   }
@@ -150,12 +165,35 @@ router.get("/concert", async (req, res, next) => {
     allTicket.forEach((ticket) => {
       ticket.upload = imageFile(ticket.upload);
     });
-    res.json({ data: allTicket });
+    const city = zipCode(allTicket);
+    res.json({
+      data: allTicket,
+      NewYork: city[0],
+      LosAng: city[1],
+      Chicago: city[2],
+      Boston: city[3],
+    });
   } catch (err) {
     next(err);
   }
 });
 /////////////////////////////end
+////NewYork [10162,10006,10004,10069,10282,10018,10007,10280,10005,10044,10017,10037,10012,10038,10001,10039,10013,10014,10036,10030,10010,10022,10035,10026,10021,10034,10019,10040,10028,10011,10003,10016,10128,10009,10032,10033,10031,10024,10027,10023,10002,10029,10025]
+router.get("/city", async (req, res, next) => {
+  try {
+    const allEvent = await prisma.item.findMany();
+    const city = zipCode(allEvent);
+    res.json({
+      NewYork: city[0],
+      LosAng: city[1],
+      Chicago: city[2],
+      Boston: city[3],
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+//////////////end
 
 ////delete single item
 router.delete("/delete/:id", async (req, res, next) => {
