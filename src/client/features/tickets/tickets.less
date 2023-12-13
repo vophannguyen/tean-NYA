@@ -1,6 +1,5 @@
 section {
   width: 100%;
-
   .heading {
     text-align: center;
     padding: 4rem;
@@ -20,7 +19,6 @@ section {
     margin: 0 auto;
     column-gap: 7rem;
     width: 80%;
-
     .sort {
       display: flex;
       justify-content: space-between;
@@ -80,15 +78,17 @@ section {
 
 .tickets-container {
   position: relative;
+  background-color: white;
+  border: 1px solid lightgray;
   .search-bar {
     position: absolute;
     transform: translate(70%, -150%);
-    @media (max-width: 1300px) {
+    @media (max-width: 1500px) {
       transform: translate(100%, -180%);
     }
     input {
       width: 30rem;
-      @media (max-width: 1300px) {
+      @media (max-width: 1500px) {
         width: 20rem;
         height: 1.5rem;
       }

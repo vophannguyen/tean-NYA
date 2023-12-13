@@ -234,8 +234,8 @@ export default function Tickets() {
       //city
       //New York
       if (cityIn === "NewYork") {
-        setFiltered(() => res.NewYork);
-        const divTime = convertTimeTo(res.NewYork);
+        setFiltered(() => movies.NewYork);
+        const divTime = convertTimeTo(movies.NewYork);
         //today
         if (time === "today") {
           setFiltered(() => divTime[0]);
@@ -259,8 +259,8 @@ export default function Tickets() {
       //
       //los Ange
       if (cityIn === "LosAng") {
-        setFiltered(() => res.LosAng);
-        const divTime = convertTimeTo(res.LosAng);
+        setFiltered(() => movies.LosAng);
+        const divTime = convertTimeTo(movies.LosAng);
         //today
         if (time === "today") {
           setFiltered(() => divTime[0]);
@@ -284,8 +284,8 @@ export default function Tickets() {
       //
       //Chicago
       if (cityIn === "Chicago") {
-        setFiltered(() => res.Chicago);
-        const divTime = convertTimeTo(res.Chicago);
+        setFiltered(() => movies.Chicago);
+        const divTime = convertTimeTo(movies.Chicago);
         //today
         if (time === "today") {
           setFiltered(() => divTime[0]);
@@ -309,8 +309,8 @@ export default function Tickets() {
       //
       //Boston
       if (cityIn === "Boston") {
-        setFiltered(() => res.Boston);
-        const divTime = convertTimeTo(res.Boston);
+        setFiltered(() => movies.Boston);
+        const divTime = convertTimeTo(movies.Boston);
         //today
         if (time === "today") {
           setFiltered(() => divTime[0]);
@@ -342,8 +342,8 @@ export default function Tickets() {
       //city
       //New York
       if (cityIn === "NewYork") {
-        setFiltered(() => res.NewYork);
-        const divTime = convertTimeTo(res.NewYork);
+        setFiltered(() => concerts.NewYork);
+        const divTime = convertTimeTo(concerts.NewYork);
         //today
         if (time === "today") {
           setFiltered(() => divTime[0]);
@@ -367,8 +367,8 @@ export default function Tickets() {
       //
       //los Ange
       if (cityIn === "LosAng") {
-        setFiltered(() => res.LosAng);
-        const divTime = convertTimeTo(res.LosAng);
+        setFiltered(() => concerts.LosAng);
+        const divTime = convertTimeTo(concerts.LosAng);
         //today
         if (time === "today") {
           setFiltered(() => divTime[0]);
@@ -392,8 +392,8 @@ export default function Tickets() {
       //
       //Chicago
       if (cityIn === "Chicago") {
-        setFiltered(() => res.Chicago);
-        const divTime = convertTimeTo(res.Chicago);
+        setFiltered(() => concerts.Chicago);
+        const divTime = convertTimeTo(concerts.Chicago);
         //today
         if (time === "today") {
           setFiltered(() => divTime[0]);
@@ -417,8 +417,8 @@ export default function Tickets() {
       //
       //Boston
       if (cityIn === "Boston") {
-        setFiltered(() => res.Boston);
-        const divTime = convertTimeTo(res.Boston);
+        setFiltered(() => concerts.Boston);
+        const divTime = convertTimeTo(concerts.Boston);
         //today
         if (time === "today") {
           setFiltered(() => divTime[0]);
