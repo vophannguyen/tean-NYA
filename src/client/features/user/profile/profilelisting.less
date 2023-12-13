@@ -1,12 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Amiri&family=Inconsolata&display=swap');
+
 .active-card {
-border: solid;
-width: 20rem;
+width: 30rem;
 height: 10rem;
 margin-right: 10px; 
 flex-shrink: 0;
 display: flex;
 flex-direction: column;
 align-items: center;
+margin-top: 5rem;
+font-family: 'Inconsolata', monospace;
   }
   .listing-body{
     display: flex;
@@ -19,6 +22,7 @@ align-items: center;
   .scrollContainer {
     display: flex;
     align-items: center;
+    justify-content: center;
 
     .horizontalScrollContainer {
       list-style: none;
@@ -27,20 +31,13 @@ align-items: center;
       margin: 0;
       padding: 0;
       white-space: nowrap;
-
-      // li {
-      //   width: 50%; /* Adjust as needed */
-      //   height: 30%; /* Adjust as needed */
-      //   margin-right: 10px; /* Add spacing between items */
-      //   flex-shrink: 0;
-
-      //   // button {
-      //   //   /* Your button styles here */
-      //   // }
-
-      //   // div {
-      //   //   /* Your nested div styles here */
-      //   }
-      // }
+    }
+    button {
+      border: none;
+      background: none;
+      padding: 0;
+      font: inherit;
+      cursor: pointer;
+      text-decoration: underline;
     }
   }

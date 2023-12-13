@@ -1,14 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useFetchUserAccountQuery } from "./userSlice";
-import Reservations from "./profile/Reservations";
-import Listings from "./profile/Listings";
-import PastRes from "./profile/PastRes";
 import "./profile.less";
 
 export default function Profile() {
   const { data: user, isLoading, isError } = useFetchUserAccountQuery();
-  const [activeTab, setActiveTab] = useState("user");
+
   if (isLoading) {
     return <h1>Loading....</h1>;
   }
@@ -17,7 +12,7 @@ export default function Profile() {
   }
   return (
     <section className="profile-container">
-      <h1>Account</h1>
+      <div>
       <table>
         <tbody>
           <tr>
@@ -36,6 +31,7 @@ export default function Profile() {
           </tr>
         </tbody>
       </table>
+      </div>
     </section>
   );
   }

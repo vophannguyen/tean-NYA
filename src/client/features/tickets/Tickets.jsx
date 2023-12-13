@@ -7,11 +7,13 @@ import {
 } from "./ticketSlice";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import { convertTimeTo, formatDate, mapLocation } from "../utils/helpers.js";
 import "./tickets.less";
 import Map from "./Map";
 import { formatDay, formatTime } from "../utils/helpers";
 import Spinner from "../utils/Spinner.jsx";
+import Arrow from "react-horizontal-scroll/lib/components/arrow.js";
 
 //Basic functionality setup
 const TicketCard = ({ ticket }) => {
@@ -21,14 +23,19 @@ const TicketCard = ({ ticket }) => {
   return (
     <Link to={`/tickets/${ticket.id}`}>
       <li key={ticket.id} className="ticket-card">
-        <h2>{ticket.title}</h2>
-        <section>
-          <p>
-            {day} {time}
-          </p>
-          <p>{ticket.address1}</p>
-          <p>{ticket.quantity}</p>
+        <section className="flex1">
+          <h3>{day}</h3>
         </section>
+        <section className="flex2">
+          <h2>{ticket.title}</h2>
+          <p>
+            {time} | {ticket.address1}
+          </p>
+          <p>{ticket.quantity} ticket(s)</p>
+          </section>
+          <section className="flex3">
+            <ArrowOutwardIcon />
+          </section>
       </li>
     </Link>
   );
@@ -453,33 +460,7 @@ export default function Tickets() {
       </form>
       <section className="heading">
         <h1>
-          <span>
-            <select
-              className="category-filter dropdown"
-              name="categoryfilter"
-              type="text"
-              onChange={handleCity}
-            >
-              <option value="US">US</option>
-              <option value="NewYork">NewYork</option>
-              <option value="LosAng">Los Angeles</option>
-              <option value="Chicago">Chicago</option>
-              <option value="Boston">Boston</option>
-            </select>
-          </span>
-          <span>
-            <select
-              className="category-filter dropdown"
-              name="categoryfilter"
-              type="text"
-              onChange={handleCategory}
-            >
-              <option value="events">Events</option>
-              <option value="movies">Movies</option>
-              <option value="concerts">Concerts</option>
-              <option value="restaurants">Restaurants</option>
-            </select>
-          </span>
+          Upcoming Events
         </h1>
       </section>
       <section className="sort">
@@ -518,7 +499,7 @@ export default function Tickets() {
           <option value="tomorrow">Tomorrow</option>
           <option value="today">Today</option>
         </select>
-        <button onClick={handleFilter}>SR</button>
+        <button onClick={handleFilter}>Search</button>
       </section>
       <section className="content">
         <section className="left">
