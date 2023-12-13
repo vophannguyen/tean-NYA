@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./TicketModal.less"; // Add your modal styling
+import "./TicketModal.less"; 
 
 const TicketModal = ({ src, onClose }) => {
   return (
