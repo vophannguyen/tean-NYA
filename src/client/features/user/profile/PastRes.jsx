@@ -29,16 +29,15 @@ export default function PastRes() {
 
   const scrollCheck = () => {
     setScrollX(scrl.current.scrollLeft);
-    setScrollEnd(Math.floor(scrl.current.scrollWidth - scrl.current.scrollLeft) <= scrl.current.offsetWidth);
-  };
-
-  useEffect(() => {
-    if (scrl.current && scrl.current.scrollWidth === scrl.current.offsetWidth) {
+    if (
+      (Math.floor(scrl.current.scrollWidth - scrl.current.scrollLeft),
+      +scrl.current.offsetWidth)
+    ) {
       setScrollEnd(true);
     } else {
       setScrollEnd(false);
     }
-  }, [scrl?.current?.scrollWidth, scrl?.current?.offsetWidth]);
+  };
 
   const handleViewMoreInfo = (itemId) => {
     setSelectedItem((prevSelectedItem) =>
