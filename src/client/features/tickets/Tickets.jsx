@@ -14,7 +14,7 @@ import Map from "./Map";
 import { formatDay, formatTime } from "../utils/helpers";
 import Spinner from "../utils/Spinner.jsx";
 import Arrow from "react-horizontal-scroll/lib/components/arrow.js";
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 //Basic functionality setup
 const TicketCard = ({ ticket }) => {
@@ -23,8 +23,7 @@ const TicketCard = ({ ticket }) => {
   const iconStyle = {
     width: "48px",
     height: "48px",
-    
-  }
+  };
 
   return (
     <Link to={`/tickets/${ticket.id}`}>
@@ -35,12 +34,14 @@ const TicketCard = ({ ticket }) => {
         <section className="flex2">
           <h2>{ticket.title}</h2>
           <p>
-            {time} | {ticket.address1} | {ticket.quantity} ticket(s)
+            {time} |{" "}
+            {ticket.address1 + ", " + ticket.city + ", " + ticket.state}|
+            {ticket.quantity} ticket(s)
           </p>
-          </section>
-          <section className="flex3">
-            <ArrowOutwardIcon style={iconStyle} />
-          </section>
+        </section>
+        <section className="flex3">
+          <ArrowOutwardIcon style={iconStyle} />
+        </section>
       </li>
     </Link>
   );
@@ -129,7 +130,6 @@ export default function Tickets() {
   };
   ////handleFilter
   function handleFilter() {
-    console.log(category, cityIn, time);
     ///resevation
     setCity(() => cityIn);
     if (category === "restaurants") {
@@ -464,9 +464,7 @@ export default function Tickets() {
         <input type="text" placeholder="Search Event" name="search" />
       </form>
       <section className="heading">
-        <h1>
-          Upcoming Events
-        </h1>
+        <h1>Upcoming Events</h1>
       </section>
       <section className="sort">
         <p>Filter</p>
@@ -504,7 +502,9 @@ export default function Tickets() {
           <option value="tomorrow">Tomorrow</option>
           <option value="today">Today</option>
         </select>
-        <button onClick={handleFilter}><ArrowForwardIcon /></button>
+        <button onClick={handleFilter}>
+          <ArrowForwardIcon />
+        </button>
       </section>
       <section className="content">
         <section className="left">

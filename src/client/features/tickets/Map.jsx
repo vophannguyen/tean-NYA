@@ -6,13 +6,15 @@ import { useState } from "react";
 
 //single ticket view map
 const mapContainerStyleSingle = {
-  "aspect-ratio": "5/6",
-  "width": "500px",
+  aspectRatio: "5/6",
+  position: "relative",
+  width: "100%",
 };
 // all tickets
 const mapContainerStyle = {
-  "aspect-ratio": "7/8",
-  "width": "700px",
+  aspectRatio: "6/8",
+  position: "relative",
+  width: "100%",
 };
 
 //default center US
@@ -26,11 +28,11 @@ const zoom = 4;
  * https://www.npmjs.com/package/@react-google-maps/api
  */
 export default function Map({ tickets, single, city }) {
+  const [location, setLocation] = useState([]);
   let latLng = {};
   let map = {};
   let setZoom = null;
   //Hook
-  const [location, setLocation] = useState([]);
 
   // fetch google map
   const { isLoaded, loadError } = useJsApiLoader({
@@ -94,7 +96,7 @@ export default function Map({ tickets, single, city }) {
 
   ///render to
   return (
-    <div className="map">
+    <section className="map">
       <GoogleMap mapContainerStyle={map} zoom={setZoom} center={latLng}>
         {location.map((marker, index) => {
           return (
@@ -107,6 +109,6 @@ export default function Map({ tickets, single, city }) {
           );
         })}
       </GoogleMap>
-    </div>
+    </section>
   );
 }
