@@ -61,9 +61,8 @@ section {
         align-items: stretch;
         gap: 6rem;
         padding: 0 1rem 0 3rem;
-        .ticket-card:hover {
-          border: 3px solid black;
-        }
+        
+
         .ticket-card {
           color: #0e0c0c;
           // border: 2px solid black;
@@ -82,7 +81,6 @@ section {
             min-width: 100px;
             min-height: 100px;
             aspect-ratio: 1/1;
-            border: 2px solid black;
             color: white;
             background-color: black;
             font-size: 1.9rem;
@@ -106,6 +104,16 @@ section {
             top: 0;
             right: 7px;
             position: absolute;
+          }
+        }
+        .ticket-card:hover {
+          border: 3px solid #ff414e;
+          pointer-events: none;
+          .flex1 {
+            background-color:#ff414e;
+          }
+          .flex3 {
+            color:#ff414e;
           }
         }
       }
