@@ -30,30 +30,10 @@ export default function FlyoutMenu({ token }) {
   const Flyout = (
     <section className="flyout">
       <CloseIcon onClick={() => setIsOpen(!isOpen)} />
-      <ul className="explore">
-        <li>
-          <h3 className="title">Explore</h3>
-        </li>
-        <li>
-          <Link to="/tickets">All Events</Link>
-        </li>
-        <li>
-          <Link to="/movies">Movies</Link>
-        </li>
-        <li>
-          <Link to="/concerts">Concerts</Link>
-        </li>
-        <li>
-          <Link to="/reservations">Restaurants</Link>
-        </li>
-      </ul>
       <ul className="account">
-        <li>
-          <h3 className="title">Account</h3>
-        </li>
         {token ? (
           <>
-            <li>Welcome, {me?.data?.firstName}</li>
+            <li className="welcome">Welcome, {me?.data?.firstName}</li>
             <li>
               <Link to="/user/profile">My Profile</Link>
             </li>
@@ -62,7 +42,7 @@ export default function FlyoutMenu({ token }) {
             </li>
             <li>
               <button className="menu-logout" onClick={onLogout}>
-                Log out
+               Sign out
               </button>
             </li>
           </>
@@ -77,9 +57,26 @@ export default function FlyoutMenu({ token }) {
           </>
         )}
       </ul>
+      <ul className="explore">
+        <li>
+          <p>Explore</p>
+        </li>
+        <li>
+          <Link to="/tickets">Events</Link>
+        </li>
+        <li>
+          <Link to="/movies">Movies</Link>
+        </li>
+        <li>
+          <Link to="/concerts">Concerts</Link>
+        </li>
+        <li>
+          <Link to="/reservations">Restaurants</Link>
+        </li>
+      </ul>
       <ul>
         <li>
-          <h3 className="title">Support</h3>
+          <p>Support</p>
         </li>
         <li>
           <Link to="/about">About</Link>
