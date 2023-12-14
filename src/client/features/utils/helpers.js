@@ -32,6 +32,13 @@ export function formatTime(dateStr) {
   }).format(new Date(dateStr));
 }
 
+export function formatCurrency(amount) {
+  return new Intl.NumberFormat("en", {
+    style: "currency",
+    currency: "USD",
+  }).format(amount);
+}
+
 /** convet to  */
 // let deadline = new Date("dec 31, 2017 15:37:25").getTime();
 // let now = new Date().getTime();
