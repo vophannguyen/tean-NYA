@@ -53,7 +53,9 @@ export default function Listing() {
   //details needed for single view listing = category of the listing (movie, concert, reservation)
   return (
     <>
-      <Button onClick={handleReturn}>{"<<"}Back</Button>
+      <Button className="back-single" onClick={handleReturn}>
+        {"<<"}Back
+      </Button>
       <section className="single-view">
         <section className="map-left">
           <figure>
