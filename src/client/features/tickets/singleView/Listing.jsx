@@ -60,7 +60,6 @@ export default function Listing() {
         <section className="map-left">
           <figure>
             <Map tickets={[ticket.data]} single={true} />
-            <button>Get Directions</button>
           </figure>
         </section>
         <section className="info-right">
@@ -106,7 +105,7 @@ export default function Listing() {
               <p>{ticket.data.address1}</p>
             </li>
             <button className="listing-button" onClick={handleCart}>
-              Get Tickets
+             Add To Cart
             </button>
           </ul>
         </section>
