@@ -100,14 +100,24 @@ use-places-autocomplete: v4.0.1
 
 # Routing and State Management
 
+these libraries manage the flow of our application and handling the data from the backend by describing routes & implementing state containers.
+
 react-router-dom: v6.18.0
 react-redux: v8.1.3
 @reduxjs/toolkit: v1.9.7
-API and Data Handling
+
+# API and Data Handling
+
+these libraries handle the communication with APIs, aiding in managing data for Last Chance by providing React components and hooks for integrating Google Maps.
+
 @react-google-maps/api: v2.19.2
 google-map-react: v2.2.1
 react-axios: (add version if applicable)
-Authentication and Security
+
+# Authentication and Security
+
+these libraries secure our application by hashing passwords and manage user authentication between our frontend and backend with token-based authentication
+
 jsonwebtoken: v9.0.2
 bcrypt: v5.1.1
 
