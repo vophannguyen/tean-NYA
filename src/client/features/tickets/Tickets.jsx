@@ -14,11 +14,17 @@ import Map from "./Map";
 import { formatDay, formatTime } from "../utils/helpers";
 import Spinner from "../utils/Spinner.jsx";
 import Arrow from "react-horizontal-scroll/lib/components/arrow.js";
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 //Basic functionality setup
 const TicketCard = ({ ticket }) => {
   const day = formatDay(ticket.time);
   const time = formatTime(ticket.time);
+  const iconStyle = {
+    width: "48px",
+    height: "48px",
+    
+  }
 
   return (
     <Link to={`/tickets/${ticket.id}`}>
@@ -29,12 +35,11 @@ const TicketCard = ({ ticket }) => {
         <section className="flex2">
           <h2>{ticket.title}</h2>
           <p>
-            {time} | {ticket.address1}
+            {time} | {ticket.address1} | {ticket.quantity} ticket(s)
           </p>
-          <p>{ticket.quantity} ticket(s)</p>
           </section>
           <section className="flex3">
-            <ArrowOutwardIcon />
+            <ArrowOutwardIcon style={iconStyle} />
           </section>
       </li>
     </Link>
@@ -499,7 +504,7 @@ export default function Tickets() {
           <option value="tomorrow">Tomorrow</option>
           <option value="today">Today</option>
         </select>
-        <button onClick={handleFilter}>Search</button>
+        <button onClick={handleFilter}><ArrowForwardIcon /></button>
       </section>
       <section className="content">
         <section className="left">

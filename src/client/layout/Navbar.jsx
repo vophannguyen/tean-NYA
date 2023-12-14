@@ -21,6 +21,7 @@ export default function Navbar() {
   ////end
 
   return (
+    <section className="navbar">
     <nav className="main-nav">
       <NavLink to="/">Last Chance</NavLink>
       <menu>
@@ -59,5 +60,7 @@ export default function Navbar() {
         </li>
       </menu>
     </nav>
+
+    </section>
   );
 }

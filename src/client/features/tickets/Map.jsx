@@ -6,13 +6,13 @@ import { useState } from "react";
 
 //single ticket view map
 const mapContainerStyleSingle = {
-  width: "500px",
-  height: "600px",
+  "aspect-ratio": "5/6",
+  "width": "500px",
 };
 // all tickets
 const mapContainerStyle = {
-  width: "700px",
-  height: "800px",
+  "aspect-ratio": "7/8",
+  "width": "700px",
 };
 
 //default center US
@@ -94,7 +94,7 @@ export default function Map({ tickets, single, city }) {
 
   ///render to
   return (
-    <div>
+    <div className="map">
       <GoogleMap mapContainerStyle={map} zoom={setZoom} center={latLng}>
         {location.map((marker, index) => {
           return (

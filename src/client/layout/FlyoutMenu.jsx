@@ -5,6 +5,7 @@ import { logout } from "../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from '@mui/icons-material/Close';
 import { useFetchUserAccountQuery } from "../features/user/userSlice";
 import "./flyoutMenu.less";
 export default function FlyoutMenu({ token }) {
@@ -17,9 +18,8 @@ export default function FlyoutMenu({ token }) {
   }
   if (isError) {
     return;
-  }
-  const handleMenu = () => setIsOpen(true);
-  const handleMouseLeave = () => setIsOpen(false);
+  };
+
 
   const onLogout = async () => {
     await dispatch(logout());
@@ -28,7 +28,8 @@ export default function FlyoutMenu({ token }) {
   };
 
   const Flyout = (
-    <section className="flyout" onMouseLeave={handleMouseLeave}>
+    <section className="flyout">
+      <CloseIcon onClick={() => setIsOpen(!isOpen)} />
       <ul className="explore">
         <li>
           <h3 className="title">Explore</h3>
@@ -95,11 +96,8 @@ export default function FlyoutMenu({ token }) {
 
   return (
     <>
-      <div className="menu" onMouseMove={handleMenu}>
-        <input type="checkbox" id="checkbox" name="checkbox" />
-        <label htmlFor="checkbox">
+      <div className="menu" onClick ={() => setIsOpen(!isOpen)}>
           <MenuIcon />
-        </label>
       </div>
       {isOpen && Flyout}
     </>
