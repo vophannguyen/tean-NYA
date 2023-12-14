@@ -73,15 +73,16 @@
 
 //READ ME FRONT END
 
-Last Chance: Seize the Moment App
+# Last Chance: Seize the Moment App
 
 Introducing Last Chance, the ultimate platform for sharing and discovering exciting reservations! Our app empowers users to post reservations they can no longer attend, providing a second chance for others to enjoy memorable experiences.
 Whether it's a dinner reservation, a movie screening, or a concert & dance party, Last Chance ensures that no plans goes to waste. Users can post and purchase reservations within a week of the reservation date, fostering a community of spontaneous adventures and making sure every event becomes a highlight of someones day.
 Join Last Chance and embrace the joy of turning missed plans into last-minute fun!
 
-Front-end Dependencies
+# Front-end Dependencies
 
-React and Styling
+# React and Styling
+
 React: v18.2.0
 React DOM: v18.2.0
 @emotion/react: v11.11.1
@@ -97,7 +98,8 @@ react-google-places-autocomplete: v4.0.1
 react-horizontal-scroll: v6.0.0
 use-places-autocomplete: v4.0.1
 
-Routing and State Management
+# Routing and State Management
+
 react-router-dom: v6.18.0
 react-redux: v8.1.3
 @reduxjs/toolkit: v1.9.7
@@ -109,7 +111,8 @@ Authentication and Security
 jsonwebtoken: v9.0.2
 bcrypt: v5.1.1
 
-Utility
+# Utility
+
 react-google-places-autocomplete: v4.0.1
 react-horizontal-scroll: v6.0.0
 react-redux: v8.1.3
