@@ -103,20 +103,19 @@ export function convertTimeTo(arr) {
   const current_time = Date.now();
   const today = current_time + 60 * 60 * 1000 * 12;
   console.log(today);
-  const tomorrow = current_time + 60 * 60 * 1000 * 24;
+  const tomorrow = current_time + 60 * 60 * 1000 * 36;
   const thisWeek = current_time + 60 * 60 * 1000 * 24 * 7;
   const result = arr.forEach((event) => {
     const checkTime = Date.parse(event.time);
     console.log(checkTime);
-    if (checkTime <= thisWeek) {
+    if (checkTime <= thisWeek && checkTime >= current_time) {
       tw.push(event);
     }
-    if (checkTime <= today) {
+    if (checkTime <= today && checkTime > current_time) {
       t.push(event);
-    } else {
-      if (checkTime < tomorrow && checkTime > today) {
-        tm.push(event);
-      }
+    }
+    if (checkTime <= tomorrow && checkTime > today) {
+      tm.push(event);
     }
   });
   // let time_in_minutes = end;

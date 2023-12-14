@@ -4,6 +4,7 @@ import {
   useGetConcertsQuery,
   useGetResQuery,
   useGetCityQuery,
+  useGetFilterQuery,
 } from "./ticketSlice";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -455,6 +456,120 @@ export default function Tickets() {
       return;
     }
     ///
+    if (cityIn === "NewYork") {
+      console.log(data.NewYork);
+      setFiltered(() => data.NewYork);
+      setIsSorted(() => true);
+      const divTime = convertTimeTo(data.NewYork);
+      //today
+      if (time === "today") {
+        setFiltered(() => divTime[0]);
+        return;
+      }
+      //
+      //tomorrow
+      if (time === "tomorrow") {
+        setFiltered(() => divTime[1]);
+        return;
+      }
+      //
+      //this week
+      if (time === "week") {
+        setFiltered(() => divTime[2]);
+        return;
+      }
+      return;
+    }
+    if (cityIn === "LosAng") {
+      setFiltered(() => data.LosAng);
+      setIsSorted(() => true);
+      const divTime = convertTimeTo(data.LosAng);
+      //today
+      if (time === "today") {
+        setFiltered(() => divTime[0]);
+        return;
+      }
+      //
+      //tomorrow
+      if (time === "tomorrow") {
+        setFiltered(() => divTime[1]);
+        return;
+      }
+      //
+      //this week
+      if (time === "week") {
+        setFiltered(() => divTime[2]);
+        return;
+      }
+      return;
+    }
+    if (cityIn === "Chicago") {
+      setFiltered(() => data.Chicago);
+      setIsSorted(() => true);
+      const divTime = convertTimeTo(data.Chicago);
+      //today
+      if (time === "today") {
+        setFiltered(() => divTime[0]);
+        return;
+      }
+      //
+      //tomorrow
+      if (time === "tomorrow") {
+        setFiltered(() => divTime[1]);
+        return;
+      }
+      //
+      //this week
+      if (time === "week") {
+        setFiltered(() => divTime[2]);
+        return;
+      }
+      return;
+    }
+    if (cityIn === "Boston") {
+      setFiltered(() => data.Boston);
+      setIsSorted(() => true);
+      const divTime = convertTimeTo(data.Boston);
+      //today
+      if (time === "today") {
+        setFiltered(() => divTime[0]);
+        return;
+      }
+      //
+      //tomorrow
+      if (time === "tomorrow") {
+        setFiltered(() => divTime[1]);
+        return;
+      }
+      //
+      //this week
+      if (time === "week") {
+        setFiltered(() => divTime[2]);
+        return;
+      }
+      return;
+    }
+    const divTime = convertTimeTo(tickets);
+    //today
+    if (time === "today") {
+      setFiltered(() => divTime[0]);
+      setIsSorted(() => true);
+      return;
+    }
+    //
+    //tomorrow
+    if (time === "tomorrow") {
+      setFiltered(() => divTime[1]);
+      setIsSorted(() => true);
+      return;
+    }
+    //
+    //this week
+    if (time === "week") {
+      setFiltered(() => divTime[2]);
+      setIsSorted(() => true);
+      return;
+    }
     setIsSorted(() => false);
   }
   ///
