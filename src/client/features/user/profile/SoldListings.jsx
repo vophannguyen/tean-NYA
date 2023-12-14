@@ -67,7 +67,7 @@ export default function SoldListings() {
             {sold.map((reservation) => (
               <li key={reservation.id} className="active-card">
                 {reservation.title}{" "}
-                <span> Sold:{formatDate(reservation.createAt)}</span>
+                <span>{formatDate(reservation.createAt)}</span>
                 <button onClick={() => handleViewMoreInfo(reservation.id)}>
                   {selectedItem === reservation.id ? "Back" : "View Ticket"}
                 </button>

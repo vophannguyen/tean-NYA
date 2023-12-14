@@ -76,7 +76,7 @@ export default function PastRes() {
             {pastReservations.map((reservation) => (
               <li key={reservation.id} className="active-card">
                 {reservation.title}{" "}
-                <span> Time: {formatDate(reservation.time)}</span>
+                <span>{formatDate(reservation.time)}</span>
                 <button onClick={() => handleViewMoreInfo(reservation.id)}>
                   {selectedItem === reservation ? "Back" : "View Ticket"}
                 </button>
