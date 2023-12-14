@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import "./listing.less";
 import { formatDay, formatTime } from "../../utils/helpers";
 import Map from "../Map";
+import { Button } from "@mui/material";
 
 /** Allows user to view more information and add to cart */
 export default function Listing() {
@@ -52,13 +53,11 @@ export default function Listing() {
   //details needed for single view listing = category of the listing (movie, concert, reservation)
   return (
     <>
-      <button onClick={handleReturn}>Back</button>
+      <Button onClick={handleReturn}>{"<<"}Back</Button>
       <section className="single-view">
         <section className="map-left">
           <figure>
-            <Map tickets={[ticket.data]} single={true}>
-              {" "}
-            </Map>
+            <Map tickets={[ticket.data]} single={true} />
             <button>Get Directions</button>
           </figure>
         </section>
@@ -76,7 +75,13 @@ export default function Listing() {
             </li>
             <li>
               <h3>Location</h3>
-              <p>{ticket.data.address1}</p>
+              <p>
+                {ticket.data.address1 +
+                  ", " +
+                  ticket.data.city +
+                  ", " +
+                  ticket.data.state}
+              </p>
             </li>
             <li>
               <h3>Description</h3>
