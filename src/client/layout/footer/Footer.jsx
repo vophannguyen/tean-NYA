@@ -17,7 +17,6 @@ export default function Footer() {
           </li>
         </ul>
       </section>
-      <hr />
       <section className="flex">
         <ul className="terms">
           <li>
