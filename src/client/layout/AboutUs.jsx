@@ -3,10 +3,16 @@ const AboutUs = () => {
       <div>
         <h1>About Us</h1>
         <p>
-            Last Chance allows users to give up reservations they cannot attend last minute.
+        Last Chance provides the perfect solution for sharing reservations you can no longer attend. 
         </p>
         <p>
-          Our team is passionate about blahblah.
+        Share your soon-to-be missed plans, allowing others to seize the opportunity for a spontaneous adventure!
+        </p>
+        <p>
+        Bid farewell to wasted plans and welcome last-minute fun into your life.
+        </p>
+        <p>
+        Every event deserves a Last Chance at becoming the highlight of your day!
         </p>
       </div>
     );
