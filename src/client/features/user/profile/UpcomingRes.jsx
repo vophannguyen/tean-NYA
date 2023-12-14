@@ -81,7 +81,7 @@ export default function UpcomingRes() {
             {upcoming.map((reservation) => (
               <li key={reservation.id} className="active-card">
                 {reservation.title}
-                <span> Time: {formatDate(reservation.time)}</span>
+                <span>{formatDate(reservation.time)}</span>
                 <button onClick={() => handleViewMoreInfo(reservation.id)}>
                   {selectedItem === reservation.id ? "Back" : "View Ticket"}
                 </button>

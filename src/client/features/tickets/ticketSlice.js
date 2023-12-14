@@ -38,6 +38,12 @@ const ticketsApi = api.injectEndpoints({
       query: () => "/tickets/city",
       providesTags: ["Tickets"],
     }),
+    getFilter: builder.query({
+      query: (data) => ({
+        url: "/tickets/filter",
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -49,4 +55,5 @@ export const {
   useGetConcertsQuery,
   useGetResQuery,
   useGetCityQuery,
+  useGetFilterQuery,
 } = ticketsApi;

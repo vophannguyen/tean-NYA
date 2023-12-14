@@ -26,7 +26,7 @@ export default function Profile() {
             <td>{user.data.email}</td>
           </tr>
           <tr>
-            <td>UserName</td>
+            <td>Username</td>
             <td>{user.data.username}</td>
           </tr>
         </tbody>

@@ -178,7 +178,8 @@ router.get("/concert", async (req, res, next) => {
   }
 });
 /////////////////////////////end
-////NewYork [10162,10006,10004,10069,10282,10018,10007,10280,10005,10044,10017,10037,10012,10038,10001,10039,10013,10014,10036,10030,10010,10022,10035,10026,10021,10034,10019,10040,10028,10011,10003,10016,10128,10009,10032,10033,10031,10024,10027,10023,10002,10029,10025]
+
+//city
 router.get("/city", async (req, res, next) => {
   try {
     const allEvent = await prisma.item.findMany();
@@ -194,6 +195,41 @@ router.get("/city", async (req, res, next) => {
   }
 });
 //////////////end
+
+//////filter
+router.get("/filter", async (req, res, next) => {
+  try {
+    //get allevent of category
+    const allEvent = await prisma.item.findMany({
+      where: { category: req.body.category, isReservation: false },
+    });
+    //find path of image and update upload
+    allEvent.forEach((ticket) => {
+      ticket.upload = imageFile(ticket.upload);
+    });
+    //get event of city
+    const city = zipCode(allEvent);
+    if (req.body.city === "NewYork") {
+      res.json({ data: city[0] });
+      return;
+    }
+    if (req.body.city === "LosAng") {
+      res.json({ data: city[1] });
+      return;
+    }
+    if (req.body.city === "Chicago") {
+      res.json({ data: city[2] });
+      return;
+    }
+    if (req.body.city === "Boston") {
+      res.json({ data: city[3] });
+      return;
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+////end
 
 ////delete single item
 router.delete("/delete/:id", async (req, res, next) => {
