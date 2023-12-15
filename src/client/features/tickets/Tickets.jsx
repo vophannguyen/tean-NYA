@@ -579,7 +579,7 @@ export default function Tickets() {
         <input type="text" placeholder="Search Event" name="search" />
       </form>
       <section className="heading">
-        <h1>Upcoming Events</h1>
+        <h1>LAST CHANCE EVENTS</h1>
       </section>
       <section className="sort">
         <p>Filter</p>

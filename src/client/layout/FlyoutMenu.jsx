@@ -38,7 +38,7 @@ export default function FlyoutMenu({ token }) {
               <Link to="/user/profile">My Profile</Link>
             </li>
             <li>
-              <Link to="/upload">List an event</Link>
+              <Link to="/upload">List An Event</Link>
             </li>
             <li>
               <button className="menu-logout" onClick={onLogout}>
