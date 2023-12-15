@@ -612,7 +612,7 @@ export default function Tickets() {
           type="text"
           onChange={(e) => setTime(e.target.value)}
         >
-          <option value="all">All Time</option>
+          <option value="all">This Month</option>
           <option value="week">This Week</option>
           <option value="tomorrow">Tomorrow</option>
           <option value="today">Today</option>
@@ -632,6 +632,7 @@ export default function Tickets() {
                   <TicketCard ticket={ticket} key={ticket.id} />
                 ))}
           </ul>
+          <button onClick={() => window.scrollTo(0,0)}>Back to the top</button>
         </section>
         <aside className="right">
           {!isSorted ? (
