@@ -4,8 +4,8 @@ import { useLoginMutation } from "./authSlice";
 import "./formlogin.less";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import Spinner from "../utils/Spinner";
+import Arrow from "../utils/Arrow";
 
 /** Login Form */
 export default function LoginForm() {
@@ -77,12 +77,11 @@ export default function LoginForm() {
           </div>
         </section>
         <button className="login-button">
-          <ArrowOutwardIcon />
+        <Arrow />
         </button>
         {loading && (
           <p>
-            {" "}
-            Logging in! <Spinner />
+            <Spinner />
           </p>
         )}
         {error && <p className="login-error">{error.message}</p>}

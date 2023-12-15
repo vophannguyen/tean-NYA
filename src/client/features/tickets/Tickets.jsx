@@ -16,15 +16,12 @@ import Spinner from "../utils/Spinner.jsx";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Button from "../utils/Button.jsx";
 import SearchIcon from "@mui/icons-material/Search";
+import Arrow from "../utils/Arrow";
 
 //Basic functionality setup
 const TicketCard = ({ ticket }) => {
   const day = formatDay(ticket.time);
   const time = formatTime(ticket.time);
-  const iconStyle = {
-    width: "48px",
-    height: "48px",
-  };
 
   return (
     <Link to={`/tickets/${ticket.id}`}>
@@ -41,7 +38,7 @@ const TicketCard = ({ ticket }) => {
           </p>
         </section>
         <section className="flex3">
-          <ArrowOutwardIcon style={iconStyle} />
+          <Arrow />
         </section>
       </li>
     </Link>
@@ -91,7 +88,7 @@ export default function Tickets() {
   //(click movies once filter, click movies again make sure does not refilter)
   const handleCategory = (e) => {
     if (e.target.value === "movies") {
-      setFiltered([...movies.data]);
+      setFiltered(movies.data);
       setIsSorted(true);
     } else if (e.target.value === "concerts") {
       setFiltered(concerts.data);
