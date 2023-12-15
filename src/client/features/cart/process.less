@@ -1,10 +1,26 @@
 .container {
   display: flex;
   justify-content: center;
+  @media (max-width: 650px) {
+    width: 70%;
+  }
   .process-container {
     width: 80%;
     margin-top: 5rem;
     position: relative;
+    @media (max-width: 1500px) {
+      width: 100%;
+    }
+    @media (max-width: 650px) {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      h1 {
+        font-size: x-large;
+      }
+      height: 60rem;
+    }
     .process-payment {
       width: 60rem;
       height: 30rem;
@@ -14,11 +30,31 @@
       // justify-content: center;
       align-items: center;
       gap: 1rem;
+      @media (max-width: 1500px) {
+        width: 50rem;
+      }
+      @media (max-width: 1250px) {
+        width: 30rem;
+      }
+      @media (max-width: 650px) {
+        width: 90%;
+        margin-left: 1rem;
+        margin: 0;
+        gap: 0.5rem;
+        height: 20rem;
+      }
       input {
         width: 40rem;
         height: 3rem;
         border-radius: 0.5rem;
         border: 1px solid lightgray;
+        @media (max-width: 1550px) {
+          width: 30rem;
+        }
+        @media (max-width: 650px) {
+          width: 90%;
+          height: 2rem;
+        }
       }
       input:focus-visible {
         outline-color: #ff414e;

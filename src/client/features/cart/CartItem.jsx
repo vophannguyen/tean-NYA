@@ -51,9 +51,7 @@ export default function CartItem({ data }) {
         </tr>
         <tr>
           <td>
-            <h1>{data.item.title}</h1>
-
-            {/* <p>{data.data.description}</p> */}
+            <h4>{data.item.title}</h4>
           </td>
           <td>
             <p>{time}</p>
@@ -65,7 +63,7 @@ export default function CartItem({ data }) {
           <td>10$</td>
           <td>
             <Button onClick={handleDeleteItem}>
-              <ClearIcon />
+              <ClearIcon fontSize="small" />
             </Button>
           </td>
         </tr>

@@ -4,17 +4,15 @@ import {
   useGetConcertsQuery,
   useGetResQuery,
   useGetCityQuery,
-  useGetFilterQuery,
 } from "./ticketSlice";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
-import { convertTimeTo, formatDate, mapLocation } from "../utils/helpers.js";
+import { convertTimeTo } from "../utils/helpers.js";
 import "./tickets.less";
 import Map from "./Map";
 import { formatDay, formatTime } from "../utils/helpers";
 import Spinner from "../utils/Spinner.jsx";
-import Arrow from "react-horizontal-scroll/lib/components/arrow.js";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Button from "../utils/Button.jsx";
 import SearchIcon from "@mui/icons-material/Search";
@@ -57,17 +55,15 @@ export default function Tickets() {
   const { data: concerts } = useGetConcertsQuery();
   const { data: res } = useGetResQuery();
   const { data } = useGetCityQuery();
-
+  ///
   const [isSorted, setIsSorted] = useState(false);
   const [filtered, setFiltered] = useState(null);
   const [city, setCity] = useState("US");
   ///filter
   const [cityIn, setCityIn] = useState("city");
-  const [category, setCategory] = useState("Events");
-  <option value="week">This Week</option>;
+  const [category, setCategory] = useState("events");
   const [time, setTime] = useState("all");
   ///
-  let searchTicket = null;
 
   if (isError) {
     return;

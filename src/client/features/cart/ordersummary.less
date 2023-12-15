@@ -1,12 +1,26 @@
 .cart-order {
   position: absolute;
-  top: 0;
+
+  top: 20%;
   right: 6rem;
   width: 15rem;
+
   // height: 20rem;
   border-collapse: collapse;
   border-spacing: 0px;
   border: 1px solid lightgray;
+  @media (max-width: 650px) {
+    position: relative;
+    margin: 0;
+  }
+  @media (max-width: 1550px) {
+    right: 4rem;
+    width: 15rem;
+  }
+  @media (max-width: 1250px) {
+    right: 0.5rem;
+    top: 15%;
+  }
   th,
   tr {
     border: 1px solid lightgray;
