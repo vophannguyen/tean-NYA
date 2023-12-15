@@ -6,20 +6,18 @@
   align-items: center;
 
   h1 {
-    font-size: 3.113rem;
+    font-size: 5rem;
     padding: 6rem 0 2.5rem ;
     text-transform: uppercase;
-    span {
-      color:gainsboro
-    }
   }
 
   .login-form, .register-form {
     display: flex;
-    width: 50%;
+    width: 100%;
+    max-width: 800px;
     flex-direction: column;
     gap: 3.5rem;
-    padding: 1rem;
+    padding: 2rem;
     
     .field {
       position: relative;
@@ -39,11 +37,15 @@
       label {
         position: absolute;
         top:0;
-        right: 89%;
+        right: 88%;
         pointer-events: none;
         text-transform: uppercase;
-        font-size: 1rem;
+        font-size: 1.1rem;
+        letter-spacing: 0.03rem;
         font-weight: 500;
+        @media (max-width: 600px) {
+          right: 83%;
+        }
       }
 
       input {
@@ -67,7 +69,11 @@
     }
     .login-button, .register-button {
       border: none;
+      background-color: transparent;
       width: 10%;
+    }
+    .login-button:hover, .register-button:hover {
+      color: red;
     }
   }
 
