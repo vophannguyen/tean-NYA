@@ -581,7 +581,6 @@ export default function Tickets() {
         <SearchIcon fontSize="large" />
       </form>
       <section className="sort">
-        <p>Filter</p>
         <select
           className="category-filter dropdown"
           name="categoryfilter"
