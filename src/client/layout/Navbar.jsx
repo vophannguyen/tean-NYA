@@ -31,7 +31,7 @@ export default function Navbar() {
             <>
               <li>
                 <NavLink to="/upload">
-                  <button>List an event</button>
+                  <button>List An Event</button>
                 </NavLink>
               </li>
               <li>
@@ -44,7 +44,7 @@ export default function Navbar() {
             <>
               <li>
                 <NavLink to="/login">
-                  <button className="nav-login">Log In</button>
+                  <button className="nav-login">Sign In</button>
                 </NavLink>
               </li>
             </>
