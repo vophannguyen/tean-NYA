@@ -47,7 +47,7 @@ export default function LoginForm() {
   };
   return (
     <section className="login">
-      <h1 className="login-heading">Sign In</h1>
+      <h1 className="heading">Sign In</h1>
       <form className="login-form" onSubmit={attemptLogin}>
         <section className="field">
           <input
