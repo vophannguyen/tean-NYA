@@ -49,7 +49,7 @@ export default function FlyMenu({ token, setIsOpen, isOpen, me }) {
               </Link>
             </li>
             <li>
-              <Link to="/upload">List An Event</Link>
+              <Link to="/upload">List an event</Link>
             </li>
             <li>
               <button className="menu-logout" onClick={onLogout}>
