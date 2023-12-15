@@ -22,45 +22,46 @@ export default function Navbar() {
 
   return (
     <section className="navbar">
-    <nav className="main-nav">
-      <NavLink to="/">Last Chance</NavLink>
-      <menu>
-        {token ? (
-          <>
-            <li>
-              <NavLink to="/upload">
-                <button>List an event</button>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/user/profile">
-                <ProfileIcon />
-              </NavLink>
-            </li>
-          </>
-        ) : (
-          <>
-            <li>
-              <NavLink to="/login">
-                <button className="nav-login">Log In</button>
-              </NavLink>
-            </li>
-          </>
-        )}
-        <li className="icon">
-          <NavLink to="/cart">
-            <ShoppingCartIcon />
-            {data.data?.length > 0 && (
-              <span className="icon-number">{data.data.length}</span>
-            )}
-          </NavLink>
-        </li>
-        <li className="flyout-menu">
-          <FlyoutMenu token={token} />
-        </li>
-      </menu>
-    </nav>
-
+      <nav className="main-nav">
+        <NavLink to="/">
+          <h5>Last Chance</h5>
+        </NavLink>
+        <menu>
+          {token ? (
+            <>
+              <li>
+                <NavLink to="/upload">
+                  <button>List an event</button>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/user/profile">
+                  <ProfileIcon />
+                </NavLink>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <NavLink to="/login">
+                  <button className="nav-login">Log In</button>
+                </NavLink>
+              </li>
+            </>
+          )}
+          <li className="icon">
+            <NavLink to="/cart">
+              <ShoppingCartIcon />
+              {data.data?.length > 0 && (
+                <p className="icon-number">{data.data.length}</p>
+              )}
+            </NavLink>
+          </li>
+          <li className="flyout-menu">
+            <FlyoutMenu token={token} />
+          </li>
+        </menu>
+      </nav>
     </section>
   );
 }

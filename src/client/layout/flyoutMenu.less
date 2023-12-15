@@ -1,6 +1,7 @@
 .flyout {
   display: flex;
   flex-direction: column;
+  overflow: scroll;
   text-align: left;
   position: fixed;
   right: 0;
@@ -11,19 +12,44 @@
   background-color: rgb(243, 243, 243);
 
   ul {
-    padding: 1rem;
+    padding: 1.5rem 0;
     width: 100%;
 
     li {
-      padding: 1rem;
+      padding: 0.7rem 4rem;
       width: 100%;
+      p {
+        text-transform: uppercase;
+        font-size: 1rem;
+        letter-spacing: 0.06rem;
+        font-family: 'Inconsolata', monospace;
+      }
+    }
+    .welcome {
+      font-size: 1rem;
+      letter-spacing: 0.06rem;
+      font-family: 'Inconsolata', monospace;
+    }
+    li:has(a) {
+      font-family: stratos, sans-serif;
+      font-weight: 500;
+      font-style: normal;
+      font-size: 1.5rem;
+      line-height: 1.7;
     }
     li:has(a):hover {
       color: blue;
     }
-
+    .menu-logout {
+      margin-top: 0.5rem;
+      text-transform: uppercase;
+      font-size: 1rem;
+      letter-spacing: 0.06rem;
+      font-family: 'Inconsolata', monospace;
+    }
     .menu-logout:hover {
       background-color: #0e0c0c;
+      color: white;
       border: none;
     }
   }
@@ -33,10 +59,15 @@
 }
 
 //media query for flyout menu
-
+@media (max-width: 1125px) {
+  width: 37vw;
+}
 //ipads and mobile devices flyout menu full vp width
 @media (max-width: 769px) {
   .flyout {
-    width: 100vw;
+    width: 60vw;
+  }
+  @media (max-width: 420px) {
+    width: 100vw
   }
 }

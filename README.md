@@ -1,15 +1,16 @@
-# Full-stack Template
+# Last Chance: Seize the Moment App
 
-This template provides a fully functional CRUD app. Once a user has successfully registered for an account and logged in, they can see their existing tasks, create new tasks, update existing tasks, and delete tasks.
+Introducing Last Chance, the ultimate platform for sharing and discovering exciting reservations! Our app empowers users to post reservations they can no longer attend, providing a second chance for others to enjoy memorable experiences.
+Whether it's a dinner reservation, a movie screening, or a concert & dance party, Last Chance ensures that no plans goes to waste. Users can post and purchase reservations within a week of the reservation date, fostering a community of spontaneous adventures and making sure every event becomes a highlight of someones day.
+Join Last Chance and embrace the joy of turning missed plans into last-minute fun!s.
 
 ## Getting Started
 
-1. Click "Use This Template" and "Create a new repository."
-2. Clone down your repo and run `npm install`.
-3. Create a `.env` file according to the provided `example.env`.
-4. Apply the initial Prisma migration and generate the client.\
+1. Clone down your repo and run `npm install`.
+2. Create a `.env` file according to the provided `example.env`.
+3. Apply the initial Prisma migration and generate the client.\
    `npx prisma migrate reset`
-5. Start developing!\
+4. Start developing!\
    `npm run dev`
 
 ## Architecture
@@ -22,7 +23,9 @@ API routes can be found in `src/server/api/`.
 
 Authentication is handled with [JWT](https://github.com/auth0/node-jsonwebtoken). User passwords are hashed with [bcrypt](https://github.com/kelektiv/node.bcrypt.js).
 
-![Database schema as described below](database_schema.svg)
+Store image is handled with [multer](https://www.npmjs.com/package/multer).
+
+![Database schema as described below](schema.png)
 
 <details>
 <summary>Expand to see DBML</summary>
@@ -155,3 +158,7 @@ Application state is managed with [Redux Toolkit](https://redux-toolkit.js.org/)
 [RTK Query](https://redux-toolkit.js.org/rtk-query/overview) is used to handle data fetching. The central API slice is defined in `src/client/store/api.js` and is intended to stay empty. Additional endpoints should be injected separately in `src/client/features`.
 
 [Less](https://lesscss.org/) is used as the CSS preprocessor.
+
+Map is handled with [React-google-map/api](https://www.npmjs.com/package/@react-google-maps/api?activeTab=readme) and [React-Geocode](https://www.npmjs.com/package/react-geocode).
+
+[React UI tools](https://mui.com/) is used to hande desgin.

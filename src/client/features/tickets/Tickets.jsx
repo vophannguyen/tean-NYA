@@ -16,6 +16,7 @@ import { formatDay, formatTime } from "../utils/helpers";
 import Spinner from "../utils/Spinner.jsx";
 import Arrow from "react-horizontal-scroll/lib/components/arrow.js";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import Button from "../utils/Button.jsx";
 
 //Basic functionality setup
 const TicketCard = ({ ticket }) => {
@@ -579,7 +580,7 @@ export default function Tickets() {
         <input type="text" placeholder="Search Event" name="search" />
       </form>
       <section className="heading">
-        <h1>Upcoming Events</h1>
+        <h1>LAST CHANCE EVENTS</h1>
       </section>
       <section className="sort">
         <p>Filter</p>
@@ -612,7 +613,7 @@ export default function Tickets() {
           type="text"
           onChange={(e) => setTime(e.target.value)}
         >
-          <option value="all">All Time</option>
+          <option value="all">This Month</option>
           <option value="week">This Week</option>
           <option value="tomorrow">Tomorrow</option>
           <option value="today">Today</option>
@@ -632,6 +633,7 @@ export default function Tickets() {
                   <TicketCard ticket={ticket} key={ticket.id} />
                 ))}
           </ul>
+          <Button onClick={() => window.scrollTo(0, 0)}>Back to the top</Button>
         </section>
         <aside className="right">
           {!isSorted ? (
