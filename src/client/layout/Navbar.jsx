@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { selectToken } from "../features/auth/authSlice";
-import FlyoutMenu from "./FlyoutMenu";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ProfileIcon from "./ProfileIcon.jsx";
 import "./barnav.less";
 import { useGetCartQuery } from "../features/cart/cartSlice.js";
+import FlyoutMenu from "./FlyoutMenu.jsx";
 
 export default function Navbar() {
   const token = useSelector(selectToken);
