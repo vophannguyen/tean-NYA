@@ -16,6 +16,7 @@ import { formatDay, formatTime } from "../utils/helpers";
 import Spinner from "../utils/Spinner.jsx";
 import Arrow from "react-horizontal-scroll/lib/components/arrow.js";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import Button from "../utils/Button.jsx";
 
 //Basic functionality setup
 const TicketCard = ({ ticket }) => {
@@ -632,7 +633,7 @@ export default function Tickets() {
                   <TicketCard ticket={ticket} key={ticket.id} />
                 ))}
           </ul>
-          <button onClick={() => window.scrollTo(0,0)}>Back to the top</button>
+          <Button onClick={() => window.scrollTo(0, 0)}>Back to the top</Button>
         </section>
         <aside className="right">
           {!isSorted ? (

@@ -2,6 +2,7 @@ import Countdown from "react-countdown";
 import { cartTimeCountDownt, formatDate } from "../utils/helpers";
 import { useDeleteCartMutation } from "./cartSlice";
 import ClearIcon from "@mui/icons-material/Clear";
+import Button from "../utils/Button";
 
 /** View single item, allows user check out */
 export default function CartItem({ data }) {
@@ -63,9 +64,9 @@ export default function CartItem({ data }) {
           <td>{data.item.quantity}</td>
           <td>10$</td>
           <td>
-            <button onClick={handleDeleteItem}>
+            <Button onClick={handleDeleteItem}>
               <ClearIcon />
-            </button>
+            </Button>
           </td>
         </tr>
       </tbody>

@@ -4,7 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import "./listing.less";
 import { formatDay, formatTime } from "../../utils/helpers";
 import Map from "../Map";
-import { Button } from "@mui/material";
+import Button from "../../utils/Button";
 
 /** Allows user to view more information and add to cart */
 export default function Listing() {
@@ -104,9 +104,9 @@ export default function Listing() {
               <h3>Location</h3>
               <p>{ticket.data.address1}</p>
             </li>
-            <button className="listing-button" onClick={handleCart}>
-             Add To Cart
-            </button>
+            <Button className="listing-button" onClick={handleCart}>
+              Add To Cart
+            </Button>
           </ul>
         </section>
       </section>
