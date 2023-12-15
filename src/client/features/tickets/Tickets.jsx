@@ -17,6 +17,7 @@ import Spinner from "../utils/Spinner.jsx";
 import Arrow from "react-horizontal-scroll/lib/components/arrow.js";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Button from "../utils/Button.jsx";
+import SearchIcon from "@mui/icons-material/Search";
 
 //Basic functionality setup
 const TicketCard = ({ ticket }) => {
@@ -576,12 +577,13 @@ export default function Tickets() {
   ///
   return (
     <section className="tickets-container">
-      <form onSubmit={handleSearch} className="search-bar">
-        <input type="text" placeholder="Search Event" name="search" />
-      </form>
       <section className="heading">
         <h1>LAST CHANCE EVENTS</h1>
       </section>
+      <form onSubmit={handleSearch} className="search-bar">
+        <input type="text" name="search" placeholder="Search for Event..." />
+        <SearchIcon fontSize="large" />
+      </form>
       <section className="sort">
         <p>Filter</p>
         <select
