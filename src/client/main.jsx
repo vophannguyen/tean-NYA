@@ -26,7 +26,9 @@ import { Upcoming } from "@mui/icons-material";
 import UpcomingRes from "./features/user/profile/UpcomingRes.jsx";
 import PastRes from "./features/user/profile/PastRes.jsx";
 import ActiveListings from "./features/user/profile/ActiveListings.jsx";
-import Concert from "./features/tickets/Concerts.jsx";
+import Concerts from "./features/tickets/Concerts.jsx";
+import Restaurants from "./features/tickets/Restaurants.jsx";
+import Movies from "./features/tickets/Movies.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -40,7 +42,9 @@ const router = createBrowserRouter([
       { path: "/register", element: <FormRegister /> },
       { path: "/upload", element: <Upload /> },
       { path: "/cart", element: <Cart /> },
-      { path: "/concerts", element: <Concert /> },
+      { path: "/concerts", element: <Concerts /> },
+      { path: "/reservations", element: <Restaurants /> },
+      { path: "/movies", element: <Movies /> },
       {
         path: "/user/",
         element: <Account />,

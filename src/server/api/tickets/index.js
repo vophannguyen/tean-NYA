@@ -101,11 +101,6 @@ router.get("/reservation", async (req, res, next) => {
     const allTicket = await prisma.item.findMany({
       where: { category: "reservation", isReservation: false },
     });
-    ///check if we have reservation ticket
-    if (allTicket.length <= 0) {
-      res.json({ message: "No reservation" });
-      return;
-    }
     // find path of image and update upload
     allTicket.forEach((ticket) => {
       ticket.upload = imageFile(ticket.upload);
@@ -130,10 +125,6 @@ router.get("/movies", async (req, res, next) => {
     const allTicket = await prisma.item.findMany({
       where: { category: "movies", isReservation: false },
     });
-    if (allTicket.length <= 0) {
-      res.json({ message: "no movies ticket" });
-      return;
-    }
     // find path of image and update upload
     allTicket.forEach((ticket) => {
       ticket.upload = imageFile(ticket.upload);
@@ -158,10 +149,6 @@ router.get("/concert", async (req, res, next) => {
     const allTicket = await prisma.item.findMany({
       where: { category: "concert", isReservation: false },
     });
-    if (allTicket.length <= 0) {
-      res.json({ message: "no concert ticket" });
-      return;
-    }
     allTicket.forEach((ticket) => {
       ticket.upload = imageFile(ticket.upload);
     });

@@ -46,19 +46,41 @@ const TicketCard = ({ ticket }) => {
 };
 
 /** Main interface for user to interact with their tickets */
-export default function Tickets() {
+export default function Tickets({ con, re, mo }) {
   const { data: tickets, isLoading, isError } = useGetTicketsQuery();
   const { data: movies } = useGetMoviesQuery();
   const { data: concerts } = useGetConcertsQuery();
   const { data: res } = useGetResQuery();
   const { data } = useGetCityQuery();
   ///
-  const [isSorted, setIsSorted] = useState(false);
-  const [filtered, setFiltered] = useState(null);
-  const [city, setCity] = useState("US");
+  //check category when they hit link on Nav bar
+  const fil =
+    con?.length > 0 ? con : re?.length > 0 ? re : mo?.length > 0 ? mo : null;
+  const sort =
+    con?.length > 0
+      ? true
+      : re?.length > 0
+      ? true
+      : mo?.length > 0
+      ? true
+      : false;
+  const cate =
+    con?.length > 0
+      ? "concerts"
+      : re?.length > 0
+      ? "restaurants"
+      : mo?.length > 0
+      ? "movies"
+      : "events";
+  //////end
+
+  //
   ///filter
+  const [isSorted, setIsSorted] = useState(sort);
+  const [filtered, setFiltered] = useState(fil);
+  const [city, setCity] = useState("US");
   const [cityIn, setCityIn] = useState("city");
-  const [category, setCategory] = useState("events");
+  const [category, setCategory] = useState(cate);
   const [time, setTime] = useState("all");
   ///
 
@@ -82,47 +104,6 @@ export default function Tickets() {
       return item.title.toLowerCase().includes(search.toLowerCase());
     });
     setFiltered(() => searchTicket);
-  };
-
-  //need to fix rerendering for every click on the same filter
-  //(click movies once filter, click movies again make sure does not refilter)
-  const handleCategory = (e) => {
-    if (e.target.value === "movies") {
-      setFiltered(movies.data);
-      setIsSorted(true);
-    } else if (e.target.value === "concerts") {
-      setFiltered(concerts.data);
-      setIsSorted(true);
-    } else if (e.target.value === "restaurants") {
-      setFiltered(res.data);
-      setIsSorted(true);
-    } else {
-      setIsSorted(false);
-    }
-  };
-  const handleCity = (e) => {
-    setCity(() => e.target.value);
-    if (e.target.value === "NewYork") {
-      setFiltered(() => data.NewYork);
-      setIsSorted(true);
-      return;
-    }
-    if (e.target.value === "LosAng") {
-      setFiltered(() => data.LosAng);
-      setIsSorted(true);
-      return;
-    }
-    if (e.target.value === "Chicago") {
-      setFiltered(() => data.Chicago);
-      setIsSorted(true);
-      return;
-    }
-    if (e.target.value === "Boston") {
-      setFiltered(() => data.Boston);
-      setIsSorted(true);
-      return;
-    }
-    setIsSorted(false);
   };
   ////handleFilter
   function handleFilter() {
@@ -584,10 +565,20 @@ export default function Tickets() {
           type="text"
           onChange={(e) => setCategory(e.target.value)}
         >
-          <option value="events">Events</option>
-          <option value="movies">Movies</option>
-          <option value="concerts">Concerts</option>
-          <option value="restaurants">Restaurants</option>
+          {con?.length > 0 ? (
+            <option value="concerts">Concerts</option>
+          ) : re?.length > 0 ? (
+            <option value="restaurants">Restaurants</option>
+          ) : mo?.length > 0 ? (
+            <option value="movies">Movies</option>
+          ) : (
+            <>
+              <option value="events">Events</option>
+              <option value="movies">Movies</option>
+              <option value="concerts">Concerts</option>
+              <option value="restaurants">Restaurants</option>
+            </>
+          )}
         </select>
         <select
           className="city-filter dropdown"
