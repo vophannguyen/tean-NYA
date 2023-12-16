@@ -75,14 +75,8 @@ export default function Listing() {
               <p>{time}</p>
             </li>
             <li>
-              <h3>Location</h3>
-              <p>
-                {ticket.data.address1 +
-                  ", " +
-                  ticket.data.city +
-                  ", " +
-                  ticket.data.state}
-              </p>
+              <h3>Category</h3>
+              <p>{ticket.data.category}</p>
             </li>
             <li>
               <h3>Description</h3>
@@ -102,7 +96,13 @@ export default function Listing() {
             </li>
             <li>
               <h3>Location</h3>
-              <p>{ticket.data.address1}</p>
+              <p>
+                {ticket.data.address1 +
+                  ", " +
+                  ticket.data.city +
+                  ", " +
+                  ticket.data.state}
+              </p>
             </li>
             <Button className="listing-button" onClick={handleCart}>
               Add To Cart
