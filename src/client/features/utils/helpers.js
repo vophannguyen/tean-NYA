@@ -102,7 +102,6 @@ export function convertTimeTo(arr) {
   const tw = [];
   const current_time = Date.now();
   const today = current_time + 60 * 60 * 1000 * 12;
-  console.log(today);
   const tomorrow = current_time + 60 * 60 * 1000 * 36;
   const thisWeek = current_time + 60 * 60 * 1000 * 24 * 7;
   const result = arr.forEach((event) => {
