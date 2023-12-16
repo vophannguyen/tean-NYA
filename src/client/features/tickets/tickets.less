@@ -5,11 +5,12 @@ section {
     padding: 4rem 1rem 2rem 1rem;
     h1 {
       font-size: 7rem;
+      color: var(--black);
     }
   }
   .sort {
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
+    border-top: 2px solid var(--black);
+    border-bottom: 2px solid var(--black);
     padding: 0 4rem;
     display: flex;
     justify-content: space-evenly;
@@ -60,7 +61,7 @@ section {
         gap: 6rem;
 
         .ticket-card {
-          color: #0e0c0c;
+          color: var(--black);
           // border: 2px solid black;
           width: 100%;
           max-width: 800px;
@@ -77,8 +78,8 @@ section {
             min-width: 100px;
             min-height: 100px;
             aspect-ratio: 1/1;
-            color: white;
-            background-color: black;
+            color: var(--white);
+            background-color: var(--black);
             font-size: 1.9rem;
             line-height: 1;
             font-family: "Inconsolata", monospace;
@@ -103,13 +104,13 @@ section {
           }
         }
         .ticket-card:hover {
-          border: 3px solid #ff414e;
+          border: 3px solid var(--red);
           pointer-events: none;
           .flex1 {
-            background-color: #ff414e;
+            background-color: var(--red);
           }
           .flex3 {
-            color: #ff414e;
+            color: var(--red);
           }
         }
       }
@@ -139,20 +140,49 @@ section {
     input {
       width: 30rem;
       font-size: large;
-      color: black;
+      color: var(--black);
       font-size: 1rem;
-      font-family: 'Inconsolata', monospace;
+      font-family: "Inconsolata", monospace;
       @media (max-width: 1350px) {
         width: 15rem;
         height: 1.5rem;
       }
       height: 2rem;
       border: none;
-      border-bottom: 2px solid black;
+      border-bottom: 2px solid var(--black);
       background-color: transparent;
       &:focus-visible {
         outline-color: none;
       }
     }
+  }
+  @media (max-width: 1200px) {
+    .heading {
+      h1{
+        font-size: 6rem;
+      }
+     }
+  }
+  @media (max-width: 1024px) {
+    .heading {
+      h1{
+        font-size: 5rem;
+      }
+     }
+  }
+  //ipads and mobile devices flyout menu full vp width
+  @media (max-width: 760px) {
+    .heading {
+      h1{
+        font-size: 3.5rem;
+      }
+     }
+  }
+  @media (max-width: 480px) {
+    .heading {
+      h1{
+        font-size: 3rem;
+      }
+     }
   }
 }
