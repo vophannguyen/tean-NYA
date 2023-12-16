@@ -29,12 +29,12 @@ export default function Navbar() {
         <menu>
           {token ? (
             <>
-              <li>
+              <li className="hide">
                 <NavLink to="/upload">
                   <button>List An Event</button>
                 </NavLink>
               </li>
-              <li>
+              <li className="hide">
                 <NavLink to="/user/profile">
                   <ProfileIcon />
                 </NavLink>
@@ -42,7 +42,7 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              <li>
+              <li className="hide">
                 <NavLink to="/login">
                   <button className="nav-login">Sign In</button>
                 </NavLink>
