@@ -11,9 +11,21 @@
   width: 25vw;
   background-color: var(--black);
   color: var(--white);
+  .close {
+    position: relative;
+  }
+  .close:first-child {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+  .close:first-child:hover {
+    cursor: pointer;
+    color: var(--red);
+  }
 
   ul {
-    padding: 1.5rem 0;
+    padding: 3rem 0 0.5rem 0;
     width: 100%;
 
     li {
