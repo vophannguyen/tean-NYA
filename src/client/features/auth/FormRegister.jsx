@@ -4,7 +4,7 @@ import { useRegisterMutation, useLoginMutation } from "./authSlice";
 import "./formlogin.less";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
+import Arrow from "../utils/Arrow";
 
 /** Register form , after they registered , log them in */
 export default function RegisterForm() {
@@ -55,7 +55,7 @@ export default function RegisterForm() {
 
   return (
     <section className="register">
-      <h1>Sign Up</h1>
+      <h1 className="heading">Sign Up</h1>
       <form className="register-form" onSubmit={attemptRegister}>
         <section className="field">
           <input
@@ -63,7 +63,7 @@ export default function RegisterForm() {
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
           />
-          <label className="first-name">First Name</label>
+          <label className="first-name">FirstName</label>
         </section>
         <section className="field">
           <input
@@ -71,7 +71,7 @@ export default function RegisterForm() {
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
           />
-          <label className="last-name">Last Name</label>
+          <label className="last-name">LastName</label>
         </section>
         <section className="field">
           <input
@@ -100,7 +100,7 @@ export default function RegisterForm() {
             {isVisible ? <VisibilityIcon onClick={() => setIsVisible(!isVisible)} /> : <VisibilityOffIcon onClick={() => setIsVisible(!isVisible)} />}
           </div>
         </section>
-        <button className="register-button"><ArrowOutwardIcon /></button>
+        <button className="register-button"><Arrow /></button>
         {loading && <p>Registering!</p>}
         {error && <p className="error-message">{error}</p>}
         <Link to="/login">

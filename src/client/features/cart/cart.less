@@ -3,6 +3,12 @@
   justify-content: center;
   .cart-container {
     width: 80%;
+    @media (max-width: 1700px) {
+      width: 85%;
+    }
+    // @media (max-width: 630px) {
+    //   display: none;
+    // }
     margin-top: 4rem;
     position: relative;
     .cart-countdown {
@@ -15,6 +21,13 @@
       width: 60rem;
       margin-top: 4rem;
       margin-bottom: 2rem;
+      @media (max-width: 1550px) {
+        width: 50rem;
+      }
+      @media (max-width: 1250px) {
+        width: 40rem;
+        background-color: aqua;
+      }
     }
 
     .cart-item {
@@ -22,6 +35,13 @@
       border-collapse: collapse;
       border-spacing: 0px;
       width: 60rem;
+      @media (max-width: 1550px) {
+        width: 50rem;
+      }
+      @media (max-width: 1250px) {
+        width: 40rem;
+        background-color: aqua;
+      }
       border-left: 1px solid lightgray;
       border-right: 1px solid lightgray;
       th {

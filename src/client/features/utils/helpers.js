@@ -107,7 +107,6 @@ export function convertTimeTo(arr) {
   const thisWeek = current_time + 60 * 60 * 1000 * 24 * 7;
   const result = arr.forEach((event) => {
     const checkTime = Date.parse(event.time);
-    console.log(checkTime);
     if (checkTime <= thisWeek && checkTime >= current_time) {
       tw.push(event);
     }
