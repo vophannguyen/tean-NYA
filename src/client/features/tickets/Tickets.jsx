@@ -16,15 +16,12 @@ import Spinner from "../utils/Spinner.jsx";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Button from "../utils/Button.jsx";
 import SearchIcon from "@mui/icons-material/Search";
+import Arrow from "../utils/Arrow";
 
 //Basic functionality setup
 const TicketCard = ({ ticket }) => {
   const day = formatDay(ticket.time);
   const time = formatTime(ticket.time);
-  const iconStyle = {
-    width: "48px",
-    height: "48px",
-  };
 
   return (
     <Link to={`/tickets/${ticket.id}`}>
@@ -41,7 +38,7 @@ const TicketCard = ({ ticket }) => {
           </p>
         </section>
         <section className="flex3">
-          <ArrowOutwardIcon style={iconStyle} />
+          <Arrow />
         </section>
       </li>
     </Link>
@@ -100,7 +97,6 @@ export default function Tickets({ con, re, mo }) {
     });
     setFiltered(() => searchTicket);
   };
-
   ////handleFilter
   function handleFilter() {
     ///resevation
@@ -555,7 +551,6 @@ export default function Tickets({ con, re, mo }) {
         <SearchIcon fontSize="large" />
       </form>
       <section className="sort">
-        <p>Filter</p>
         <select
           className="category-filter dropdown"
           name="categoryfilter"

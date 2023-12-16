@@ -4,7 +4,6 @@ import { logout } from "../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import CloseIcon from "@mui/icons-material/Close";
-import { useFetchUserAccountQuery } from "../features/user/userSlice";
 import "./flyoutMenu.less";
 
 export default function FlyMenu({ token, setIsOpen, isOpen, me }) {
@@ -54,20 +53,23 @@ export default function FlyMenu({ token, setIsOpen, isOpen, me }) {
             </li>
             <li>
               <button className="menu-logout" onClick={onLogout}>
-                Sign out
+                Sign Out
               </button>
             </li>
           </>
         ) : (
           <>
             <li>
+              <p>Account</p>
+            </li>
+            <li>
               <Link to="/login" onClick={handleLink}>
-                List an event
+                List An Event
               </Link>
             </li>
             <li>
               <Link to="/login" onClick={handleLink}>
-                Log in
+                Sign In
               </Link>
             </li>
           </>
