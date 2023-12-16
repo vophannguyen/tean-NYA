@@ -1,10 +1,10 @@
 import Spinner from "../utils/Spinner";
 import Tickets from "./Tickets";
-import { useGetConcertsQuery } from "./ticketSlice";
+import { useGetResQuery } from "./ticketSlice";
 
 /** View all concert  */
-export default function Concerts() {
-  const { data, isLoading, isError } = useGetConcertsQuery();
+export default function Restaurants() {
+  const { data, isLoading, isError } = useGetResQuery();
   if (isLoading) {
     return (
       <p>
@@ -15,5 +15,5 @@ export default function Concerts() {
   if (isError) {
     return;
   }
-  return <Tickets con={data.data} />;
+  return <Tickets re={data.data} />;
 }

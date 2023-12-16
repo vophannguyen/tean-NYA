@@ -295,7 +295,7 @@ router.delete("/cart/:id", async (req, res, next) => {
       where: { id },
     });
     await prisma.item.update({
-      where: { id: deletReservation.itemId },
+      where: { id: deletCart.itemId },
       data: {
         isReservation: false,
       },
