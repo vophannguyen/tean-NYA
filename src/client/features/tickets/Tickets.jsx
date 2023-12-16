@@ -64,15 +64,23 @@ export default function Tickets({ con, re, mo }) {
       : mo?.length > 0
       ? true
       : false;
+  const cate =
+    con?.length > 0
+      ? "concerts"
+      : re?.length > 0
+      ? "restaurants"
+      : mo?.length > 0
+      ? "movies"
+      : "events";
   //////end
 
   //
+  ///filter
   const [isSorted, setIsSorted] = useState(sort);
   const [filtered, setFiltered] = useState(fil);
   const [city, setCity] = useState("US");
-  ///filter
   const [cityIn, setCityIn] = useState("city");
-  const [category, setCategory] = useState("events");
+  const [category, setCategory] = useState(cate);
   const [time, setTime] = useState("all");
   ///
 
