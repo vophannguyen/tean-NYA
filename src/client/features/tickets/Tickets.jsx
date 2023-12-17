@@ -162,6 +162,9 @@ export default function Tickets({ con, re, mo }) {
       setFiltered(() => res.data);
       setIsSorted(() => true);
       filterCity(res, cityIn, time);
+      if (cityIn === "US") {
+        filterTime(res.data, time);
+      }
       return;
     }
     ///movies
@@ -169,6 +172,10 @@ export default function Tickets({ con, re, mo }) {
       setFiltered(() => movies.data);
       setIsSorted(() => true);
       filterCity(movies, cityIn, time);
+      if (cityIn === "US") {
+        filterTime(movies.data, time);
+      }
+
       return;
     }
     ///concert
@@ -176,19 +183,19 @@ export default function Tickets({ con, re, mo }) {
       setFiltered(() => concerts.data);
       setIsSorted(() => true);
       filterCity(concerts, cityIn, time);
+      if (cityIn === "US") {
+        filterTime(concerts.data, time);
+      }
       return;
     }
-    ///All event have city
-    if (category === "events" && cityIn !== "US") {
-      setIsSorted(() => true);
-      filterCity(data, cityIn, time);
-      return;
-    }
-    // All event no city, have time
-    if (category === "events" && cityIn === "US") {
+    ///All event
+    if (category === "events") {
       setIsSorted(() => true);
       setFiltered(() => tickets);
-      filterTime(tickets, time);
+      filterCity(data, cityIn, time);
+      if (cityIn === "US") {
+        filterTime(tickets, time);
+      }
       return;
     }
     setIsSorted(() => false);
