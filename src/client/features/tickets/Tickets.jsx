@@ -180,7 +180,6 @@ export default function Tickets({ con, re, mo }) {
     }
     ///All event have city
     if (category === "events" && cityIn !== "US") {
-      console.log(data);
       setIsSorted(() => true);
       filterCity(data, cityIn, time);
       return;
