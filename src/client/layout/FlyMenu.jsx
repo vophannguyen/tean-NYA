@@ -38,7 +38,9 @@ export default function FlyMenu({ token, setIsOpen, isOpen, me }) {
 
   return (
     <section className="flyout" ref={ref}>
-      <CloseIcon onClick={() => setIsOpen(!isOpen)} />
+      <div className="close">
+        <CloseIcon onClick={() => setIsOpen(!isOpen)} />
+      </div>
       <ul className="account">
         {token ? (
           <>

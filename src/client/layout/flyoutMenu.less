@@ -9,14 +9,27 @@
   z-index: 99;
   height: 100vh;
   width: 25vw;
-  background-color: rgb(243, 243, 243);
+  background-color: var(--black);
+  color: var(--white);
+  .close {
+    position: relative;
+  }
+  .close:first-child {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+  .close:first-child:hover {
+    cursor: pointer;
+    color: var(--red);
+  }
 
   ul {
-    padding: 1.5rem 0;
+    padding: 3rem 0 0.5rem 0;
     width: 100%;
 
     li {
-      padding: 0.7rem 4rem;
+      padding: 0.7rem 0rem 0.7rem 5rem;
       width: 100%;
       p {
         text-transform: uppercase;
@@ -34,11 +47,16 @@
       font-family: stratos, sans-serif;
       font-weight: 500;
       font-style: normal;
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       line-height: 1.7;
+      letter-spacing: 0.08rem;
     }
     li:has(a):hover {
-      color: blue;
+      a {
+        border-bottom: 3px solid var(--white);
+        transition: all 0.3s ease-out;
+      }
+      
     }
     .menu-logout {
       margin-top: 0.5rem;
@@ -48,26 +66,49 @@
       font-family: 'Inconsolata', monospace;
     }
     .menu-logout:hover {
-      background-color: #0e0c0c;
-      color: white;
+      background-color: var(--red);
+      color: var(--white);
       border: none;
     }
   }
 }
-#checkbox {
-  display: none;
-}
 
 //media query for flyout menu
-@media (max-width: 1125px) {
-  width: 37vw;
+@media (max-width: 1200px) {
+  .flyout {
+    width: 40vw;
+  }
 }
 //ipads and mobile devices flyout menu full vp width
-@media (max-width: 769px) {
+@media (max-width: 900px) {
   .flyout {
     width: 60vw;
   }
-  @media (max-width: 420px) {
-    width: 100vw
+  @media (max-width: 480px) {
+    .flyout {
+      width: 60vw;
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .flyout {
+    width: 40vw;
+  }
+}
+@media (max-width: 1024px) {
+  .flyout {
+    width: 50%;
+  }
+}
+//ipads and mobile devices flyout menu full vp width
+@media (max-width: 760px) {
+  .flyout {
+    width: 60vw;
+  }
+}
+@media (max-width: 480px) {
+  .flyout {
+    width: 100vw;
   }
 }
