@@ -53,7 +53,7 @@ export default function Tickets({ con, re, mo }) {
   const { data: res } = useGetResQuery();
   const { data } = useGetCityQuery();
   ///
-  //check category when they hit link on Nav bar
+  //check category when they hit link on Nav bar: Concert, Moveis, Restaurants
   const fil =
     con?.length > 0 ? con : re?.length > 0 ? re : mo?.length > 0 ? mo : null;
   const sort =
@@ -79,7 +79,7 @@ export default function Tickets({ con, re, mo }) {
   const [isSorted, setIsSorted] = useState(sort);
   const [filtered, setFiltered] = useState(fil);
   const [city, setCity] = useState("US");
-  const [cityIn, setCityIn] = useState("city");
+  const [cityIn, setCityIn] = useState("US");
   const [category, setCategory] = useState(cate);
   const [time, setTime] = useState("all");
   ///
@@ -106,444 +106,90 @@ export default function Tickets({ con, re, mo }) {
     setFiltered(() => searchTicket);
   };
   ////handleFilter
-  function handleFilter() {
-    ///resevation
-    setCity(() => cityIn);
-    if (category === "restaurants") {
-      setFiltered(() => res.data);
-      setIsSorted(() => true);
-      //city
-      //New York
-      if (cityIn === "NewYork") {
-        setFiltered(() => res.NewYork);
-        const divTime = convertTimeTo(res.NewYork);
-        //today
-        if (time === "today") {
-          setFiltered(() => divTime[0]);
-          return;
-        }
-        //
-        //tomorrow
-        if (time === "tomorrow") {
-          setFiltered(() => divTime[1]);
-          return;
-        }
-        //
-        //this week
-        if (time === "week") {
-          setFiltered(() => divTime[2]);
-          return;
-        }
-        //
-        return;
-      }
-      //
-      //los Ange
-      if (cityIn === "LosAng") {
-        setFiltered(() => res.LosAng);
-        const divTime = convertTimeTo(res.LosAng);
-        //today
-        if (time === "today") {
-          setFiltered(() => divTime[0]);
-          return;
-        }
-        //
-        //tomorrow
-        if (time === "tomorrow") {
-          setFiltered(() => divTime[1]);
-          return;
-        }
-        //
-        //this week
-        if (time === "week") {
-          setFiltered(() => divTime[2]);
-          return;
-        }
-        //
-        return;
-      }
-      //
-      //Chicago
-      if (cityIn === "Chicago") {
-        setFiltered(() => res.Chicago);
-        const divTime = convertTimeTo(res.Chicago);
-        //today
-        if (time === "today") {
-          setFiltered(() => divTime[0]);
-          return;
-        }
-        //
-        //tomorrow
-        if (time === "tomorrow") {
-          setFiltered(() => divTime[1]);
-          return;
-        }
-        //
-        //this week
-        if (time === "week") {
-          setFiltered(() => divTime[2]);
-          return;
-        }
-        //
-        return;
-      }
-      //
-      //Boston
-      if (cityIn === "Boston") {
-        setFiltered(() => res.Boston);
-        const divTime = convertTimeTo(res.Boston);
-        //today
-        if (time === "today") {
-          setFiltered(() => divTime[0]);
-          return;
-        }
-        //
-        //tomorrow
-        if (time === "tomorrow") {
-          setFiltered(() => divTime[1]);
-          return;
-        }
-        //
-        //this week
-        if (time === "week") {
-          setFiltered(() => divTime[2]);
-          return;
-        }
-        //
-        return;
-      }
-      //end city
-      return;
-    }
-    ///
-    ///movies
-    if (category === "movies") {
-      setFiltered(() => movies.data);
-      setIsSorted(() => true);
-      //city
-      //New York
-      if (cityIn === "NewYork") {
-        setFiltered(() => movies.NewYork);
-        const divTime = convertTimeTo(movies.NewYork);
-        //today
-        if (time === "today") {
-          setFiltered(() => divTime[0]);
-          return;
-        }
-        //
-        //tomorrow
-        if (time === "tomorrow") {
-          setFiltered(() => divTime[1]);
-          return;
-        }
-        //
-        //this week
-        if (time === "week") {
-          setFiltered(() => divTime[2]);
-          return;
-        }
-        //
-        return;
-      }
-      //
-      //los Ange
-      if (cityIn === "LosAng") {
-        setFiltered(() => movies.LosAng);
-        const divTime = convertTimeTo(movies.LosAng);
-        //today
-        if (time === "today") {
-          setFiltered(() => divTime[0]);
-          return;
-        }
-        //
-        //tomorrow
-        if (time === "tomorrow") {
-          setFiltered(() => divTime[1]);
-          return;
-        }
-        //
-        //this week
-        if (time === "week") {
-          setFiltered(() => divTime[2]);
-          return;
-        }
-        //
-        return;
-      }
-      //
-      //Chicago
-      if (cityIn === "Chicago") {
-        setFiltered(() => movies.Chicago);
-        const divTime = convertTimeTo(movies.Chicago);
-        //today
-        if (time === "today") {
-          setFiltered(() => divTime[0]);
-          return;
-        }
-        //
-        //tomorrow
-        if (time === "tomorrow") {
-          setFiltered(() => divTime[1]);
-          return;
-        }
-        //
-        //this week
-        if (time === "week") {
-          setFiltered(() => divTime[2]);
-          return;
-        }
-        //
-        return;
-      }
-      //
-      //Boston
-      if (cityIn === "Boston") {
-        setFiltered(() => movies.Boston);
-        const divTime = convertTimeTo(movies.Boston);
-        //today
-        if (time === "today") {
-          setFiltered(() => divTime[0]);
-          return;
-        }
-        //
-        //tomorrow
-        if (time === "tomorrow") {
-          setFiltered(() => divTime[1]);
-          return;
-        }
-        //
-        //this week
-        if (time === "week") {
-          setFiltered(() => divTime[2]);
-          return;
-        }
-        //
-        return;
-      }
-      //end city
-      return;
-    }
-    ////
-    ///concert
-    if (category === "concerts") {
-      setFiltered(() => concerts.data);
-      setIsSorted(() => true);
-      //city
-      //New York
-      if (cityIn === "NewYork") {
-        setFiltered(() => concerts.NewYork);
-        const divTime = convertTimeTo(concerts.NewYork);
-        //today
-        if (time === "today") {
-          setFiltered(() => divTime[0]);
-          return;
-        }
-        //
-        //tomorrow
-        if (time === "tomorrow") {
-          setFiltered(() => divTime[1]);
-          return;
-        }
-        //
-        //this week
-        if (time === "week") {
-          setFiltered(() => divTime[2]);
-          return;
-        }
-        //
-        return;
-      }
-      //
-      //los Ange
-      if (cityIn === "LosAng") {
-        setFiltered(() => concerts.LosAng);
-        const divTime = convertTimeTo(concerts.LosAng);
-        //today
-        if (time === "today") {
-          setFiltered(() => divTime[0]);
-          return;
-        }
-        //
-        //tomorrow
-        if (time === "tomorrow") {
-          setFiltered(() => divTime[1]);
-          return;
-        }
-        //
-        //this week
-        if (time === "week") {
-          setFiltered(() => divTime[2]);
-          return;
-        }
-        //
-        return;
-      }
-      //
-      //Chicago
-      if (cityIn === "Chicago") {
-        setFiltered(() => concerts.Chicago);
-        const divTime = convertTimeTo(concerts.Chicago);
-        //today
-        if (time === "today") {
-          setFiltered(() => divTime[0]);
-          return;
-        }
-        //
-        //tomorrow
-        if (time === "tomorrow") {
-          setFiltered(() => divTime[1]);
-          return;
-        }
-        //
-        //this week
-        if (time === "week") {
-          setFiltered(() => divTime[2]);
-          return;
-        }
-        //
-        return;
-      }
-      //
-      //Boston
-      if (cityIn === "Boston") {
-        setFiltered(() => concerts.Boston);
-        const divTime = convertTimeTo(concerts.Boston);
-        //today
-        if (time === "today") {
-          setFiltered(() => divTime[0]);
-          return;
-        }
-        //
-        //tomorrow
-        if (time === "tomorrow") {
-          setFiltered(() => divTime[1]);
-          return;
-        }
-        //
-        //this week
-        if (time === "week") {
-          setFiltered(() => divTime[2]);
-          return;
-        }
-        //
-        return;
-      }
-      //end city
-      return;
-    }
-    ///
-    if (cityIn === "NewYork") {
-      console.log(data.NewYork);
-      setFiltered(() => data.NewYork);
-      setIsSorted(() => true);
-      const divTime = convertTimeTo(data.NewYork);
-      //today
-      if (time === "today") {
-        setFiltered(() => divTime[0]);
-        return;
-      }
-      //
-      //tomorrow
-      if (time === "tomorrow") {
-        setFiltered(() => divTime[1]);
-        return;
-      }
-      //
-      //this week
-      if (time === "week") {
-        setFiltered(() => divTime[2]);
-        return;
-      }
-      return;
-    }
-    if (cityIn === "LosAng") {
-      setFiltered(() => data.LosAng);
-      setIsSorted(() => true);
-      const divTime = convertTimeTo(data.LosAng);
-      //today
-      if (time === "today") {
-        setFiltered(() => divTime[0]);
-        return;
-      }
-      //
-      //tomorrow
-      if (time === "tomorrow") {
-        setFiltered(() => divTime[1]);
-        return;
-      }
-      //
-      //this week
-      if (time === "week") {
-        setFiltered(() => divTime[2]);
-        return;
-      }
-      return;
-    }
-    if (cityIn === "Chicago") {
-      setFiltered(() => data.Chicago);
-      setIsSorted(() => true);
-      const divTime = convertTimeTo(data.Chicago);
-      //today
-      if (time === "today") {
-        setFiltered(() => divTime[0]);
-        return;
-      }
-      //
-      //tomorrow
-      if (time === "tomorrow") {
-        setFiltered(() => divTime[1]);
-        return;
-      }
-      //
-      //this week
-      if (time === "week") {
-        setFiltered(() => divTime[2]);
-        return;
-      }
-      return;
-    }
-    if (cityIn === "Boston") {
-      setFiltered(() => data.Boston);
-      setIsSorted(() => true);
-      const divTime = convertTimeTo(data.Boston);
-      //today
-      if (time === "today") {
-        setFiltered(() => divTime[0]);
-        return;
-      }
-      //
-      //tomorrow
-      if (time === "tomorrow") {
-        setFiltered(() => divTime[1]);
-        return;
-      }
-      //
-      //this week
-      if (time === "week") {
-        setFiltered(() => divTime[2]);
-        return;
-      }
-      return;
-    }
-    const divTime = convertTimeTo(tickets);
+  function filterTime(data, time) {
+    //Separate event to :today , tommorow, this week
+    const divTime = convertTimeTo(data);
     //today
     if (time === "today") {
       setFiltered(() => divTime[0]);
-      setIsSorted(() => true);
       return;
     }
     //
     //tomorrow
     if (time === "tomorrow") {
       setFiltered(() => divTime[1]);
-      setIsSorted(() => true);
       return;
     }
     //
     //this week
     if (time === "week") {
       setFiltered(() => divTime[2]);
+      return;
+    }
+    //
+  }
+  function filterCity(data, cityIn, time) {
+    ///check city
+    //NewYork
+    if (cityIn === "NewYork") {
+      setFiltered(() => data.NewYork);
+      filterTime(data.NewYork, time);
+      return;
+    }
+    //los Ange
+    if (cityIn === "LosAng") {
+      setFiltered(() => data.LosAng);
+      filterTime(data.LosAng, time);
+      return;
+    }
+    //Chicago
+    if (cityIn === "Chicago") {
+      setFiltered(() => data.Chicago);
+      filterTime(data.Chicago, time);
+      return;
+    }
+    //Boston
+    if (cityIn === "Boston") {
+      setFiltered(() => data.Boston);
+      filterTime(data.Boston, time);
+      return;
+    }
+  }
+  function handleFilter() {
+    ///resevation
+    setCity(() => cityIn);
+    if (category === "restaurants") {
+      setFiltered(() => res.data);
       setIsSorted(() => true);
+      filterCity(res, cityIn, time);
+      return;
+    }
+    ///movies
+    if (category === "movies") {
+      setFiltered(() => movies.data);
+      setIsSorted(() => true);
+      filterCity(movies, cityIn, time);
+      return;
+    }
+    ///concert
+    if (category === "concerts") {
+      setFiltered(() => concerts.data);
+      setIsSorted(() => true);
+      filterCity(concerts, cityIn, time);
+      return;
+    }
+    ///All event have city
+    if (category === "events" && cityIn !== "US") {
+      console.log(data);
+      setIsSorted(() => true);
+      filterCity(data, cityIn, time);
+      return;
+    }
+    // All event no city, have time
+    if (category === "events" && cityIn === "US") {
+      setIsSorted(() => true);
+      setFiltered(() => tickets);
+      filterTime(tickets, time);
       return;
     }
     setIsSorted(() => false);
