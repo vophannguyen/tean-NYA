@@ -18,7 +18,7 @@ import ProcessCheckout from "./features/cart/ProcessCheckout.jsx";
 import Receipt from "./features/cart/Receipt.jsx";
 import Account from "./features/user/Account.jsx";
 import AboutUs from "./layout/AboutUs";
-import Faq from "./layout/Faq";
+import Support from "./features/support/Support.jsx";
 import FormLogin from "./features/auth/FormLogin.jsx";
 import FormRegister from "./features/auth/FormRegister.jsx";
 import SoldListings from "./features/user/profile/SoldListings.jsx";
@@ -61,7 +61,7 @@ const router = createBrowserRouter([
       { path: "/cart/checkout", element: <ProcessCheckout /> },
       { path: "/cart/checkout/receipt/:id", element: <Receipt /> },
       { path: "/about", element: <AboutUs /> },
-      { path: "/FAQ", element: <Faq /> },
+      { path: "/FAQ", element: <Support /> },
     ],
   },
 ]);
