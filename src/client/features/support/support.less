@@ -2,39 +2,53 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  row-gap: 6rem;
   justify-content: center;
   align-items: center;
+  margin: 0 auto;
+  max-width: 1000px;
+  padding: 5rem 2rem;
 
-  .heading-support {
-    font-size: 6rem;
-    padding: 6rem 0 2.5rem 0;
-    text-transform: uppercase;
+  .faqs, .contact, .about {
+    .heading-small {
+        font-size: 1.8rem;
+        font-family: 'Inconsolata', monospace;
+        text-decoration: underline;
+        text-decoration-color: var(--red);
+        text-decoration-thickness: 3px;
+        text-align: center;
+        padding-bottom: 1rem;
+      }
+  }
+  .about, .contact {
+    display: block;
+    text-align: center;
+    padding: 0 2rem;
   }
 
-  .faqs,
-  .contact {
-    display: flex;
-    width: 100%;
-    max-width: 800px;
-    flex-direction: column;
-    gap: 3.5rem;
-    padding: 2rem;
-
+  .faqs {
     .accordian {
-      position: relative;
-      font-family: "Inconsolata", monospace;
-      width: 100%;
-      display: flex;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        article {
+            padding: 1rem;
+            p {
+                padding-right: 2rem;
+            }
+        }
 
-      .show-hide {
-        width: 100%;
-        position: absolute;
-        top: 10%;
-        left: 96%;
+        .show-hide {
+            position: absolute;
+            top: 10px;
+            right: 0;
+            font-size: 2.5rem;
+            background-color: transparent;
+            border: none;
+        }
       }
-      .show-hide:hover {
-        color: var(--red);
-      }
-    }
   }
+  
+
 }

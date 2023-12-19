@@ -88,10 +88,6 @@ export default function Upload() {
           required
         />
       </section>
-      {/* <label>
-        Location
-       <LocationInput />
-      </label> */}
       <button type="submit">Upload</button>
       {message && <p>{message}</p>}
     </form>

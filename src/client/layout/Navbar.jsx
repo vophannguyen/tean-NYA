@@ -29,12 +29,12 @@ export default function Navbar() {
         <menu>
           {token ? (
             <>
-              <li>
+              <li className="hide">
                 <NavLink to="/upload">
                   <button>List An Event</button>
                 </NavLink>
               </li>
-              <li>
+              <li className="mobile-hide">
                 <NavLink to="/user/profile">
                   <ProfileIcon />
                 </NavLink>

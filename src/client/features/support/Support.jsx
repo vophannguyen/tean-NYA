@@ -1,5 +1,6 @@
 import AccordianItem from "./AccordianItem";
 import faqsData from "./faqsData";
+import About from "./About";
 import { useState } from "react";
 import "./support.less";
 
@@ -18,15 +19,16 @@ export default function Support() {
     };
     return(
         <section className="support-container">
-            <section className="faqs">
-                <h1 className="heading-support">Frequently Asked Questions</h1>
+            <About />
+            <section className="faqs" id="faq">
+                <h1 className="heading-small">Frequently Asked Questions</h1>
                 {activeAccordians.map((item) => (
                   <AccordianItem key={item.id} item={item} onClick={() => handleToggle(item.id)} />
                 ))}
             </section>
             <section className="contact" id="contact">
-                <h1 className="heading-support">Contact Us</h1>
-                <p>support@lastchancenyc.com</p>
+                <h1 className="heading-small">Contact Us</h1>
+                <p>Email us at support@lastchancenyc.com</p>
             </section>
         </section>
     )

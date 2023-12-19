@@ -60,8 +60,7 @@ const router = createBrowserRouter([
       { path: "user/payment", element: <h1>Payment</h1> },
       { path: "/cart/checkout", element: <ProcessCheckout /> },
       { path: "/cart/checkout/receipt/:id", element: <Receipt /> },
-      { path: "/about", element: <AboutUs /> },
-      { path: "/FAQ", element: <Support /> },
+      { path: "/faqs", element: <Support /> },
     ],
   },
 ]);
