@@ -20,21 +20,20 @@ import Arrow from "../utils/Arrow";
 
 //Basic functionality setup
 const TicketCard = ({ ticket }) => {
-  const day = formatDay(ticket.time);
+  const month = formatDay(ticket.time);
   const time = formatTime(ticket.time);
 
   return (
     <Link to={`/tickets/${ticket.id}`}>
       <li key={ticket.id} className="ticket-card">
         <section className="flex1">
-          <h3>{day}</h3>
+          <h3>{month}</h3>
         </section>
         <section className="flex2">
           <h2>{ticket.title}</h2>
           <p>
-            {time} |{" "}
-            {ticket.address1 + ", " + ticket.city + ", " + ticket.state}|
-            {ticket.quantity} ticket(s)
+            {time} | {" "}
+            {ticket.address1 + ", " + ticket.city + ", " + ticket.state} | {ticket.quantity} ticket(s)
           </p>
         </section>
         <section className="flex3">

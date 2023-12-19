@@ -107,17 +107,17 @@ export default function FlyMenu({ token, setIsOpen, isOpen, me }) {
           <p>Support</p>
         </li>
         <li>
-          <Link to="/about" onClick={handleLink}>
+          <Link to="/faqs" onClick={handleLink}>
             About
           </Link>
         </li>
         <li>
-          <Link to="/faq" onClick={handleLink}>
+          <Link to="/faqs" onClick={handleLink}>
             FAQs
           </Link>
         </li>
         <li>
-          <Link to="/faq" onClick={handleLink}>
+          <Link to="/faqs" onClick={handleLink}>
             Contact
           </Link>
         </li>
