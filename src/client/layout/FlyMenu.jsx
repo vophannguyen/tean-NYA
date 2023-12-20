@@ -5,18 +5,38 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import CloseIcon from "@mui/icons-material/Close";
 import "./flyoutMenu.less";
+import { useGetResQuery } from "../features/tickets/ticketSlice";
+import {
+  useDeleteCartMutation,
+  useGetCartQuery,
+} from "../features/cart/cartSlice";
 
 export default function FlyMenu({ token, setIsOpen, isOpen, me }) {
+  //use RTK fetch data
+  const { data, isLoading, isError } = useGetCartQuery();
+  const [deletCart] = useDeleteCartMutation();
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const ref = useRef(null);
 
+  //waiting data
+  if (isLoading) {
+    return;
+  }
+  if (isError) {
+    return;
+  }
+  ///end
   //handle Link Click to close flyout
   const handleLink = () => {
     setIsOpen(false);
   };
 
   const onLogout = async () => {
+    data?.data.forEach(async (item) => {
+      await deletCart(item.id).unwrap();
+    });
     await dispatch(logout());
     setIsOpen(false);
     navigate("/");
@@ -34,7 +54,8 @@ export default function FlyMenu({ token, setIsOpen, isOpen, me }) {
       document.removeEventListener("mousedown", checkClickAway);
       document.removeEventListener("touchstart", checkClickAway);
     };
-  }), [isOpen];
+  }),
+    [isOpen];
 
   return (
     <section className="flyout" ref={ref}>
