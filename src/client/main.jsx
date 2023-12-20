@@ -17,12 +17,10 @@ import Cart from "./features/cart/Cart.jsx";
 import ProcessCheckout from "./features/cart/ProcessCheckout.jsx";
 import Receipt from "./features/cart/Receipt.jsx";
 import Account from "./features/user/Account.jsx";
-import AboutUs from "./layout/AboutUs";
-import Faq from "./layout/Faq";
+import Support from "./features/support/Support.jsx";
 import FormLogin from "./features/auth/FormLogin.jsx";
 import FormRegister from "./features/auth/FormRegister.jsx";
 import SoldListings from "./features/user/profile/SoldListings.jsx";
-import { Upcoming } from "@mui/icons-material";
 import UpcomingRes from "./features/user/profile/UpcomingRes.jsx";
 import PastRes from "./features/user/profile/PastRes.jsx";
 import ActiveListings from "./features/user/profile/ActiveListings.jsx";
@@ -60,8 +58,7 @@ const router = createBrowserRouter([
       { path: "user/payment", element: <h1>Payment</h1> },
       { path: "/cart/checkout", element: <ProcessCheckout /> },
       { path: "/cart/checkout/receipt/:id", element: <Receipt /> },
-      { path: "/about", element: <AboutUs /> },
-      { path: "/FAQ", element: <Faq /> },
+      { path: "/faqs", element: <Support /> },
     ],
   },
 ]);

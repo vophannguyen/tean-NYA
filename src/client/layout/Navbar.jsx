@@ -34,7 +34,7 @@ export default function Navbar() {
                   <button>List An Event</button>
                 </NavLink>
               </li>
-              <li className="hide">
+              <li className="mobile-hide">
                 <NavLink to="/user/profile">
                   <ProfileIcon />
                 </NavLink>
@@ -42,7 +42,7 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              <li className="hide">
+              <li>
                 <NavLink to="/login">
                   <button className="nav-login">Sign In</button>
                 </NavLink>

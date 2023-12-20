@@ -3,6 +3,7 @@ import { useGetByIdQuery } from "../ticketSlice";
 import { useParams, useNavigate } from "react-router-dom";
 import "./listing.less";
 import { formatDay, formatTime } from "../../utils/helpers";
+import { ArrowBack } from "../../utils/Arrow";
 import Map from "../Map";
 import Button from "../../utils/Button";
 
@@ -52,10 +53,10 @@ export default function Listing() {
   //todo: reformat listing date on front end
   //details needed for single view listing = category of the listing (movie, concert, reservation)
   return (
-    <>
-      <Button className="back-single" onClick={handleReturn}>
-        {"<<"}Back
-      </Button>
+    <section className="listing-container">
+      <div className="back-single" onClick={handleReturn}>
+        <ArrowBack />
+      </div>
       <section className="single-view">
         <section className="map-left">
           <figure>
@@ -110,6 +111,6 @@ export default function Listing() {
           </ul>
         </section>
       </section>
-    </>
+    </section>
   );
 }
