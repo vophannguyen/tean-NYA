@@ -7,23 +7,23 @@ export default function Footer() {
       <section className="flex">
         <ul className="about">
           <li>
-            <NavLink to="/about">About Us</NavLink>
+            <NavLink to="/faqs">About</NavLink>
           </li>
           <li>
-            <NavLink to="/faq">FAQ</NavLink>
+            <NavLink to="/faqs">FAQs</NavLink>
           </li>
           <li>
-            <NavLink to="/contact">Contact</NavLink>
+            <NavLink to="/faqs">Contact</NavLink>
           </li>
         </ul>
       </section>
       <section className="flex">
         <ul className="terms">
           <li>
-            <NavLink to="/">Terms & Conditions</NavLink>
+            <NavLink to="/faqs">Terms & Conditions</NavLink>
           </li>
           <li>
-            <NavLink to="/">Privacy Policy</NavLink>
+            <NavLink to="/faqs">Privacy Policy</NavLink>
           </li>
           <li>Last Chance @ 2024</li>
         </ul>

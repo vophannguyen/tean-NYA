@@ -3,6 +3,7 @@
   width: 100%;
   max-width: 800px;
   flex-direction: column;
+  padding: 4rem 2rem;
 
   legend {
     font-size: 6rem;
@@ -11,7 +12,7 @@
     font-style: normal;
     text-transform: uppercase;
     text-align: center;
-    padding: 6rem 0 2.5rem 0;
+    padding-bottom: 1rem;
   }
 
   .input-group {
@@ -35,11 +36,16 @@
 
   button[type="submit"] {
     padding: 0.7rem 2rem;
-    border: 1px solid var(--black);
     background-color: var(--black);
+    border: none;
     color: var(--white);
     font-family: stratos, sans-serif;
     text-transform: uppercase;
-    font-size: 1rem;
+    font-size: 1.1rem;
+    letter-spacing: 0.08rem;
+    margin: 2rem 0;
+  }
+  button:hover {
+    background-color: var(--red);
   }
 }
