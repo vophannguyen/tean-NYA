@@ -34,7 +34,7 @@ export default function FlyMenu({ token, setIsOpen, isOpen, me }) {
   };
 
   const onLogout = async () => {
-    data?.data.forEach(async (item) => {
+    data?.data?.forEach(async (item) => {
       await deletCart(item.id).unwrap();
     });
     await dispatch(logout());
