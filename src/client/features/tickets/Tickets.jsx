@@ -259,8 +259,7 @@ export default function Tickets({ con, re, mo }) {
         </button>
       </section>
       <section className="content">
-        <section className="left">
-          <ul className="tickets">
+        <ul className="tickets">
             {!isSorted
               ? tickets?.map((ticket) => (
                   <TicketCard ticket={ticket} key={ticket.id} />
@@ -268,16 +267,8 @@ export default function Tickets({ con, re, mo }) {
               : filtered?.map((ticket) => (
                   <TicketCard ticket={ticket} key={ticket.id} />
                 ))}
-          </ul>
-          <Button onClick={() => window.scrollTo(0, 0)}>Back to the top</Button>
-        </section>
-        <aside className="right">
-          {!isSorted ? (
-            <Map tickets={tickets} single={false} city={city} />
-          ) : (
-            <Map tickets={filtered} single={false} city={city} />
-          )}
-        </aside>
+        </ul>
+        <Button onClick={() => window.scrollTo(0, 0)}>Back to the top</Button>
       </section>
     </section>
   );
