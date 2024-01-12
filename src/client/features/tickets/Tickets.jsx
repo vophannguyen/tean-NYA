@@ -205,8 +205,8 @@ export default function Tickets({ con, re, mo }) {
       <section className="heading">
         <h1>LAST CHANCE EVENTS</h1>
       </section>
-      <form onSubmit={handleSearch} className="search-bar">
-        <input type="text" name="search" placeholder="Search for an event..." />
+      <form onSubmit={handleSearch} autocomplete="off" className="search-bar">
+        <input autocomplete="false" type="text" name="search" placeholder="Search for an event..." />
         <SearchIcon fontSize="large" />
       </form>
       <section className="sort">

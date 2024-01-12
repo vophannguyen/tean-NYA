@@ -42,7 +42,7 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              <li>
+              <li className="mobile-hide">
                 <NavLink to="/login">
                   <button className="nav-login">Sign In</button>
                 </NavLink>

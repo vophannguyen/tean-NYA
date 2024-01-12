@@ -1,5 +1,7 @@
 section {
   width: 100%;
+  height: auto;
+
   .heading {
     text-align: center;
     padding: 4rem 1rem 2rem 1rem;
@@ -9,6 +11,7 @@ section {
     }
   }
   .sort {
+    width: 100%;
     border-top: 2px solid var(--black);
     border-bottom: 2px solid var(--black);
     padding: 0 4rem;
@@ -18,6 +21,13 @@ section {
     flex-wrap: wrap;
     column-gap: 4rem;
     margin: 2rem auto;
+    @media (max-width: 480px) {
+      padding: 0;
+      margin: 0 auto;
+      column-gap: 0;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+    }
     select {
       text-align: right;
       width: 140px;
@@ -25,8 +35,11 @@ section {
       font-size: 1.1rem;
       font-family: "Inconsolata", monospace;
       background-color: transparent;
-
       height: 4rem;
+      @media (max-width: 480px) {
+        font-size: 0.9rem;
+        width: 100px;
+      }
     }
     select:focus {
       outline: none;
@@ -37,6 +50,9 @@ section {
       font-family: "Inconsolata", monospace;
       background-color: transparent;
       border: none;
+      @media (max-width: 480px) {
+        padding-left: 1rem;
+      }
     }
   }
   .content {
@@ -49,6 +65,9 @@ section {
     column-gap: 5rem;
     width: 100%;
     max-width: 1900px;
+    @media (max-width: 480px) {
+      padding: 1rem 1.8rem;
+    }
 
       ul {
         display: flex;
@@ -58,6 +77,9 @@ section {
         justify-content: center;
         align-items: stretch;
         gap: 6rem;
+        @media (max-width: 480px) {
+          gap: 2rem;
+        }
 
         .ticket-card {
           color: var(--black);
@@ -68,21 +90,32 @@ section {
           align-items: center;
           column-gap: 2.5rem;
           position: relative;
+          @media (max-width: 480px) {
+            column-gap: 1.5rem;
+          }
 
           .flex1 {
             flex-basis: 15%;
             max-width: 130px;
             max-height: 130px;
-            min-width: 100px;
-            min-height: 100px;
+            min-width: 76px;
+            min-height: 76px;
             aspect-ratio: 1/1;
             color: var(--white);
             background-color: var(--black);
-            font-size: 1.9rem;
             line-height: 1;
             font-family: "Inconsolata", monospace;
             text-transform: uppercase;
             text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            @media (max-width: 480px) {
+              flex-basis: 10%;
+              h3{
+                font-size: 1.9rem;
+              }
+            }
           }
           .flex2 {
             flex-basis: 80%;
@@ -91,6 +124,18 @@ section {
             padding-bottom: 1rem;
             flex-direction: column;
             gap: 0.2rem;
+            @media (max-width: 480px) {
+              flex-basis: 90%;
+              h2{
+                font-size: 1.5rem;
+                line-height: 2rem;
+              }
+              p {
+                font-size: 0.9rem;
+                padding-left: 0.1rem;
+              }
+            }
+
           }
           .flex3 {
             flex-basis: 5%;
@@ -99,6 +144,9 @@ section {
             top: 0;
             right: 7px;
             position: absolute;
+            @media (max-width: 480px) {
+              display: none;
+            }
           }
         }
         .ticket-card:hover {
@@ -128,9 +176,15 @@ section {
 }
 
 .tickets-container {
+  form {
+    color: var(--black);
+  }
   .search-bar {
     text-align: center;
     margin-bottom: 6rem;
+    input&:focus {
+      outline: none;
+    }
     input {
       width: 30rem;
       font-size: large;
@@ -145,9 +199,6 @@ section {
       border: none;
       border-bottom: 2px solid var(--black);
       background-color: transparent;
-      &:focus-visible {
-        outline-color: none;
-      }
     }
   }
   @media (max-width: 1200px) {
@@ -173,9 +224,12 @@ section {
      }
   }
   @media (max-width: 480px) {
+    button {
+      margin: 2rem;
+    }
     .heading {
       h1{
-        font-size: 3rem;
+        font-size: 2.1rem;
       }
      }
   }
