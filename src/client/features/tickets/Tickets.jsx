@@ -135,7 +135,7 @@ export default function Tickets({ con, re, mo }) {
       filterTime(data.NewYork, time);
       return;
     }
-    //los Ange
+    //LA
     if (cityIn === "LosAng") {
       setFiltered(() => data.LosAng);
       filterTime(data.LosAng, time);
