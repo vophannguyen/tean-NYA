@@ -58,12 +58,6 @@ export default function Listing() {
         <ArrowBack />
       </div>
       <section className="single-view">
-        <section className="map-left">
-          <figure>
-            <Map tickets={[ticket.data]} single={true} />
-          </figure>
-        </section>
-        <section className="info-right">
           <ul>
             <li>
               <h2>{day}</h2>
@@ -110,7 +104,6 @@ export default function Listing() {
             </Button>
           </ul>
         </section>
-      </section>
     </section>
   );
 }

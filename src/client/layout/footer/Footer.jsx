@@ -3,7 +3,7 @@ import "./footer.less";
 
 export default function Footer() {
   return (
-    <footer>
+    <>
       <section className="flex">
         <ul className="about">
           <li>
@@ -19,15 +19,15 @@ export default function Footer() {
       </section>
       <section className="flex">
         <ul className="terms">
-          <li>
+          <li className="mobile-hide">
             <NavLink to="/faqs">Terms & Conditions</NavLink>
           </li>
-          <li>
+          <li className="mobile-hide">
             <NavLink to="/faqs">Privacy Policy</NavLink>
           </li>
           <li>Last Chance @ 2024</li>
         </ul>
       </section>
-    </footer>
+    </>
   );
 }

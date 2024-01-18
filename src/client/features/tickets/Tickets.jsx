@@ -135,7 +135,7 @@ export default function Tickets({ con, re, mo }) {
       filterTime(data.NewYork, time);
       return;
     }
-    //los Ange
+    //LA
     if (cityIn === "LosAng") {
       setFiltered(() => data.LosAng);
       filterTime(data.LosAng, time);
@@ -205,8 +205,8 @@ export default function Tickets({ con, re, mo }) {
       <section className="heading">
         <h1>LAST CHANCE EVENTS</h1>
       </section>
-      <form onSubmit={handleSearch} className="search-bar">
-        <input type="text" name="search" placeholder="Search for an event..." />
+      <form onSubmit={handleSearch} autocomplete="off" className="search-bar">
+        <input autocomplete="false" type="text" name="search" placeholder="Search for an event..." />
         <SearchIcon fontSize="large" />
       </form>
       <section className="sort">
@@ -259,8 +259,7 @@ export default function Tickets({ con, re, mo }) {
         </button>
       </section>
       <section className="content">
-        <section className="left">
-          <ul className="tickets">
+        <ul className="tickets">
             {!isSorted
               ? tickets?.map((ticket) => (
                   <TicketCard ticket={ticket} key={ticket.id} />
@@ -268,16 +267,8 @@ export default function Tickets({ con, re, mo }) {
               : filtered?.map((ticket) => (
                   <TicketCard ticket={ticket} key={ticket.id} />
                 ))}
-          </ul>
-          <Button onClick={() => window.scrollTo(0, 0)}>Back to the top</Button>
-        </section>
-        <aside className="right">
-          {!isSorted ? (
-            <Map tickets={tickets} single={false} city={city} />
-          ) : (
-            <Map tickets={filtered} single={false} city={city} />
-          )}
-        </aside>
+        </ul>
+        <Button onClick={() => window.scrollTo(0, 0)}>Back to the top</Button>
       </section>
     </section>
   );
